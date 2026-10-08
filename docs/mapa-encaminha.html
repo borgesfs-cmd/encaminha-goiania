@@ -1,0 +1,204 @@
+<title>Mapa do Encaminha Goiânia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: diagrama em cinco camadas da esquerda para a direita (entradas → motor → bases → saídas), com o painel de atualização embaixo alimentando as bases; empilha em uma coluna no celular */
+:root{
+  --bg:#F5F6F1; --surface:#FFFFFF; --sunk:#E9ECE4; --ink:#16261F; --muted:#56655D; --line:#CFD6CB;
+  --in:#1D5FA8; --in-soft:#E3EDF8;          /* entradas */
+  --engine:#1F5A42; --engine-soft:#DFF1E5;  /* motor */
+  --data:#8A6A00; --data-soft:#FBF0CC;      /* bases (ipê) */
+  --out:#D9661F; --out-soft:#FBEADF;        /* saídas */
+  --admin:#6B4FA0; --admin-soft:#EEE8F7;    /* painel */
+  --font-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101814; --surface:#17221C; --sunk:#1E2C25; --ink:#E6EEE8; --muted:#9DB0A5; --line:#2F4238;
+  --in:#7DB2EE; --in-soft:#16273A; --engine:#5FBF92; --engine-soft:#183324; --data:#F2C230; --data-soft:#3A3115;
+  --out:#F2945A; --out-soft:#3A2416; --admin:#B69CE6; --admin-soft:#2A2238; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101814; --surface:#17221C; --sunk:#1E2C25; --ink:#E6EEE8; --muted:#9DB0A5; --line:#2F4238;
+  --in:#7DB2EE; --in-soft:#16273A; --engine:#5FBF92; --engine-soft:#183324; --data:#F2C230; --data-soft:#3A3115;
+  --out:#F2945A; --out-soft:#3A2416; --admin:#B69CE6; --admin-soft:#2A2238; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px;padding-block:28px 48px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(26px,4vw,38px);font-weight:800}
+.lead{color:var(--muted);max-width:70ch;margin:6px 0 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);margin-top:12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.pill{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.pill.on{background:var(--engine-soft);color:var(--engine)}
+.pill.next{background:var(--sunk);color:var(--muted);border:1px dashed var(--line)}
+
+.map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;align-items:stretch}
+.layer{display:grid;gap:10px;align-content:start;padding:14px;border-radius:12px;position:relative;min-width:0}
+.layer+.layer{margin-left:28px}
+.layer+.layer::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--muted)}
+.layer h2{font-size:19px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.layer h2 small{font-family:var(--font-mono);font-size:12px;font-weight:500;color:var(--muted)}
+.layer>p{margin:0;font-size:13px;color:var(--muted)}
+.L-in{background:var(--in-soft)} .L-in h2{color:var(--in)}
+.L-engine{background:var(--engine-soft)} .L-engine h2{color:var(--engine)}
+.L-data{background:var(--data-soft)} .L-data h2{color:var(--data)}
+.L-out{background:var(--out-soft)} .L-out h2{color:var(--out)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:grid;gap:4px}
+.box h3{font-family:var(--font-body);font-size:15px;font-weight:700;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between}
+.box p,.box ul{margin:0;font-size:13px;color:var(--muted)}
+.box ul{padding-left:16px}
+.box code{font-family:var(--font-mono);font-size:12px;color:var(--ink);background:var(--sunk);padding:0 4px;border-radius:3px}
+@media (max-width:980px){
+  .map{grid-template-columns:1fr}
+  .layer+.layer{margin-left:0;margin-top:30px}
+  .layer+.layer::before{content:"↓";left:50%;top:-27px;transform:translateX(-50%)}
+}
+
+.feedback{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+.feedback .up{font-size:22px;color:var(--admin);text-align:center;width:28px}
+.admin{background:var(--admin-soft);border-radius:12px;padding:14px;display:grid;gap:10px}
+.admin h2{font-size:19px;color:var(--admin)}
+.admin .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.sources{display:flex;flex-wrap:wrap;gap:6px}
+.sources span{font-size:12px;font-family:var(--font-mono);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:2px 7px}
+
+.journey{display:grid;gap:12px}
+.journey h2{font-size:22px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:4px;font-size:13px;color:var(--muted)}
+ol.steps li::before{content:counter(s);font-family:var(--font-mono);font-size:13px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--engine);color:var(--surface)}
+ol.steps b{color:var(--ink);font-size:14px}
+.privacy{border:2px solid var(--engine);border-radius:12px;padding:14px 16px;display:grid;gap:6px}
+.privacy h2{font-size:19px;color:var(--engine)}
+.privacy ul{margin:0;padding-left:18px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--sunk);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td code{font-family:var(--font-mono);font-size:12px}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Mapa do Encaminha Goiânia</h1>
+    <p class="lead">Como o app transforma a situação de uma pessoa em encaminhamentos com fluxo, documentos e contatos. Documento de trabalho da equipe; não aparece no app.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--in)"></i>Entradas</span>
+      <span><i class="dot" style="background:var(--engine)"></i>Motor de regras</span>
+      <span><i class="dot" style="background:var(--data)"></i>Bases de dados</span>
+      <span><i class="dot" style="background:var(--out)"></i>Saídas</span>
+      <span><i class="dot" style="background:var(--admin)"></i>Painel de atualização</span>
+      <span><span class="pill on">No protótipo</span></span>
+      <span><span class="pill next">Próxima etapa</span></span>
+    </div>
+  </header>
+
+  <section class="map" aria-label="Arquitetura em camadas">
+    <div class="layer L-in">
+      <h2>Entradas <small>quem usa</small></h2>
+      <p>Profissional da rede ou a própria pessoa.</p>
+      <div class="box"><h3>Aba 1 · Dados socioeconômicos <span class="pill on">No protótipo</span></h3>
+        <ul><li>Iniciais (sem nome), município, região de Goiânia</li><li>Idade, pessoas na casa, renda, salário mínimo</li><li>Trabalho, moradia, escolaridade</li><li>Cadastro e benefícios, composição da família</li><li>Sem CPF, NIS, endereço, telefone, raça/cor, religião ou orientação sexual</li></ul></div>
+      <div class="box"><h3>Aba 2 · Necessidades e solicitações <span class="pill on">No protótipo</span></h3>
+        <ul><li>Saúde e medicamentos (alto custo, HIV, PEP, saúde mental)</li><li>Proteção e violência</li><li>Direitos sociais, renda e moradia</li><li>Solicitação em texto livre, com números e e-mails apagados</li></ul></div>
+      <div class="box"><h3>Casos de exemplo <span class="pill on">No protótipo</span></h3><p>Família com violência, Alto custo, HIV, Farmácia Popular.</p></div>
+      <div class="box"><h3>Busca no diretório <span class="pill on">No protótipo</span></h3><p>Texto livre, município e tipo de serviço.</p></div>
+      <div class="box"><h3>Busca por CEP <span class="pill next">Próxima etapa</span></h3><p>Para indicar o CRAS, UBS e CAPS mais próximos.</p></div>
+    </div>
+
+    <div class="layer L-engine">
+      <h2>Motor de regras <small>decide</small></h2>
+      <p>Roda no navegador. Nada é enviado.</p>
+      <div class="box"><h3>1. Cálculo de renda</h3><p><code>renda ÷ pessoas</code> comparada a R$ 109, R$ 218, ¼, ½, 1, 2 e 3 salários mínimos.</p></div>
+      <div class="box"><h3>2. Teste de cada política</h3><p>Cada política tem uma função de critério que devolve um status e o motivo:</p>
+        <ul><li><b>Provável direito</b>: critérios batem</li><li><b>Verificar</b>: falta dado que o app não sabe</li><li><b>Encaminhamento</b>: proteção, sem renda</li></ul></div>
+      <div class="box"><h3>3. Prioridade</h3><p>PEP &gt; violência contra mulher &gt; criança &gt; HIV &gt; alto custo &gt; saúde mental &gt; CadÚnico &gt; demais.</p></div>
+      <div class="box"><h3>4. Alerta de segurança</h3><p>Suicídio, violência em curso, criança em risco ou PEP geram faixa vermelha com 190, 192, 180, 100, 188.</p></div>
+      <div class="box"><h3>5. Território</h3><p>Escolhe serviços pelo município e pela região (Conselho Tutelar e CREAS de Goiânia). Sem dado local, orienta o 121 ou a prefeitura.</p></div>
+    </div>
+
+    <div class="layer L-data">
+      <h2>Bases de dados <small>o que sabe</small></h2>
+      <p>Hoje dentro do arquivo; depois, num banco editável.</p>
+      <div class="box"><h3>Catálogo de políticas <span class="pill on">No protótipo</span></h3>
+        <ul><li>Nacionais: CadÚnico, Bolsa Família, BPC, Tarifa Social, Pé-de-Meia, Farmácia Popular…</li><li>Estaduais: Mães de Goiás, Goiás + Inclusivo, Dignidade, Por Elas, Aluguel Social, Alto custo…</li><li>Rede de proteção: mulher, criança, idoso, rua, saúde mental, HIV</li></ul>
+        <p>Campos: esfera, valor, critério, fluxo, documentos, onde ir.</p></div>
+      <div class="box"><h3>Rede de serviços <span class="pill on">No protótipo</span></h3><p>Cerca de 100 unidades: CRAS, CREAS, Centro POP, Conselhos Tutelares, DEAEM, Cora Coralina, Defensoria, Cemac, CTA/SAE, HDT, UPAs com PEP, Ministério Público (MPGO, MPF, MPT). Endereço, telefone, e-mail, horário, fonte.</p></div>
+      <div class="box"><h3>Rede comunitária <span class="pill on">Inicial</span></h3><p>Clínicas-escola e escritório-modelo (PUC Goiás, UFG), Ceap-SOL, CEVAM. Igrejas e ONGs entram pelo painel.</p></div>
+      <div class="box"><h3>Territórios <span class="pill on">No protótipo</span></h3><p>20 municípios da RMG, 6 regiões de Goiânia, cobertura do Passe Livre Estudantil.</p></div>
+      <div class="box"><h3>UBS e CAPS <span class="pill next">Próxima etapa</span></h3><p>Importar do CNES (DataSUS).</p></div>
+    </div>
+
+    <div class="layer L-out">
+      <h2>Saídas <small>o que entrega</small></h2>
+      <p>O que a pessoa ou o profissional leva.</p>
+      <div class="box"><h3>Faixa de segurança <span class="pill on">No protótipo</span></h3><p>Primeiro o que é urgente.</p></div>
+      <div class="box"><h3>Aba 3 · Fluxo, serviços e encaminhamentos <span class="pill on">No protótipo</span></h3><p>Resumo do perfil no topo, depois os cards abaixo.</p></div>
+      <div class="box"><h3>Cards de encaminhamento <span class="pill on">No protótipo</span></h3><p>Por política: status, motivo, fluxo passo a passo, documentos, onde ir com contatos copiáveis, quadros extras (remédios da Farmácia Popular, direitos da pessoa com HIV).</p></div>
+      <div class="box"><h3>Resumo copiável <span class="pill on">No protótipo</span></h3><p>Texto com iniciais, município, idade, renda por pessoa e serviços. Sem nome, endereço ou documento da pessoa.</p></div>
+      <div class="box"><h3>Entenda a rede <span class="pill on">No protótipo</span></h3><p>Fluxo SUS e SUAS com SAMU 192 e Sistema de Garantia de Direitos.</p></div>
+      <div class="box"><h3>Diretório de serviços <span class="pill on">No protótipo</span></h3><p>Busca e filtros.</p></div>
+      <div class="box"><h3>Guia de encaminhamento impresso / PDF <span class="pill next">Próxima etapa</span></h3><p>Para entregar à pessoa atendida.</p></div>
+    </div>
+  </section>
+
+  <section class="feedback" aria-label="Painel de atualização">
+    <div class="up" aria-hidden="true">↑</div>
+    <div class="admin">
+      <h2>Painel de atualização <span class="pill next">Próxima etapa</span></h2>
+      <p style="margin:0;color:var(--muted);font-size:14px">Alimenta as bases de dados. É onde a equipe mantém o app vivo.</p>
+      <div class="row">
+        <div class="box"><h3>Editar serviços</h3><p>Incluir, corrigir ou desativar unidade, telefone, horário. Cada item guarda a data da última conferência e quem conferiu.</p></div>
+        <div class="box"><h3>Editar políticas</h3><p>Valores, critérios, fluxos e documentos. Mudou a lei? Muda aqui e vale para todos.</p></div>
+        <div class="box"><h3>Fila de conferência</h3><p>Itens com mais de 6 meses sem conferir ficam em amarelo; com mais de 12, saem do resultado até alguém confirmar.</p></div>
+        <div class="box"><h3>Sugestões da rede</h3><p>Profissionais e entidades (igrejas, ONGs, universidades) sugerem cadastro. A equipe aprova antes de publicar.</p></div>
+        <div class="box"><h3>Perfis de acesso</h3><p>Leitura livre. Edição só para equipe com login. Registro de alterações.</p></div>
+      </div>
+      <div>
+        <p style="margin:0 0 6px;font-size:13px;color:var(--muted)">Fontes que entram pelo painel:</p>
+        <div class="sources"><span>Seds/GO</span><span>Agehab</span><span>SES/GO</span><span>Prefeituras da RMG</span><span>Censo SUAS / MDS</span><span>CNES / DataSUS</span><span>gov.br (Farmácia Popular, BPC)</span><span>TJGO rede de atendimento</span><span>Defensoria</span><span>Universidades</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="journey">
+    <h2>Jornada de um atendimento</h2>
+    <ol class="steps">
+      <li><b>Acolhe</b>Profissional abre o app e registra só as iniciais.</li>
+      <li><b>Descreve</b>Marca município, renda, família e situações.</li>
+      <li><b>Avalia risco</b>O motor mostra primeiro a faixa de segurança, se houver.</li>
+      <li><b>Cruza</b>Cada política é testada e recebe status e motivo.</li>
+      <li><b>Localiza</b>O território define CRAS, CREAS, Conselho Tutelar e unidades de saúde.</li>
+      <li><b>Orienta</b>Cards com fluxo, documentos e contatos.</li>
+      <li><b>Registra</b>Profissional copia o resumo para o prontuário ou envia à pessoa.</li>
+    </ol>
+  </section>
+
+  <section class="privacy">
+    <h2>Privacidade (LGPD)</h2>
+    <ul>
+      <li>O app não pede nome, endereço da pessoa nem número de documento. Só iniciais.</li>
+      <li>Nada sai do navegador. Não há cadastro de atendidos.</li>
+      <li>Se um dia guardar atendimentos: login de profissional, finalidade definida, base legal e prazo de descarte. Dados de saúde (HIV, saúde mental) são dados sensíveis.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 style="font-size:22px;margin-bottom:10px">Estrutura de cada registro</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Registro</th><th>Campos</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Política</td><td><code>nome, esfera, valor, critério(perfil) → status+motivo, fluxo[], documentos[], onde_ir, extras[]</code></td><td>Mães de Goiás: estadual, R$ 300, renda ≤ R$ 109 e criança 0–6</td></tr>
+          <tr><td>Serviço</td><td><code>nome, tipo, município, região, endereço, telefones[], e-mail, horário, site, observação, fonte, conferido_em</code></td><td>CREAS Noroeste, Setor Capuava</td></tr>
+          <tr><td>Território</td><td><code>município, região, serviços de referência</code></td><td>Goiânia / Noroeste → CT Noroeste, CREAS Noroeste</td></tr>
+          <tr><td>Perfil (só na tela)</td><td><code>iniciais, município, região, idade, pessoas, renda, situações[]</code></td><td>M.S.A., Goiânia, 29 anos, 4 pessoas, R$ 400</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

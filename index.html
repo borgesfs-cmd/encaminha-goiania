@@ -1,0 +1,926 @@
+<title>Encaminha Goiânia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: barra de emergência fixa no topo da página, abas (Encaminhar · Entenda a rede · Serviços · Sobre os dados), coluna de perfil + coluna de resultados no desktop, uma coluna no celular */
+:root{
+  --bg:#F5F6F1;          /* papel levemente esverdeado */
+  --surface:#FFFFFF;
+  --sunk:#E9ECE4;
+  --ink:#16261F;         /* verde-quase-preto do cerrado */
+  --muted:#56655D;
+  --line:#CFD6CB;
+  --green:#1F5A42;       /* verde institucional */
+  --green-ink:#FFFFFF;
+  --ipe:#E9B10C;         /* amarelo ipê */
+  --ipe-soft:#FBF0CC;
+  --sus:#1D5FA8;         /* azul SUS */
+  --sus-soft:#E3EDF8;
+  --suas:#D9661F;        /* laranja SUAS */
+  --suas-soft:#FBEADF;
+  --sgd:#6B4FA0;         /* garantia de direitos */
+  --sgd-soft:#EEE8F7;
+  --alert:#B3261E;
+  --alert-soft:#FBE4E2;
+  --ok:#2E7D4F;
+  --ok-soft:#DFF1E5;
+  --font-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101814; --surface:#17221C; --sunk:#1E2C25; --ink:#E6EEE8; --muted:#9DB0A5; --line:#2F4238;
+    --green:#5FBF92; --green-ink:#0D1A13; --ipe:#F2C230; --ipe-soft:#3A3115;
+    --sus:#7DB2EE; --sus-soft:#16273A; --suas:#F2945A; --suas-soft:#3A2416;
+    --sgd:#B69CE6; --sgd-soft:#2A2238; --alert:#F28B82; --alert-soft:#3D1D1B; --ok:#7FD3A0; --ok-soft:#183324;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101814; --surface:#17221C; --sunk:#1E2C25; --ink:#E6EEE8; --muted:#9DB0A5; --line:#2F4238;
+  --green:#5FBF92; --green-ink:#0D1A13; --ipe:#F2C230; --ipe-soft:#3A3115;
+  --sus:#7DB2EE; --sus-soft:#16273A; --suas:#F2945A; --suas-soft:#3A2416;
+  --sgd:#B69CE6; --sgd-soft:#2A2238; --alert:#F28B82; --alert-soft:#3D1D1B; --ok:#7FD3A0; --ok-soft:#183324;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;text-wrap:balance;margin:0}
+a{color:var(--green)}
+:focus-visible{outline:3px solid var(--ipe);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+
+/* emergência */
+.sos{background:var(--ink);color:var(--bg)}
+.sos .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;padding-block:8px}
+.sos b{font-family:var(--font-display);letter-spacing:.06em;text-transform:uppercase;font-size:12px;color:var(--ipe)}
+.sos span{font-size:14px;white-space:nowrap}
+.sos .n{font-family:var(--font-mono);font-size:15px;color:var(--ipe);margin-right:4px}
+
+header.top{border-bottom:1px solid var(--line);background:var(--surface)}
+header.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between;padding-block:18px 0}
+.brand h1{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.01em}
+.brand h1 i{font-style:normal;background:linear-gradient(transparent 62%,var(--ipe) 62%)}
+.brand p{margin:4px 0 14px;color:var(--muted);max-width:60ch}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;width:100%}
+nav.tabs button{font:600 15px var(--font-body);background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:10px 14px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--green)}
+main{padding-block:24px 56px}
+
+/* encaminhar */
+.grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.panel h2{font-size:20px;margin-bottom:4px}
+.hint{color:var(--muted);font-size:14px}
+form{display:grid;gap:16px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px;min-width:0}
+legend,label.l{font-weight:700;font-size:14px;margin-bottom:2px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input[type=number],select,input[type=text]{width:100%;font:16px var(--font-body);padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:6px 11px;border:1px solid var(--line);border-radius:999px;font-size:14px;cursor:pointer;background:var(--bg);user-select:none}
+.chip input:checked+span{background:var(--green);border-color:var(--green);color:var(--green-ink)}
+.chip input:focus-visible+span{outline:3px solid var(--ipe);outline-offset:2px}
+.calc{font-family:var(--font-mono);font-size:13px;background:var(--sunk);border-radius:8px;padding:8px 10px;color:var(--muted)}
+.calc strong{color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+button.b{font:700 15px var(--font-body);border-radius:8px;padding:10px 14px;cursor:pointer;border:1px solid var(--green);background:var(--green);color:var(--green-ink)}
+button.b.ghost{background:transparent;color:var(--green)}
+.casebar{display:grid;gap:4px;margin-bottom:16px}
+.ghostcase{border-style:dashed}
+.stepnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.stepnav button{display:flex;gap:10px;align-items:center;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;cursor:pointer;min-width:0}
+.stepnav .sn{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);background:var(--sunk);color:var(--ink)}
+.stepnav .st{display:grid;min-width:0}
+.stepnav b{font-size:15px;line-height:1.2}
+.stepnav small{color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stepnav button[aria-selected="true"]{border:2px solid var(--green);padding:9px 11px}
+.stepnav button[aria-selected="true"] .sn{background:var(--green);color:var(--green-ink)}
+@media (max-width:640px){.stepnav{grid-template-columns:1fr}}
+.step{display:grid;gap:18px}
+.stephead{display:grid;gap:4px}
+.stephead .hint{max-width:80ch;margin:0}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;align-items:start}
+.fgrid fieldset{align-content:start}
+textarea{width:100%;font:16px var(--font-body);padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);resize:vertical}
+.btns.end{justify-content:flex-end}
+.profile{display:flex;flex-wrap:wrap;gap:6px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;font-size:14px}
+.profile span{color:var(--muted)} .profile b{color:var(--ink);font-weight:700}
+.profile .dem{flex-basis:100%;color:var(--ink)}
+.cases{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.case{font:600 13px var(--font-body);border:1px solid var(--green);color:var(--green);background:transparent;border-radius:6px;padding:5px 9px;cursor:pointer}
+.case[aria-pressed="true"]{background:var(--green);color:var(--green-ink)}
+.med{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.med div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px}
+.med b{display:block;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.rights{margin:0;padding-left:18px}
+.example{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--ipe-soft);color:var(--ink);padding:3px 8px;border-radius:4px}
+
+.results{display:grid;gap:16px;min-width:0}
+.urgent{border:2px solid var(--alert);background:var(--alert-soft);border-radius:var(--r);padding:14px 16px}
+.urgent h3{color:var(--alert);font-size:18px;margin-bottom:6px}
+.urgent ul{margin:0;padding-left:18px}
+.summary{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+.summary h2{font-size:22px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;font-size:13px}
+.sphere{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:4px;white-space:nowrap}
+.sphere.nac{background:var(--sus-soft);color:var(--sus)}
+.sphere.est{background:var(--ok-soft);color:var(--ok)}
+.sphere.mun{background:var(--suas-soft);color:var(--suas)}
+.sphere.rede{background:var(--sgd-soft);color:var(--sgd)}
+.status{font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.status.prov{background:var(--ok-soft);color:var(--ok)}
+.status.ver{background:var(--ipe-soft);color:var(--ink)}
+.status.enc{background:var(--sgd-soft);color:var(--sgd)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.card>summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px}
+.card>summary::-webkit-details-marker{display:none}
+.card .t{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.card h3{font-size:18px}
+.card .why{grid-column:1/-1;color:var(--muted);font-size:14px}
+.card .val{font-family:var(--font-mono);font-size:14px;align-self:start;text-align:right}
+.card .chev{transition:transform .15s}
+.card[open] .chev{transform:rotate(90deg)}
+.body{padding:0 16px 16px;display:grid;gap:14px;border-top:1px dashed var(--line);padding-top:14px}
+.body h4{font-family:var(--font-body);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+ol.flow{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.flow li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+ol.flow li::before{content:counter(s);font-family:var(--font-mono);font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);color:var(--ink)}
+.docs{margin:0;padding-left:18px}
+.places{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.place{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);display:grid;gap:4px;font-size:14px;min-width:0}
+.place b{font-size:15px}
+.place .meta{color:var(--muted)}
+.contact{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.contact code{font-family:var(--font-mono);font-size:14px;color:var(--ink);overflow-wrap:anywhere;user-select:all}
+.copy{font:600 12px var(--font-body);border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:6px;padding:2px 7px;cursor:pointer}
+.src{font-size:12px;color:var(--muted)}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+.note{font-size:14px;background:var(--sunk);border-radius:8px;padding:10px 12px}
+
+/* rede */
+.flowmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:860px){.flowmap{grid-template-columns:1fr}}
+.col{display:grid;gap:10px;min-width:0}
+.colhead{border-radius:var(--r);padding:12px 14px;color:#fff}
+.colhead h2{font-size:24px;letter-spacing:.02em}
+.colhead p{margin:2px 0 0;font-size:14px;opacity:.95}
+.sus .colhead{background:var(--sus);color:var(--surface)}
+.suas .colhead{background:var(--suas);color:var(--surface)}
+.node{border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface);padding:12px 14px;position:relative}
+.sus .node{border-color:color-mix(in srgb,var(--sus) 45%,var(--line))}
+.suas .node{border-color:color-mix(in srgb,var(--suas) 45%,var(--line))}
+.node h3{font-size:18px;display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.node h3 small{font-family:var(--font-body);font-weight:700;font-size:13px;color:var(--muted)}
+.node p{margin:4px 0 0;font-size:14px}
+.node .when{font-size:13px;color:var(--muted);margin-top:6px}
+.arrow{text-align:center;color:var(--muted);font-size:18px;line-height:1}
+.node.samu{border:2px solid var(--alert);background:var(--alert-soft)}
+.node.samu h3{color:var(--alert)}
+.node.samu .big{font-family:var(--font-mono);font-size:30px;color:var(--alert);line-height:1}
+.samu-lists{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;font-size:13px}
+.samu-lists ul{margin:2px 0 0;padding-left:16px}
+@media (max-width:480px){.samu-lists{grid-template-columns:1fr}}
+.mid{display:grid;gap:10px;align-content:start}
+.mid .node{border-color:var(--sgd);background:var(--sgd-soft)}
+.mid .node h3{color:var(--sgd)}
+.first{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.first .node{background:var(--ipe-soft);border-color:var(--ipe)}
+
+/* serviços */
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:16px}
+.filters>div{display:grid;gap:4px;min-width:0;flex:1 1 180px}
+.count{color:var(--muted);font-size:14px;margin-bottom:10px}
+.dir{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.dir .place{background:var(--surface)}
+.tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* sobre */
+.prose{max-width:72ch;display:grid;gap:14px}
+.prose h2{font-size:24px;margin-top:8px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--sunk)}
+.cov{font-weight:700}
+.cov.full{color:var(--ok)} .cov.part{color:var(--suas)} .cov.min{color:var(--alert)}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .wrap{padding-block:18px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="sos" role="region" aria-label="Telefones de emergência">
+  <div class="wrap">
+    <b>Emergência</b>
+    <span><span class="n">192</span>SAMU</span>
+    <span><span class="n">190</span>Polícia Militar</span>
+    <span><span class="n">193</span>Bombeiros</span>
+    <span><span class="n">180</span>Mulher</span>
+    <span><span class="n">100</span>Direitos Humanos</span>
+    <span><span class="n">188</span>CVV</span>
+    <span><span class="n">153</span>Guarda (GCM)</span>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Encaminha <i>Goiânia</i></h1>
+      <p>Políticas públicas nacionais, do Estado de Goiás e da rede municipal para Goiânia e região metropolitana. Descreva a situação e veja o fluxo e onde ir.</p>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Seções">
+      <button role="tab" id="tab-enc" aria-controls="p-enc" aria-selected="true">Encaminhar</button>
+      <button role="tab" id="tab-rede" aria-controls="p-rede" aria-selected="false">Entenda a rede</button>
+      <button role="tab" id="tab-serv" aria-controls="p-serv" aria-selected="false">Serviços e contatos</button>
+      <button role="tab" id="tab-sobre" aria-controls="p-sobre" aria-selected="false">Sobre os dados</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ENCAMINHAR -->
+<section id="p-enc" role="tabpanel" aria-labelledby="tab-enc">
+  <div class="casebar">
+    <p class="hint">Nada é enviado ou guardado. Use só as iniciais: não registre nome, endereço da pessoa nem números de documento. <span class="example" id="exTag">Exemplo preenchido</span></p>
+    <div class="cases" role="group" aria-label="Casos de exemplo">
+      <span class="hint">Casos de exemplo:</span>
+      <button type="button" class="case" data-case="familia">Família com violência</button>
+      <button type="button" class="case" data-case="altocusto">Alto custo</button>
+      <button type="button" class="case" data-case="hiv">HIV</button>
+      <button type="button" class="case" data-case="farmacia">Farmácia Popular</button>
+      <button class="case ghostcase" type="button" id="clear">Novo atendimento</button>
+    </div>
+  </div>
+
+  <div class="stepnav" role="tablist" aria-label="Etapas do atendimento">
+    <button role="tab" id="sb1" aria-controls="st1" aria-selected="true"><span class="sn">1</span><span class="st"><b>Dados socioeconômicos</b><small id="sum1">Sem identificação</small></span></button>
+    <button role="tab" id="sb2" aria-controls="st2" aria-selected="false"><span class="sn">2</span><span class="st"><b>Necessidades e solicitações</b><small id="sum2">Nada marcado</small></span></button>
+    <button role="tab" id="sb3" aria-controls="st3" aria-selected="false"><span class="sn">3</span><span class="st"><b>Fluxo, serviços e encaminhamentos</b><small id="sum3">—</small></span></button>
+  </div>
+
+  <form id="f" novalidate>
+    <div id="st1" class="panel step" role="tabpanel" aria-labelledby="sb1">
+      <div class="stephead"><h2>Dados socioeconômicos</h2>
+        <p class="hint">Só o necessário para cruzar critérios. Não pedimos nome, CPF, NIS, endereço, telefone, raça/cor, religião ou orientação sexual: são dados que identificam a pessoa ou dados sensíveis pela LGPD (art. 5º, II).</p></div>
+      <div class="fgrid">
+        <fieldset><label class="l" for="ini">Iniciais da pessoa</label><input id="ini" type="text" maxlength="6" autocomplete="off" placeholder="Ex.: M.S.A." style="text-transform:uppercase"></fieldset>
+        <fieldset><label class="l" for="mun">Município onde mora</label><select id="mun"></select></fieldset>
+        <fieldset id="regBox"><label class="l" for="reg">Região de Goiânia</label>
+          <select id="reg">
+            <option value="">Não sei</option>
+            <option value="centro-sul">Centro-Sul (Central e Sul)</option>
+            <option value="leste">Leste (Leste e Sudeste)</option>
+            <option value="norte">Norte (Vale do Meia Ponte e Norte)</option>
+            <option value="noroeste">Noroeste (Mendanha e Noroeste)</option>
+            <option value="oeste">Oeste (Macambira/Cascavel e Sudoeste)</option>
+            <option value="campinas">Campinas (Campinas e Oeste)</option>
+          </select><span class="hint">Indica Conselho Tutelar e CREAS de referência.</span></fieldset>
+        <fieldset><label class="l" for="idade">Idade</label><input id="idade" type="number" min="0" max="120" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="pessoas">Pessoas na casa</label><input id="pessoas" type="number" min="1" max="30" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="renda">Renda total da casa (R$/mês)</label><input id="renda" type="number" min="0" step="1" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="sm">Salário mínimo de referência (R$)</label><input id="sm" type="number" min="1" step="1" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="trab">Trabalho</label>
+          <select id="trab"><option value="">Não informado</option><option value="formal">Com carteira ou servidor</option><option value="informal">Informal ou por conta própria</option><option value="desempregado">Desempregado</option><option value="aposentado">Aposentado ou pensionista</option><option value="nao">Não trabalha (estuda, cuida da casa)</option></select></fieldset>
+        <fieldset><label class="l" for="moradia">Moradia</label>
+          <select id="moradia"><option value="">Não informado</option><option value="propria">Própria</option><option value="alugada">Alugada</option><option value="cedida">Cedida</option><option value="ocupacao">Ocupação</option><option value="rua">Situação de rua</option><option value="acolhimento">Acolhimento institucional</option></select></fieldset>
+        <fieldset><label class="l" for="escol">Escolaridade</label>
+          <select id="escol"><option value="">Não informado</option><option value="sem">Sem escolaridade</option><option value="fund-inc">Fundamental incompleto</option><option value="fund">Fundamental completo</option><option value="medio">Médio completo</option><option value="sup">Superior</option></select></fieldset>
+      </div>
+      <div class="calc" id="calc" aria-live="polite"></div>
+      <fieldset><legend>Cadastro e benefícios que já tem</legend><div class="chips" id="chipsCad"></div></fieldset>
+      <fieldset><legend>Quem está na família</legend><div class="chips" id="chipsFam"></div></fieldset>
+      <div class="btns end"><button class="b" type="button" data-go="2">Próximo: necessidades</button></div>
+    </div>
+
+    <div id="st2" class="panel step" role="tabpanel" aria-labelledby="sb2" hidden>
+      <div class="stephead"><h2>Necessidades e solicitações</h2><p class="hint">Marque tudo o que a pessoa trouxe ou o que foi percebido no atendimento.</p></div>
+      <fieldset><legend>Saúde e medicamentos</legend><div class="chips" id="chipsSau"></div></fieldset>
+      <fieldset><legend>Proteção e violência</legend><div class="chips" id="chipsProt"></div></fieldset>
+      <fieldset><legend>Direitos sociais, renda e moradia</legend><div class="chips" id="chipsSoc"></div></fieldset>
+      <fieldset><label class="l" for="dem">Solicitação principal, nas palavras da pessoa</label>
+        <textarea id="dem" rows="3" maxlength="400" placeholder="Ex.: precisa do remédio para artrite que o posto não tem."></textarea>
+        <span class="hint">Não escreva nomes, endereços, telefones ou números de documento. Sequências de números e e-mails são apagados do resumo.</span></fieldset>
+      <div class="btns end"><button class="b ghost" type="button" data-go="1">Voltar</button><button class="b" type="button" data-go="3">Ver encaminhamentos</button></div>
+    </div>
+  </form>
+
+  <div id="st3" class="step" role="tabpanel" aria-labelledby="sb3" hidden>
+    <div class="profile" id="profile"></div>
+    <div class="results" id="results" aria-live="polite"></div>
+    <div class="btns end"><button class="b ghost" type="button" data-go="2">Voltar às necessidades</button></div>
+  </div>
+</section>
+
+<!-- REDE -->
+<section id="p-rede" role="tabpanel" aria-labelledby="tab-rede" hidden>
+  <div class="flowmap">
+    <div class="col sus">
+      <div class="colhead"><h2>SUS · Saúde</h2><p>Cuidado da saúde física e mental</p></div>
+      <div class="node samu">
+        <h3>SAMU <span class="big">192</span></h3>
+        <p>Emergência com risco de vida, a qualquer hora. A ligação é atendida por um médico regulador, que orienta e envia a ambulância para a UPA ou o hospital certo. Em Goiânia, a Central de Regulação também cobre a região metropolitana.</p>
+        <div class="samu-lists">
+          <div><strong>Ligue 192 em casos de</strong>
+            <ul><li>parada ou falta de ar, dor forte no peito</li><li>intoxicação ou envenenamento</li><li>queimaduras graves</li><li>maus-tratos com lesão</li><li>parto com risco para mãe ou bebê</li><li>tentativa de suicídio</li><li>crise hipertensiva</li></ul></div>
+          <div><strong>Não use o 192 para</strong>
+            <ul><li>febre prolongada, dor de dente</li><li>vômito e diarreia sem gravidade</li><li>ir a consulta ou exame</li><li>corte com pouco sangramento, entorse</li><li>transporte de óbito</li></ul></div>
+        </div>
+      </div>
+      <div class="arrow" aria-hidden="true">↓ leva para ↓</div>
+      <div class="node"><h3>UBS <small>Unidade Básica de Saúde</small></h3><p>Porta de entrada do SUS. Consultas, vacinas, pré-natal, acompanhamento e primeiro acolhimento em saúde mental.</p><p class="when">Vá à UBS do seu bairro com cartão do SUS e documento.</p></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="node"><h3>UPA / CAIS <small>Urgência 24h</small></h3><p>Casos que precisam de atendimento rápido, mas não são graves. Também estabiliza crises em saúde mental.</p></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="node"><h3>Hospital <small>Emergência e internação</small></h3><p>Casos graves, internação e cirurgia. Referências estaduais: HUGO, HMI, Huapa (Aparecida), Hutrin (Trindade).</p></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="node"><h3>CAPS <small>Saúde mental</small></h3><p>Sofrimento psíquico grave e persistente, uso de álcool e outras drogas, atendimento infantojuvenil. Acesso direto ou encaminhado pela UBS.</p></div>
+      <div class="node"><h3>Serviços especializados <small>Medicamentos e infectologia</small></h3><p>Farmácia Popular e UBS para remédios básicos. Cemac Juarez Barbosa para alto custo. CTA/SAE Cidade Jardim e HDT para HIV, IST e hepatites.</p></div>
+    </div>
+
+    <div class="mid">
+      <div class="node" style="text-align:center"><h3 style="justify-content:center">Trabalho em rede</h3><p>SUS e SUAS se encaminham casos entre si. Quando há direito violado, entra o Sistema de Garantia de Direitos.</p></div>
+      <div class="node"><h3>Conselho Tutelar</h3><p>Criança ou adolescente com direito ameaçado ou violado. Plantão noturno e fins de semana.</p></div>
+      <div class="node"><h3>Delegacias e Patrulha Maria da Penha</h3><p>DEAEM, Batalhão Maria da Penha, GCM 153. Porta de entrada para a medida protetiva.</p></div>
+      <div class="node"><h3>Defensoria Pública</h3><p>Advogado gratuito: família, moradia, documentos, benefício negado, medida protetiva.</p></div>
+      <div class="node"><h3>Ministério Público</h3><p>Fiscaliza a rede e age quando um serviço público falha ou um grupo vulnerável fica sem proteção. <b>MPGO</b>: criança, idoso, PcD, saúde, educação, mulher, consumidor. <b>MPF</b>: INSS, BPC, programas federais. <b>MPT</b>: trabalho infantil, escravo, discriminação no emprego.</p></div>
+    </div>
+
+    <div class="col suas">
+      <div class="colhead"><h2>SUAS · Assistência social</h2><p>Apoio a famílias em vulnerabilidade ou com direitos violados</p></div>
+      <div class="node"><h3>CRAS <small>Proteção Social Básica</small></h3><p>Cadastro Único, Bolsa Família, BPC, benefícios estaduais, orientação e serviços de convivência. Primeira porta para quase todos os benefícios.</p></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="node"><h3>CREAS <small>Proteção Social Especial</small></h3><p>Violência, abandono, negligência, trabalho infantil, medidas socioeducativas em meio aberto.</p></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="node"><h3>Centro POP <small>População em situação de rua</small></h3><p>Alimentação, higiene, documentos e encaminhamentos. O endereço do Centro POP pode ser usado no Cadastro Único.</p></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="node"><h3>Acolhimento <small>Abrigos</small></h3><p>Proteção temporária para crianças, adolescentes, mulheres em risco de morte (Casa Abrigo Sempre Viva, endereço sigiloso), idosos e pessoas em situação de rua. O acesso é feito pela rede (CREAS, Centro POP, DEAEM, Conselho Tutelar).</p></div>
+    </div>
+  </div>
+
+  <div class="first">
+    <div class="node"><h3>Primeiro passo</h3><p>Risco de vida: <b>192</b>. Saúde: UBS mais próxima. Benefício ou apoio social: CRAS mais próximo.</p></div>
+    <div class="node"><h3>Não sabe onde fica?</h3><p>Disque Social <b>121</b> (Governo Federal) informa o CRAS mais próximo. Veja também a aba Serviços e contatos.</p></div>
+    <div class="node"><h3>Você não está sozinho</h3><p>Buscar ajuda é um direito. Os serviços são públicos, gratuitos e para toda a população.</p></div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="p-serv" role="tabpanel" aria-labelledby="tab-serv" hidden>
+  <div class="filters">
+    <div><label class="l" for="fq">Buscar</label><input id="fq" type="text" placeholder="Nome, bairro, serviço"></div>
+    <div><label class="l" for="fm">Município</label><select id="fm"></select></div>
+    <div><label class="l" for="ft">Tipo</label><select id="ft"></select></div>
+  </div>
+  <p class="count" id="count"></p>
+  <div class="dir" id="dir"></div>
+</section>
+
+<!-- SOBRE -->
+<section id="p-sobre" role="tabpanel" aria-labelledby="tab-sobre" hidden>
+  <div class="prose">
+    <h2>Como o cruzamento funciona</h2>
+    <p>O app compara a renda por pessoa, a idade e as situações marcadas com os critérios publicados de cada política. O resultado tem três níveis:</p>
+    <p><span class="status prov">Provável direito</span> os critérios principais batem. <span class="status ver">Verificar</span> depende de algo que o app não sabe (tempo de moradia, laudo, seleção). <span class="status enc">Encaminhamento</span> serviço de proteção ou atendimento, sem critério de renda.</p>
+    <p>Quem decide a concessão é sempre o órgão responsável. Vários benefícios estaduais não têm inscrição: o Estado seleciona pela base do Cadastro Único, uma ou duas vezes por ano. Por isso, manter o CadÚnico atualizado no CRAS é o passo que mais abre portas.</p>
+    <p>Os critérios em reais usam a renda por pessoa: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), e frações do salário mínimo. Confira o valor do salário mínimo vigente no campo do formulário.</p>
+
+    <h2>Cobertura deste protótipo</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Nível</th><th>Situação</th><th>O que está incluído</th></tr></thead>
+        <tbody>
+          <tr><td>Nacional</td><td class="cov full">Principais benefícios</td><td>CadÚnico, Bolsa Família, BPC, Tarifa Social de Energia, Pé-de-Meia, Carteira da Pessoa Idosa, Passe Livre interestadual, Farmácia Popular. Canais 121, 135, 136, 100, 180, 188.</td></tr>
+          <tr><td>Saúde especializada</td><td class="cov full">Alto custo e HIV</td><td>Fluxo completo da Cemac Juarez Barbosa (pedido online, análise, retirada, renovação, recurso). HIV: teste, PEP, PrEP, SAE, antirretrovirais e direitos. PEP em 7 UPAs/CAIS (lista de 2024).</td></tr>
+          <tr><td>Estadual (GO)</td><td class="cov full">Programas da Seds e Agehab</td><td>Mães de Goiás, Goiás + Inclusivo, Dignidade, Goiás Por Elas, Aluguel Social, Passe Livre Estudantil, Aprendiz do Futuro, CIPTEA, Passe Livre PcD, Passaporte da Pessoa Idosa, Crédito Social, 2ª via de registro civil.</td></tr>
+          <tr><td>Goiânia</td><td class="cov full">Rede SUAS e proteção</td><td>25 CRAS e centros de convivência, 5 CREAS, Centro POP, 6 Conselhos Tutelares, rede da mulher, Defensoria. Faltam: lista de UBS e CAPS com endereço.</td></tr>
+          <tr><td>Ministério Público</td><td class="cov full">MPGO, MPF, MPT</td><td>Quando acionar, qual MP procurar, como fazer a representação, CAO de Direitos Humanos, Núcleo de Gênero, Provita. Falta: lista das promotorias por comarca (o site do MPGO não respondeu na consulta).</td></tr>
+          <tr><td>Rede comunitária</td><td class="cov part">Inicial</td><td>Clínicas-escola e escritório-modelo da PUC Goiás e UFG, Ceap-SOL, CEVAM. Igrejas, ONGs de bairro e pontos de apoio entram pelo cadastro da equipe, com conferência antes de publicar.</td></tr>
+          <tr><td>Aparecida de Goiânia</td><td class="cov part">Parcial</td><td>Secretaria de Assistência Social, CREAS II, 2 Conselhos Tutelares, Defensoria, Huapa. Faltam: CRAS com endereço.</td></tr>
+          <tr><td>Demais municípios da RMG</td><td class="cov min">Só nacional e estadual</td><td>O app orienta a procurar o CRAS do município. Próximo passo: levantar com cada prefeitura.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Fontes e data de conferência</h2>
+    <p class="hint">Contatos conferidos em 08/10/2026 nas fontes abaixo. Telefones de prefeitura mudam com frequência; ligue antes de enviar alguém.</p>
+    <ul>
+      <li><a href="https://goias.gov.br/social/projetos-de-participacao-social/" target="_blank" rel="noopener">Seds/GO, programas sociais</a> (atualizado em 26/06/2026)</li>
+      <li><a href="https://goias.gov.br/social/goias-mais-inclusivo/" target="_blank" rel="noopener">Seds/GO, Goiás + Inclusivo</a></li>
+      <li><a href="https://goias.gov.br/social/programa-credito-social/" target="_blank" rel="noopener">Seds/GO, Crédito Social</a></li>
+      <li><a href="https://goias.gov.br/agehab/programa-pra-ter-onde-morar-aluguel-social-edital-geral/" target="_blank" rel="noopener">Agehab, Aluguel Social</a></li>
+      <li><a href="https://goias.gov.br/social/unidadescrasgoiania/" target="_blank" rel="noopener">Seds/GO, unidades do CRAS em Goiânia</a> (atualizado em 18/10/2024)</li>
+      <li><a href="https://ohoje.com/2024/07/11/goiania-fortalece-rede-de-protecao-a-pessoas-em-situacao-de-risco-por-violacao-de-direitos/" target="_blank" rel="noopener">O Hoje, CREAS de Goiânia</a></li>
+      <li><a href="https://www.jornalopcao.com.br/ultimas-noticias/novo-centro-pop-de-goiania-passa-a-funcionar-no-setor-aeroporto-proximo-de-sede-da-gcm-776381/" target="_blank" rel="noopener">Jornal Opção, novo Centro POP</a></li>
+      <li><a href="https://www.jornalopcao.com.br/assunto/utilidade-publica/" target="_blank" rel="noopener">Jornal Opção, telefones dos Conselhos Tutelares</a></li>
+      <li><a href="https://www.trt18.jus.br/portal/ouvidoria/enfrentamento-a-violencia-domestica/" target="_blank" rel="noopener">TRT-18, rede de enfrentamento à violência doméstica</a> (atualizado em 05/08/2026)</li>
+      <li><a href="https://www.rotajuridica.com.br/confira-como-acionar-rede-de-protecao-a-mulheres-em-situacao-de-violencia-em-goiania/" target="_blank" rel="noopener">Prefeitura de Goiânia via Rota Jurídica, canais para mulheres</a></li>
+      <li><a href="https://www2.defensoria.go.def.br/" target="_blank" rel="noopener">Defensoria Pública de Goiás</a></li>
+      <li><a href="https://docs.tjgo.jus.br/rede_atendimento/regiao_2/Senador_Canedo/Crianca_e_Adolescente.pdf" target="_blank" rel="noopener">TJGO, rede de atendimento da comarca de Aparecida</a></li>
+      <li><a href="https://goias.gov.br/saude/?p=37536" target="_blank" rel="noopener">SES/GO, passo a passo do alto custo</a> e <a href="https://goias.gov.br/escoladesaude/perguntas-e-respostas-frequentes-medicamentos-de-alto-custo/" target="_blank" rel="noopener">perguntas frequentes da Cemac</a></li>
+      <li><a href="https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular" target="_blank" rel="noopener">Ministério da Saúde, Farmácia Popular</a></li>
+      <li><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-saude/centros-de-referencia/centro-de-testagem-e-acolhimento-cta/" target="_blank" rel="noopener">Prefeitura de Goiânia, CTA</a>, <a href="https://www.jornalopcao.com.br/saude/atendimentos-especializados-crescem-32-em-goiania-apos-redistribuicao-dos-servicos-do-crdt-851680/" target="_blank" rel="noopener">redistribuição do CRDT</a> e <a href="https://jornalopcao.com.br/ultimas-noticias/tratamento-pos-exposicao-ao-hiv-esta-disponivel-em-sete-unidades-de-atendimento-24h-em-goiania-599492/" target="_blank" rel="noopener">unidades com PEP</a></li>
+      <li><a href="https://www.pucgoias.edu.br/wp-content/uploads/2023/08/cesta-de-servicos.pdf" target="_blank" rel="noopener">PUC Goiás, cesta de serviços</a>, <a href="https://www.jornalopcao.com.br/saude/centro-de-psicologia-da-ufg-oferta-vagas-para-psicoterapia-gratuita-695932/" target="_blank" rel="noopener">Centro de Psicologia da UFG</a>, <a href="https://goias.gov.br/saude/ceap-sol/" target="_blank" rel="noopener">Ceap-SOL</a> e <a href="https://www.jornalopcao.com.br/direitos-humanos/instituicao-em-goiania-que-protege-mulheres-ha-45-anos-luta-para-sobreviver-apos-queda-nas-doacoes-851346/" target="_blank" rel="noopener">CEVAM</a></li>
+      <li><a href="https://cdpcd.com.br/mapapcd/" target="_blank" rel="noopener">Sede do MPGO</a>, <a href="https://docs.tjgo.jus.br/rede_atendimento/regiao_2/Inhumas/Vitimas_ou_Testemunhas_de_Violencia.pdf" target="_blank" rel="noopener">TJGO, CAO DH e Provita</a>, <a href="https://www.oabgo.org.br/wp-content/uploads/2026/03/CARTILHA-VIOLENCIA-CONTRA-A-MULHER.pdf" target="_blank" rel="noopener">cartilha OAB-GO (Núcleo de Gênero)</a> e <a href="https://www.mpf.mp.br/o-mpf/unidades/pr-go/contato-1" target="_blank" rel="noopener">MPF em Goiás</a></li>
+      <li><a href="https://goias.gov.br/saude/hdt" target="_blank" rel="noopener">SES/GO, HDT</a></li>
+      <li><a href="https://goias.gov.br/saude/samu-192/" target="_blank" rel="noopener">SES/GO, SAMU 192</a> e <a href="https://goias.gov.br/saude/?p=10702" target="_blank" rel="noopener">telefones das unidades estaduais</a></li>
+    </ul>
+
+    <h2>Próximos passos para virar produto</h2>
+    <ul>
+      <li>Painel para a equipe atualizar contatos, com data da última conferência em cada item.</li>
+      <li>Importar UBS e CAPS do CNES (DataSUS) e CRAS/CREAS do Censo SUAS, que são bases oficiais e abertas.</li>
+      <li>Parceria com as prefeituras da região metropolitana para os serviços municipais.</li>
+      <li>Mapa e cálculo da unidade mais próxima pelo CEP.</li>
+      <li>LGPD: se for guardar atendimentos, exigir login de profissional e não guardar dados sensíveis sem base legal.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Protótipo de orientação. Não substitui a avaliação da equipe técnica nem a decisão do órgão que concede o benefício. Contatos conferidos em 08/10/2026.</div></footer>
+
+<script>
+(function(){
+"use strict";
+/* ---------- MUNICÍPIOS ---------- */
+const MUNS=["Goiânia","Aparecida de Goiânia","Senador Canedo","Trindade","Goianira","Abadia de Goiás","Aragoiânia","Bela Vista de Goiás","Bonfinópolis","Brazabrantes","Caldazinha","Caturaí","Goianápolis","Guapó","Hidrolândia","Inhumas","Nerópolis","Nova Veneza","Santo Antônio de Goiás","Terezópolis de Goiás"];
+/* municípios cobertos pelo Passe Livre Estudantil (Seds) */
+const PLE=["Abadia de Goiás","Anápolis","Aparecida de Goiânia","Aragoiânia","Bela Vista de Goiás","Bonfinópolis","Brazabrantes","Caldazinha","Goianápolis","Goiânia","Goianira","Guapó","Hidrolândia","Nerópolis","Nova Veneza","Santo Antônio de Goiás","Senador Canedo","Terezópolis de Goiás","Trindade"];
+
+/* ---------- SERVIÇOS ---------- */
+const MXC="Av. Anhanguera, 3463, Setor Leste Universitário, Goiânia, CEP 74610-010";
+const S=[
+ // Estado
+ {id:"mxc",tipo:"Estadual (Seds)",mun:"Estado",nome:"Unidade de Integração e Referência Social Maria Xavier Caiado",end:MXC,tel:["(62) 3270-9610"],hor:"Seg a sex, 8h às 17h",obs:"Entrega e 2ª via dos cartões Mães de Goiás, Dignidade e Goiás + Inclusivo. CIPTEA, Passe Livre PcD e Passaporte da Pessoa Idosa."},
+ {id:"seds",tipo:"Estadual (Seds)",mun:"Estado",nome:"Seds, Secretaria de Estado de Desenvolvimento Social",end:"Praça Dr. Pedro Ludovico Teixeira, 332, Blocos A a D, Setor Central, Goiânia, CEP 74003-010",tel:["(62) 3270-9603","Ouvidoria (62) 3270-9604"],email:"ouvidoria.seds@goias.gov.br",hor:"Seg a sex, 8h às 18h"},
+ {id:"pcd",tipo:"Estadual (Seds)",mun:"Estado",nome:"Gerência da Pessoa com Deficiência (Seds)",end:MXC,tel:["(62) 3270-9620","WhatsApp (62) 98104-3652"],email:"pcd@goias.gov.br",hor:"Seg a sex, 7h30 às 18h"},
+ {id:"passaporte",tipo:"Estadual (Seds)",mun:"Estado",nome:"Passaporte da Pessoa Idosa (Seds)",end:MXC,tel:["(62) 3270-9621","(62) 98306-0327"],email:"passaporte.seds@goias.gov.br",hor:"Seg a sex, 7h às 17h30"},
+ {id:"mulherseds",tipo:"Estadual (Seds)",mun:"Estado",nome:"Superintendência da Mulher (Seds), Goiás Por Elas",end:"Praça Dr. Pedro Ludovico Teixeira, 332, Bloco B, térreo, Setor Central, Goiânia",tel:["WhatsApp (62) 98270-0214"],email:"crei.seds@goias.gov.br"},
+ {id:"juventude",tipo:"Estadual (Seds)",mun:"Estado",nome:"Passe Livre Estudantil (Seds)",end:"Praça Dr. Pedro Ludovico Teixeira, 332, Bloco C, térreo, Setor Central, Goiânia, CEP 74083-010",tel:["(62) 3270-9624","WhatsApp (62) 98306-0294","RedeMob 0800 648 2222"],email:"passelivre@goias.gov.br",site:"https://www.juventude.go.gov.br/"},
+ {id:"registro",tipo:"Estadual (Seds)",mun:"Estado",nome:"Registro Civil, 2ª via gratuita (Seds)",end:MXC,tel:["WhatsApp (62) 3270-9644"],email:"garantiadedireitos.seds@goias.gov.br"},
+ {id:"agehab",tipo:"Estadual (Agehab)",mun:"Estado",nome:"Agehab, Agência Goiana de Habitação",end:"Rua 18-A, nº 541, Setor Aeroporto, Goiânia, CEP 74070-060",tel:["(62) 3096-5005","(62) 3096-5050"],hor:"8h às 17h",site:"https://aluguelsocial.agehab.go.gov.br"},
+ {id:"aprendiz",tipo:"Estadual (Seds)",mun:"Estado",nome:"Aprendiz do Futuro",tel:["0800 494 1052"],site:"https://aprendizdofuturo.org.br"},
+ // Nacional
+ {id:"121",tipo:"Nacional",mun:"Nacional",nome:"Disque Social 121 (MDS)",tel:["121"],obs:"Bolsa Família, Cadastro Único e endereço do CRAS mais próximo."},
+ {id:"135",tipo:"Nacional",mun:"Nacional",nome:"INSS, Central 135 e Meu INSS",tel:["135"],site:"https://meu.inss.gov.br",obs:"Pedido de BPC, agendamento de perícia e avaliação social."},
+ {id:"100",tipo:"Nacional",mun:"Nacional",nome:"Disque 100, Direitos Humanos",tel:["100"],obs:"Denúncia anônima de violência contra criança, idoso, pessoa com deficiência, população de rua e LGBTQIA+. 24h."},
+ {id:"180",tipo:"Nacional",mun:"Nacional",nome:"Ligue 180, Central de Atendimento à Mulher",tel:["180"],obs:"Gratuito, sigiloso, 24h."},
+ {id:"188",tipo:"Nacional",mun:"Nacional",nome:"CVV, Centro de Valorização da Vida",tel:["188"],site:"https://cvv.org.br",obs:"Apoio emocional e prevenção do suicídio, 24h, gratuito."},
+ // Saúde
+ {id:"samu",tipo:"Saúde",mun:"Região metropolitana",nome:"SAMU 192",tel:["192"],obs:"Emergência com risco de vida. A Central de Regulação de Goiânia atende a região metropolitana."},
+ {id:"hugo",tipo:"Saúde",mun:"Goiânia",nome:"HUGO, Hospital Estadual de Urgências de Goiânia",tel:["(62) 3201-4420"]},
+ {id:"hmi",tipo:"Saúde",mun:"Goiânia",nome:"HMI, Hospital Estadual Materno-Infantil",tel:["(62) 3956-2900"]},
+ {id:"hem",tipo:"Saúde",mun:"Goiânia",nome:"Hospital Estadual da Mulher",tel:["(62) 3956-2901"],obs:"Atendimento a mulheres maiores de idade, inclusive vítimas de violência sexual."},
+ {id:"huapa",tipo:"Saúde",mun:"Aparecida de Goiânia",nome:"Huapa, Hospital Estadual de Aparecida",tel:["(62) 3217-8900"]},
+ {id:"hutrin",tipo:"Saúde",mun:"Trindade",nome:"Hutrin, Hospital Estadual de Trindade",tel:["(62) 3506-7002"]},
+ {id:"cemac",tipo:"Saúde",mun:"Estado",nome:"Cemac Juarez Barbosa, Centro Estadual de Medicação de Alto Custo",end:"Rua 16, nº 97, Setor Central, Goiânia, CEP 74015-020",tel:["(62) 3201-7446","(62) 3201-7450","Dúvidas/WhatsApp (62) 3201-7453"],hor:"Seg a sex, 7h às 17h",site:"https://goias.gov.br/saude/cemac-juarez-barbosa/",obs:"Pedido, renovação e acompanhamento são online pelo go.gov.br. Retirada presencial (Goiânia) ou no município/policlínica (interior)."},
+ {id:"cta",tipo:"Saúde",mun:"Goiânia",nome:"CTA/SAE Centro de Saúde Cidade Jardim (HIV, IST e hepatites)",end:"Praça Abel Coimbra, s/n, Cidade Jardim, Goiânia, CEP 74425-250",tel:["(62) 3524-1570","(62) 3524-1577"],hor:"Seg a sex, 7h às 19h",obs:"Testagem rápida, aconselhamento, infectologista, entrega contínua de antirretrovirais e PrEP. Recebeu os serviços do antigo CRDT."},
+ {id:"hdt",tipo:"Saúde",mun:"Estado",nome:"HDT, Hospital Estadual de Doenças Tropicais Dr. Anuar Auad",end:"Av. Contorno, s/n, Jardim Bela Vista, Goiânia, CEP 74853-120",tel:["Recepção (62) 3201-3658","Ouvidoria (62) 3201-3799"],obs:"Referência estadual em infectologia e HIV/aids. Oferece PEP e PrEP. Programa Prevenir para a Vida (gestantes)."},
+ {id:"pep-noroeste",tipo:"Saúde",mun:"Goiânia",nome:"UPA Noroeste (PEP 24h)",end:"Rua JC-22, Jardim Curitiba",tel:["(62) 3524-3461"],obs:"Profilaxia pós-exposição ao HIV, até 72h. Lista de 2024: confirme por telefone."},
+ {id:"pep-itaipu",tipo:"Saúde",mun:"Goiânia",nome:"UPA Itaipu (PEP 24h)",end:"Av. do Povo, 13",tel:["(62) 3524-2560"],obs:"PEP até 72h. Lista de 2024: confirme por telefone."},
+ {id:"pep-novomundo",tipo:"Saúde",mun:"Goiânia",nome:"UPA Jardim Novo Mundo (PEP 24h)",end:"Av. New York, Qd. 137, s/n, Jd. Novo Mundo",tel:["(62) 3524-5073"],obs:"PEP até 72h. Lista de 2024: confirme por telefone."},
+ {id:"pep-chacara",tipo:"Saúde",mun:"Goiânia",nome:"UPA Chácara do Governador (PEP 24h)",end:"Rua DF-02, Lt. 14, esq. Rua DF-18",tel:["(62) 3246-2705"],obs:"PEP até 72h. Lista de 2024: confirme por telefone."},
+ {id:"pep-goia",tipo:"Saúde",mun:"Goiânia",nome:"CAIS Bairro Goiá (PEP 24h)",end:"Av. Santa Maria, s/n, Bairro Goiá",tel:["(62) 3519-1781"],obs:"PEP até 72h. Lista de 2024: confirme por telefone."},
+ {id:"pep-campinas",tipo:"Saúde",mun:"Goiânia",nome:"CAIS Campinas (PEP 24h)",end:"Rua P-16 c/ P-30, Campinas",tel:["(62) 3524-1930"],obs:"PEP até 72h. Lista de 2024: confirme por telefone."},
+ {id:"pep-vilanova",tipo:"Saúde",mun:"Goiânia",nome:"CAIS Vila Nova (PEP 24h)",end:"Rua B, 56, Vila Viana",tel:["(62) 3524-1826"],obs:"PEP até 72h. Lista de 2024: confirme por telefone."},
+ {id:"fp",tipo:"Saúde",mun:"Nacional",nome:"Farmácia Popular (farmácias credenciadas)",site:"https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular",obs:"Procure o selo \"Aqui Tem Farmácia Popular\". O endereço das credenciadas está no painel do gov.br. Os mesmos medicamentos também saem de graça nas UBS."},
+ {id:"136",tipo:"Nacional",mun:"Nacional",nome:"Disque Saúde 136, Ouvidoria do SUS",tel:["136"],obs:"Informações sobre SUS, Farmácia Popular e reclamações."},
+ {id:"reggyn",tipo:"Saúde",mun:"Goiânia",nome:"Regulação da Saúde de Goiânia",tel:["(62) 3524-1580","(62) 3524-1616"],obs:"Consultas especializadas e exames encaminhados pela UBS."},
+ // Justiça
+ {id:"dpe",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Defensoria Pública de Goiás, sede",end:"Alameda Cel. Joaquim de Bastos, nº 282, Qd. 217, Lt. 14, Setor Marista, Goiânia",tel:["Central (62) 3602-1224"],hor:"Seg a sex, 8h às 18h",site:"https://www2.defensoria.go.def.br/unidades-de-atendimento",obs:"Família, moradia, documentos, benefício negado, medida protetiva. Lista de documentos no site."},
+ {id:"mpgo",tipo:"Ministério Público",mun:"Estado",nome:"MPGO, Ministério Público de Goiás, sede e atendimento ao cidadão",end:"Rua 23 esq. c/ Av. Fued José Sebba, Qd. A-06, Lts. 15/24, Jardim Goiás, Goiânia, CEP 74805-100",tel:["(62) 3243-8000"],site:"https://www.mpgo.mp.br/portal/pagina/atendimento-ao-cidadao",obs:"Representação contra omissão do poder público, defesa coletiva de criança, idoso, PcD, saúde, educação, consumidor e vítimas de violência. Pode ser feita online ou na promotoria da comarca onde a pessoa mora."},
+ {id:"mpgo-dh",tipo:"Ministério Público",mun:"Estado",nome:"MPGO, Centro de Apoio de Políticas Públicas e Direitos Humanos (CAO DH)",end:"Edifício-sede do MPGO, Sala T-10, térreo, Ala A, Goiânia",tel:["(62) 3243-8203","(62) 3243-8711","(62) 3243-8347","Plantão (62) 92002-7158"],email:"caodh@mpgo.mp.br",obs:"Apoia as promotorias em direitos humanos, população de rua, idoso, PcD e vítimas e testemunhas ameaçadas."},
+ {id:"mpgo-gen",tipo:"Ministério Público",mun:"Estado",nome:"MPGO, Núcleo Estadual de Gênero",tel:["(62) 3243-8665"],obs:"Atua na violência contra a mulher e acompanha medidas protetivas. Fonte: cartilha OAB-GO, março de 2026."},
+ {id:"mpf",tipo:"Ministério Público",mun:"Estado",nome:"MPF, Procuradoria da República em Goiás",end:"Av. Olinda, nº 500, Qd. G, Lt. 2, Ed. Rosângela Pofahl Batista, Park Lozandes, Goiânia, CEP 74884-120",tel:["(62) 3243-5400","WhatsApp (62) 99513-3507 (seg a sex, 10h às 17h)"],site:"https://www.mpf.mp.br/servicos",obs:"Assuntos federais: INSS e BPC, programas federais, universidades e hospitais federais, indígenas e quilombolas, verba federal do SUS."},
+ {id:"mpt",tipo:"Ministério Público",mun:"Nacional",nome:"MPT, Ministério Público do Trabalho (Goiás)",site:"https://mpt.mp.br",obs:"Trabalho infantil, trabalho escravo, assédio, discriminação no emprego (inclusive por HIV ou deficiência), falta de acessibilidade. Denúncia online pelo site, com sigilo."},
+ {id:"provita",tipo:"Ministério Público",mun:"Estado",nome:"Provita/GO e SEPDE, proteção a vítimas e testemunhas ameaçadas",end:"Av. Anhanguera, 7364, Aeroviário, Goiânia, CEP 74435-300",tel:["(62) 3201-1069","(62) 3201-1068"],obs:"Inclusão depende de pedido da autoridade (MP, polícia, juiz). Acione pelo promotor do caso."},
+ {id:"dpeap",tipo:"Justiça e direitos",mun:"Aparecida de Goiânia",nome:"Defensoria Pública, unidade Aparecida de Goiânia",tel:["(62) 3157-1001"]},
+ // Rede comunitária e universidades
+ {id:"puc-npj",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"NPJ PUC Goiás, Núcleo de Prática Jurídica",end:"Câmpus V, Jardim Goiás, Goiânia",tel:["(62) 3946-3008","(62) 3946-3009"],email:"npj@pucgoias.edu.br",obs:"Escritório-modelo: atendimento jurídico gratuito para quem não pode pagar. Alternativa à Defensoria. Fonte: PUC Goiás, 2023."},
+ {id:"puc-cepsi",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"CEPSI PUC Goiás, clínica-escola de psicologia",end:"Rua 232, Área 5, Setor Leste Universitário, Goiânia",tel:["(62) 3946-1198"],site:"https://www.pucgoias.edu.br",obs:"Atendimento psicológico gratuito para todas as idades. Inscrições no início de cada semestre pelo site."},
+ {id:"ufg-psi",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Centro de Psicologia da Faculdade de Educação, UFG",end:"Rua 235, nº 575, Setor Leste Universitário, Goiânia, CEP 74605-050",obs:"Psicoterapia gratuita, prioridade para baixa renda. Adultos e crianças de 5 a 11 anos. Inscrição presencial em períodos divulgados pela UFG (última em abril de 2025)."},
+ {id:"puc-vida",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Clínica Escola Vida, PUC Goiás",end:"Rua Colônia, Jardim Novo Mundo, Goiânia",tel:["(62) 3946-1808"],obs:"Clínica-escola de saúde que atende pessoas encaminhadas pelo SUS. Pedir o encaminhamento na UBS."},
+ {id:"puc-cresa",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"CRESA PUC Goiás, saúde auditiva",end:"Área 5, Rua 232, Setor Leste Universitário, Goiânia",tel:["(62) 3946-1419"],obs:"Saúde auditiva em parceria com o SUS (avaliação e aparelhos). Acesso por encaminhamento da UBS."},
+ {id:"puc-cecom",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Cecom e Escola de Circo Dom Fernando, PUC Goiás",end:"Rua 15, Setor Santos Dumont, Goiânia",tel:["(62) 3299-7753"],obs:"Extensão comunitária nas regiões Mendanha e Noroeste: circo, formação de jovens de 14 a 29 anos."},
+ {id:"ceapsol",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Ceap-SOL, Casa de Apoio Condomínio Solidariedade",end:"Av. Veneza, Qd. 62, Lt. 1/10, s/n, Jardim Europa, Goiânia, CEP 74325-100",tel:["Recepção (62) 3201-9288","Hospedagem/WhatsApp (62) 3201-9283"],hor:"Serviço Social seg a sex, 7h às 18h",obs:"Unidade estadual. Hospedagem gratuita, alimentação e transporte para consultas de pessoas vivendo com HIV, principalmente do interior. Pedir com antecedência."},
+ {id:"cevam",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"CEVAM, Centro de Valorização da Mulher Consuelo Nasser",tel:["(62) 99144-5948"],obs:"Entidade filantrópica que acolhe mulheres em situação de violência com seus filhos e distribui cestas a famílias. Endereço não divulgado por segurança. O acolhimento é articulado pela rede (DEAEM, Cora Coralina, CREAS)."},
+ // Mulher
+ {id:"deaem",tipo:"Mulher",mun:"Goiânia",nome:"DEAEM, Delegacia Estadual de Atendimento Especializado à Mulher",end:"Rua 24, nº 203, Qd. 49, Lt. 27, Centro, Goiânia, CEP 74030-060",tel:["(62) 3201-2013","Plantão (62) 3201-2802"],email:"deaem@policiacivil.go.gov.br",hor:"Plantão 24h",obs:"Registro de ocorrência e pedido de medida protetiva."},
+ {id:"plantao",tipo:"Mulher",mun:"Goiânia",nome:"Polícia Civil, Plantão 24h (Cidade Jardim)",end:"Av. Atílio Corrêa Lima, s/n, Cidade Jardim, Goiânia, CEP 74425-030",tel:["(62) 3201-2013","Plantão (62) 3201-2801"],email:"deaem@policiacivil.go.gov.br",hor:"24h"},
+ {id:"cora",tipo:"Mulher",mun:"Goiânia",nome:"Centro de Referência da Mulher Cora Coralina",end:"Rua 8 c/ Rua 9, nº 558, Ed. Small Tower, Setor Oeste, Goiânia",tel:["(62) 3524-2422","(62) 3524-2934"],email:"secmulher@goiania.go.gov.br",hor:"Seg a sex, 8h às 17h",obs:"Atendimento social, psicológico e jurídico. Faz o encaminhamento para a Casa Abrigo Sempre Viva (endereço sigiloso)."},
+ {id:"bmp",tipo:"Mulher",mun:"Goiânia",nome:"Batalhão Maria da Penha (PM)",end:"Av. Perimetral esq. c/ Av. T-6, Setor Coimbra, Goiânia, CEP 74530-020",tel:["(62) 99930-9778","Emergência 190"],hor:"Seg a sex, 8h às 12h e 14h às 18h",obs:"Fiscaliza medidas protetivas."},
+ {id:"gcm",tipo:"Mulher",mun:"Goiânia",nome:"Patrulha Mulher Mais Segura (GCM Goiânia)",tel:["153"],obs:"Visitas a mulheres com medida protetiva e botão de pânico no app Prefeitura 24h."},
+ // Goiânia SUAS
+ {id:"pop",tipo:"CREAS e Centro POP",mun:"Goiânia",nome:"Centro POP Goiânia",end:"Rua Francisca Costa Cunha Tita, Setor Aeroporto, Goiânia",hor:"Todos os dias, 7h às 17h",obs:"Alimentação, higiene, documentos e encaminhamentos para pessoas em situação de rua. Telefone direto não localizado: use a gestão da assistência social abaixo."},
+ {id:"gestaogyn",tipo:"CREAS e Centro POP",mun:"Goiânia",nome:"Assistência Social de Goiânia (Semasdh), gestão da proteção especial",end:"Rua 25-A esq. c/ Av. República do Líbano, Qd. 63, s/n, Setor Aeroporto, Goiânia",tel:["(62) 3524-2603","(62) 3524-2714"],email:"sedhs@goiania.go.gov.br",hor:"Seg a sex, 8h às 18h"},
+ {id:"creas-cs",reg:"centro-sul",tipo:"CREAS e Centro POP",mun:"Goiânia",nome:"CREAS Centro-Sul",end:"Rua 104, nº 614, Setor Sul",tel:["(62) 3524-4607","(62) 99208-4933"]},
+ {id:"creas-l",reg:"leste",tipo:"CREAS e Centro POP",mun:"Goiânia",nome:"CREAS Leste",end:"Rua Indiana, Qd. 21, Jardim Novo Mundo",tel:["(62) 3524-1770","(62) 99210-4518"]},
+ {id:"creas-no",reg:"noroeste",tipo:"CREAS e Centro POP",mun:"Goiânia",nome:"CREAS Noroeste",end:"Rua da República c/ Cláudio Manoel da Costa, Qd. 20, Lt. 32, Setor Capuava",tel:["(62) 3524-3431","(62) 99208-2462"]},
+ {id:"creas-n",reg:"norte",tipo:"CREAS e Centro POP",mun:"Goiânia",nome:"CREAS Norte",end:"Alameda Capim Puba, nº 60, Qd. 01, Lt. 04, Setor Centro-Oeste",tel:["(62) 3524-2147","(62) 99210-7904"]},
+ {id:"creas-o",reg:"oeste",tipo:"CREAS e Centro POP",mun:"Goiânia",nome:"CREAS Oeste",end:"Av. Sonemberg c/ Antônio Xavier, nº 01, Praça Conj. Romildo Francisco Amaral, Setor Cidade Jardim",tel:["(62) 3524-6914","(62) 99206-0636"]},
+ {id:"ct-cs",reg:"centro-sul",tipo:"Conselho Tutelar",mun:"Goiânia",nome:"Conselho Tutelar Centro-Sul",tel:["(62) 3524-1760"],obs:"Regiões Central e Sul."},
+ {id:"ct-l",reg:"leste",tipo:"Conselho Tutelar",mun:"Goiânia",nome:"Conselho Tutelar Leste",tel:["(62) 3524-1743"],obs:"Regiões Leste e Sudeste."},
+ {id:"ct-n",reg:"norte",tipo:"Conselho Tutelar",mun:"Goiânia",nome:"Conselho Tutelar Norte",tel:["(62) 3524-2404"],obs:"Regiões Vale do Meia Ponte e Norte."},
+ {id:"ct-o",reg:"oeste",tipo:"Conselho Tutelar",mun:"Goiânia",nome:"Conselho Tutelar Oeste",tel:["(62) 3524-1765"],obs:"Regiões Macambira/Cascavel e Sudoeste."},
+ {id:"ct-no",reg:"noroeste",tipo:"Conselho Tutelar",mun:"Goiânia",nome:"Conselho Tutelar Noroeste",tel:["(62) 3524-3446"],obs:"Regiões Mendanha e Noroeste."},
+ {id:"ct-c",reg:"campinas",tipo:"Conselho Tutelar",mun:"Goiânia",nome:"Conselho Tutelar Campinas",tel:["(62) 3524-2481"],obs:"Regiões Campinas e Oeste."},
+ // Aparecida
+ {id:"semas-ap",tipo:"CRAS",mun:"Aparecida de Goiânia",nome:"Secretaria de Assistência Social de Aparecida",tel:["(62) 3545-5970"],obs:"Informa o CRAS de referência do bairro (o município tem 8 unidades)."},
+ {id:"creas-ap",tipo:"CREAS e Centro POP",mun:"Aparecida de Goiânia",nome:"CREAS II Aparecida",end:"Rua 07, Jardim Tiradentes, Aparecida de Goiânia",tel:["(62) 3545-9980"]},
+ {id:"ct-ap-c",tipo:"Conselho Tutelar",mun:"Aparecida de Goiânia",nome:"Conselho Tutelar Regional Centro (Aparecida)",end:"Av. B, Qd. F, Lt. 01",tel:["(62) 3545-5880","(62) 99282-9025"],email:"ctutelarapgyn132@gmail.com"},
+ {id:"ct-ap-g",tipo:"Conselho Tutelar",mun:"Aparecida de Goiânia",nome:"Conselho Tutelar Regional Garavelo (Aparecida)",end:"Av. Tropical, Qd. 25, Lt. 04",tel:["(62) 3545-4897","(62) 98459-9726"]},
+ {id:"dpca-ap",tipo:"Justiça e direitos",mun:"Aparecida de Goiânia",nome:"DPCA, Delegacia de Proteção à Criança e ao Adolescente",end:"Av. Furnas, Qd. 03, Lt. 8/9, Residencial Maria Luíza",tel:["(62) 3201-2295"]},
+ {id:"jij-ap",tipo:"Justiça e direitos",mun:"Aparecida de Goiânia",nome:"Juizado da Infância e Juventude de Aparecida",end:"Fórum do Centro de Aparecida",tel:["(62) 3238-5138"],email:"comarcadeaparecida@tjgo.jus.br"}
+];
+/* CRAS Goiânia (Seds/GO, atualizado em 18/10/2024) */
+const CRAS=[
+ ["Centro de Convivência Aruanã","Rua AP-04, s/n, Conj. Residencial Aruanã II","(62) 99206-9665"],
+ ["Centro de Convivência Esplanada dos Anicuns","Rua São Gotardo c/ Av. Progresso, Setor Esplanada dos Anicuns","(62) 99206-8758"],
+ ["CRAS Aroeiras","Av. das Aroeiras, Qd. 20, Lt. 02, Jardim das Aroeiras","(62) 99207-8792"],
+ ["CRAS Baliza","Rua BL-11, Qd. B-8, Conjunto Baliza","(62) 9207-8693"],
+ ["CRAS Canaã","Rua Langendofer, Qd. 01, Lt. 01, Vila Nova Canaã","(62) 99210-7217"],
+ ["CRAS Capuava","Rua Borba Gato, nº 367, Qd. 61, Lt. 19-20, Bairro Capuava","(62) 99210-5147"],
+ ["CRAS Cerrado","Rua Flor da Noite, APM 4, Jardim Cerrado III","(62) 99204-6164"],
+ ["CRAS Colorado","Av. do Contorno, Qd. 21, Lt. 09, Jardim Colorado","(62) 99207-5964"],
+ ["CRAS Curitiba","Av. JC-22, Qd. 12-A, Lt. 1/15, Jardim Curitiba II","(62) 99210-8976"],
+ ["CRAS Finsocial","Rua VF-42, Praça 34, s/n, Vila Finsocial","(62) 99207-5854"],
+ ["CRAS Floresta","Av. da Conquista, Qd. 25, Bairro Floresta","(62) 99205-9123"],
+ ["CRAS Goiá","Rua Padre Benedito Dias, Qd. 57-A, Bairro Goiá","(62) 99210-6386"],
+ ["CRAS Guanabara","Rua GB-19, Qd. 20, Lt. 17, Jardim Guanabara 2","(62) 99208-2569"],
+ ["CRAS Isaura","Rua 9, Qd. A, Lt. 14, Vila Isaura","(62) 99207-0369"],
+ ["CRAS Novo Horizonte","Av. Maurício Gomes, s/n, Vila Novo Horizonte","(62) 99203-9564"],
+ ["CRAS Novo Mundo","Praça Washington Luiz, Qd. Área, Lt. 01, Jd. Novo Mundo","(62) 99210-4247"],
+ ["CRAS Parque Atheneu","Rua 2.012, Qd. Z, Lt. 26, Unid. 201, Parque Atheneu","(62) 99205-2358"],
+ ["CRAS Pedro Ludovico","Praça Central, Qd. 60, Lt. 7 e 8, Setor Pedro Ludovico","(62) 99204-7300"],
+ ["CRAS Real Conquista","Rua RC-10 c/ Av. Real Conquista, APM 10, Residencial Real Conquista","(62) 99210-4621"],
+ ["CRAS Recanto das Minas Gerais","Rua SR-01, Chácara 7, Setor Recanto das Minas Gerais","(62) 99210-4591"],
+ ["CRAS Recanto do Bosque","Rua RB-20, APM 26, Residencial Recanto do Bosque","(62) 99206-0317"],
+ ["CRAS Redenção","Rua R-7 esq. c/ Alameda Jardim Botânico, Vila Redenção","(62) 99208-0392"],
+ ["CRAS Rio Verde","Rua RV 02, Qd. 03, Lt. 01, Residencial Rio Verde","(62) 99210-8255"],
+ ["CRAS Santo Afonso","Rua Princesa Isabel, s/n, Qd. 92, Lt. 24, Vila Aurora Oeste","(62) 99204-5315"],
+ ["CRAS União","Rua U-47, s/n, Vila União","(62) 99210-4012"],
+ ["CRAS Vera Cruz","Av. Leopoldo de Bulhões, Qd. 100, Conjunto Vera Cruz II","(62) 98599-2250"]
+];
+CRAS.forEach((c,i)=>S.push({id:"cras"+i,tipo:"CRAS",mun:"Goiânia",nome:c[0],end:c[1]+", Goiânia",tel:[c[2]],obs:"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."}));
+const byId=Object.fromEntries(S.map(s=>[s.id,s]));
+
+/* ---------- CAMPOS ---------- */
+const CHIPS={
+ chipsCad:[["cad","Inscrito no CadÚnico"],["cadOld","CadÚnico sem atualizar há mais de 2 anos"],["pbf","Recebe Bolsa Família"],["bpcRec","Recebe BPC"]],
+ chipsFam:[["c06","Criança de 0 a 6 anos"],["pcd","Pessoa com deficiência"],["pcd17","Pessoa com deficiência até 17 anos"],["tea","Pessoa com autismo (TEA)"],["gest","Gestante"],["estMedio","Estudante do ensino médio público"],["estud","Estudante (qualquer nível)"]],
+ chipsSau:[["altocusto","Precisa de medicamento de alto custo"],["continuo","Usa remédio contínuo (pressão, diabetes, asma…)"],["hiv","Vive com HIV"],["teste","Quer fazer teste de HIV/IST"],["pep","Exposição de risco ao HIV há menos de 72h"],["prep","Quer prevenção ao HIV (PrEP)"],["mental","Sofrimento mental"],["drogas","Uso de álcool ou drogas"],["suic","Pensamento ou risco de suicídio"]],
+ chipsProt:[["violMulher","Mulher em situação de violência"],["mpu","Tem medida protetiva ativa"],["violCrianca","Criança/adolescente com direito violado"],["violIdoso","Idoso ou PcD sofrendo violência ou abandono"],["rua","Em situação de rua"],["trabalho","Trabalho infantil, escravo ou discriminação no trabalho"]],
+ chipsSoc:[["fome","Falta comida em casa"],["aluguel","Aluguel pesa metade da renda ou mais"],["empreender","Quer trabalhar por conta própria"],["semDoc","Sem certidão ou documento"],["negado","Serviço público negou ou não atendeu (vaga, remédio, cirurgia, escola)"]]
+};
+const $=id=>document.getElementById(id);
+function buildChips(){for(const k in CHIPS){$(k).innerHTML=CHIPS[k].map(([v,t])=>`<label class="chip"><input type="checkbox" id="ck-${v}" value="${v}"><span>${t}</span></label>`).join("")}}
+const CASES={
+ familia:{ini:"M.S.A.",mun:"Goiânia",reg:"noroeste",idade:29,pessoas:4,renda:400,trab:"informal",moradia:"alugada",escol:"fund-inc",dem:"Saiu de casa com os filhos depois de agressão; precisa de renda e de lugar para morar.",on:["cad","c06","pcd17","violMulher","mpu","aluguel"]},
+ altocusto:{ini:"J.P.R.",mun:"Trindade",idade:52,pessoas:3,renda:2600,trab:"formal",moradia:"propria",escol:"medio",dem:"Precisa do remédio para artrite reumatoide que a reumatologista receitou; não tem no posto.",on:["cad","altocusto","continuo"]},
+ hiv:{ini:"R.C.",mun:"Goiânia",reg:"leste",idade:34,pessoas:1,renda:1300,trab:"informal",moradia:"alugada",escol:"medio",dem:"Recebeu diagnóstico de HIV no teste rápido e não sabe por onde começar.",on:["hiv","mental"]},
+ farmacia:{ini:"A.L.M.",mun:"Aparecida de Goiânia",idade:67,pessoas:2,renda:2800,trab:"aposentado",moradia:"propria",escol:"fund",dem:"Usa losartana e metformina e está comprando na farmácia.",on:["continuo"]}
+};
+const EX=CASES.familia;
+function fill(p){$("ini").value=p.ini||"";$("mun").value=p.mun;$("reg").value=p.reg||"";$("idade").value=p.idade??"";$("pessoas").value=p.pessoas??"";$("renda").value=p.renda??"";$("sm").value=p.sm||$("sm").value||1518;$("trab").value=p.trab||"";$("moradia").value=p.moradia||"";$("escol").value=p.escol||"";$("dem").value=p.dem||"";document.querySelectorAll('#f input[type=checkbox]').forEach(c=>c.checked=(p.on||[]).includes(c.value))}
+function read(){const on=new Set([...document.querySelectorAll('#f input[type=checkbox]:checked')].map(c=>c.value));
+ const n=v=>{const x=parseFloat($(v).value);return isFinite(x)?x:null};
+ const pessoas=n("pessoas"),renda=n("renda"),sm=n("sm")||1518;
+ const pc=(pessoas&&renda!==null)?renda/pessoas:null;
+ if($("moradia").value==="rua")on.add("rua");
+ const ini=$("ini").value.replace(/[^A-Za-zÀ-ú.\s]/g,"").trim().toUpperCase().slice(0,6);
+ const opt=id=>{const e=$(id);return e.value?e.options[e.selectedIndex].text:""};
+ return {ini,trab:$("trab").value,trabT:opt("trab"),moradia:$("moradia").value,moradiaT:opt("moradia"),escolT:opt("escol"),dem:clean($("dem").value),mun:$("mun").value,reg:$("reg").value,idade:n("idade"),pessoas,renda,sm,pc,on,has:k=>on.has(k)}}
+const clean=t=>t.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g,"[e-mail removido]").replace(/\d[\d.\-\/ ]{3,}\d/g,"[número removido]").trim();
+const brl=v=>"R$ "+Math.round(v).toLocaleString("pt-BR");
+
+/* ---------- POLÍTICAS ---------- */
+const CRAS_STEP="Procurar o CRAS de referência com documento com foto e CPF de todos da casa e comprovante de endereço.";
+const P=[
+ {id:"cad",nome:"Cadastro Único (CadÚnico)",esf:"nac",val:"Porta de entrada",
+  test:p=>{if(p.has("cadOld"))return["ver","Cadastro desatualizado há mais de 2 anos: a família pode ser excluída dos programas estaduais."];
+   if(!p.has("cad")&&p.pc!==null&&p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo. Sem o CadÚnico, nenhum benefício abaixo é liberado.`];
+   if(!p.has("cad")&&p.renda!==null&&p.renda<=p.sm*3)return["prov","Renda familiar até 3 salários mínimos."];
+   if(!p.has("cad")&&p.has("rua"))return["prov","Pessoa em situação de rua pode se cadastrar usando o endereço do Centro POP."];return null},
+  flow:[CRAS_STEP,"Responder à entrevista com o entrevistador do CadÚnico.","Guardar o número do NIS e atualizar sempre que mudar endereço, renda ou composição da família (no máximo a cada 2 anos)."],
+  docs:["CPF ou título de eleitor de todos os membros","Documento com foto do responsável familiar","Comprovante de endereço (opcional, ajuda)","Carteira de trabalho, se tiver"],
+  where:"cras",extra:["121"]},
+ {id:"pbf",nome:"Bolsa Família",esf:"nac",val:"mín. R$ 600/família + adicionais",
+  test:p=>{if(p.has("pbf"))return null;if(p.pc!==null&&p.pc<=218)return["prov",`Renda de ${brl(p.pc)} por pessoa, até R$ 218.`+(p.has("c06")?" Adicional de R$ 150 por criança de 0 a 6 anos.":"")+(p.has("gest")?" Adicional de R$ 50 para gestante.":"")];return null},
+  flow:["Fazer ou atualizar o CadÚnico no CRAS.","A seleção é automática pelo governo federal, conforme orçamento e ordem de renda.","Acompanhar pelo app Bolsa Família, Caixa Tem ou pelo 121.","Manter as condicionalidades: vacinação, pré-natal e frequência escolar."],
+  docs:["Os mesmos do CadÚnico"],where:"cras",extra:["121"]},
+ {id:"bpc",nome:"BPC, Benefício de Prestação Continuada",esf:"nac",val:"1 salário mínimo/mês",
+  test:p=>{if(p.has("bpcRec"))return null;const alvo=(p.idade!==null&&p.idade>=65)||p.has("pcd")||p.has("pcd17")||p.has("tea");if(!alvo||p.pc===null)return null;
+   if(p.pc<=p.sm/4)return["prov",`Idoso de 65+ ou pessoa com deficiência, com renda de ${brl(p.pc)} por pessoa (até 1/4 do salário mínimo).`];
+   if(p.pc<=p.sm/2)return["ver","Renda acima de 1/4 do salário mínimo, mas até meio. Pode haver direito com desconto de gastos com saúde ou pela via judicial: consultar a Defensoria."];return null},
+  flow:["Ter o CadÚnico atualizado (obrigatório).","Pedir pelo Meu INSS ou pelo 135.","Pessoa com deficiência: fazer avaliação social e perícia médica no INSS.","Se negado, procurar a Defensoria Pública para recorrer."],
+  docs:["Documento com foto e CPF do requerente e da família","Laudos e exames (pessoa com deficiência)","Número do NIS"],where:"cras",extra:["135","dpe","mpf","puc-npj"]},
+ {id:"tse",nome:"Tarifa Social de Energia Elétrica",esf:"nac",val:"Desconto na conta de luz",
+  test:p=>{if(p.has("bpcRec"))return["prov","Quem recebe BPC tem direito."];if(p.pc!==null&&p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo, com CadÚnico.`];return null},
+  flow:["Ter o CadÚnico atualizado.","A concessão costuma ser automática. Se não aparecer na conta, pedir à distribuidora de energia informando o NIS."],
+  docs:["NIS","Conta de luz no nome de alguém da família"],where:"cras"},
+ {id:"pdm",nome:"Pé-de-Meia",esf:"nac",val:"Poupança para estudante",
+  test:p=>p.has("estMedio")&&(p.pc===null||p.pc<=p.sm/2)?["ver","Estudante do ensino médio público de família no CadÚnico. A inclusão é automática pela escola e pelo CadÚnico."]:null,
+  flow:["Manter matrícula e frequência no ensino médio público.","Família com CadÚnico atualizado.","Consultar pelo app Jornada do Estudante ou pela escola."],docs:["CPF do estudante"],where:"cras"},
+ {id:"cpi",nome:"Carteira da Pessoa Idosa",esf:"nac",val:"Passagem interestadual gratuita ou com desconto",
+  test:p=>(p.idade!==null&&p.idade>=60&&p.pc!==null&&p.renda<=p.sm*2*Math.max(1,p.pessoas)?["ver","Pessoa de 60+ com renda individual até 2 salários mínimos e CadÚnico."]:null),
+  flow:["Fazer ou atualizar o CadÚnico.","Emitir a carteira no CRAS ou pelo site da Carteira da Pessoa Idosa (MDS).","Reservar a vaga na empresa de ônibus com antecedência."],docs:["Documento com foto","NIS"],where:"cras"},
+ {id:"plfed",nome:"Passe Livre interestadual (pessoa com deficiência)",esf:"nac",val:"Viagem interestadual gratuita",
+  test:p=>((p.has("pcd")||p.has("pcd17")||p.has("tea"))&&p.pc!==null&&p.pc<=p.sm)?["ver","Pessoa com deficiência com renda de até 1 salário mínimo por pessoa."]:null,
+  flow:["Pedir pelo site do Ministério dos Transportes (Passe Livre).","Anexar laudo médico e comprovante de renda ou CadÚnico."],docs:["Laudo","Documento com foto","CadÚnico ou comprovante de renda"],where:"cras"},
+ // Estaduais
+ {id:"maes",nome:"Mães de Goiás",esf:"est",val:"R$ 300/mês",
+  test:p=>{if(!p.has("c06"))return null;if(p.pc!==null&&p.pc<=109)return[p.has("cadOld")?"ver":"prov",`Criança de 0 a 6 anos e renda de ${brl(p.pc)} por pessoa (até R$ 109).`+(p.has("cadOld")?" Atualize o CadÚnico antes da próxima seleção.":"")];return null},
+  flow:["Não tem inscrição. O Estado seleciona 1 ou 2 vezes por ano pela base do CadÚnico.","Manter o CadÚnico atualizado no CRAS, com vacinação e frequência escolar das crianças em dia.","A prefeitura avisa por SMS ou WhatsApp o dia e o local de entrega do cartão.","Consultar situação em suas.social.go.gov.br/consulta-maesdegoias. 2ª via só pelo (62) 3270-9610."],
+  docs:["Documento com foto e CPF da beneficiária (para retirar o cartão)"],where:"cras",extra:["mxc"]},
+ {id:"inclusivo",nome:"Goiás + Inclusivo",esf:"est",val:"R$ 500/mês",
+  test:p=>{if(!(p.has("pcd17")))return null;if(p.pc!==null&&p.pc<=109)return["prov",`Pessoa com deficiência até 17 anos e renda de ${brl(p.pc)} por pessoa (até R$ 109).`+(p.has("c06")?" Acumula com Mães de Goiás: R$ 300 + R$ 200.":"")];if(p.pc!==null&&p.pc<=218)return["ver","Renda acima de R$ 109 por pessoa. O BPC conta como renda."];return null},
+  flow:["Seleção automática pelo CadÚnico, sem inscrição.","Conferir no CRAS se a deficiência está registrada no cadastro.","O município avisa a data de entrega do cartão."],docs:["Documento da pessoa com deficiência e do responsável"],where:"cras",extra:["mxc"]},
+ {id:"dignidade",nome:"Dignidade",esf:"est",val:"R$ 300/mês",
+  test:p=>(p.idade!==null&&p.idade>=60&&p.idade<65&&!p.has("pbf")&&p.pc!==null&&p.pc<=218)?["prov","Pessoa de 60 a 64 anos em pobreza ou extrema pobreza, sem Bolsa Família."]:null,
+  flow:["Sem inscrição: entrada automática pelo CadÚnico.","Manter o CadÚnico atualizado no CRAS.","Dúvidas e 2ª via: (62) 3270-9610."],docs:["Documento com foto"],where:"cras",extra:["mxc"]},
+ {id:"porelas",nome:"Goiás Por Elas",esf:"est",val:"R$ 300/mês por até 12 meses",
+  test:p=>{if(!p.has("violMulher"))return null;if(!p.has("mpu"))return["ver","Exige medida protetiva de urgência ativa. Primeiro passo: DEAEM ou Defensoria."];if(p.pc!==null&&p.pc<=p.sm/2)return[p.has("cad")?"prov":"ver","Mulher com medida protetiva ativa e renda até meio salário mínimo por pessoa."+(p.has("cad")?"":" Precisa estar no CadÚnico.")];return null},
+  flow:["Não há inscrição: a medida protetiva é enviada à Seds pelo TJGO, Defensoria ou Batalhão Maria da Penha.","Manter o CadÚnico atualizado.","A Seds entra em contato para entrega do cartão. Vale enquanto a medida estiver ativa, até 12 meses."],
+  docs:["Cópia da medida protetiva","Documento com foto"],where:null,extra:["mulherseds","dpe"]},
+ {id:"aluguel",nome:"Pra Ter Onde Morar, Aluguel Social",esf:"est",val:"R$ 350/mês por 18 meses",
+  test:p=>(p.has("aluguel")||(p.has("violMulher")&&p.has("mpu")))&&(p.pc===null||p.pc<=p.sm*3)?["ver","Aluguel pesado ou violência doméstica. Exige CadÚnico no município e 3 anos morando nele; há cotas para PcD, idosos e mulheres em violência."]:null,
+  flow:["Inscrição online em aluguelsocial.agehab.go.gov.br ou no app Aluguel Social (Android).","Anexar documentos; análise por ordem de inscrição.","Indeferida? Corrigir ou recorrer pelo próprio app.","O CRAS pode ajudar a fazer a inscrição."],
+  docs:["Comprovantes de água e energia","Comprovante de 3 anos no município","Contrato ou recibo de aluguel","CadÚnico ativo"],where:"cras",extra:["agehab"]},
+ {id:"ple",nome:"Passe Livre Estudantil",esf:"est",val:"48 viagens/mês",
+  test:p=>(p.has("estud")||p.has("estMedio"))&&PLE.includes(p.mun)?["prov","Estudante morando em município atendido pelo transporte metropolitano."]:null,
+  flow:["Cadastro em juventude.go.gov.br com documentos e foto.","Aprovado, agendar a retirada no Vapt Vupt em vaptvupt.go.gov.br/agendamento.","Recadastro a cada período letivo. Bloqueio: justificar pelo site da SitPass."],
+  docs:["RG","CPF","Comprovante de endereço","Comprovante de matrícula","Foto 3x4"],where:null,extra:["juventude"]},
+ {id:"aprendiz",nome:"Aprendiz do Futuro",esf:"est",val:"Socioaprendizagem remunerada",
+  test:p=>(p.idade!==null&&p.idade>=14&&p.idade<16&&(p.has("estud")||p.has("estMedio"))&&(p.renda===null||p.renda<=p.sm*2))?["ver","Jovem de 14 a 15 anos da rede pública, família com até 2 salários mínimos."]:null,
+  flow:["Acompanhar a abertura de inscrições em aprendizdofuturo.org.br.","Ter CadÚnico (exigido na contratação).","Vagas reservadas para PcD."],docs:["Documentos do jovem e do responsável","Declaração escolar"],where:null,extra:["aprendiz"]},
+ {id:"ciptea",nome:"CIPTEA, Carteira de Identificação da Pessoa com Autismo",esf:"est",val:"Documento, válido 5 anos",
+  test:p=>p.has("tea")?["prov","Pessoa com diagnóstico de TEA, sem critério de renda."]:null,
+  flow:["Preencher o requerimento (site da Seds).","Levar à Unidade Maria Xavier Caiado, seg a sex, 8h às 18h. No interior, pedir pelo e-mail pcd@goias.gov.br.","Retirar em até 60 dias."],
+  docs:["Relatório de neurologista, psiquiatra ou pediatra","Certidão de nascimento ou RG com CPF","Documentos do responsável","Comprovante de endereço em Goiás","Foto (ou tirar na hora)"],where:null,extra:["pcd"]},
+ {id:"plpcd",nome:"Passe Livre intermunicipal da pessoa com deficiência",esf:"est",val:"Ônibus entre cidades de Goiás",
+  test:p=>((p.has("pcd")||p.has("pcd17")||p.has("tea"))&&p.pc!==null&&p.pc<=p.sm)?["prov","Pessoa com deficiência com renda até 1 salário mínimo por pessoa."]:null,
+  flow:["Levar documentos à Unidade Maria Xavier Caiado (Goiânia) ou pedir pelo WhatsApp (62) 98104-3652.","Retirar em até 60 dias. Validade de 3 anos."],
+  docs:["Laudo de especialista (validade 1 ano)","Espelho do CadÚnico","Comprovante de residência em Goiás","Documentos do acompanhante, se o laudo indicar"],where:null,extra:["pcd"]},
+ {id:"passaporte",nome:"Passaporte da Pessoa Idosa",esf:"est",val:"Até 4 viagens/mês entre cidades de Goiás",
+  test:p=>(p.idade!==null&&p.idade>=60&&(p.renda===null||p.renda<=p.sm*3))?["prov","Pessoa de 60+ com renda familiar até 3 salários mínimos."]:null,
+  flow:["Goiânia: Unidade Maria Xavier Caiado. Outros municípios: CRAS ou Secretaria de Assistência Social.","Comprar o bilhete com até 5h de antecedência (até 500 km)."],docs:["RG e CPF","Comprovante do CadÚnico"],where:"cras",extra:["passaporte"]},
+ {id:"credito",nome:"Crédito Social",esf:"est",val:"Até R$ 5 mil, parcela única",
+  test:p=>((p.has("empreender")||p.trab==="desempregado")&&(p.idade===null||p.idade>=18)&&(p.pc===null||p.pc<=p.sm/2))?["ver","Adulto de baixa renda no CadÚnico que nunca recebeu o Crédito Social. Liberado após curso de capacitação."]:null,
+  flow:["Ter CadÚnico de baixa renda.","Fazer o curso de capacitação indicado (Seds/Sebrae, Retomada ou Seapa).","Receber cartão para compra de equipamentos no comércio local."],docs:["CadÚnico","Documento com foto"],where:"cras"},
+ {id:"registro",nome:"2ª via gratuita de certidão (Registro Civil)",esf:"est",val:"Gratuito",
+  test:p=>p.has("semDoc")?["prov","Pessoa de baixa renda sem certidão de nascimento, casamento ou óbito."]:null,
+  flow:["Ir à Seds (Bloco B, sala 2) ou a um evento do Goiás Social.","Sem nenhum dado do registro, a Seds encaminha à Defensoria."],docs:["Cópia de qualquer documento, se tiver","Comprovante de endereço","Telefone"],where:null,extra:["registro","dpe"]},
+ // Saúde: medicamentos e HIV
+ {id:"ceaf",nome:"Medicamento de alto custo (Componente Especializado, Cemac Juarez Barbosa)",esf:"est",val:"Gratuito pelo SUS",
+  test:p=>p.has("altocusto")?["enc","Medicamento especializado do SUS, liberado conforme o Protocolo Clínico (PCDT) do Ministério da Saúde para a doença. Sem critério de renda."]:null,
+  flow:["Confirmar se o medicamento é fornecido para a doença (CID): consultar a \"Relação de medicamentos, doenças e agravos\" no site da Cemac.",
+   "Na consulta, pedir ao médico (SUS ou particular) a LME (Laudo de Solicitação, Avaliação e Autorização de Medicamentos) preenchida, a receita e os exames exigidos pelo protocolo da doença.",
+   "Baixar no site da Cemac a lista de documentos e exames da doença e conferir se está tudo junto.",
+   "Criar ou acessar a conta gov.br do paciente.",
+   "Abrir o pedido online no go.gov.br: serviço \"Solicitar abertura de processo ou alteração e/ou inclusão de medicamentos de alto custo\".",
+   "Acompanhar em \"Minhas solicitações\". A análise leva até 5 dias úteis. Se faltar documento, o pedido volta com a pendência para corrigir.",
+   "Aprovado: retirar presencialmente. Quem mora em Goiânia retira na Cemac. No interior e na região metropolitana, o local (município ou policlínica) é informado no processo.",
+   "Renovar online antes de vencer o período autorizado, com nova LME e receita (análise em até 10 dias úteis). Mudou só a dose? Levar a nova receita e o protocolo direto ao guichê de dispensação.",
+   "Pedido negado ou remédio fora da lista: guardar a resposta por escrito e procurar a Defensoria Pública, que avalia pedido administrativo ou ação judicial."],
+  docs:["LME preenchida e assinada pelo médico","Receita médica","Exames e laudos exigidos pelo protocolo da doença","Documento com foto e CPF do paciente","Cartão Nacional de Saúde (CNS)","Comprovante de endereço","Conta gov.br do paciente"],
+  where:null,extra:["cemac","dpe","puc-npj","mpgo","136"]},
+ {id:"fpop",nome:"Farmácia Popular",esf:"nac",val:"Gratuito, sem limite de renda",
+  test:p=>(p.has("continuo")||(p.idade!==null&&p.idade>=60&&p.has("pcd")))?["prov","Medicamentos da lista são gratuitos para qualquer pessoa com receita válida, do SUS ou particular. Desde fevereiro de 2025 não há mais copagamento."]:null,
+  flow:["Conferir se o tratamento está entre as indicações do programa (quadro abaixo).",
+   "Ter receita válida com nome do paciente, nome do medicamento, dose e posologia. Vale receita do SUS ou de médico particular.",
+   "Ir a uma farmácia com o selo \"Aqui Tem Farmácia Popular\" (ou consultar o painel de farmácias credenciadas no gov.br). Ligar antes para confirmar se tem o item.",
+   "Apresentar documento oficial com foto e CPF. O medicamento é entregue de graça.",
+   "Não pode ir? Um representante legal ou procurador retira com a receita, documentos com foto e CPF dos dois e a procuração ou decisão judicial.",
+   "Remédio em falta ou recusa indevida: registrar no Disque Saúde 136. Os mesmos medicamentos também saem na UBS do bairro."],
+  docs:["Documento oficial com foto e CPF","Receita médica dentro da validade","Fralda geriátrica: prescrição, laudo ou atestado (PcD: com o CID)","Absorvente: autorização do Dignidade Menstrual, válida por 180 dias"],
+  html:`<div><h4>Indicações e medicamentos (principais da lista)</h4><div class="med">
+   <div><b>Hipertensão</b>Captopril, enalapril, losartana, hidroclorotiazida, atenolol, propranolol</div>
+   <div><b>Diabetes</b>Metformina, glibenclamida, insulina NPH e insulina regular</div>
+   <div><b>Diabetes com doença cardiovascular</b>Dapagliflozina</div>
+   <div><b>Asma</b>Salbutamol, beclometasona, brometo de ipratrópio</div>
+   <div><b>Rinite</b>Budesonida spray nasal</div>
+   <div><b>Colesterol alto</b>Sinvastatina</div>
+   <div><b>Osteoporose</b>Alendronato de sódio</div>
+   <div><b>Parkinson</b>Levodopa + carbidopa, levodopa + benserazida</div>
+   <div><b>Glaucoma</b>Timolol colírio</div>
+   <div><b>Anticoncepção</b>Etinilestradiol + levonorgestrel, noretisterona, medroxiprogesterona injetável, estradiol + noretisterona injetável</div>
+   <div><b>Outros itens</b>Fralda geriátrica (60+ ou PcD com incontinência) e absorvente (Dignidade Menstrual, 10 a 49 anos, CadÚnico)</div>
+  </div><p class="src">Só valem as doses e apresentações da lista oficial (41 itens). Confira no gov.br antes de orientar. Fonte: Ministério da Saúde, consultado em 08/10/2026.</p></div>`,
+  where:null,extra:["fp","136"]},
+ {id:"pep",nome:"PEP, Profilaxia Pós-Exposição ao HIV",esf:"rede",val:"Urgente: até 72h",
+  test:p=>p.has("pep")?["enc","Exposição de risco (relação sem preservativo, violência sexual, acidente com material biológico). A PEP funciona melhor nas primeiras 2 horas e só pode começar em até 72 horas."]:null,
+  flow:["Ir imediatamente a uma UPA ou CAIS 24h, ou ao HDT. Não esperar o dia seguinte.","Fazer o teste rápido de HIV no próprio serviço.","Receber os antirretrovirais para 28 dias e tomar todos os dias, sem parar.","Retornar para os testes de acompanhamento no CTA Cidade Jardim ou na UBS.","Violência sexual: além da PEP, procurar o Hospital Estadual da Mulher (mulheres) e registrar ocorrência, se quiser."],
+  docs:["Documento, se tiver. A falta de documento não impede o atendimento."],where:"pep"},
+ {id:"hivcare",nome:"Cuidado contínuo para pessoa vivendo com HIV",esf:"rede",val:"SUS gratuito e sigiloso",
+  test:p=>p.has("hiv")?["enc","Tratamento antirretroviral gratuito, acompanhamento com infectologista e exames. Com carga viral indetectável, o HIV não é transmitido por via sexual (I = I)."]:p.has("teste")?["enc","Teste rápido gratuito e sigiloso, com resultado em cerca de 30 minutos."]:null,
+  flow:["Fazer o teste rápido na UBS ou no CTA Cidade Jardim. Resultado reagente: o próprio serviço faz a confirmação e o aconselhamento.",
+   "Vincular-se ao SAE (Serviço de Atendimento Especializado) do CTA Cidade Jardim ou ao HDT para consulta com infectologista.",
+   "Fazer os exames iniciais (carga viral, CD4 e outros) e começar o tratamento o quanto antes. O tratamento não espera o resultado do CD4.",
+   "Retirar os antirretrovirais todo mês na unidade dispensadora (o CTA Cidade Jardim faz a entrega contínua). Levar o cartão do SUS.",
+   "Repetir carga viral e consultas conforme a agenda do SAE. A meta é carga viral indetectável.",
+   "Gestante vivendo com HIV: pré-natal com acompanhamento do SAE e do programa Prevenir para a Vida do HDT, para evitar a transmissão ao bebê.",
+   "Apoio emocional: UBS, CAPS ou CVV 188. Discriminação no trabalho, escola ou serviço: Defensoria Pública ou Disque 100."],
+  docs:["Cartão do SUS","Documento com foto (não é exigido para o teste)"],
+  html:`<div><h4>Direitos que valem orientar</h4><ul class="rights">
+   <li>Sigilo do diagnóstico. Ninguém é obrigado a informar a sorologia ao empregador, e o teste não pode ser exigido para admissão.</li>
+   <li>Saque do FGTS e do PIS/Pasep pela condição de pessoa vivendo com HIV, na Caixa ou no banco, com laudo médico.</li>
+   <li>Benefício por incapacidade no INSS (135) quando houver incapacidade para o trabalho. BPC se também houver baixa renda e impedimento de longo prazo.</li>
+   <li>Isenção de Imposto de Renda sobre aposentadoria, pensão ou reforma, com laudo de serviço público de saúde.</li>
+  </ul></div>`,
+  where:"hiv",extra:["ceapsol","100","mpt"]},
+ {id:"prep",nome:"PrEP, Profilaxia Pré-Exposição ao HIV",esf:"rede",val:"Comprimido gratuito",
+  test:p=>p.has("prep")&&!p.has("hiv")?["enc","Prevenção contínua para quem tem maior chance de exposição ao HIV. Gratuita pelo SUS."]:null,
+  flow:["Procurar o CTA Cidade Jardim ou o HDT.","Fazer teste de HIV e outros exames de triagem.","Iniciar o uso diário (ou sob demanda, se indicado pelo profissional).","Voltar a cada consulta para testar e retirar novos frascos."],
+  docs:["Documento com foto","Cartão do SUS"],where:"hiv"},
+ {id:"mp",nome:"Ministério Público: quando e como acionar",esf:"rede",val:"Gratuito, sem advogado",
+  test:p=>{const m=[];if(p.has("negado"))m.push("um serviço público negou ou não prestou atendimento");if(p.has("trabalho"))m.push("há violação de direito no trabalho");if(p.has("violCrianca"))m.push("criança ou adolescente com direito violado");if(p.has("violIdoso"))m.push("idoso ou PcD em violência ou abandono");if(p.has("rua"))m.push("pessoa em situação de rua sem atendimento adequado");
+   return m.length?["enc","O Ministério Público fiscaliza a rede e age quando "+m.join("; ")+". Não precisa de advogado nem de pagamento."]:null},
+  flow:["Primeiro, pedir o serviço por escrito e guardar o comprovante: protocolo, número de atendimento, resposta negativa, receita, laudo ou print.",
+   "Reclamar na ouvidoria do órgão (SUS 136, ouvidoria da Seds, da prefeitura). Muitas vezes resolve sem processo.",
+   "Caso individual que precisa de ação na Justiça (um remédio para uma pessoa, guarda, pensão, vaga): Defensoria Pública ou escritório-modelo.",
+   "Caso que atinge muitas pessoas, ou pessoa vulnerável sem proteção (criança, idoso, PcD, população de rua, falta geral de remédio, fila de cirurgia, escola sem vaga): fazer representação ao Ministério Público certo (quadro abaixo).",
+   "Registrar a representação no atendimento ao cidadão do site do MP ou presencialmente na promotoria da comarca. Pode pedir sigilo da identidade.",
+   "Anotar o número da representação e acompanhar. O promotor pode requisitar informações, fazer recomendação, acordo (TAC) ou ação civil pública.",
+   "Vítima ou testemunha ameaçada: pedir ao promotor do caso a inclusão no Provita."],
+  docs:["Relato curto: o que aconteceu, quando, onde, quem foi afetado","Comprovantes: protocolos, negativas, laudos, receitas, fotos","Contato para retorno (pode pedir sigilo)"],
+  html:`<div><h4>Qual Ministério Público procurar</h4><div class="med">
+   <div><b>MPGO (estadual)</b>Criança e adolescente, idoso, pessoa com deficiência, saúde do SUS estadual e municipal, educação, violência doméstica, consumidor, população de rua, patrimônio público do Estado e dos municípios.</div>
+   <div><b>MPF (federal)</b>INSS e BPC, Bolsa Família e programas federais, universidades e hospitais federais, povos indígenas e quilombolas, verba federal desviada.</div>
+   <div><b>MPT (trabalho)</b>Trabalho infantil, trabalho escravo, assédio, discriminação no emprego (HIV, deficiência, gênero, raça), acessibilidade nas empresas.</div>
+   <div><b>Defensoria Pública</b>Defende uma pessoa ou família em processo. O MP defende direitos coletivos e fiscaliza. Muitas vezes os dois atuam juntos.</div>
+  </div></div>`,
+  where:null,extra:["mpgo","mpgo-dh","mpf","mpt","dpe"]},
+ // Encaminhamentos de proteção
+ {id:"r-mulher",nome:"Rede de proteção à mulher",esf:"rede",val:"Atendimento 24h",
+  test:p=>p.has("violMulher")?["enc","Violência doméstica: segurança imediata, medida protetiva e acompanhamento psicossocial e jurídico."]:null,
+  flow:["Perigo agora: 190 (PM) ou 153 (GCM Goiânia).","Registrar ocorrência e pedir medida protetiva na DEAEM (24h).","Acompanhamento social, psicológico e jurídico no Centro de Referência Cora Coralina.","Risco de morte: Casa Abrigo Sempre Viva, acessada pela rede.","Violência sexual: Hospital Estadual da Mulher em até 72h."],
+  docs:["Documento com foto, se possível. Não é obrigatório para ser atendida."],where:"mulher",extra:["mpgo-gen","cevam","puc-npj"]},
+ {id:"r-crianca",nome:"Proteção à criança e ao adolescente",esf:"rede",val:"Conselho Tutelar",
+  test:p=>p.has("violCrianca")?["enc","Direito violado ou ameaçado: aplicar o ECA com Conselho Tutelar e CREAS."]:null,
+  flow:["Acionar o Conselho Tutelar da região (plantão à noite e no fim de semana).","Denúncia anônima: Disque 100.","Acompanhamento da família no CREAS.","Lesão ou violência sexual: UPA, hospital ou SAMU 192."],docs:["Não é preciso documento para denunciar"],where:"ct",extra:["mpgo"]},
+ {id:"r-idoso",nome:"Proteção a idosos e pessoas com deficiência",esf:"rede",val:"CREAS",
+  test:p=>p.has("violIdoso")?["enc","Violência, negligência ou abandono de idoso ou PcD."]:null,
+  flow:["Denunciar pelo Disque 100.","Acompanhamento no CREAS da região.","Casos graves: Ministério Público e Defensoria."],docs:[],where:"creas",extra:["100","mpgo"]},
+ {id:"r-rua",nome:"Atendimento à população em situação de rua",esf:"rede",val:"Centro POP",
+  test:p=>p.has("rua")?["enc","Pessoa em situação de rua: alimentação, higiene, documentos e acolhimento."]:null,
+  flow:["Ir ao Centro POP (7h às 17h).","Fazer o CadÚnico usando o endereço do Centro POP.","Pedir vaga em acolhimento pela equipe do Centro POP.","Sem documento: 2ª via de certidão e Defensoria."],docs:["Nenhum documento é exigido para o primeiro atendimento"],where:"pop",extra:["mpgo-dh"]},
+ {id:"r-mental",nome:"Cuidado em saúde mental",esf:"rede",val:"UBS e CAPS",
+  test:p=>(p.has("mental")||p.has("drogas")||p.has("suic"))?["enc","Sofrimento psíquico ou uso de álcool e drogas: cuidado pela Rede de Atenção Psicossocial."]:null,
+  flow:["Risco imediato ou tentativa de suicídio: SAMU 192.","Apoio emocional 24h: CVV 188.","Primeiro atendimento: UBS do bairro ou CAPS (acesso direto).","Crise sem risco de vida: UPA ou CAIS."],docs:["Cartão do SUS e documento, se tiver"],where:"saude",extra:["puc-cepsi","ufg-psi"]},
+ {id:"r-gest",nome:"Pré-natal e parto",esf:"rede",val:"SUS",
+  test:p=>p.has("gest")?["enc","Gestante: pré-natal na UBS e referência para o parto."]:null,
+  flow:["Iniciar o pré-natal na UBS do bairro, de preferência até a 12ª semana.","Informar a gestação no CRAS para o adicional do Bolsa Família.","Urgência na gravidez ou parto com risco: SAMU 192 ou HMI."],docs:["Cartão do SUS","Documento com foto"],where:"saude",extra:["hmi"]},
+ {id:"r-fome",nome:"Segurança alimentar",esf:"rede",val:"CRAS",
+  test:p=>p.has("fome")?["enc","Falta de alimento em casa: atendimento emergencial e benefícios eventuais."]:null,
+  flow:["Procurar o CRAS para benefício eventual (cesta básica) e avaliação da família.","Fazer ou atualizar o CadÚnico para Bolsa Família e Mães de Goiás."],docs:["Documento com foto e CPF"],where:"cras"}
+];
+
+/* ---------- ONDE IR ---------- */
+function places(kind,p){
+ const gyn=p.mun==="Goiânia",ap=p.mun==="Aparecida de Goiânia";
+ const reg=p.reg;
+ const pick=ids=>ids.map(i=>byId[i]).filter(Boolean);
+ if(kind==="cras"){
+  if(gyn)return {list:[{nome:"CRAS mais próximo da casa",obs:"Goiânia tem 26 unidades. Veja a lista na aba Serviços e contatos, filtrando por CRAS, ou ligue 121.",fake:true},byId.gestaogyn]};
+  if(ap)return {list:pick(["semas-ap"])};
+  return {list:[{nome:"CRAS de "+p.mun,obs:"Contato ainda não mapeado neste protótipo. Pergunte na prefeitura ou ligue 121 para saber o endereço.",fake:true}]};
+ }
+ if(kind==="creas"){
+  if(gyn){const r=S.filter(s=>s.tipo==="CREAS e Centro POP"&&s.reg&&(!reg||s.reg===reg));return {list:r.length?r:[byId.gestaogyn]}}
+  if(ap)return {list:pick(["creas-ap"])};
+  return {list:[{nome:"CREAS de "+p.mun,obs:"Contato não mapeado. Procure a Secretaria de Assistência Social do município.",fake:true}]};
+ }
+ if(kind==="ct"){
+  let r=[];
+  if(gyn)r=S.filter(s=>s.tipo==="Conselho Tutelar"&&s.mun==="Goiânia"&&(!reg||s.reg===reg));
+  else if(ap)r=pick(["ct-ap-c","ct-ap-g","dpca-ap","jij-ap"]);
+  else r=[{nome:"Conselho Tutelar de "+p.mun,obs:"Contato não mapeado. Use o Disque 100 ou a prefeitura.",fake:true}];
+  if(gyn&&reg){const c=S.find(s=>s.reg===reg&&s.tipo==="CREAS e Centro POP");if(c)r.push(c)}
+  return {list:r.concat(pick(["100"]))};
+ }
+ if(kind==="mulher"){return {list:pick(["deaem","plantao","cora","bmp"].concat(gyn?["gcm"]:[]).concat(["hem","180"]).concat(ap?["dpeap"]:["dpe"]))}}
+ if(kind==="pop"){return {list:gyn?pick(["pop","gestaogyn","dpe"]):[{nome:"Assistência social de "+p.mun,obs:"Peça abordagem social ou Centro POP do município. Em Goiânia o Centro POP fica no Setor Aeroporto.",fake:true},byId.pop]}}
+ if(kind==="saude"){return {list:[{nome:"UBS do bairro",obs:"Lista de UBS e CAPS ainda não importada neste protótipo. A UBS faz o primeiro acolhimento e encaminha ao CAPS.",fake:true}].concat(pick(["samu","188"]).concat(gyn?["reggyn","hugo"]:ap?["huapa"]:p.mun==="Trindade"?["hutrin"]:["hugo"]).map(x=>typeof x==="string"?byId[x]:x))}}
+ if(kind==="pep"){return {list:pick(["hdt","pep-noroeste","pep-itaipu","pep-novomundo","pep-chacara","pep-goia","pep-campinas","pep-vilanova"].concat(ap?["huapa"]:[]))}}
+ if(kind==="hiv"){return {list:pick(["cta","hdt"]).concat(gyn?[]:[{nome:"SAE/CTA de "+p.mun,obs:"Aparecida de Goiânia tem SAE/CTA próprio; nos demais municípios, a UBS faz o teste e encaminha. Moradores da região podem ser atendidos no HDT.",fake:true}])}}
+ return {list:[]};
+}
+
+/* ---------- RENDER ---------- */
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function telHtml(t){const num=t.replace(/^[^\d(]*/,"");const lab=t.slice(0,t.length-num.length);return `<span class="contact">${lab?`<span>${esc(lab)}</span>`:""}<code>${esc(num)}</code><button type="button" class="copy" data-c="${esc(num)}">Copiar</button></span>`}
+function placeHtml(s){
+ if(!s)return"";
+ return `<div class="place"><b>${esc(s.nome)}</b>${s.tipo&&!s.fake?`<span class="tag">${esc(s.tipo)} · ${esc(s.mun)}</span>`:""}
+ ${s.end?`<span>${esc(s.end)}</span>`:""}
+ ${(s.tel||[]).map(telHtml).join("")}
+ ${s.email?`<span class="contact"><code>${esc(s.email)}</code><button type="button" class="copy" data-c="${esc(s.email)}">Copiar</button></span>`:""}
+ ${s.hor?`<span class="meta">${esc(s.hor)}</span>`:""}
+ ${s.site?`<a href="${esc(s.site)}" target="_blank" rel="noopener">${esc(s.site.replace(/^https?:\/\//,""))}</a>`:""}
+ ${s.obs?`<span class="meta">${esc(s.obs)}</span>`:""}</div>`;
+}
+const SPH={nac:["nac","Nacional"],est:["est","Estadual"],mun:["mun","Municipal"],rede:["rede","Rede de proteção"]};
+const ST={prov:["prov","Provável direito"],ver:["ver","Verificar"],enc:["enc","Encaminhamento"]};
+let lastText="";
+function render(){
+ const p=read();
+ $("regBox").hidden=p.mun!=="Goiânia";
+ $("calc").innerHTML=p.pc!==null?`Renda por pessoa: <strong>${brl(p.pc)}</strong> · 1/4 SM ${brl(p.sm/4)} · 1/2 SM ${brl(p.sm/2)}`:"Informe renda e número de pessoas para calcular a renda por pessoa.";
+ const hits=[];
+ for(const pol of P){const r=pol.test(p);if(r)hits.push({pol,st:r[0],why:r[1]})}
+ const order={enc:0,prov:1,ver:2};
+ const top=["pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","mp","cad"];
+ const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
+ hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
+ const urg=[];
+ if(p.has("suic"))urg.push("Risco de suicídio: se há tentativa ou perigo agora, ligue <b>192</b> (SAMU). Para conversar, <b>188</b> (CVV), 24h.");
+ if(p.has("violMulher"))urg.push("Violência acontecendo agora: <b>190</b> (PM) ou <b>153</b> (GCM Goiânia). Orientação sigilosa: <b>180</b>.");
+ if(p.has("pep"))urg.push("Exposição ao HIV há menos de 72h: ir <b>agora</b> a uma UPA ou CAIS 24h ou ao HDT para a PEP. Quanto antes, melhor.");
+ if(p.has("violCrianca"))urg.push("Criança ou adolescente em risco: Conselho Tutelar ou <b>100</b>. Lesão grave: <b>192</b>.");
+ const R=$("results");
+ let h="";
+ if(urg.length)h+=`<div class="urgent" role="alert"><h3>Antes de tudo: segurança</h3><ul>${urg.map(u=>`<li>${u}</li>`).join("")}</ul></div>`;
+ const nP=hits.filter(x=>x.st==="prov").length,nV=hits.filter(x=>x.st==="ver").length,nE=hits.filter(x=>x.st==="enc").length;
+ h+=`<div class="summary"><h2>${hits.length} encaminhamento${hits.length===1?"":"s"}${p.ini?" · "+esc(p.ini):""} · ${esc(p.mun)}</h2><div class="legend"><span class="status enc">${nE} proteção</span><span class="status prov">${nP} provável direito</span><span class="status ver">${nV} verificar</span></div></div>`;
+ if(hits.length){h+=`<div class="btns"><button class="b" type="button" id="copyAll">Copiar resumo do encaminhamento</button></div>`}
+ if(!hits.length)h+=`<div class="empty">Nenhum encaminhamento ainda. Preencha a etapa 1 (município, renda e pessoas na casa) e marque as necessidades na etapa 2.</div>`;
+ const lines=[`ENCAMINHAMENTO · ${p.ini?"Pessoa: "+p.ini+" · ":""}${p.mun}${p.reg?" (região "+p.reg+")":""} · ${new Date().toLocaleDateString("pt-BR")}`,p.idade!==null?`Idade: ${p.idade} anos`:"",p.pc!==null?`Renda por pessoa: ${brl(p.pc)}`:"",[p.trabT&&"Trabalho: "+p.trabT,p.moradiaT&&"Moradia: "+p.moradiaT,p.escolT&&"Escolaridade: "+p.escolT].filter(Boolean).join(" · "),p.dem?`Solicitação: ${p.dem}`:""].filter(Boolean);
+ hits.forEach((x,i)=>{
+  const sp=SPH[x.pol.esf],st=ST[x.st];
+  const pl=[];if(x.pol.where){pl.push(...places(x.pol.where,p).list)}(x.pol.extra||[]).forEach(e=>{if(byId[e]&&!pl.includes(byId[e]))pl.push(byId[e])});
+  h+=`<details class="card"${i<2?" open":""}><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(x.pol.nome)}</h3><span class="sphere ${sp[0]}">${sp[1]}</span><span class="status ${st[0]}">${st[1]}</span></div><span class="val">${esc(x.pol.val)}</span><span class="why">${esc(x.why)}</span></summary>
+  <div class="body"><div><h4>Fluxo</h4><ol class="flow">${x.pol.flow.map(f=>`<li><span>${esc(f)}</span></li>`).join("")}</ol></div>
+  ${x.pol.docs&&x.pol.docs.length?`<div><h4>Documentos</h4><ul class="docs">${x.pol.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}
+  ${x.pol.html||""}
+  ${pl.length?`<div><h4>Onde ir</h4><div class="places">${pl.map(placeHtml).join("")}</div></div>`:""}</div></details>`;
+  lines.push("",`• ${x.pol.nome} [${sp[1]} · ${st[1]}] ${x.pol.val}`,`  Motivo: ${x.why}`,...x.pol.flow.map((f,j)=>`  ${j+1}. ${f}`));
+  pl.filter(s=>!s.fake).forEach(s=>lines.push(`  → ${s.nome}${s.end?", "+s.end:""}${s.tel?" · "+s.tel.join(" / "):""}${s.email?" · "+s.email:""}`));
+ });
+ lines.push("","Gerado no Encaminha Goiânia. Sem nome, endereço ou documento da pessoa. Confirme contatos antes do envio.");
+ lastText=lines.filter(l=>l!==undefined).join("\n");
+ R.innerHTML=h;
+ const nNeeds=["chipsSau","chipsProt","chipsSoc"].reduce((a,k)=>a+$(k).querySelectorAll("input:checked").length,0)+(p.dem?1:0);
+ $("sum1").textContent=[p.ini||"Sem iniciais",p.mun,p.pc!==null?brl(p.pc)+"/pessoa":null].filter(Boolean).join(" · ");
+ $("sum2").textContent=nNeeds?`${nNeeds} ${nNeeds===1?"item":"itens"} marcado${nNeeds===1?"":"s"}`:"Nada marcado";
+ $("sum3").textContent=`${hits.length} encaminhamento${hits.length===1?"":"s"}${urg.length?" · com alerta":""}`;
+ const needsT=["chipsSau","chipsProt","chipsSoc"].flatMap(k=>[...$(k).querySelectorAll("input:checked")].map(c=>c.nextElementSibling.textContent));
+ $("profile").innerHTML=`<span>Pessoa <b>${esc(p.ini||"—")}</b></span><span>Município <b>${esc(p.mun)}</b></span>${p.idade!==null?`<span>Idade <b>${p.idade}</b></span>`:""}${p.pc!==null?`<span>Renda por pessoa <b>${brl(p.pc)}</b></span>`:""}${p.trabT?`<span>Trabalho <b>${esc(p.trabT)}</b></span>`:""}${p.moradiaT?`<span>Moradia <b>${esc(p.moradiaT)}</b></span>`:""}${needsT.length?`<span class="dem">Necessidades: ${esc(needsT.join("; "))}</span>`:""}${p.dem?`<span class="dem">Solicitação: “${esc(p.dem)}”</span>`:""}`;
+}
+
+/* ---------- DIRETÓRIO ---------- */
+function dirInit(){
+ const muns=["Todos",...new Set(S.map(s=>s.mun))];
+ $("fm").innerHTML=muns.map(m=>`<option>${esc(m)}</option>`).join("");
+ const tipos=["Todos",...new Set(S.map(s=>s.tipo))];
+ $("ft").innerHTML=tipos.map(m=>`<option>${esc(m)}</option>`).join("");
+}
+function dirRender(){
+ const q=$("fq").value.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+ const m=$("fm").value,t=$("ft").value;
+ const r=S.filter(s=>(m==="Todos"||s.mun===m)&&(t==="Todos"||s.tipo===t)&&(!q||[s.nome,s.end,s.obs,s.tipo].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(q)));
+ $("count").textContent=`${r.length} serviço${r.length===1?"":"s"}`;
+ $("dir").innerHTML=r.length?r.map(placeHtml).join(""):`<div class="empty">Nenhum serviço encontrado com esses filtros.</div>`;
+}
+
+/* ---------- ABAS ---------- */
+const tabs=[...document.querySelectorAll('nav.tabs [role=tab]')];
+const steps=[...document.querySelectorAll('.stepnav [role=tab]')];
+function step(n){steps.forEach((b,i)=>{const on=i===n-1;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});}
+steps.forEach((b,i)=>b.addEventListener("click",()=>step(i+1)));
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){step(+g.dataset.go);$("p-enc").scrollIntoView({block:"start"})}});
+function show(id){tabs.forEach(b=>{const on=b.id===id;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});try{localStorage.setItem("enc-tab",id)}catch(e){}}
+tabs.forEach(b=>b.addEventListener("click",()=>show(b.id)));
+
+/* ---------- CÓPIA ---------- */
+function copy(txt,btn){const done=()=>{const o=btn.textContent;btn.textContent="Copiado";setTimeout(()=>btn.textContent=o,1400)};
+ try{navigator.clipboard.writeText(txt).then(done,()=>fallback(txt,btn,done))}catch(e){fallback(txt,btn,done)}}
+function fallback(txt,btn,done){const ta=document.createElement("textarea");ta.value=txt;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand("copy")}catch(e){}ta.remove();if(ok)done();else btn.textContent="Selecione e copie"}
+document.addEventListener("click",e=>{const b=e.target.closest(".copy");if(b){e.preventDefault();copy(b.dataset.c,b)}if(e.target.id==="copyAll")copy(lastText,e.target)});
+
+/* ---------- INIT ---------- */
+$("mun").innerHTML=MUNS.map(m=>`<option>${esc(m)}</option>`).join("");
+buildChips();fill(EX);dirInit();
+$("f").addEventListener("input",()=>{$("exTag").hidden=true;render()});
+$("f").addEventListener("change",render);
+$("f").addEventListener("submit",e=>e.preventDefault());
+const caseBtns=[...document.querySelectorAll(".case[data-case]")];
+function markCase(k){caseBtns.forEach(b=>b.setAttribute("aria-pressed",b.dataset.case===k?"true":"false"))}
+$("clear").addEventListener("click",()=>{fill({mun:"Goiânia",on:[]});$("exTag").hidden=true;markCase("");render();step(1)});
+caseBtns.forEach(b=>b.addEventListener("click",()=>{fill(CASES[b.dataset.case]);$("exTag").hidden=false;markCase(b.dataset.case);render();step(3)}));
+$("f").addEventListener("input",()=>markCase(""));
+markCase("familia");step(3);
+["fq","fm","ft"].forEach(i=>$(i).addEventListener("input",dirRender));
+render();dirRender();
+try{const t=localStorage.getItem("enc-tab");if(t&&$(t))show(t)}catch(e){}
+const hash=location.hash.slice(1);if(hash==="rede")show("tab-rede");else if(hash==="servicos")show("tab-serv");
+})();
+</script>
