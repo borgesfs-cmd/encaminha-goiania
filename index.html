@@ -788,6 +788,7 @@ const URGENCIAS=[
  {k:"suic",t:"Risco de suicídio",nec:"mental"},
  {k:"violMulher",t:"Violência contra mulher acontecendo",nec:"protecao"},
  {k:"violCrianca",t:"Criança em perigo",nec:"protecao"},
+ {k:"violIdoso",t:"Idoso ou PcD em perigo",nec:"protecao"},
  {k:"pep",t:"Exposição ao HIV nas últimas 72h",nec:"protecao"}
 ];
 const tem=(s,ks)=>ks.some(k=>s.nec.has(k));
@@ -1506,6 +1507,7 @@ function avaliar(p){
  if(p.has("violMulher"))urg.push("Violência acontecendo agora: <b>190</b> (PM) ou <b>153</b> (GCM Goiânia). Orientação sigilosa: <b>180</b>.");
  if(p.has("pep"))urg.push("Exposição ao HIV há menos de 72h: ir <b>agora</b> a uma UPA ou CAIS 24h ou ao HDT para a PEP. Quanto antes, melhor.");
  if(p.has("violCrianca"))urg.push("Criança ou adolescente em risco: Conselho Tutelar ou <b>100</b>. Lesão grave: <b>192</b>.");
+ if(p.has("violIdoso"))urg.push("Pessoa idosa ou com deficiência em perigo agora: <b>190</b> (PM). Lesão ou mal-estar: <b>192</b> (SAMU). Denúncia 24h, pode ser anônima: <b>100</b> ou <b>197</b> (Polícia Civil). Não deixe a pessoa sozinha com quem agride. Serviço de saúde: a notificação é obrigatória (Estatuto da Pessoa Idosa, art. 19).");
  return {hits,nao,falta:faltaPor,urg,roteiro:montarRoteiro(hits,p)};
 }
 

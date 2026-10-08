@@ -151,6 +151,13 @@ test("pensamento de suicídio: manejo da crise primeiro, CVV agora e CAPS hoje o
   assert.match(urg, /192/);
 });
 
+test("violência contra pessoa idosa: faixa de urgência com 190, 100 e 197", async () => {
+  const urg = await page.evaluate(() => window.EncaminhaMotor.avaliar(window.EncaminhaMotor.perfil({ on: ["violIdoso"], idade: 72 })).urg.join(" "));
+  assert.match(urg, /190/);
+  assert.match(urg, /100/);
+  assert.match(urg, /197/);
+});
+
 test("tentativa de suicídio: pronto atendimento agora, com embalagem e CIATox", async () => {
   const r = await avaliar({ on: ["tentativa"] });
   assert.equal(r.hits.crise, "enc");
