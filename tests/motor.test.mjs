@@ -193,6 +193,27 @@ test("pedido livre: reconhece AVC e reabilitação sem confundir palavras pareci
   assert.deepEqual(sug.sort(), ["comida", "protecao"]);
 });
 
+test("dependências: álcool e drogas, apostas e jogos eletrônicos têm cuidado próprio", async () => {
+  const ad = await avaliar({ on: ["drogas"] });
+  assert.equal(ad.hits.ad, "enc");
+  assert.equal(ad.hits["r-mental"], undefined);
+  assert.equal(ad.roteiro[0].k, "capsad");
+  const bet = await avaliar({ on: ["apostas"] });
+  assert.equal(bet.hits.apostas, "enc");
+  assert.deepEqual(bet.roteiro.map((s) => s.k), ["bloqueio", "capsad", "dividas"]);
+  const games = await avaliar({ on: ["games"] });
+  assert.equal(games.hits.games, "enc");
+});
+
+test("pedido livre: bets, tigrinho, videogame e álcool ligam o cuidado certo", async () => {
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.deepEqual(await temas("meu marido perdeu o salário no tigrinho"), ["apostas"]);
+  assert.deepEqual(await temas("vive apostando nas bets"), ["apostas"]);
+  assert.deepEqual(await temas("meu filho joga Free Fire a noite toda e largou a escola"), ["games"]);
+  assert.deepEqual(await temas("ele bebe muito todo dia"), ["drogas"]);
+  assert.deepEqual(await temas("o alfabeto"), []);
+});
+
 // ---------- tela ----------
 const inicio = async () => {
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
@@ -280,6 +301,20 @@ test("tela: caso Crise suicida abre o manejo e o link da faixa leva até ele", a
   await page.evaluate(() => { document.getElementById("card-crise").open = false; });
   await page.click('.urgent [data-abre="crise"]');
   assert.ok(await page.isVisible("#card-crise .body"));
+});
+
+test("tela: pedido livre sobre bets traz autoexclusão e cuidado no SUS", async () => {
+  await inicio();
+  await page.fill("#hDem", "meu marido está viciado em bets e cheio de dívidas");
+  assert.match(await page.textContent("#hSug"), /Apostas e bets/);
+  await page.click("#start");
+  await proximo();
+  await proximo();
+  const txt = await page.textContent("#results");
+  assert.match(txt, /autoexclusao/i);
+  assert.match(txt, /Procon ou Defensoria/);
+  assert.ok(!(await page.isVisible(".falta")), "renda e idade não decidem nada sobre apostas");
+  assert.doesNotMatch(txt, /só com a urgência/);
 });
 
 test("tela: todos os exemplos mostram o plano sem erros", async () => {

@@ -577,6 +577,8 @@ const S=[
  {id:"188",tipo:"Nacional",mun:"Nacional",nome:"CVV, Centro de Valorização da Vida",tel:["188"],site:"https://cvv.org.br",hor:"Telefone 24h, todos os dias",obs:"Apoio emocional e prevenção do suicídio. Ligação gratuita e sigilosa, de qualquer telefone. Também há chat em cvv.org.br, em horários limitados: confira no site."},
  {id:"ciatox",tipo:"Saúde",mun:"Estado",nome:"CIATox Goiás, Centro de Informação e Assistência Toxicológica",tel:["0800 646 4350"],hor:"24h, todos os dias",site:"https://goias.gov.br/saude/ciatox/",obs:"Orienta profissionais e população em intoxicação por remédio, veneno, agrotóxico, produto de limpeza ou animal peçonhento. Fonte: SES/GO, consultado em 08/10/2026."},
  {id:"crer",tipo:"Saúde",mun:"Estado",nome:"CRER, Centro Estadual de Reabilitação e Readaptação Dr. Henrique Santillo",end:"Av. Vereador José Monteiro, 1655, Setor Negrão de Lima, Goiânia, CEP 74653-230",tel:["Recepção (62) 3232-3232","(62) 3232-3000"],site:"https://goias.gov.br/saude/crer/",obs:"Reabilitação pelo SUS. A primeira consulta é agendada pela regulação, com encaminhamento da UBS; não há procura direta. Fonte: SES/GO, consultado em 08/10/2026."},
+ {id:"credeq",tipo:"Saúde",mun:"Aparecida de Goiânia",nome:"Credeq Prof. Jamil Issy, referência estadual em dependência química",obs:"Casos graves de álcool e drogas, com internação voluntária de até 90 dias. A vaga vem pela regulação, com encaminhamento do CAPS AD. Fonte: Governo de Goiás e imprensa; endereço e telefone ainda não conferidos."},
+ {id:"autoexclusao",tipo:"Nacional",mun:"Nacional",nome:"Autoexclusão de apostas (Ministério da Fazenda)",site:"https://www.gov.br/pt-br/servicos/plataforma-centralizada-de-autoexclusao-apostas",obs:"Bloqueia o CPF em todas as bets autorizadas, de 1 a 12 meses ou por tempo indeterminado, e corta a publicidade. Exige conta gov.br prata ou ouro. Fonte: gov.br, consultado em 08/10/2026."},
  {id:"sine",tipo:"Trabalho",mun:"Goiânia",nome:"Sine Goiânia",end:"Rua 1, nº 147, Setor Central, Goiânia",obs:"Vagas, seguro-desemprego e orientação profissional. Agendamento pelo app Prefeitura 24h. Levar RG, CPF, carteira de trabalho e comprovante de endereço. Endereço de reportagem recente: confirme antes de ir."},
  {id:"procon",tipo:"Justiça e direitos",mun:"Estado",nome:"Procon Goiás",end:"Rua 8, nº 242, Setor Central, Goiânia",tel:["Goiânia 151","Interior (62) 3201-7124","Superendividados (62) 3201-2891"],site:"https://www.procon.go.gov.br",hor:"Seg a sex, 8h às 17h",obs:"Reclamação de consumo, juros abusivos e renegociação de dívidas (Núcleo de Apoio aos Superendividados). Fonte: Procon Goiás, 2022: confirme os telefones."},
  // Educação
@@ -692,7 +694,7 @@ const NECESSIDADES=[
  {k:"comida",t:"Comida",d:"Falta alimento em casa",on:["fome"]},
  {k:"moradia",t:"Moradia",d:"Aluguel pesado, situação de rua"},
  {k:"saude",t:"Saúde e remédios",d:"Remédio, alto custo, HIV, gravidez"},
- {k:"mental",t:"Saúde mental",d:"Sofrimento, álcool e drogas, suicídio"},
+ {k:"mental",t:"Saúde mental e dependências",d:"Sofrimento, álcool e drogas, apostas, jogos, suicídio"},
  {k:"protecao",t:"Violência e proteção",d:"Mulher, criança, idoso, pessoa com deficiência"},
  {k:"educacao",t:"Educação",d:"Escola, Enem, faculdade e bolsas"},
  {k:"trabalho",t:"Trabalho",d:"Desemprego, negócio próprio, direitos"},
@@ -730,7 +732,7 @@ const PERGUNTAS=[
   opcoes:[["violMulher","Mulher em situação de violência"],["mpu","Ela já tem medida protetiva"],["violCrianca","Criança ou adolescente com direito violado"],["violIdoso","Idoso ou pessoa com deficiência sofrendo violência ou abandono"],["pep","Exposição de risco ao HIV há menos de 72h, inclusive violência sexual"],["trabalho","Trabalho infantil, escravo ou discriminação no trabalho"]],
   quando:s=>tem(s,["protecao"])},
  {id:"mental",tipo:"varios",t:"O que a pessoa está vivendo?",
-  opcoes:[["mental","Sofrimento mental: tristeza, ansiedade, crise"],["drogas","Uso de álcool ou drogas"],["suic","Pensamento de suicídio"],["tentativa","Tentativa de suicídio ou autolesão recente"]],
+  opcoes:[["mental","Sofrimento mental: tristeza, ansiedade, crise"],["drogas","Uso de álcool ou outras drogas"],["apostas","Apostas ou bets fora de controle"],["games","Uso excessivo de jogos eletrônicos ou internet"],["suic","Pensamento de suicídio"],["tentativa","Tentativa de suicídio ou autolesão recente"]],
   quando:s=>tem(s,["mental"])},
  {id:"saude",tipo:"varios",t:"Do que precisa na saúde?",
   opcoes:[["altocusto","Remédio de alto custo receitado"],["continuo","Remédio de uso contínuo: pressão, diabetes, asma…"],["hiv","Vive com HIV"],["teste","Fazer teste de HIV ou IST"],["prep","Prevenção ao HIV (PrEP)"],["gest","Está grávida"]],
@@ -747,7 +749,8 @@ const PERGUNTAS=[
  {id:"notas",tipo:"notas",t:"Para o resumo",d:"Opcional. Use só as iniciais.",quando:()=>true}
 ];
 /* Campo vazio que decide o resultado → tela que o preenche (quadro "Falta uma resposta"). */
-const CAMPOS={renda:{t:"Renda da casa e pessoas na casa",q:"perfil"},idade:{t:"Idade",q:"perfil"}};
+/* nec: assuntos em que vale cobrar o dado; fora deles, o quadro não aparece. */
+const CAMPOS={renda:{t:"Renda da casa e pessoas na casa",q:"perfil",nec:["renda","comida","moradia","educacao","trabalho"]},idade:{t:"Idade",q:"perfil",nec:["renda","educacao","trabalho","saude"]}};
 
 /* ---------- PEDIDO LIVRE ----------
    Situações que não cabem nos assuntos. O texto livre é comparado com palavras-chave (sem acento);
@@ -801,6 +804,9 @@ const TEMAS=[
   palavras:["rg","identidade","cpf","carteira de trabalho","titulo de eleitor","documento perdido","documentos perdidos"],
   passos:["Carteira de Identidade: agendar no Vapt Vupt (vaptvupt.go.gov.br), levando a certidão de nascimento ou casamento.","CPF: de graça pelo site da Receita Federal.","Carteira de Trabalho: é digital, pelo app Carteira de Trabalho Digital com a conta gov.br.","Sem certidão: 2ª via gratuita (assunto Documentos)."],
   servicos:[]},
+ {k:"apostas",t:"Apostas e bets",on:["apostas"],palavras:["bet","bets","aposta","apostas","apostando","apostador","cassino","tigrinho","jogo do tigre","jogo do bicho","jogos de azar","roleta","aviator"]},
+ {k:"games",t:"Jogos eletrônicos e internet",on:["games"],palavras:["videogame","video game","jogos eletronicos","jogo eletronico","games","free fire","roblox","minecraft","fortnite","viciado em jogo","vicio em jogo","viciado no celular","vicio em celular","vicio em internet"]},
+ {k:"drogas",t:"Álcool e outras drogas",on:["drogas"],palavras:["alcool","bebida","bebe muito","alcoolismo","alcoolatra","droga","drogas","crack","cocaina","maconha","dependencia quimica","dependente quimico","internar","internacao","clinica de recuperacao","comunidade terapeutica"]},
  {k:"dentista",t:"Dentista",
   palavras:["dente","dentista","odonto","dentadura","protese dentaria"],
   passos:["Primeira consulta na UBS, com a equipe de saúde bucal.","Tratamento especializado (canal, prótese, cirurgia): a UBS encaminha ao Centro de Especialidades Odontológicas (CEO).","Dor forte ou rosto inchado: UPA ou CAIS 24h."],
@@ -827,7 +833,7 @@ const novoAtendimento=()=>({nec:new Set(),mun:"Goiânia",munOutro:false,reg:"",g
 let E=novoAtendimento();
 const perguntas=()=>PERGUNTAS.filter(q=>q.quando(E));
 const rotulo=(campo,v)=>{const r=PERFIL_ROWS.find(x=>x.f===campo);const o=r&&r.op&&r.op.find(o=>o[0]===v);return o?o[1]:""};
-const dadosAtendimento=()=>({...E,on:[...E.on],trabT:rotulo("trab",E.trab),moradiaT:rotulo("moradia",E.moradia),escolT:rotulo("escol",E.escol)});
+const dadosAtendimento=()=>({...E,on:[...new Set([...E.on,...temasDe(E.dem).flatMap(t=>t.on||[])])],trabT:rotulo("trab",E.trab),moradiaT:rotulo("moradia",E.moradia),escolT:rotulo("escol",E.escol)});
 function read(){return perfil(dadosAtendimento())}
 /* Monta o perfil a partir de dados simples (formulário ou testes). */
 function perfil(d){
@@ -1152,8 +1158,48 @@ const P=[
    <li>Como deixar o ambiente seguro (remédios, venenos, armas).</li>
   </ol><p class="src">Baseado nas orientações do Ministério da Saúde e da OMS para prevenção do suicídio. Notificação: Portaria de Consolidação nº 4/2017 e Lei 13.819/2019.</p></div>`,
   where:"saude",extra:["188","ciatox"]},
+ {id:"ad",nome:"Álcool e outras drogas: cuidado pelo SUS",esf:"rede",val:"Gratuito, sem encaminhamento",
+  test:p=>p.has("drogas")?["enc","Uso de álcool ou outras drogas: o SUS cuida em liberdade, com redução de danos e apoio à família. O CAPS AD atende sem encaminhamento."]:null,
+  flow:["Primeiro passo: CAPS AD (álcool e drogas) ou UBS. Não precisa de encaminhamento nem de estar sem usar.",
+   "No CAPS AD a equipe monta um plano de cuidado: consultas, grupos, atendimento à família e, se preciso, remédios.",
+   "Crise de abstinência grave (convulsão, confusão, delírio, tremor forte) ou intoxicação: SAMU 192 ou UPA.",
+   "Casos graves: internação breve em leito de hospital geral ou no Credeq (Aparecida de Goiânia, até 90 dias, voluntária), pedida pelo CAPS AD pela regulação.",
+   "Precisa de moradia temporária durante o tratamento: o CAPS AD avalia a vaga em Unidade de Acolhimento.",
+   "Em situação de rua: Centro POP e Consultório na Rua.",
+   "Comunidade terapêutica: só com entrada voluntária. Prefira as acompanhadas pelo CAPS e pela assistência social.",
+   "Internação involuntária: só com pedido da família ou do responsável e decisão de um médico, em unidade de saúde, comunicada ao Ministério Público em até 72h (Lei 13.840/2019). Não é o primeiro caminho.",
+   "Grupos gratuitos de ajuda mútua: Alcoólicos Anônimos e Narcóticos Anônimos; para a família, Al-Anon e Nar-Anon."],
+  docs:["Cartão do SUS e documento, se tiver (a falta não impede o atendimento)"],
+  html:`<div><h4>Para orientar a família</h4><ul class="rights">
+   <li>A família também é atendida no CAPS AD, mesmo que a pessoa ainda não queira tratamento.</li>
+   <li>Cobrar abstinência imediata afasta. Pequenas mudanças (usar menos, não misturar, não dirigir) já reduzem danos.</li>
+   <li>Violência em casa por causa do uso: proteção primeiro (190, DEAEM, Conselho Tutelar).</li>
+  </ul><p class="src">Rede de Atenção Psicossocial (RAPS) do SUS. Internação: Lei 13.840/2019. Credeq: Governo de Goiás.</p></div>`,
+  where:null,extra:["credeq","samu","188"]},
+ {id:"apostas",nome:"Apostas e bets fora de controle",esf:"rede",val:"Bloqueio no gov.br + cuidado no SUS",
+  test:p=>p.has("apostas")?["enc","Problema com apostas (bets, cassino online, jogo do bicho) é tratado no SUS, como as outras dependências. Bloquear o acesso e proteger o dinheiro vêm junto com o cuidado."]:null,
+  flow:["Bloquear todas as bets de uma vez: Plataforma Centralizada de Autoexclusão (gov.br/autoexclusaoapostas), com conta gov.br prata ou ouro. Vale de 1 a 12 meses ou por tempo indeterminado e corta a publicidade.",
+   "O bloqueio não pode ser desfeito antes do prazo escolhido (no indeterminado, dá para cancelar em até 30 dias). Ele só alcança as bets autorizadas: sites ilegais continuam abertos.",
+   "Cuidado em saúde: UBS ou CAPS (em geral o CAPS AD), sem encaminhamento. O Ministério da Saúde também oferece teleatendimento para problemas com apostas pelo app Meu SUS Digital.",
+   "Pergunte sobre pensamentos de suicídio: dívida e vergonha aumentam o risco. Havendo, siga o manejo da crise e o CVV 188.",
+   "Proteger o dinheiro: por um tempo, deixar cartão e senhas com alguém de confiança, tirar limites e Pix automático, não pegar empréstimo para cobrir aposta.",
+   "Dívidas: Procon Goiás (Núcleo de Apoio aos Superendividados) ou Defensoria, para renegociar.",
+   "Bolsa Família e BPC: desde 2025 as bets autorizadas devem barrar beneficiários (Portaria SPA/MF 2.217/2025). A regra está em discussão no STF; se a pessoa ainda consegue apostar, use a autoexclusão.",
+   "Menor de 18 anos não pode apostar. Se está apostando, usa conta de adulto ou site ilegal: converse com a família; se um adulto facilita, Conselho Tutelar.",
+   "Família: o CAPS orienta os familiares. Há grupos gratuitos de Jogadores Anônimos."],
+  docs:["Conta gov.br prata ou ouro (para a autoexclusão)","Cartão do SUS"],
+  where:null,extra:["autoexclusao","188","procon","dpe"]},
+ {id:"games",nome:"Uso excessivo de jogos eletrônicos e internet",esf:"rede",val:"UBS e CAPS",
+  test:p=>p.has("games")?["enc","Jogo eletrônico ou internet que tira o sono, a escola, o trabalho ou a convivência. A OMS reconhece o transtorno de jogo (CID-11); o cuidado é pela UBS e pelo CAPS (CAPSij para crianças e adolescentes)."]:null,
+  flow:["Primeiro acolhimento na UBS: avaliar sono, humor, ansiedade, isolamento e rendimento na escola ou no trabalho.",
+   "Prejuízo grave, agressividade ao ser interrompido ou outro sofrimento junto: CAPS, sem encaminhamento (CAPSij até 18 anos).",
+   "Criança e adolescente: combinar com a família horários e lugar do aparelho, usar o controle parental e manter o celular fora do quarto à noite.",
+   "Abandono da escola: conversar com a escola; se persistir, Conselho Tutelar.",
+   "Jogo com dinheiro (caixas de recompensa, apostas em itens, cassino): tratar também como aposta. O ECA Digital (Lei 15.211/2025) proíbe caixas de recompensa em jogos para crianças e adolescentes.",
+   "Psicoterapia gratuita: clínicas-escola de psicologia (PUC Goiás e UFG)."],
+  docs:["Cartão do SUS"],where:null,extra:["puc-cepsi","ufg-psi"]},
  {id:"r-mental",nome:"Cuidado em saúde mental",esf:"rede",val:"UBS e CAPS",
-  test:p=>(p.has("mental")||p.has("drogas"))?["enc","Sofrimento psíquico ou uso de álcool e drogas: cuidado pela Rede de Atenção Psicossocial."]:null,
+  test:p=>p.has("mental")?["enc","Sofrimento psíquico: cuidado pela Rede de Atenção Psicossocial."]:null,
   flow:["Risco imediato ou tentativa de suicídio: SAMU 192.","Apoio emocional 24h: CVV 188.","Primeiro atendimento: UBS do bairro ou CAPS (acesso direto).","Crise sem risco de vida: UPA ou CAIS."],docs:["Cartão do SUS e documento, se tiver"],where:"saude",extra:["puc-cepsi","ufg-psi"]},
  {id:"r-gest",nome:"Pré-natal e parto",esf:"rede",val:"SUS",
   test:p=>p.has("gest")?["enc","Gestante: pré-natal na UBS e referência para o parto."]:null,
@@ -1179,6 +1225,9 @@ const QUANDO=[
 const STOPS={
  urgencia:{nome:"Pronto atendimento: SAMU 192, UPA ou CAIS 24h",q:0,lugar:()=>[{nome:"UPA ou CAIS 24h mais próximo",obs:"Atende tentativa e risco imediato sem encaminhamento. Endereços de UPAs e CAIS 24h na aba Serviços e contatos.",fake:true}].concat(pickIds(["samu","ciatox"])),docs:["Embalagem do remédio ou produto, se houve ingestão","Cartão do SUS e documento, se tiver (a falta não impede o atendimento)"]},
  cvv:{nome:"CVV, telefone 188",q:0,lugar:()=>pickIds(["188"]),docs:[]},
+ capsad:{nome:"CAPS AD (álcool e drogas) ou UBS",q:2,lugar:()=>[{nome:"CAPS AD de referência",obs:"Atende sem encaminhamento. A lista oficial com endereços ainda não foi importada: pergunte na UBS ou na Secretaria de Saúde.",fake:true}].concat(pickIds(["credeq"])),docs:["Cartão do SUS e documento, se tiver"]},
+ bloqueio:{nome:"Bloquear as bets no gov.br",q:1,lugar:()=>pickIds(["autoexclusao"]),docs:["Conta gov.br prata ou ouro"]},
+ dividas:{nome:"Procon ou Defensoria (dívidas)",q:2,lugar:()=>pickIds(["procon","dpe"]),docs:["Documento com foto e CPF","Comprovantes de renda e despesas","Contratos e extratos das dívidas"]},
  caps:{nome:"CAPS ou UBS do bairro",q:1,lugar:p=>places("saude",p).list,docs:["Cartão do SUS","Documento com foto, se tiver"]},
  pep:{nome:"UPA ou CAIS 24h, ou HDT",q:0,lugar:p=>places("pep",p).list,docs:["Documento, se tiver (a falta não impede o atendimento)"]},
  deaem:{nome:"Delegacia da Mulher (DEAEM) ou Plantão 24h",q:1,lugar:()=>pickIds(["deaem","plantao"]),docs:["Documento com foto, se tiver (não é obrigatório)"]},
@@ -1237,6 +1286,9 @@ const ROTA={
  "r-rua":[["pop","Alimentação, higiene, documentos e vaga em acolhimento"]],
  "r-mental":[["ubs","Acolhimento em saúde mental. A UBS encaminha ao CAPS, que também atende direto"]],
  "r-gest":p=>[["ubs","Começar o pré-natal, de preferência até a 12ª semana"]].concat(p.has("pbf")||p.has("cad")?[["cras","Informar a gestação para o adicional do Bolsa Família",[]]]:[]),
+ ad:[["capsad","Acolhimento e plano de cuidado; a família também é atendida"]],
+ apostas:[["bloqueio","Autoexclusão de todas as bets autorizadas, de uma vez (gov.br/autoexclusaoapostas)"],["capsad","Cuidado para o problema com apostas (ou teleatendimento pelo Meu SUS Digital)"],["dividas","Se houver dívidas: renegociar"]],
+ games:[["ubs","Avaliação na UBS; prejuízo grave, CAPS (CAPSij até 18 anos)"]],
  "r-fome":[["cras","Pedir benefício eventual (cesta básica)",["Documento com foto e CPF"]]],
  enem:[["online","Isenção da taxa (em abril) e inscrição no Enem, com a conta gov.br"]],
  prouni:[["online","Inscrição no Prouni com a conta gov.br, nas datas do edital"]],
@@ -1249,7 +1301,7 @@ const ROTA={
 /* Nome curto para listas e etiquetas. */
 const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
- hivcare:"Cuidado em HIV",crise:"Crise suicida",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
+ hivcare:"Cuidado em HIV",crise:"Crise suicida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
  "r-rua":"População de rua","r-mental":"Saúde mental","r-gest":"Pré-natal","r-fome":"Segurança alimentar"};
 const curto=pol=>CURTO[pol.id]||pol.nome;
 /* Políticas que só saem com o CadÚnico em dia. */
@@ -1285,7 +1337,7 @@ function avaliar(p){
   else if(r[0]==="falta")r[2].forEach(c=>(faltaPor[c]=faltaPor[c]||[]).push(pol));
   else hits.push({pol,st:r[0],why:r[1]});}
  const order={enc:0,prov:1,ver:2};
- const top=["crise","pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","mp","cad"];
+ const top=["crise","pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","ad","apostas","games","mp","cad"];
  const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
  hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
  const urg=[];
@@ -1476,7 +1528,7 @@ function render(){
  if(urg.length)h+=`<div class="urgent" role="alert"><h3>Antes de tudo: segurança</h3><ul>${urg.map(u=>`<li>${u}</li>`).join("")}</ul></div>`;
  const crise=hits.find(x=>x.pol.id==="crise");
  if(crise)h+=cardHtml(crise,p,true);
- temas.forEach(t=>{const lug=pickIds(t.servicos);
+ temas.filter(t=>t.passos).forEach(t=>{const lug=pickIds(t.servicos);
   h+=`<details class="card tema-card" open><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(t.t)}</h3><span class="status enc">Pedido descrito</span></div></summary>
   <div class="body"><div><h4>O que fazer</h4><ol class="flow">${t.passos.map(x=>`<li><span>${esc(x)}</span></li>`).join("")}</ol></div>
   ${lug.length?`<div><h4>Contatos</h4><div class="places">${lug.map(placeHtml).join("")}</div></div>`:""}</div></details>`});
@@ -1484,13 +1536,13 @@ function render(){
  if(semCaminho)h+=`<div class="card tema-card"><div class="body" style="border-top:0"><h3>Caminhos gerais para o pedido descrito</h3><ul class="docs">
   <li>Saúde: UBS do bairro. Se for urgente, SAMU 192 ou UPA.</li><li>Assistência social: CRAS (endereço pelo 121).</li><li>Direitos e justiça: Defensoria Pública.</li><li>Procure também na aba Contatos.</li></ul></div></div>`;
  const lines=[`ENCAMINHAMENTO · ${p.ini?"Pessoa: "+p.ini+" · ":""}${p.mun}${p.reg?" (região "+p.reg+")":""} · ${new Date().toLocaleDateString("pt-BR")}`,[genT,idadeT].filter(Boolean).join(" · "),p.pessoas?`Pessoas na casa: ${p.pessoas}`:"",p.pc!==null?`Renda por pessoa: ${brl(p.pc)}`:"",[p.trabT&&"Trabalho: "+p.trabT,p.moradiaT&&"Moradia: "+p.moradiaT,p.escolT&&"Escolaridade: "+p.escolT].filter(Boolean).join(" · "),p.dem?`Solicitação: ${p.dem}`:""].filter(Boolean);
- temas.forEach(t=>lines.push("",`PEDIDO DESCRITO: ${t.t.toUpperCase()}`,...t.passos.map((x,j)=>`  ${j+1}. ${x}`),...pickIds(t.servicos).map(l=>`  → ${l.nome}${l.end?", "+l.end:""}${l.tel?" · "+l.tel.join(" / "):""}`)));
+ temas.filter(t=>t.passos).forEach(t=>lines.push("",`PEDIDO DESCRITO: ${t.t.toUpperCase()}`,...t.passos.map((x,j)=>`  ${j+1}. ${x}`),...pickIds(t.servicos).map(l=>`  → ${l.nome}${l.end?", "+l.end:""}${l.tel?" · "+l.tel.join(" / "):""}`)));
 
  h+=`<div class="planhead"><div><h2>Plano de encaminhamento</h2><p class="hint">${roteiro.length?`${roteiro.length} passo${roteiro.length===1?"":"s"}, na ordem. Toque em "O que levar e contatos" em cada um.`:temas.length?"Siga a orientação acima.":"Nenhum encaminhamento com essas respostas."}</p></div>${hits.length||temas.length?`<button class="b" type="button" id="copyAll">Copiar resumo</button>`:""}</div>`;
  /* falta dado: só para perguntas que fazem parte deste atendimento */
- const fk=Object.keys(falta).filter(c=>qs.includes(CAMPOS[c].q));
+ const fk=Object.keys(falta).filter(c=>qs.includes(CAMPOS[c].q)&&tem(E,CAMPOS[c].nec));
  if(fk.length)h+=`<div class="falta"><h3>Falta uma resposta</h3><ul>${fk.map(c=>`<li><span><b>${esc(CAMPOS[c].t)}</b> decide: ${falta[c].map(pol=>esc(curto(pol))).join(", ")}.</span><button type="button" class="b ghost sm" data-q="${CAMPOS[c].q}">Responder</button></li>`).join("")}</ul></div>`;
- if(!E.nec.size&&hits.length)h+=`<div class="note">Plano feito só com a urgência. <button type="button" class="link" id="pMais">Responder as perguntas</button> para incluir renda, benefícios e outros direitos.</div>`;
+ if(E.urgNec&&!E.nec.size&&hits.length)h+=`<div class="note">Plano feito só com a urgência. <button type="button" class="link" id="pMais">Responder as perguntas</button> para incluir renda, benefícios e outros direitos.</div>`;
  if(!hits.length&&!temas.length&&!semCaminho)h+=`<div class="empty">Nenhum encaminhamento ainda. <button type="button" class="link" id="pVoltarInicio">Escolha o que a pessoa precisa</button></div>`;
 
  /* roteiro */

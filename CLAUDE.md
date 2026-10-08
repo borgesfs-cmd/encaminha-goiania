@@ -32,9 +32,10 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 
 ## Pedido livre (`TEMAS`)
 - Cada tema: `k, t, palavras[], passos[], servicos[]` e, se for urgente, `urg` (frase da faixa de segurança).
+- Tema com `on[]` não tem passos próprios: liga situações do motor (ex.: "tigrinho" → `apostas`), e o plano mostra o card e o roteiro da política correspondente.
 - O texto é comparado sem acento. Palavra de até 3 letras precisa ser inteira; as demais, no começo de uma palavra (evita "dente" em "acidente").
 - A busca não entende tempo verbal ("teve AVC" e "está tendo AVC" dão o mesmo tema). Por isso a frase urgente é sempre condicional: "Se está acontecendo agora…".
-- Temas atuais: AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
+- Temas atuais: apostas, jogos eletrônicos, álcool e drogas (com `on`), AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
 
 ## Motor de regras
 - Renda por pessoa = renda ÷ pessoas. Linhas: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), 1/4, 1/2, 1, 2 e 3 salários mínimos.
@@ -55,12 +56,16 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Nacional: CadÚnico, Bolsa Família, BPC, Tarifa Social, Pé-de-Meia, Carteira da Pessoa Idosa, Passe Livre interestadual, Farmácia Popular.
 - Educação: Enem e isenção da taxa, Prouni, Fies e Fies Social, Sisu e cotas, ProBem (OVG), assistência estudantil, EJA e Encceja.
 - Estadual: Mães de Goiás, Goiás + Inclusivo, Dignidade, Goiás Por Elas, Aluguel Social (Agehab), Passe Livre Estudantil, Aprendiz do Futuro, CIPTEA, Passe Livre PcD, Passaporte da Pessoa Idosa, Crédito Social, 2ª via de registro civil, alto custo (Cemac Juarez Barbosa).
+- Dependências: álcool e outras drogas (CAPS AD, Credeq, Unidade de Acolhimento, regras da internação involuntária pela Lei 13.840/2019), apostas e bets (autoexclusão centralizada no gov.br, cuidado no SUS e Meu SUS Digital, dívidas, bloqueio de beneficiários pela Portaria SPA/MF 2.217/2025 em discussão no STF), jogos eletrônicos (UBS, CAPSij, ECA Digital).
 - Rede: mulher, criança, idoso/PcD, população de rua, saúde mental, gestante, fome, HIV (teste, PEP, PrEP, SAE), Ministério Público (MPGO, MPF, MPT).
 - Goiânia: 26 CRAS/centros de convivência, 5 CREAS, Centro POP, 6 Conselhos Tutelares, rede da mulher, Defensoria, CTA/SAE, UPAs com PEP.
 - Aparecida: parcial. Demais municípios da RMG: só nacional e estadual.
 - Comunitária: PUC Goiás (NPJ, CEPSI, Clínica Escola Vida, CRESA, Cecom), Centro de Psicologia da UFG, Ceap-SOL, CEVAM.
 
 ## Pendências conhecidas
+- Lista de UBS e CAPS, inclusive CAPS AD e CAPSij (importar do CNES/DataSUS). Credeq sem endereço e telefone conferidos.
+- Acompanhar no STF (ADI 7721) o bloqueio de bets para beneficiários do Bolsa Família e do BPC.
+- Quadro "Falta uma resposta": `CAMPOS[c].nec` diz em que assuntos vale cobrar renda ou idade.
 - Lista de UBS e CAPS (importar do CNES/DataSUS). Prioridade: o roteiro da crise suicida manda ao CAPS, mas ainda sem endereço.
 - Promotorias do MPGO por comarca (site do MPGO não respondia na pesquisa).
 - CRAS de Aparecida e dos demais municípios da RMG.
