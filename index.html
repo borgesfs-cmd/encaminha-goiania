@@ -633,7 +633,8 @@ const S=[
  // Levantamento de 08/10/2026: delegacias especializadas, saúde especializada, rede comunitária
  {id:"pc197",tipo:"Justiça e direitos",mun:"Estado",nome:"Disque Polícia Civil 197",tel:["197"],hor:"24h",obs:"Orientação e denúncia à Polícia Civil de Goiás."},
  {id:"dpca",tipo:"Justiça e direitos",mun:"Goiânia",nome:"DPCA, Delegacia de Proteção à Criança e ao Adolescente",end:"Rua C-190 esq. c/ C-107, Qd. 226, Lt. 13, Jardim América, Goiânia, CEP 74255-080",tel:["(62) 3286-1540","(62) 3286-1298","(62) 3286-1552"],email:"dpca.goiania.pcgo@pc.goias.gov.br",hor:"Seg a sex, 8h às 12h e 14h às 18h",obs:"Crimes contra crianças e adolescentes, inclusive violência sexual. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026."},
- {id:"deacri",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Deacri, Delegacia de Crimes Raciais e de Intolerância",end:"Av. 2ª Radial, Qd. 48, Lt. 28, Setor Pedro Ludovico, Goiânia, CEP 74820-090",tel:["(62) 98495-2047"],email:"deacri.pcgo@pc.goias.gov.br",hor:"Seg a sex, 8h às 18h",obs:"Racismo, injúria racial, intolerância religiosa e LGBTfobia. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026."},
+ {id:"deacri",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Deacri, Delegacia de Crimes Raciais e de Intolerância",end:"Av. 2ª Radial, Qd. 48, Lt. 28, Setor Pedro Ludovico, Goiânia, CEP 74820-090",tel:["(62) 98495-2047"],email:"deacri.pcgo@pc.goias.gov.br",hor:"Seg a sex, 8h às 18h",obs:"Racismo, injúria racial, xenofobia, intolerância religiosa e LGBTfobia, inclusive ataques a terreiros. Também é possível registrar em qualquer delegacia ou pelo 197. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026."},
+ {id:"crei",tipo:"Justiça e direitos",mun:"Estado",nome:"Crei, Centro de Referência Estadual da Igualdade (Seds)",site:"https://goias.gov.br/social/superintendencia-da-igualdade-racial/",email:"crei.seds@goias.gov.br",obs:"Atendimento psicológico, social e jurídico gratuito, presencial e on-line, a vítimas de racismo, intolerância religiosa e outras discriminações. Ligado à Superintendência da Igualdade Racial, que tem gerência para povos de terreiro. Fonte: Seds/GO; o e-mail aparece também na Superintendência da Mulher: confirme."},
  {id:"deai",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Delegacia Estadual de Atendimento ao Idoso",end:"Av. Anhanguera, nº 463, Setor Universitário, Goiânia",tel:["(62) 3201-1501","(62) 3201-1511"],hor:"8h às 18h",obs:"Crimes contra a pessoa idosa. Dados da inauguração (2016): confirme antes de ir ou use o 197."},
  {id:"hc-ufg",tipo:"Saúde",mun:"Goiânia",nome:"Hospital das Clínicas da UFG (Ebserh)",tel:["(62) 3269-8380"],site:"https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-centro-oeste/hc-ufg",obs:"Hospital-escola 100% SUS. Consultas e cirurgias pela regulação, com encaminhamento da UBS. Telefone de 2021: confirme. Carta de Serviços 2026 no site."},
  {id:"araujo-jorge",tipo:"Saúde",mun:"Goiânia",nome:"Hospital de Câncer Araújo Jorge (ACCG)",site:"https://www.accg.org.br",obs:"Único Centro de Alta Complexidade em Oncologia (Cacon) do Estado, filantrópico com atendimento SUS. Acesso pela regulação. Houve suspensões de novos atendimentos em 2025: confirme antes."},
@@ -762,7 +763,7 @@ const NECESSIDADES=[
  {k:"moradia",t:"Moradia",d:"Aluguel pesado, situação de rua"},
  {k:"saude",t:"Saúde e remédios",d:"Remédio, alto custo, HIV, gravidez"},
  {k:"mental",t:"Saúde mental e dependências",d:"Sofrimento, álcool e drogas, apostas, jogos, suicídio"},
- {k:"protecao",t:"Violência e proteção",d:"Mulher, criança, idoso, pessoa com deficiência"},
+ {k:"protecao",t:"Violência e proteção",d:"Mulher, criança, idoso, PcD, discriminação"},
  {k:"educacao",t:"Educação",d:"Escola, Enem, faculdade e bolsas"},
  {k:"trabalho",t:"Trabalho",d:"Desemprego, negócio próprio, direitos"},
  {k:"documentos",t:"Documentos",d:"Certidão de nascimento ou casamento",on:["semDoc"]},
@@ -796,7 +797,7 @@ const PERFIL_ROWS=[
 const PERGUNTAS=[
  {id:"perfil",tipo:"perfil",t:"Sobre a pessoa",d:"Toque para escolher. Tudo é opcional, mas renda, pessoas e idade mudam o resultado.",quando:()=>true},
  {id:"protecao",tipo:"varios",t:"O que está acontecendo?",
-  opcoes:[["violMulher","Mulher em situação de violência"],["mpu","Ela já tem medida protetiva"],["violCrianca","Criança ou adolescente com direito violado"],["violIdoso","Idoso ou pessoa com deficiência sofrendo violência ou abandono"],["pep","Exposição de risco ao HIV há menos de 72h, inclusive violência sexual"],["trabalho","Trabalho infantil, escravo ou discriminação no trabalho"]],
+  opcoes:[["violMulher","Mulher em situação de violência"],["mpu","Ela já tem medida protetiva"],["violCrianca","Criança ou adolescente com direito violado"],["violIdoso","Idoso ou pessoa com deficiência sofrendo violência ou abandono"],["pep","Exposição de risco ao HIV há menos de 72h, inclusive violência sexual"],["discrim","Discriminação: racismo, xenofobia, intolerância religiosa, LGBTfobia, capacitismo"],["trabalho","Trabalho infantil, escravo ou discriminação no trabalho"]],
   quando:s=>tem(s,["protecao"])},
  {id:"mental",tipo:"varios",t:"O que a pessoa está vivendo?",
   opcoes:[["mental","Sofrimento mental: tristeza, ansiedade, crise"],["drogas","Uso de álcool ou outras drogas"],["apostas","Apostas ou bets fora de controle"],["games","Uso excessivo de jogos eletrônicos ou internet"],["suic","Pensamento de suicídio"],["tentativa","Tentativa de suicídio ou autolesão recente"]],
@@ -878,18 +879,16 @@ const TEMAS=[
   palavras:["estupro","estuprad","abuso sexual","abusada","abusado","violencia sexual","assedio sexual","importunacao"],
   passos:["Nas primeiras 72h: atendimento de saúde imediato para profilaxia de HIV e IST e contracepção de emergência. Em Goiânia, o Hemu tem ambulatório próprio para vítimas de violência sexual (procura direta ou encaminhamento); também UPA ou CAIS 24h.","Registrar ocorrência é um direito, não uma condição para o atendimento de saúde. Mulher: DEAEM (24h). Criança ou adolescente: DPCA e Conselho Tutelar.","Gravidez resultante de estupro: a interrupção é prevista em lei. O Hemu é a referência estadual.","Acompanhamento psicológico e social: CREAS e, para mulheres, Centro de Referência Cora Coralina.","Criança ou adolescente: comunicar sempre ao Conselho Tutelar."],
   servicos:["hem","deaem","dpca","cora","100"]},
- {k:"discriminacao",t:"Racismo, intolerância religiosa e LGBTfobia",
-  palavras:["racismo","racista","injuria racial","preconceito","discrimina","homofobia","transfobia","lgbtfobia","intolerancia religiosa","xingou de macaco"],
-  passos:["Registrar ocorrência na Deacri (Goiânia), delegacia especializada em crimes raciais e de intolerância, ou em qualquer delegacia. Racismo e LGBTfobia são crimes.","Guardar provas: prints, áudios, nomes de testemunhas, data e local.","Denúncia também pelo Disque 100, 24h, anônima se quiser.","No trabalho: Ministério Público do Trabalho. Em serviço público: ouvidoria do órgão e Defensoria.","Apoio psicológico: UBS, CAPS ou clínicas-escola."],
-  servicos:["deacri","100","dpe","mpt"]},
+ {k:"discriminacao",t:"Discriminação: racismo, xenofobia, intolerância religiosa, LGBTfobia",on:["discrim"],
+  palavras:["racismo","racista","injuria racial","ofensa racial","preconceito","discrimina","xenofob","por ser nordestin","por ser estrangeir","por ser venezuelan","por ser haitian","volta pro seu pais","homofobia","homofob","transfobia","lgbtfobia","intolerancia religiosa","racismo religioso","atacaram o terreiro","ataque ao terreiro","invadiram o terreiro","por ser do candomble","por ser da umbanda","por causa da religiao","por causa da minha religiao","perseguido pela religiao","perseguida pela religiao","por ser evangelic","por ser catolic","por ser espirita","por ser muculman","por ser judeu","por ser judia","macumbeir","chutaram a imagem","capacitismo","capacitista","idadismo","etarismo","xingou de macaco"]},
  {k:"trans",t:"Pessoa trans: saúde e documentos",
   palavras:["pessoa trans","mulher trans","homem trans","menina trans","menino trans","transexual","travesti","transgenero","hormonizacao","nome social","mudar o nome","redesignacao"],
   passos:["Saúde: pedir na UBS o encaminhamento para o Ambulatório TX do HGG (hormonização, psicologia, cirurgias). Maiores de 18 em Goiânia também podem procurar o Transviver.","Nome social: pode ser usado no SUS, na escola e no CadÚnico, sem mudar documento.","Mudar nome e gênero nos documentos: direto no cartório, sem processo e sem cirurgia, para maiores de 18 anos. Defensoria orienta quem não pode pagar as taxas.","Violência ou discriminação: Deacri e Disque 100."],
   servicos:["hgg-tx","transviver","deacri","dpe"]},
  {k:"migrante",t:"Migrantes e refugiados",
   palavras:["migrante","imigrante","refugiad","venezuelan","haitian","estrangeir","refugio","sem documento brasileiro"],
-  passos:["O SUS atende sem exigir documento brasileiro. A criança tem direito à matrícula na escola.","CadÚnico e benefícios: pode se cadastrar com a Carteira de Registro Nacional Migratório (CRNM) ou o protocolo de refúgio, no CRAS.","Documentos, trabalho e orientação: Pastoral dos Migrantes de Goiânia.","Regularização migratória com problema: Defensoria Pública da União."],
-  servicos:["pastoral-migrantes","121"]},
+  passos:["O SUS atende sem exigir documento brasileiro. A criança tem direito à matrícula na escola.","CadÚnico e benefícios: pode se cadastrar com a Carteira de Registro Nacional Migratório (CRNM) ou o protocolo de refúgio, no CRAS.","Documentos, trabalho e orientação: Pastoral dos Migrantes de Goiânia.","Regularização migratória com problema: Defensoria Pública da União.","Sofreu xenofobia: é crime (Lei 7.716/1989). Registrar na Deacri ou em qualquer delegacia, ou pelo Disque 100."],
+  servicos:["pastoral-migrantes","deacri","100","121"]},
  {k:"egresso",t:"Saiu do sistema prisional (egresso) e família",
   palavras:["egresso","saiu da prisao","saiu da cadeia","ex-detento","ex detento","presidiario","tornozeleira","liberdade condicional","foi preso","esta preso","presidio"],
   passos:["Escritório Social (Goiânia): documentos, trabalho, estudo e acesso a políticas sociais para egressos e famílias. Atendimento voluntário.","Família de pessoa presa: auxílio-reclusão no INSS, se a pessoa contribuía (Meu INSS ou 135).","CadÚnico e benefícios no CRAS; situação de rua: Centro POP.","Dúvidas sobre a pena ou o processo: Defensoria Pública."],
@@ -1304,6 +1303,28 @@ const P=[
    "Jogo com dinheiro (caixas de recompensa, apostas em itens, cassino): tratar também como aposta. O ECA Digital (Lei 15.211/2025) proíbe caixas de recompensa em jogos para crianças e adolescentes.",
    "Psicoterapia gratuita: clínicas-escola de psicologia (PUC Goiás e UFG)."],
   docs:["Cartão do SUS"],where:null,extra:["capsi","puc-cepsi","ufg-psi","anhanguera-psi"]},
+ {id:"discrim",nome:"Discriminação: racismo, xenofobia, intolerância religiosa, LGBTfobia",esf:"rede",val:"É crime: denuncie",
+  test:p=>p.has("discrim")?["enc","Ofensa, exclusão ou violência por raça, cor, etnia, origem (outro país ou outra região), religião, orientação sexual, identidade de gênero, deficiência, idade ou HIV é crime. A pessoa tem direito a registrar, a ser acolhida e a reparação."]:null,
+  flow:["Acolher e acreditar no relato. Perguntar se há risco agora (ameaça, ataque ao terreiro, à casa ou à pessoa): se houver, 190.",
+   "Guardar provas: prints com data, áudios, vídeos, nomes e contatos de testemunhas, local e horário.",
+   "Registrar ocorrência: Deacri (Goiânia), especializada em crimes raciais e de intolerância, ou em qualquer delegacia. Também pelo 197 (Polícia Civil). Não precisa de advogado.",
+   "Denúncia, anônima se quiser, pelo Disque 100 (24h, também por WhatsApp).",
+   "Apoio psicológico, social e jurídico gratuito: Crei, Centro de Referência Estadual da Igualdade (Seds), presencial ou on-line.",
+   "Reparação e direitos: Defensoria Pública (há o projeto Terreiro de Direitos para comunidades de matriz africana). Casos coletivos, contra escolas, empresas ou órgãos públicos: Ministério Público.",
+   "No trabalho: Ministério Público do Trabalho. Na escola: direção e, se a vítima for criança ou adolescente, Conselho Tutelar. Em serviço público: ouvidoria do órgão.",
+   "Pessoa migrante: além da delegacia, a Pastoral dos Migrantes acompanha; a Defensoria Pública da União orienta sobre documentos.",
+   "Sofrimento depois da violência: UBS, CAPS ou clínicas-escola de psicologia."],
+  docs:["Documento com foto, se tiver (migrante: qualquer documento ou protocolo)","Provas: prints, áudios, vídeos, testemunhas"],
+  html:`<div><h4>O que a lei protege</h4><div class="med">
+   <div><b>Racismo e injúria racial</b>Lei 7.716/1989. Desde a Lei 14.532/2023, injúria racial é racismo: crime inafiançável e imprescritível.</div>
+   <div><b>Xenofobia</b>Discriminação por origem ou nacionalidade (procedência nacional) está na mesma Lei 7.716/1989. Vale para estrangeiros e para quem vem de outra região do Brasil.</div>
+   <div><b>Intolerância religiosa</b>Lei 7.716/1989 e Código Penal, art. 208 (ofender culto ou objeto de culto). A liberdade de crença é garantida pela Constituição, art. 5º. Em Goiânia, a Lei municipal 11.677 trata do combate ao racismo religioso.</div>
+   <div><b>LGBTfobia</b>O STF (ADO 26, 2019) enquadrou homofobia e transfobia na Lei do Racismo.</div>
+   <div><b>Pessoa com deficiência</b>Lei Brasileira de Inclusão (Lei 13.146/2015), art. 88.</div>
+   <div><b>Pessoa idosa</b>Estatuto da Pessoa Idosa, art. 96.</div>
+   <div><b>Pessoa com HIV</b>Lei 12.984/2014: discriminar quem vive com HIV é crime.</div>
+  </div><p class="src">O app não pergunta nem guarda a raça, a religião ou a orientação da pessoa: são dados sensíveis pela LGPD. Fonte dos serviços: Polícia Civil de Goiás e Seds/GO, consultado em 08/10/2026.</p></div>`,
+  where:null,extra:["deacri","crei","100","pc197","dpe","mpgo-dh","mpt"]},
  {id:"r-mental",nome:"Cuidado em saúde mental",esf:"rede",val:"UBS e CAPS",
   test:p=>p.has("mental")?["enc","Sofrimento psíquico: cuidado pela Rede de Atenção Psicossocial."]:null,
   flow:["Risco imediato ou tentativa de suicídio: SAMU 192.","Apoio emocional 24h: CVV 188.","Primeiro atendimento: UBS do bairro ou CAPS (acesso direto).","Crise sem risco de vida: UPA ou CAIS."],docs:["Cartão do SUS e documento, se tiver"],where:"saude",extra:["capsi","puc-cepsi","ufg-psi","anhanguera-psi"]},
@@ -1332,6 +1353,8 @@ const STOPS={
  urgencia:{nome:"Pronto atendimento: SAMU 192, UPA ou CAIS 24h",q:0,lugar:()=>[{nome:"UPA ou CAIS 24h mais próximo",obs:"Atende tentativa e risco imediato sem encaminhamento. Endereços de UPAs e CAIS 24h na aba Serviços e contatos.",fake:true}].concat(pickIds(["samu","ciatox"])),docs:["Embalagem do remédio ou produto, se houve ingestão","Cartão do SUS e documento, se tiver (a falta não impede o atendimento)"]},
  cvv:{nome:"CVV, telefone 188",q:0,lugar:()=>pickIds(["188"]),docs:[]},
  capsad:{nome:"CAPS AD (álcool e drogas) ou UBS",q:2,lugar:()=>[{nome:"CAPS AD de referência",obs:"Atende sem encaminhamento. A lista oficial com endereços ainda não foi importada: pergunte na UBS ou na Secretaria de Saúde.",fake:true}].concat(pickIds(["credeq"])),docs:["Cartão do SUS e documento, se tiver"]},
+ deacri:{nome:"Deacri (Goiânia) ou delegacia mais próxima",q:2,lugar:()=>pickIds(["deacri","pc197"]),docs:["Documento com foto, se tiver","Provas: prints, áudios, vídeos, testemunhas"]},
+ crei:{nome:"Crei: apoio psicológico, social e jurídico (Seds)",q:2,lugar:()=>pickIds(["crei"]),docs:[]},
  bloqueio:{nome:"Bloquear as bets no gov.br",q:1,lugar:()=>pickIds(["autoexclusao"]),docs:["Conta gov.br prata ou ouro"]},
  dividas:{nome:"Procon ou Defensoria (dívidas)",q:2,lugar:()=>pickIds(["procon","dpe"]),docs:["Documento com foto e CPF","Comprovantes de renda e despesas","Contratos e extratos das dívidas"]},
  caps:{nome:"CAPS ou UBS do bairro",q:1,lugar:p=>places("saude",p).list,docs:["Cartão do SUS","Documento com foto, se tiver"]},
@@ -1392,6 +1415,7 @@ const ROTA={
  "r-rua":[["pop","Alimentação, higiene, documentos e vaga em acolhimento"]],
  "r-mental":[["ubs","Acolhimento em saúde mental. A UBS encaminha ao CAPS, que também atende direto"]],
  "r-gest":p=>[["ubs","Começar o pré-natal, de preferência até a 12ª semana"]].concat(p.has("pbf")||p.has("cad")?[["cras","Informar a gestação para o adicional do Bolsa Família",[]]]:[]),
+ discrim:[["deacri","Registrar a ocorrência com as provas (também pelo 197 ou Disque 100)"],["crei","Acolhimento e orientação jurídica gratuita"],["dpe","Reparação e direitos; casos coletivos, Ministério Público"]],
  ad:[["capsad","Acolhimento e plano de cuidado; a família também é atendida"]],
  apostas:[["bloqueio","Autoexclusão de todas as bets autorizadas, de uma vez (gov.br/autoexclusaoapostas)"],["capsad","Cuidado para o problema com apostas (ou teleatendimento pelo Meu SUS Digital)"],["dividas","Se houver dívidas: renegociar"]],
  games:[["ubs","Avaliação na UBS; prejuízo grave, CAPS (CAPSij até 18 anos)"]],
@@ -1409,7 +1433,7 @@ const ROTA={
 /* Nome curto para listas e etiquetas. */
 const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
- hivcare:"Cuidado em HIV",crise:"Crise suicida",gas:"Gás do Povo",mcmv:"Minha Casa, Minha Vida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
+ hivcare:"Cuidado em HIV",crise:"Crise suicida",discrim:"Discriminação",gas:"Gás do Povo",mcmv:"Minha Casa, Minha Vida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
  "r-rua":"População de rua","r-mental":"Saúde mental","r-gest":"Pré-natal","r-fome":"Segurança alimentar"};
 const curto=pol=>CURTO[pol.id]||pol.nome;
 /* Políticas que só saem com o CadÚnico em dia. */
@@ -1445,7 +1469,7 @@ function avaliar(p){
   else if(r[0]==="falta")r[2].forEach(c=>(faltaPor[c]=faltaPor[c]||[]).push(pol));
   else hits.push({pol,st:r[0],why:r[1]});}
  const order={enc:0,prov:1,ver:2};
- const top=["crise","pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","ad","apostas","games","mp","cad"];
+ const top=["crise","pep","r-mulher","r-crianca","discrim","hivcare","ceaf","r-mental","ad","apostas","games","mp","cad"];
  const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
  hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
  const urg=[];
@@ -1702,7 +1726,7 @@ function render(){
    (registros/<dia>__<id>, campo itens = {<id do atendimento>: registro}). */
 /* Passos do roteiro que não são um serviço presencial da rede: ficam fora do painel de demanda. */
 const NAO_LUGAR=new Set(["online","auto","medico"]);
-const SENSIVEIS=new Set(["hiv","teste","prep","suic","tentativa","pep","violMulher","mpu","violCrianca","violIdoso","drogas","apostas","mental","violsexual","trans","egresso"]);
+const SENSIVEIS=new Set(["discrim","hiv","teste","prep","suic","tentativa","pep","violMulher","mpu","violCrianca","violIdoso","drogas","apostas","mental","violsexual","trans","egresso"]);
 const RENDA_F=[["sem","Sem renda"],["ate109","Até R$ 109"],["ate218","De R$ 110 a R$ 218"],["ate_q","Até 1/4 do salário"],["ate_m","Até 1/2 salário"],["ate1","Até 1 salário"],["ate3","Até 3 salários"],["mais3","Mais de 3 salários"],["ni","Não informada"]];
 function faixaRenda(pc,sm){if(pc===null)return "ni";if(pc===0)return "sem";if(pc<=109)return "ate109";if(pc<=218)return "ate218";if(pc<=sm/4)return "ate_q";if(pc<=sm/2)return "ate_m";if(pc<=sm)return "ate1";if(pc<=sm*3)return "ate3";return "mais3"}
 const isoDia=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
@@ -1822,7 +1846,7 @@ function alertas(a){
 
 /* ---------- PAINÉIS ---------- */
 const GRUPOS_SIT=[
- ["Violências e violações de direitos",["violMulher","mpu","violCrianca","violIdoso","pep","trabalho","negado"]],
+ ["Violências e violações de direitos",["violMulher","mpu","violCrianca","violIdoso","discrim","pep","trabalho","negado"]],
  ["Saúde mental e dependências",["mental","suic","tentativa","drogas","apostas","games"]],
  ["Saúde física",["altocusto","continuo","hiv","teste","prep","gest"]],
  ["Renda, moradia e documentos",["fome","aluguel","rua","semDoc","cadOld"]],

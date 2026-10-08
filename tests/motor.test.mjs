@@ -214,6 +214,19 @@ test("pedido livre: bets, tigrinho, videogame e álcool ligam o cuidado certo", 
   assert.deepEqual(await temas("o alfabeto"), []);
 });
 
+test("discriminação: racismo, xenofobia e intolerância religiosa chegam ao mesmo cuidado, sem falso alarme", async () => {
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k).sort(), t);
+  assert.deepEqual(await temas("sofreu xenofobia no trabalho por ser venezuelana"), ["discriminacao", "migrante"]);
+  assert.deepEqual(await temas("mandaram ele voltar pro seu pais, xingaram por ser nordestino"), ["discriminacao"]);
+  assert.deepEqual(await temas("atacaram o terreiro de candomblé da nossa rua"), ["discriminacao"]);
+  assert.deepEqual(await temas("foi humilhada por causa da religião"), ["discriminacao"]);
+  assert.deepEqual(await temas("tenho intolerância à lactose"), []);
+  assert.deepEqual(await temas("sou da umbanda e preciso de cesta básica"), []);
+  const r = await avaliar({ on: ["discrim"] });
+  assert.equal(r.hits.discrim, "enc");
+  assert.deepEqual(r.roteiro.map((s) => s.k), ["deacri", "crei", "dpe"]);
+});
+
 // ---------- tela ----------
 const inicio = async () => {
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });

@@ -12,6 +12,7 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 - Não pedir nem guardar: nome, CPF, NIS, RG, endereço da pessoa, telefone, e-mail.
 - Identificação só por **iniciais**.
 - Não pedir dados sensíveis (raça/cor, religião, orientação sexual, filiação). Se raça/cor entrar no futuro, que seja opcional, só para estatística e fora do resumo copiado.
+- Discriminação é registrada só como "discriminação" (`discrim`), sem perguntar nem guardar raça, religião, origem ou orientação: são dados sensíveis (LGPD, art. 5º, II). O card explica a lei de cada forma.
 - Gênero é pedido como opção (Mulher, Homem, Outro, Prefere não dizer); não é dado sensível pela LGPD, mas é sempre opcional.
 - O campo livre de solicitação passa pela função `clean()`, que remove e-mails e números com 7 ou mais dígitos (CPF, NIS, RG, telefone, CEP) antes de ir para o resumo. Valores em reais e datas ficam. Nomes não são detectados: o aviso no campo pede para não escrever.
 - Dados de saúde (HIV, saúde mental) são sensíveis. Se um dia houver registro de atendimentos identificados, exigir login de profissional, base legal, finalidade e prazo de descarte.
@@ -48,7 +49,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Tema com `on[]` não tem passos próprios: liga situações do motor (ex.: "tigrinho" → `apostas`), e o plano mostra o card e o roteiro da política correspondente.
 - O texto é comparado sem acento. Palavra de até 3 letras precisa ser inteira; as demais, no começo de uma palavra (evita "dente" em "acidente").
 - A busca não entende tempo verbal ("teve AVC" e "está tendo AVC" dão o mesmo tema). Por isso a frase urgente é sempre condicional: "Se está acontecendo agora…".
-- Temas atuais: apostas, jogos eletrônicos, álcool e drogas (com `on`), violência sexual, racismo e LGBTfobia, pessoa trans, migrantes, egressos, câncer, tráfico de pessoas, AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
+- Temas atuais: apostas, jogos eletrônicos, álcool e drogas, discriminação (racismo, xenofobia, intolerância religiosa, LGBTfobia, capacitismo, idadismo) (com `on`), violência sexual, pessoa trans, migrantes, egressos, câncer, tráfico de pessoas, AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
 
 ## Motor de regras
 - Renda por pessoa = renda ÷ pessoas. Linhas: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), 1/4, 1/2, 1, 2 e 3 salários mínimos.
