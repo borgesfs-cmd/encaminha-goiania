@@ -190,6 +190,17 @@ test("EJA também aparece pela escolaridade de um adulto", async () => {
   assert.equal((await avaliar({ idade: 30, escol: "medio" })).hits.eja, undefined);
 });
 
+test("pedido livre: violência contra pessoa idosa liga a urgência, sem pegar casos parecidos", async () => {
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.deepEqual(await temas("minha avó está apanhando do neto"), ["violidoso"]);
+  assert.deepEqual(await temas("idoso sofrendo maus tratos"), ["violidoso"]);
+  assert.ok((await temas("o filho fica com a aposentadoria dela")).includes("violidoso"));
+  assert.deepEqual(await temas("idoso com dor nas costas"), []);
+  assert.deepEqual(await temas("criança sofre maus tratos"), []);
+  const tema = await page.evaluate(() => window.EncaminhaMotor._dados.TEMAS.find((t) => t.k === "violidoso").on);
+  assert.deepEqual(tema, ["violIdoso"]);
+});
+
 test("pedido livre: reconhece AVC e reabilitação sem confundir palavras parecidas", async () => {
   const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
   assert.deepEqual(await temas("Meu pai está tendo um AVC"), ["avc"]);

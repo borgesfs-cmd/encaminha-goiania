@@ -77,6 +77,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Comunitária: PUC Goiás (NPJ, CEPSI, Clínica Escola Vida, CRESA, Cecom), Centro de Psicologia da UFG, Ceap-SOL, CEVAM.
 
 ## Banco de dados no Google Planilhas
+- Planilha oficial no Google: "Banco de dados Encaminha Goiânia", ID `111MIZct1XosUB0332x1P5tioGbe1i1jrQyQUPpQ5ICI` (localidade pt_BR: fórmulas com `;`). Primeira carga e sincronização em 08/10/2026. Ao escrever pelo conector, proteja com `'` os IDs e textos que parecem número (ex.: `'136`), e use máscaras de campo simples (sem vírgula) no batchUpdate.
 - `dados/banco-de-dados-encaminha.xlsx`: abas Leia-me, Serviços, Políticas, Temas, Registros, Resumo e Fontes. Gerada a partir do app por `node scripts/exportar-planilha.mjs` (Playwright + Python/openpyxl).
 - Serviços tem Situação (Ativo, A conferir, Inativo), Conferido em, Conferido por e a fórmula "Precisa conferir?" (Sim se nunca conferido ou com mais de 180 dias).
 - Os critérios de direito ficam no código; a planilha guarda textos, contatos e palavras-chave. Pedido de mudança de critério: coluna própria na aba Políticas.
