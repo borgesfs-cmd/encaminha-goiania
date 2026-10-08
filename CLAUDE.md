@@ -14,7 +14,8 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 - Não pedir dados sensíveis (raça/cor, religião, orientação sexual, filiação). Se raça/cor entrar no futuro, que seja opcional, só para estatística e fora do resumo copiado.
 - Gênero é pedido como opção (Mulher, Homem, Outro, Prefere não dizer); não é dado sensível pela LGPD, mas é sempre opcional.
 - O campo livre de solicitação passa pela função `clean()`, que remove e-mails e números com 7 ou mais dígitos (CPF, NIS, RG, telefone, CEP) antes de ir para o resumo. Valores em reais e datas ficam. Nomes não são detectados: o aviso no campo pede para não escrever.
-- Dados de saúde (HIV, saúde mental) são sensíveis. Se um dia houver registro de atendimentos, exigir login de profissional, base legal, finalidade e prazo de descarte.
+- Dados de saúde (HIV, saúde mental) são sensíveis. Se um dia houver registro de atendimentos identificados, exigir login de profissional, base legal, finalidade e prazo de descarte.
+- **Estatísticas (aba Relatórios):** o registro só acontece quando o profissional toca em "Registrar atendimento" no fim do plano. Guarda só categorias e faixas (`registroDeDados`): município, região, gênero, faixa de idade, pessoas (até 7), faixa de renda por pessoa, trabalho, moradia, escolaridade, assuntos, situações marcadas, políticas indicadas, lugares do roteiro, temas reconhecidos e se houve urgência. Nunca iniciais, texto livre, renda ou idade exatas. Exemplos prontos não entram. Nos painéis, situações sensíveis (`SENSIVEIS`) com 1 ou 2 casos aparecem como "menos de 3".
 
 ### Dados
 - Todo contato precisa ter **fonte** e **data de conferência**. Não inventar telefone ou endereço. Se não confirmar, deixar sem e dizer de onde buscar (121, prefeitura).
@@ -30,12 +31,24 @@ Atendimento guiado, pensado para o celular. Uma tela de cada vez:
 
 O estado do atendimento fica em `E` (só na memória da página; nada é guardado). `dadosAtendimento()` transforma `E` nos dados do `perfil()`. A versão anterior, com formulário em 3 etapas, está em `docs/versao-formulario.html`.
 
+## Aba Relatórios
+- Armazenamento: capacidade `db` do artefato (declarar `{db:{}, user:{}, downloads:true}` ao publicar). Um documento por profissional e dia: `registros/<dia>__<id>`, campo `itens` = `{<id do atendimento>: registro}`. Assim cada um escreve só no próprio documento, sem disputa.
+- `agregar(registros, período, município)` conta tudo; `alertas()` gera as informações estratégicas (assunto mais frequente, renda até R$ 218, famílias de baixa renda sem CadÚnico, lugar presencial mais acionado, urgências, dependências, pedidos sem orientação, região, respostas que faltam).
+- Painéis: atendimentos por semana, assuntos, onde a rede é mais acionada (sem "Pela internet" e "Sem inscrição", ver `NAO_LUGAR`), direitos indicados, situações psicossociais em grupos, renda, idade e gênero, território, lacunas. Exportação em CSV agregado (nunca registros linha a linha) e texto copiável.
+- Sem armazenamento (arquivo local, testes), a aba oferece **dados de exemplo** gerados pelo motor (`gerarExemplo`), marcados na tela e nunca gravados.
+- O app sempre abre na aba Atender; links diretos: `#rede`, `#servicos`, `#relatorios`.
+
+## Testes
+- `tests/motor.test.mjs`: regras, casos e telas principais.
+- `tests/rotina.test.mjs`: rotina detalhada (integridade dos dados, 800 perfis aleatórios, cobertura de todas as políticas, limites de renda, todos os fluxos, celular de 360px, acessibilidade, tema escuro, privacidade, estatísticas, desempenho). Relatório em `docs/relatorio-testes.md`.
+- Mudou dado ou regra: rode `npm test`. Toda política nova precisa ser alcançada por algum perfil (teste B2).
+
 ## Pedido livre (`TEMAS`)
 - Cada tema: `k, t, palavras[], passos[], servicos[]` e, se for urgente, `urg` (frase da faixa de segurança).
 - Tema com `on[]` não tem passos próprios: liga situações do motor (ex.: "tigrinho" → `apostas`), e o plano mostra o card e o roteiro da política correspondente.
 - O texto é comparado sem acento. Palavra de até 3 letras precisa ser inteira; as demais, no começo de uma palavra (evita "dente" em "acidente").
 - A busca não entende tempo verbal ("teve AVC" e "está tendo AVC" dão o mesmo tema). Por isso a frase urgente é sempre condicional: "Se está acontecendo agora…".
-- Temas atuais: apostas, jogos eletrônicos, álcool e drogas (com `on`), AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
+- Temas atuais: apostas, jogos eletrônicos, álcool e drogas (com `on`), violência sexual, racismo e LGBTfobia, pessoa trans, migrantes, egressos, câncer, tráfico de pessoas, AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
 
 ## Motor de regras
 - Renda por pessoa = renda ÷ pessoas. Linhas: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), 1/4, 1/2, 1, 2 e 3 salários mínimos.
@@ -62,8 +75,12 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Aparecida: parcial. Demais municípios da RMG: só nacional e estadual.
 - Comunitária: PUC Goiás (NPJ, CEPSI, Clínica Escola Vida, CRESA, Cecom), Centro de Psicologia da UFG, Ceap-SOL, CEVAM.
 
+## Levantamentos
+- `docs/levantamento-2026-10-08.md`: políticas, rede, ONGs, instituições de ensino e demandas psicossociais, com fonte e grau de confiança de cada item.
+
 ## Pendências conhecidas
 - Lista de UBS e CAPS, inclusive CAPS AD e CAPSij (importar do CNES/DataSUS). Credeq sem endereço e telefone conferidos.
+- Não encontrados no levantamento: clínicas-escola de UNIP, Universo, Estácio e Unialfa; Bento Cottolengo; núcleo de enfrentamento ao tráfico de pessoas de Goiás; endereço da Defensoria Pública da União em Goiânia.
 - Acompanhar no STF (ADI 7721) o bloqueio de bets para beneficiários do Bolsa Família e do BPC.
 - Quadro "Falta uma resposta": `CAMPOS[c].nec` diz em que assuntos vale cobrar renda ou idade.
 - Lista de UBS e CAPS (importar do CNES/DataSUS). Prioridade: o roteiro da crise suicida manda ao CAPS, mas ainda sem endereço.

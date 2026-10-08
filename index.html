@@ -281,6 +281,44 @@ button.b:disabled{opacity:.55;cursor:not-allowed}
 .tema.urg{background:var(--alert-soft);color:var(--alert)}
 .tema-card{border-color:var(--sgd)}
 
+/* relatórios */
+.rel{display:grid;gap:16px}
+.relhead{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:end}
+.relhead h2{font-size:clamp(22px,4.5vw,28px)}
+.relhead .hint{margin:4px 0 0}
+.relfil{display:grid;gap:6px;min-width:0}
+.relfil select{max-width:260px}
+.demo{background:var(--ipe-soft);border:1px solid var(--ipe);border-radius:var(--r);padding:10px 14px;font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:2px}
+.kpi span{font-size:13px;color:var(--muted)}
+.kpi b{font-family:var(--font-display);font-size:30px;font-variant-numeric:tabular-nums;line-height:1.1}
+.rcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.rcard h3{font-size:17px}
+.rcard h4{font-family:var(--font-body);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.rcard p{margin:0}
+.insights{border-color:var(--green)}
+.insights ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px;align-items:start}
+.bars{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.bars li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:baseline}
+.bl{font-size:14px;overflow-wrap:anywhere}
+.bv{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.bv small{font-weight:400;color:var(--muted)}
+.bt{grid-column:1/-1;height:8px;background:var(--sunk);border-radius:4px;overflow:hidden}
+.bt i{display:block;height:100%;background:var(--green);border-radius:0 4px 4px 0}
+.chartwrap{position:relative}
+.chart{width:100%;height:auto;display:block}
+.chart .gl{stroke:var(--line);stroke-width:1}
+.chart .ax{fill:var(--muted);font:12px var(--font-body)}
+.chart .vl{fill:var(--ink);font:700 12px var(--font-body)}
+.chart .bar{fill:var(--green)}
+.chart .hit{fill:transparent;cursor:default}
+.chart .hit:hover{fill:color-mix(in srgb,var(--green) 10%,transparent)}
+.tip{position:absolute;width:150px;background:var(--ink);color:var(--bg);font-size:13px;border-radius:6px;padding:5px 8px;text-align:center;pointer-events:none}
+.regbox{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:12px 14px}
+.regbox>div{display:grid;gap:2px;max-width:60ch}
+
 /* rede */
 .flowmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px) minmax(0,1fr);gap:16px;align-items:start}
 @media (max-width:860px){.flowmap{grid-template-columns:1fr}}
@@ -355,6 +393,7 @@ footer .wrap{padding-block:18px}
       <button role="tab" id="tab-enc" aria-controls="p-enc" aria-selected="true">Atender</button>
       <button role="tab" id="tab-rede" aria-controls="p-rede" aria-selected="false">A rede</button>
       <button role="tab" id="tab-serv" aria-controls="p-serv" aria-selected="false">Contatos</button>
+      <button role="tab" id="tab-rel" aria-controls="p-rel" aria-selected="false">Relatórios</button>
       <button role="tab" id="tab-sobre" aria-controls="p-sobre" aria-selected="false">Sobre</button>
     </nav>
   </div>
@@ -483,6 +522,11 @@ footer .wrap{padding-block:18px}
   <div class="dir" id="dir"></div>
 </section>
 
+<!-- RELATÓRIOS -->
+<section id="p-rel" role="tabpanel" aria-labelledby="tab-rel" hidden>
+  <div id="relRoot" class="rel"></div>
+</section>
+
 <!-- SOBRE -->
 <section id="p-sobre" role="tabpanel" aria-labelledby="tab-sobre" hidden>
   <div class="prose">
@@ -531,6 +575,11 @@ footer .wrap{padding-block:18px}
       <li><a href="https://www.pucgoias.edu.br/wp-content/uploads/2023/08/cesta-de-servicos.pdf" target="_blank" rel="noopener">PUC Goiás, cesta de serviços</a>, <a href="https://www.jornalopcao.com.br/saude/centro-de-psicologia-da-ufg-oferta-vagas-para-psicoterapia-gratuita-695932/" target="_blank" rel="noopener">Centro de Psicologia da UFG</a>, <a href="https://goias.gov.br/saude/ceap-sol/" target="_blank" rel="noopener">Ceap-SOL</a> e <a href="https://www.jornalopcao.com.br/direitos-humanos/instituicao-em-goiania-que-protege-mulheres-ha-45-anos-luta-para-sobreviver-apos-queda-nas-doacoes-851346/" target="_blank" rel="noopener">CEVAM</a></li>
       <li><a href="https://cdpcd.com.br/mapapcd/" target="_blank" rel="noopener">Sede do MPGO</a>, <a href="https://docs.tjgo.jus.br/rede_atendimento/regiao_2/Inhumas/Vitimas_ou_Testemunhas_de_Violencia.pdf" target="_blank" rel="noopener">TJGO, CAO DH e Provita</a>, <a href="https://www.oabgo.org.br/wp-content/uploads/2026/03/CARTILHA-VIOLENCIA-CONTRA-A-MULHER.pdf" target="_blank" rel="noopener">cartilha OAB-GO (Núcleo de Gênero)</a> e <a href="https://www.mpf.mp.br/o-mpf/unidades/pr-go/contato-1" target="_blank" rel="noopener">MPF em Goiás</a></li>
       <li><a href="https://goias.gov.br/saude/hdt" target="_blank" rel="noopener">SES/GO, HDT</a></li>
+      <li><a href="https://goias.gov.br/policiacivil/delegacias-especializadas" target="_blank" rel="noopener">Polícia Civil de Goiás, delegacias especializadas</a> (DPCA, Deacri)</li>
+      <li><a href="https://goias.gov.br/saude/hemu/" target="_blank" rel="noopener">SES/GO, Hemu</a>, <a href="https://goias.gov.br/saude/perguntas-e-respostas-frequentes-da-sociedade-crer/" target="_blank" rel="noopener">CRER</a> e <a href="https://goias.gov.br/saude/ambulatorio-para-transexuais-comeca-a-funcionar-no-hgg/" target="_blank" rel="noopener">Ambulatório TX do HGG</a></li>
+      <li><a href="https://www.gov.br/pt-br/servicos/plataforma-centralizada-de-autoexclusao-apostas" target="_blank" rel="noopener">gov.br, autoexclusão de apostas</a></li>
+      <li><a href="https://www.osetoreletrico.com.br/?p=164475" target="_blank" rel="noopener">ANEEL, gratuidade de 80 kWh na Tarifa Social</a></li>
+      <li><a href="https://ovg.org.br" target="_blank" rel="noopener">OVG</a>: Restaurante do Bem, Banco de Alimentos, ProBem</li>
       <li><a href="https://goias.gov.br/saude/samu-192/" target="_blank" rel="noopener">SES/GO, SAMU 192</a> e <a href="https://goias.gov.br/saude/?p=10702" target="_blank" rel="noopener">telefones das unidades estaduais</a></li>
     </ul>
 
@@ -572,7 +621,7 @@ const S=[
  // Nacional
  {id:"121",tipo:"Nacional",mun:"Nacional",nome:"Disque Social 121 (MDS)",tel:["121"],obs:"Bolsa Família, Cadastro Único e endereço do CRAS mais próximo."},
  {id:"135",tipo:"Nacional",mun:"Nacional",nome:"INSS, Central 135 e Meu INSS",tel:["135"],site:"https://meu.inss.gov.br",obs:"Pedido de BPC, agendamento de perícia e avaliação social."},
- {id:"100",tipo:"Nacional",mun:"Nacional",nome:"Disque 100, Direitos Humanos",tel:["100"],obs:"Denúncia anônima de violência contra criança, idoso, pessoa com deficiência, população de rua e LGBTQIA+. 24h."},
+ {id:"100",tipo:"Nacional",mun:"Nacional",nome:"Disque 100, Direitos Humanos",tel:["100"],obs:"Denúncia anônima de violência contra criança, idoso, pessoa com deficiência, população de rua e LGBTQIA+, tráfico de pessoas e trabalho escravo. 24h. Também por WhatsApp (61) 99611-0100."},
  {id:"180",tipo:"Nacional",mun:"Nacional",nome:"Ligue 180, Central de Atendimento à Mulher",tel:["180"],obs:"Gratuito, sigiloso, 24h."},
  {id:"188",tipo:"Nacional",mun:"Nacional",nome:"CVV, Centro de Valorização da Vida",tel:["188"],site:"https://cvv.org.br",hor:"Telefone 24h, todos os dias",obs:"Apoio emocional e prevenção do suicídio. Ligação gratuita e sigilosa, de qualquer telefone. Também há chat em cvv.org.br, em horários limitados: confira no site."},
  {id:"ciatox",tipo:"Saúde",mun:"Estado",nome:"CIATox Goiás, Centro de Informação e Assistência Toxicológica",tel:["0800 646 4350"],hor:"24h, todos os dias",site:"https://goias.gov.br/saude/ciatox/",obs:"Orienta profissionais e população em intoxicação por remédio, veneno, agrotóxico, produto de limpeza ou animal peçonhento. Fonte: SES/GO, consultado em 08/10/2026."},
@@ -581,6 +630,24 @@ const S=[
  {id:"autoexclusao",tipo:"Nacional",mun:"Nacional",nome:"Autoexclusão de apostas (Ministério da Fazenda)",site:"https://www.gov.br/pt-br/servicos/plataforma-centralizada-de-autoexclusao-apostas",obs:"Bloqueia o CPF em todas as bets autorizadas, de 1 a 12 meses ou por tempo indeterminado, e corta a publicidade. Exige conta gov.br prata ou ouro. Fonte: gov.br, consultado em 08/10/2026."},
  {id:"sine",tipo:"Trabalho",mun:"Goiânia",nome:"Sine Goiânia",end:"Rua 1, nº 147, Setor Central, Goiânia",obs:"Vagas, seguro-desemprego e orientação profissional. Agendamento pelo app Prefeitura 24h. Levar RG, CPF, carteira de trabalho e comprovante de endereço. Endereço de reportagem recente: confirme antes de ir."},
  {id:"procon",tipo:"Justiça e direitos",mun:"Estado",nome:"Procon Goiás",end:"Rua 8, nº 242, Setor Central, Goiânia",tel:["Goiânia 151","Interior (62) 3201-7124","Superendividados (62) 3201-2891"],site:"https://www.procon.go.gov.br",hor:"Seg a sex, 8h às 17h",obs:"Reclamação de consumo, juros abusivos e renegociação de dívidas (Núcleo de Apoio aos Superendividados). Fonte: Procon Goiás, 2022: confirme os telefones."},
+ // Levantamento de 08/10/2026: delegacias especializadas, saúde especializada, rede comunitária
+ {id:"pc197",tipo:"Justiça e direitos",mun:"Estado",nome:"Disque Polícia Civil 197",tel:["197"],hor:"24h",obs:"Orientação e denúncia à Polícia Civil de Goiás."},
+ {id:"dpca",tipo:"Justiça e direitos",mun:"Goiânia",nome:"DPCA, Delegacia de Proteção à Criança e ao Adolescente",end:"Rua C-190 esq. c/ C-107, Qd. 226, Lt. 13, Jardim América, Goiânia, CEP 74255-080",tel:["(62) 3286-1540","(62) 3286-1298","(62) 3286-1552"],email:"dpca.goiania.pcgo@pc.goias.gov.br",hor:"Seg a sex, 8h às 12h e 14h às 18h",obs:"Crimes contra crianças e adolescentes, inclusive violência sexual. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026."},
+ {id:"deacri",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Deacri, Delegacia de Crimes Raciais e de Intolerância",end:"Av. 2ª Radial, Qd. 48, Lt. 28, Setor Pedro Ludovico, Goiânia, CEP 74820-090",tel:["(62) 98495-2047"],email:"deacri.pcgo@pc.goias.gov.br",hor:"Seg a sex, 8h às 18h",obs:"Racismo, injúria racial, intolerância religiosa e LGBTfobia. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026."},
+ {id:"deai",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Delegacia Estadual de Atendimento ao Idoso",end:"Av. Anhanguera, nº 463, Setor Universitário, Goiânia",tel:["(62) 3201-1501","(62) 3201-1511"],hor:"8h às 18h",obs:"Crimes contra a pessoa idosa. Dados da inauguração (2016): confirme antes de ir ou use o 197."},
+ {id:"hc-ufg",tipo:"Saúde",mun:"Goiânia",nome:"Hospital das Clínicas da UFG (Ebserh)",tel:["(62) 3269-8380"],site:"https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-centro-oeste/hc-ufg",obs:"Hospital-escola 100% SUS. Consultas e cirurgias pela regulação, com encaminhamento da UBS. Telefone de 2021: confirme. Carta de Serviços 2026 no site."},
+ {id:"araujo-jorge",tipo:"Saúde",mun:"Goiânia",nome:"Hospital de Câncer Araújo Jorge (ACCG)",site:"https://www.accg.org.br",obs:"Único Centro de Alta Complexidade em Oncologia (Cacon) do Estado, filantrópico com atendimento SUS. Acesso pela regulação. Houve suspensões de novos atendimentos em 2025: confirme antes."},
+ {id:"capsi",tipo:"Saúde",mun:"Goiânia",nome:"CAPSi estadual, saúde mental de crianças e adolescentes",end:"Rua 72 c/ Av. H, s/n, Parque da Criança, Jardim Goiás, Goiânia, CEP 74805-480",tel:["(62) 3201-4346","(62) 3201-4473"],email:"capsiestadual@gmail.com",obs:"De 3 a 17 anos, com os pais ou responsáveis: psicologia, fonoaudiologia, terapia ocupacional, grupos e serviço social. Fonte: SES/GO; confirme o horário por telefone."},
+ {id:"hgg-tx",tipo:"Saúde",mun:"Goiânia",nome:"Ambulatório TX do HGG, saúde da pessoa trans",site:"https://goias.gov.br/saude/ambulatorio-para-transexuais-comeca-a-funcionar-no-hgg/",obs:"Hormonização, psicologia, fonoaudiologia e cirurgias pelo SUS. Entrada com encaminhamento da UBS. Fonte: SES/GO."},
+ {id:"transviver",tipo:"Saúde",mun:"Goiânia",nome:"Ambulatório Transviver (Prefeitura de Goiânia)",end:"Nas instalações da UPA Novo Mundo, Goiânia",hor:"Seg a sex, 7h às 19h",obs:"Para maiores de 18 anos: endocrinologia, psicologia, enfermagem, serviço social e hormônios. Fonte: imprensa, 2024: confirme."},
+ {id:"escritorio-social",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Escritório Social, apoio a egressos do sistema prisional",end:"Rua 83, nº 484, Setor Sul, Goiânia",obs:"Egressos, pré-egressos e liberados condicionais e suas famílias: documentos, trabalho, estudo e políticas sociais. Atendimento voluntário. Inaugurado em dez/2024 (Goiás Social): confirme o horário."},
+ {id:"pastoral-migrantes",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Pastoral dos Migrantes de Goiânia",tel:["(62) 4018-1606","(62) 99635-1212"],obs:"Acolhe migrantes e refugiados (venezuelanos, haitianos e outros): orientação, documentos, trabalho. Tem ponto de atendimento na rodoviária. Fonte: CSEM, publicação antiga: confirme."},
+ {id:"cejusc",tipo:"Justiça e direitos",mun:"Goiânia",nome:"Cejusc, conciliação gratuita do TJGO",end:"Fórum Cível de Goiânia, Av. Olinda c/ Rua PL-03, Park Lozandes",tel:["WhatsApp (62) 99218-2532"],obs:"Acordo sobre pensão, guarda, visitas, divórcio e dívidas, sem processo. WhatsApp divulgado nas Semanas da Conciliação de 2023 e 2024: confirme."},
+ {id:"restbem",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Restaurante do Bem (OVG), refeição a R$ 2",end:"Av. Araguaia esq. c/ Rua 3, nº 514, Setor Central, Goiânia",site:"https://ovg.org.br",obs:"Almoço a R$ 2 para pessoas em vulnerabilidade, idosos e população de rua. Há outras unidades em Goiânia (Campinas) e no interior. Fonte: regulamento OVG, 2024: confirme o horário."},
+ {id:"bancoalimentos",tipo:"Rede comunitária e gratuita",mun:"Estado",nome:"Banco de Alimentos da OVG (para entidades)",site:"https://ovg.org.br",obs:"Entidades sem fins lucrativos que servem refeições se cadastram pelo site da OVG e recebem alimentos da Ceasa. Útil para igrejas e ONGs da rede."},
+ {id:"pestalozzi",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Associação Pestalozzi de Goiânia",end:"Centro Peter Pan: Praça da Bíblia, Qd. K, Vila Santa Isabel, Goiânia",obs:"Atendimento especializado e educação para pessoas com deficiência intelectual ou múltipla. Fonte: convênio com a Seduc/GO: confirme."},
+ {id:"apae-gyn",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"APAE de Goiânia",end:"Rua 255, nº 628, Setor Coimbra, Goiânia",obs:"Pessoas com deficiência intelectual ou múltipla: pediatria, psicologia, neurologia, fisioterapia, odontologia. Fonte: diretório não oficial: confirme."},
+ {id:"anhanguera-psi",tipo:"Rede comunitária e gratuita",mun:"Goiânia",nome:"Clínica-escola de Psicologia da Faculdade Anhanguera de Goiânia",obs:"Psicoterapia, orientação e avaliação psicológica para crianças, adolescentes, adultos e idosos, por alunos supervisionados. Fonte: imprensa, 2025: confirme como agendar."},
  // Educação
  {id:"mec",tipo:"Educação",mun:"Nacional",nome:"MEC: Prouni, Fies e Sisu",tel:["Fale Conosco 0800 616161"],site:"https://acessounico.mec.gov.br",obs:"Inscrições com a conta gov.br, nas datas de cada edital. Prouni e Fies abrem duas vezes por ano; o Sisu, no início do ano."},
  {id:"inep",tipo:"Educação",mun:"Nacional",nome:"Inep: Enem e Encceja",site:"https://www.gov.br/inep",obs:"Isenção da taxa do Enem (em abril), inscrições e Encceja, na Página do Participante, com a conta gov.br."},
@@ -589,7 +656,7 @@ const S=[
  {id:"samu",tipo:"Saúde",mun:"Região metropolitana",nome:"SAMU 192",tel:["192"],obs:"Emergência com risco de vida. A Central de Regulação de Goiânia atende a região metropolitana."},
  {id:"hugo",tipo:"Saúde",mun:"Goiânia",nome:"HUGO, Hospital Estadual de Urgências de Goiânia",tel:["(62) 3201-4420"]},
  {id:"hmi",tipo:"Saúde",mun:"Goiânia",nome:"HMI, Hospital Estadual Materno-Infantil",tel:["(62) 3956-2900"]},
- {id:"hem",tipo:"Saúde",mun:"Goiânia",nome:"Hospital Estadual da Mulher",tel:["(62) 3956-2901"],obs:"Atendimento a mulheres maiores de idade, inclusive vítimas de violência sexual."},
+ {id:"hem",tipo:"Saúde",mun:"Goiânia",nome:"Hemu, Hospital Estadual da Mulher",tel:["(62) 3956-2901"],site:"https://goias.gov.br/saude/hemu/",obs:"Ambulatório de Atendimento às Vítimas de Violência Sexual (mulheres, homens, adolescentes e crianças), por procura direta ou encaminhamento: contracepção de emergência, profilaxia de IST e HIV, psicologia. Referência estadual para o aborto previsto em lei."},
  {id:"huapa",tipo:"Saúde",mun:"Aparecida de Goiânia",nome:"Huapa, Hospital Estadual de Aparecida",tel:["(62) 3217-8900"]},
  {id:"hutrin",tipo:"Saúde",mun:"Trindade",nome:"Hutrin, Hospital Estadual de Trindade",tel:["(62) 3506-7002"]},
  {id:"cemac",tipo:"Saúde",mun:"Estado",nome:"Cemac Juarez Barbosa, Centro Estadual de Medicação de Alto Custo",end:"Rua 16, nº 97, Setor Central, Goiânia, CEP 74015-020",tel:["(62) 3201-7446","(62) 3201-7450","Dúvidas/WhatsApp (62) 3201-7453"],hor:"Seg a sex, 7h às 17h",site:"https://goias.gov.br/saude/cemac-juarez-barbosa/",obs:"Pedido, renovação e acompanhamento são online pelo go.gov.br. Retirada presencial (Goiânia) ou no município/policlínica (interior)."},
@@ -778,8 +845,8 @@ const TEMAS=[
   servicos:["reggyn","136","dpe","mpgo"]},
  {k:"familia",t:"Pensão alimentícia, guarda, divórcio, paternidade",
   palavras:["pensao aliment","pensao do filho","pensao para","guarda","divorcio","separacao","paternidade","dna","visita dos filhos","uniao estavel","inventario","heranca","curatela","interdicao"],
-  passos:["Defensoria Pública: atende de graça quem não pode pagar advogado.","Levar documentos pessoais, certidões (nascimento dos filhos, casamento) e comprovantes de renda e despesas.","Alternativa: escritório-modelo de faculdade de Direito (NPJ PUC Goiás).","Se houver violência: medida protetiva na DEAEM ou na Defensoria."],
-  servicos:["dpe","puc-npj"]},
+  passos:["Defensoria Pública: atende de graça quem não pode pagar advogado.","Acordo sem processo: Cejusc do TJGO (conciliação gratuita sobre pensão, guarda, visitas e divórcio).","Levar documentos pessoais, certidões (nascimento dos filhos, casamento) e comprovantes de renda e despesas.","Alternativa: escritório-modelo de faculdade de Direito (NPJ PUC Goiás).","Se houver violência: medida protetiva na DEAEM ou na Defensoria."],
+  servicos:["dpe","cejusc","puc-npj"]},
  {k:"inss",t:"INSS: aposentadoria, auxílio-doença, pensão por morte",
   palavras:["inss","aposentad","auxilio doenca","auxilio-doenca","incapacidade","pericia","pensao por morte","auxilio reclusao","salario maternidade"],
   passos:["Pedir pelo Meu INSS (app ou site, com a conta gov.br) ou pelo telefone 135.","Auxílio por incapacidade: levar laudo e exames à perícia.","Negado: recorrer pelo Meu INSS em até 30 dias, ou procurar a Defensoria Pública da União ou o NPJ.","BPC (LOAS): veja o assunto Renda e benefícios."],
@@ -807,6 +874,34 @@ const TEMAS=[
  {k:"apostas",t:"Apostas e bets",on:["apostas"],palavras:["bet","bets","aposta","apostas","apostando","apostador","cassino","tigrinho","jogo do tigre","jogo do bicho","jogos de azar","roleta","aviator"]},
  {k:"games",t:"Jogos eletrônicos e internet",on:["games"],palavras:["videogame","video game","jogos eletronicos","jogo eletronico","games","free fire","roblox","minecraft","fortnite","viciado em jogo","vicio em jogo","viciado no celular","vicio em celular","vicio em internet"]},
  {k:"drogas",t:"Álcool e outras drogas",on:["drogas"],palavras:["alcool","bebida","bebe muito","alcoolismo","alcoolatra","droga","drogas","crack","cocaina","maconha","dependencia quimica","dependente quimico","internar","internacao","clinica de recuperacao","comunidade terapeutica"]},
+ {k:"violsexual",t:"Violência sexual",urg:"Violência sexual nas últimas 72h: atendimento de saúde <b>agora</b> (profilaxia de HIV e IST e contracepção de emergência), mesmo sem registrar ocorrência.",
+  palavras:["estupro","estuprad","abuso sexual","abusada","abusado","violencia sexual","assedio sexual","importunacao"],
+  passos:["Nas primeiras 72h: atendimento de saúde imediato para profilaxia de HIV e IST e contracepção de emergência. Em Goiânia, o Hemu tem ambulatório próprio para vítimas de violência sexual (procura direta ou encaminhamento); também UPA ou CAIS 24h.","Registrar ocorrência é um direito, não uma condição para o atendimento de saúde. Mulher: DEAEM (24h). Criança ou adolescente: DPCA e Conselho Tutelar.","Gravidez resultante de estupro: a interrupção é prevista em lei. O Hemu é a referência estadual.","Acompanhamento psicológico e social: CREAS e, para mulheres, Centro de Referência Cora Coralina.","Criança ou adolescente: comunicar sempre ao Conselho Tutelar."],
+  servicos:["hem","deaem","dpca","cora","100"]},
+ {k:"discriminacao",t:"Racismo, intolerância religiosa e LGBTfobia",
+  palavras:["racismo","racista","injuria racial","preconceito","discrimina","homofobia","transfobia","lgbtfobia","intolerancia religiosa","xingou de macaco"],
+  passos:["Registrar ocorrência na Deacri (Goiânia), delegacia especializada em crimes raciais e de intolerância, ou em qualquer delegacia. Racismo e LGBTfobia são crimes.","Guardar provas: prints, áudios, nomes de testemunhas, data e local.","Denúncia também pelo Disque 100, 24h, anônima se quiser.","No trabalho: Ministério Público do Trabalho. Em serviço público: ouvidoria do órgão e Defensoria.","Apoio psicológico: UBS, CAPS ou clínicas-escola."],
+  servicos:["deacri","100","dpe","mpt"]},
+ {k:"trans",t:"Pessoa trans: saúde e documentos",
+  palavras:["pessoa trans","mulher trans","homem trans","menina trans","menino trans","transexual","travesti","transgenero","hormonizacao","nome social","mudar o nome","redesignacao"],
+  passos:["Saúde: pedir na UBS o encaminhamento para o Ambulatório TX do HGG (hormonização, psicologia, cirurgias). Maiores de 18 em Goiânia também podem procurar o Transviver.","Nome social: pode ser usado no SUS, na escola e no CadÚnico, sem mudar documento.","Mudar nome e gênero nos documentos: direto no cartório, sem processo e sem cirurgia, para maiores de 18 anos. Defensoria orienta quem não pode pagar as taxas.","Violência ou discriminação: Deacri e Disque 100."],
+  servicos:["hgg-tx","transviver","deacri","dpe"]},
+ {k:"migrante",t:"Migrantes e refugiados",
+  palavras:["migrante","imigrante","refugiad","venezuelan","haitian","estrangeir","refugio","sem documento brasileiro"],
+  passos:["O SUS atende sem exigir documento brasileiro. A criança tem direito à matrícula na escola.","CadÚnico e benefícios: pode se cadastrar com a Carteira de Registro Nacional Migratório (CRNM) ou o protocolo de refúgio, no CRAS.","Documentos, trabalho e orientação: Pastoral dos Migrantes de Goiânia.","Regularização migratória com problema: Defensoria Pública da União."],
+  servicos:["pastoral-migrantes","121"]},
+ {k:"egresso",t:"Saiu do sistema prisional (egresso) e família",
+  palavras:["egresso","saiu da prisao","saiu da cadeia","ex-detento","ex detento","presidiario","tornozeleira","liberdade condicional","foi preso","esta preso","presidio"],
+  passos:["Escritório Social (Goiânia): documentos, trabalho, estudo e acesso a políticas sociais para egressos e famílias. Atendimento voluntário.","Família de pessoa presa: auxílio-reclusão no INSS, se a pessoa contribuía (Meu INSS ou 135).","CadÚnico e benefícios no CRAS; situação de rua: Centro POP.","Dúvidas sobre a pena ou o processo: Defensoria Pública."],
+  servicos:["escritorio-social","dpe","135"]},
+ {k:"cancer",t:"Câncer: diagnóstico e tratamento",
+  palavras:["cancer","tumor","quimioterapia","radioterapia","oncolog","biopsia","nodulo","metastase"],
+  passos:["Pela lei, exames para confirmar câncer devem sair em até 30 dias (Lei 13.896/2019) e o tratamento no SUS deve começar em até 60 dias do diagnóstico (Lei 12.732/2012).","O encaminhamento sai da UBS ou do médico, pela regulação. Em Goiânia, a referência é o Hospital Araújo Jorge; também o HC-UFG.","Demora: guardar laudos e protocolos e procurar a Ouvidoria do SUS (136), a Defensoria ou o Ministério Público.","Direitos: saque do FGTS e do PIS, auxílio por incapacidade no INSS, isenção de IR sobre aposentadoria; BPC se a renda for baixa.","Transporte e hospedagem para quem vem do interior: pedir o Tratamento Fora de Domicílio (TFD) na Secretaria de Saúde do município."],
+  servicos:["araujo-jorge","hc-ufg","136","dpe"]},
+ {k:"trafico",t:"Tráfico de pessoas e trabalho escravo",
+  palavras:["trafico de pessoas","trabalho escravo","escravidao","proposta de emprego no exterior","retiveram o passaporte","sem salario","nao deixam sair"],
+  passos:["Risco agora: 190.","Denunciar pelo Disque 100 (24h, também pelo WhatsApp (61) 99611-0100) ou pelo Ligue 180. As denúncias de trabalho escravo seguem para a fiscalização do Ministério do Trabalho.","Trabalho análogo à escravidão: Ministério Público do Trabalho e Sistema Ipê do Ministério do Trabalho.","Proposta de emprego no exterior boa demais, com passagem paga e documento retido: sinal de alerta."],
+  servicos:["100","180","mpt"]},
  {k:"dentista",t:"Dentista",
   palavras:["dente","dentista","odonto","dentadura","protese dentaria"],
   passos:["Primeira consulta na UBS, com a equipe de saúde bucal.","Tratamento especializado (canal, prótese, cirurgia): a UBS encaminha ao Centro de Especialidades Odontológicas (CEO).","Dor forte ou rosto inchado: UPA ou CAIS 24h."],
@@ -884,12 +979,23 @@ const P=[
    return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}).`]},
   flow:["Ter o CadÚnico atualizado (obrigatório).","Pedir pelo Meu INSS ou pelo 135.","Pessoa com deficiência: fazer avaliação social e perícia médica no INSS.","Se negado, procurar a Defensoria Pública para recorrer."],
   docs:["Documento com foto e CPF do requerente e da família","Laudos e exames (pessoa com deficiência)","Número do NIS"],where:"cras",extra:["135","dpe","mpf","puc-npj"]},
- {id:"tse",nome:"Tarifa Social de Energia Elétrica",esf:"nac",val:"Desconto na conta de luz",
+ {id:"tse",nome:"Tarifa Social de Energia Elétrica",esf:"nac",val:"Luz grátis até 80 kWh/mês",
   test:p=>{if(p.has("bpcRec"))return["prov","Quem recebe BPC tem direito."];if(p.pc===null)return FALTA_RENDA;
    if(p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo (${brl(p.sm/2)}), com CadÚnico.`];
    return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}), o limite da Tarifa Social.`]},
-  flow:["Ter o CadÚnico atualizado.","A concessão costuma ser automática. Se não aparecer na conta, pedir à distribuidora de energia informando o NIS."],
+  flow:["Ter o CadÚnico atualizado, com o endereço da conta de luz.","Desde julho de 2025, o consumo até 80 kWh por mês é gratuito; o que passar disso é cobrado normalmente. Impostos e iluminação pública continuam na conta.","A concessão costuma ser automática. Se não aparecer, pedir à distribuidora (Equatorial Goiás) informando o NIS.","A conta precisa estar no nome de alguém da família."],
   docs:["NIS","Conta de luz no nome de alguém da família"],where:"cras"},
+ {id:"gas",nome:"Gás do Povo (botijão gratuito)",esf:"nac",val:"Botijão de 13 kg sem custo",
+  test:p=>{if(p.pc===null)return p.has("pbf")?["ver","Quem recebe Bolsa Família tem prioridade no Gás do Povo."]:null;
+   if(p.pc<=p.sm/2)return["ver",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo, com CadÚnico atualizado.`+(p.has("pbf")?" Quem recebe Bolsa Família tem prioridade.":"")];return null},
+  flow:["Não há inscrição: o MDS seleciona pelo CadÚnico (atualizado nos últimos 24 meses), com prioridade para quem recebe Bolsa Família.","Consultar pelo app Meu Social ou pelo 121.","Selecionado: levar o botijão vazio a uma revenda credenciada e trocar pelo cheio, sem pagar.","O governo não cobra taxa: desconfie de quem pedir dinheiro."],
+  docs:["CPF do responsável familiar"],where:"cras",extra:["121"]},
+ {id:"mcmv",nome:"Minha Casa, Minha Vida (Faixa 1)",esf:"nac",val:"Moradia subsidiada",
+  test:p=>{const precisa=p.has("aluguel")||p.has("rua")||["cedida","ocupacao","rua"].includes(p.moradia);if(!precisa)return null;
+   if(p.renda!==null&&p.renda>p.sm*2)return["nao",`Renda da casa de ${brl(p.renda)} passa do limite aproximado da Faixa 1 (cerca de 2 salários mínimos). Faixas 2 e 3 são pela Caixa, com financiamento.`];
+   return["ver","Família sem casa própria e de baixa renda pode se inscrever na Faixa 1 quando a prefeitura ou a Agehab abrem cadastro. O limite de renda muda; confira o edital."]},
+  flow:["Faixa 1 (baixa renda): inscrição pela prefeitura (Goiânia: site e app Prefeitura 24h) ou pela Agehab, quando abrem cadastro. Faixas 2 e 3: direto na Caixa.","Ter o CadÚnico atualizado.","Acompanhar a abertura de cadastros: a seleção segue os critérios do edital (mulher chefe de família, PcD, idoso, área de risco, violência doméstica).","Enquanto espera: Aluguel Social (Agehab), se tiver direito."],
+  docs:["Documento com foto e CPF de todos","Comprovante de renda","CadÚnico"],where:null,extra:["agehab"]},
  {id:"pdm",nome:"Pé-de-Meia",esf:"nac",val:"Poupança para estudante",
   test:p=>{if(!p.has("estMedio"))return null;
    if(p.pc!==null&&p.pc>p.sm/2)return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}).`];
@@ -1121,10 +1227,10 @@ const P=[
   docs:["Documento com foto, se possível. Não é obrigatório para ser atendida."],where:"mulher",extra:["mpgo-gen","cevam","puc-npj"]},
  {id:"r-crianca",nome:"Proteção à criança e ao adolescente",esf:"rede",val:"Conselho Tutelar",
   test:p=>p.has("violCrianca")?["enc","Direito violado ou ameaçado: aplicar o ECA com Conselho Tutelar e CREAS."]:null,
-  flow:["Acionar o Conselho Tutelar da região (plantão à noite e no fim de semana).","Denúncia anônima: Disque 100.","Acompanhamento da família no CREAS.","Lesão ou violência sexual: UPA, hospital ou SAMU 192."],docs:["Não é preciso documento para denunciar"],where:"ct",extra:["mpgo"]},
+  flow:["Acionar o Conselho Tutelar da região (plantão à noite e no fim de semana).","Denúncia anônima: Disque 100.","Acompanhamento da família no CREAS.","Lesão ou violência sexual: UPA, hospital ou SAMU 192."],docs:["Não é preciso documento para denunciar"],where:"ct",extra:["dpca","mpgo"]},
  {id:"r-idoso",nome:"Proteção a idosos e pessoas com deficiência",esf:"rede",val:"CREAS",
   test:p=>p.has("violIdoso")?["enc","Violência, negligência ou abandono de idoso ou PcD."]:null,
-  flow:["Denunciar pelo Disque 100.","Acompanhamento no CREAS da região.","Casos graves: Ministério Público e Defensoria."],docs:[],where:"creas",extra:["100","mpgo"]},
+  flow:["Denunciar pelo Disque 100 ou pelo 197 (Polícia Civil).","Crime contra a pessoa idosa: Delegacia do Idoso (Goiânia).","Acompanhamento no CREAS da região.","Casos graves: Ministério Público e Defensoria."],docs:[],where:"creas",extra:["100","deai","mpgo"]},
  {id:"r-rua",nome:"Atendimento à população em situação de rua",esf:"rede",val:"Centro POP",
   test:p=>p.has("rua")?["enc","Pessoa em situação de rua: alimentação, higiene, documentos e acolhimento."]:null,
   flow:["Ir ao Centro POP (7h às 17h).","Fazer o CadÚnico usando o endereço do Centro POP.","Pedir vaga em acolhimento pela equipe do Centro POP.","Sem documento: 2ª via de certidão e Defensoria."],docs:["Nenhum documento é exigido para o primeiro atendimento"],where:"pop",extra:["mpgo-dh"]},
@@ -1197,16 +1303,16 @@ const P=[
    "Abandono da escola: conversar com a escola; se persistir, Conselho Tutelar.",
    "Jogo com dinheiro (caixas de recompensa, apostas em itens, cassino): tratar também como aposta. O ECA Digital (Lei 15.211/2025) proíbe caixas de recompensa em jogos para crianças e adolescentes.",
    "Psicoterapia gratuita: clínicas-escola de psicologia (PUC Goiás e UFG)."],
-  docs:["Cartão do SUS"],where:null,extra:["puc-cepsi","ufg-psi"]},
+  docs:["Cartão do SUS"],where:null,extra:["capsi","puc-cepsi","ufg-psi","anhanguera-psi"]},
  {id:"r-mental",nome:"Cuidado em saúde mental",esf:"rede",val:"UBS e CAPS",
   test:p=>p.has("mental")?["enc","Sofrimento psíquico: cuidado pela Rede de Atenção Psicossocial."]:null,
-  flow:["Risco imediato ou tentativa de suicídio: SAMU 192.","Apoio emocional 24h: CVV 188.","Primeiro atendimento: UBS do bairro ou CAPS (acesso direto).","Crise sem risco de vida: UPA ou CAIS."],docs:["Cartão do SUS e documento, se tiver"],where:"saude",extra:["puc-cepsi","ufg-psi"]},
+  flow:["Risco imediato ou tentativa de suicídio: SAMU 192.","Apoio emocional 24h: CVV 188.","Primeiro atendimento: UBS do bairro ou CAPS (acesso direto).","Crise sem risco de vida: UPA ou CAIS."],docs:["Cartão do SUS e documento, se tiver"],where:"saude",extra:["capsi","puc-cepsi","ufg-psi","anhanguera-psi"]},
  {id:"r-gest",nome:"Pré-natal e parto",esf:"rede",val:"SUS",
   test:p=>p.has("gest")?["enc","Gestante: pré-natal na UBS e referência para o parto."]:null,
   flow:["Iniciar o pré-natal na UBS do bairro, de preferência até a 12ª semana.","Informar a gestação no CRAS para o adicional do Bolsa Família.","Urgência na gravidez ou parto com risco: SAMU 192 ou HMI."],docs:["Cartão do SUS","Documento com foto"],where:"saude",extra:["hmi"]},
  {id:"r-fome",nome:"Segurança alimentar",esf:"rede",val:"CRAS",
   test:p=>p.has("fome")?["enc","Falta de alimento em casa: atendimento emergencial e benefícios eventuais."]:null,
-  flow:["Procurar o CRAS para benefício eventual (cesta básica) e avaliação da família.","Fazer ou atualizar o CadÚnico para Bolsa Família e Mães de Goiás."],docs:["Documento com foto e CPF"],where:"cras"}
+  flow:["Procurar o CRAS para benefício eventual (cesta básica) e avaliação da família.","Fazer ou atualizar o CadÚnico para Bolsa Família, Mães de Goiás e Gás do Povo.","Refeição a R$ 2 no Restaurante do Bem (OVG).","Igreja ou ONG que serve refeições pode se cadastrar no Banco de Alimentos da OVG."],docs:["Documento com foto e CPF"],where:"cras",extra:["restbem","bancoalimentos"]}
 ];
 
 /* ---------- ROTEIRO: onde ir e o que fazer lá ----------
@@ -1289,6 +1395,8 @@ const ROTA={
  ad:[["capsad","Acolhimento e plano de cuidado; a família também é atendida"]],
  apostas:[["bloqueio","Autoexclusão de todas as bets autorizadas, de uma vez (gov.br/autoexclusaoapostas)"],["capsad","Cuidado para o problema com apostas (ou teleatendimento pelo Meu SUS Digital)"],["dividas","Se houver dívidas: renegociar"]],
  games:[["ubs","Avaliação na UBS; prejuízo grave, CAPS (CAPSij até 18 anos)"]],
+ gas:[["auto","Seleção pelo CadÚnico; consultar no app Meu Social ou no 121"]],
+ mcmv:[["online","Inscrição na Faixa 1 quando a prefeitura ou a Agehab abrirem cadastro"]],
  "r-fome":[["cras","Pedir benefício eventual (cesta básica)",["Documento com foto e CPF"]]],
  enem:[["online","Isenção da taxa (em abril) e inscrição no Enem, com a conta gov.br"]],
  prouni:[["online","Inscrição no Prouni com a conta gov.br, nas datas do edital"]],
@@ -1301,11 +1409,11 @@ const ROTA={
 /* Nome curto para listas e etiquetas. */
 const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
- hivcare:"Cuidado em HIV",crise:"Crise suicida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
+ hivcare:"Cuidado em HIV",crise:"Crise suicida",gas:"Gás do Povo",mcmv:"Minha Casa, Minha Vida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
  "r-rua":"População de rua","r-mental":"Saúde mental","r-gest":"Pré-natal","r-fome":"Segurança alimentar"};
 const curto=pol=>CURTO[pol.id]||pol.nome;
 /* Políticas que só saem com o CadÚnico em dia. */
-const CAD_DEP=["probem","pbf","bpc","tse","pdm","cpi","plfed","maes","inclusivo","dignidade","porelas","aluguel","passaporte","plpcd","credito","aprendiz"];
+const CAD_DEP=["gas","mcmv","probem","pbf","bpc","tse","pdm","cpi","plfed","maes","inclusivo","dignidade","porelas","aluguel","passaporte","plpcd","credito","aprendiz"];
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").trim();
 
 function montarRoteiro(hits,p){
@@ -1581,9 +1689,221 @@ function render(){
   h+=`<details class="fold"><summary>Avaliados e não indicados agora (${nao.length})</summary><div class="foldbody"><ul class="naol">${nao.map(x=>`<li><b>${esc(x.pol.nome)}</b><span>${esc(x.why)}</span></li>`).join("")}</ul><p class="hint">Se a renda ou a família mudar, o resultado muda. Quem decide a concessão é sempre o órgão responsável.</p></div></details>`;
   lines.push("","NÃO INDICADOS AGORA",...nao.map(x=>`• ${curto(x.pol)}: ${x.why}`));
  }
+ if(hits.length||temas.length)h+=regBoxHtml();
  lines.push("","Gerado no Encaminha Goiânia. Sem nome, endereço ou documento da pessoa. Confirme contatos antes do envio.");
  lastText=lines.join("\n");
  $("results").innerHTML=h;
+}
+
+/* ---------- ESTATÍSTICAS ----------
+   Registro anônimo de atendimentos, só quando o profissional toca em "Registrar atendimento".
+   Guarda faixas e categorias; nunca iniciais, texto livre, renda ou idade exatas.
+   Onde fica: capacidade db do artefato, um documento por profissional e por dia
+   (registros/<dia>__<id>, campo itens = {<id do atendimento>: registro}). */
+/* Passos do roteiro que não são um serviço presencial da rede: ficam fora do painel de demanda. */
+const NAO_LUGAR=new Set(["online","auto","medico"]);
+const SENSIVEIS=new Set(["hiv","teste","prep","suic","tentativa","pep","violMulher","mpu","violCrianca","violIdoso","drogas","apostas","mental","violsexual","trans","egresso"]);
+const RENDA_F=[["sem","Sem renda"],["ate109","Até R$ 109"],["ate218","De R$ 110 a R$ 218"],["ate_q","Até 1/4 do salário"],["ate_m","Até 1/2 salário"],["ate1","Até 1 salário"],["ate3","Até 3 salários"],["mais3","Mais de 3 salários"],["ni","Não informada"]];
+function faixaRenda(pc,sm){if(pc===null)return "ni";if(pc===0)return "sem";if(pc<=109)return "ate109";if(pc<=218)return "ate218";if(pc<=sm/4)return "ate_q";if(pc<=sm/2)return "ate_m";if(pc<=sm)return "ate1";if(pc<=sm*3)return "ate3";return "mais3"}
+const isoDia=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+/* Monta o registro anônimo a partir de dados simples (os do atendimento ou de um exemplo). */
+function registroDeDados(d,nec,quando){
+ const p=perfil(d),r=avaliar(p),temas=temasDe(d.dem);
+ return {v:1,dia:isoDia(quando),hora:quando.getHours(),mun:p.mun,reg:p.mun==="Goiânia"?(p.reg||""):"",gen:p.genero||"",
+  faixa:d.faixa||faixaDe(p.idade)||"",pess:p.pessoas?Math.min(p.pessoas,7):0,renda:faixaRenda(p.pc,p.sm),trab:p.trab,mor:p.moradia,escol:p.escol,
+  nec:[...nec],sit:[...p.on],pol:r.hits.map(x=>x.pol.id+":"+x.st),nao:r.nao.map(x=>x.pol.id),paradas:r.roteiro.map(s=>s.k),
+  temas:temas.map(t=>t.k),semTema:!!(String(d.dem||"").trim()&&!temas.length),urg:r.urg.length>0||temas.some(t=>t.urg),falta:Object.keys(r.falta)};
+}
+const registroAtual=()=>registroDeDados(dadosAtendimento(),E.nec,new Date());
+
+let DB=null,USER_ID=null,REGISTROS=[],unsubReg=null,relErro="",relDemo=false,relPer="30",relMun="Todos",DEMO=null;
+const segId=s=>String(s).replace(/[^A-Za-z0-9_\-.~:@+]/g,"_").slice(0,120);
+async function conectar(){
+ if(!(window.claude&&window.claude.use))return;
+ try{DB=await window.claude.use("db")}catch(e){DB=null}
+ try{const u=await window.claude.use("user");USER_ID=u?await u.id():null}catch(e){USER_ID=null}
+ if(!USER_ID){try{USER_ID=localStorage.getItem("enc-anon")}catch(e){}
+  if(!USER_ID){USER_ID="anon-"+Math.random().toString(36).slice(2,10);try{localStorage.setItem("enc-anon",USER_ID)}catch(e){}}}
+ if(!$("vPlano").hidden)render();
+ if(!$("p-rel").hidden)iniciarRelatorios();
+}
+function regBoxHtml(){
+ if(E.exemplo)return `<div class="regbox"><span class="hint">Exemplo pronto: não entra nas estatísticas.</span></div>`;
+ if(!DB)return "";
+ return `<div class="regbox"><div><b>Estatísticas da equipe</b><span class="hint">Registra só dados anônimos: município, faixas, assuntos e encaminhamentos. Nunca iniciais nem texto.</span></div>
+  <button type="button" class="b ghost" id="regBtn">${E.regId?"Atualizar registro":"Registrar atendimento"}</button></div>`;
+}
+async function registrar(btn){
+ if(!DB)return;
+ const rec=registroAtual();rec.id=E.regId||(Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+ const ref=DB.doc("registros/"+rec.dia+"__"+segId(USER_ID));
+ btn.disabled=true;btn.textContent="Registrando…";
+ try{
+  const snap=await ref.get();const itens=Object.assign({},snap.exists?((snap.data()||{}).itens||{}):{});
+  itens[rec.id]=rec;await ref.set({dia:rec.dia,itens});
+  E.regId=rec.id;btn.textContent="Registrado ✓";
+ }catch(e){btn.disabled=false;btn.textContent=e&&e.code==="quota_exceeded"?"Armazenamento cheio: avise a gestão":"Não foi possível registrar. Tentar de novo"}
+}
+function iniciarRelatorios(){
+ if(DB&&!unsubReg){
+  unsubReg=DB.collection("registros").onSnapshot(snap=>{relErro="";REGISTROS=snap.docs.flatMap(d=>Object.values(((d.data()||{}).itens)||{}));renderRel()},e=>{relErro=e&&e.code||"unavailable";unsubReg=null;renderRel()});
+ }
+ renderRel();
+}
+
+/* Dados de exemplo: atendimentos simulados, gerados pelo próprio motor. Só na tela, nunca gravados. */
+function gerarExemplo(qtd){
+ let x=20261008;const rnd=()=>(x=(x*1103515245+12345)%2147483648)/2147483648;
+ const um=a=>a[Math.floor(rnd()*a.length)],alguns=(a,pr)=>a.filter(()=>rnd()<pr);
+ const muns=["Goiânia","Goiânia","Goiânia","Goiânia","Goiânia","Aparecida de Goiânia","Aparecida de Goiânia","Senador Canedo","Trindade","Goianira","Inhumas"];
+ const sitNec={renda:["c06","pcd","gest"],comida:["fome"],moradia:["aluguel","rua"],saude:["altocusto","continuo","hiv","teste","gest"],mental:["mental","drogas","apostas","games","suic"],protecao:["violMulher","mpu","violCrianca","violIdoso"],educacao:["estMedio","superior","eja"],trabalho:["empreender"],documentos:["semDoc"],negado:["negado"]};
+ const textos=["","","","","meu pai teve AVC e precisa de fisioterapia","vive apostando nas bets","precisa de pensão para os filhos","está cheio de dívidas","sofreu racismo no trabalho","precisa de dentista","quer óculos para a filha","perdeu o emprego"];
+ const out=[],hoje=new Date();
+ for(let i=0;i<qtd;i++){
+  const nec=new Set(alguns(Object.keys(sitNec),0.22));if(!nec.size)nec.add(um(["renda","saude","mental","protecao","comida"]));
+  const on=new Set();nec.forEach(k=>alguns(sitNec[k],0.45).forEach(c=>on.add(c)));nec.forEach(k=>{if(!sitNec[k].some(c=>on.has(c)))on.add(um(sitNec[k]))});
+  if(rnd()<0.45)on.add("cad");if(rnd()<0.3)on.add("pbf");
+  const pessoas=1+Math.floor(rnd()*6),renda=rnd()<0.12?0:Math.round(rnd()*rnd()*6000),fx=um(FAIXAS);
+  const mun=um(muns),d={mun,reg:mun==="Goiânia"?um(["centro-sul","leste","norte","noroeste","noroeste","oeste","campinas",""]):"",genero:um(["mulher","mulher","mulher","homem","homem","ni"]),
+   faixa:rnd()<0.85?fx[0]:"",idade:rnd()<0.85?fx[2]:null,pessoas:rnd()<0.9?pessoas:null,renda:rnd()<0.85?renda:null,trab:um(["formal","informal","informal","desempregado","aposentado","nao"]),
+   moradia:um(["propria","alugada","alugada","cedida","ocupacao"]),escol:um(["fund-inc","fund","medio-inc","medio","sup",""]),dem:um(textos),on:[...on]};
+  const quando=new Date(hoje.getTime()-Math.floor(Math.pow(rnd(),0.8)*150)*864e5);quando.setHours(8+Math.floor(rnd()*9));
+  out.push(Object.assign(registroDeDados(d,nec,quando),{id:"ex"+i}));
+ }
+ return out;
+}
+
+/* ---------- AGREGAÇÃO E ALERTAS ---------- */
+function inicioSemana(dia){const d=new Date(dia+"T12:00:00");const w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);return isoDia(d)}
+function agregar(regs,per,mun){
+ const hoje=new Date();const ini=per==="tudo"?"0000-00-00":isoDia(new Date(hoje.getTime()-(Number(per)-1)*864e5));
+ const rs=regs.filter(r=>r&&r.dia>=ini&&(mun==="Todos"||r.mun===mun));
+ const cont=f=>{const m=new Map();rs.forEach(r=>{const v=f(r);(Array.isArray(v)?v:[v]).forEach(k=>{if(k!==undefined&&k!==null&&k!=="")m.set(k,(m.get(k)||0)+1)})});return [...m.entries()].sort((a,b)=>b[1]-a[1])};
+ /* semanas do período, com zeros */
+ const primeiro=per==="tudo"?(rs.length?rs.reduce((a,r)=>r.dia<a?r.dia:a,rs[0].dia):isoDia(hoje)):ini;
+ const semanas=[];for(let s=inicioSemana(primeiro);s<=isoDia(hoje);){semanas.push({ini:s,n:0});const d=new Date(s+"T12:00:00");d.setDate(d.getDate()+7);s=isoDia(d)}
+ const idx=new Map(semanas.map((s,i)=>[s.ini,i]));rs.forEach(r=>{const i=idx.get(inicioSemana(r.dia));if(i!==undefined)semanas[i].n++});
+ return {n:rs.length,rs,semanas,nec:cont(r=>r.nec),sit:cont(r=>r.sit),pol:cont(r=>(r.pol||[]).map(x=>x.split(":")[0])),paradas:cont(r=>(r.paradas||[]).filter(k=>!NAO_LUGAR.has(k))),
+  temas:cont(r=>r.temas),faixa:cont(r=>r.faixa||"ni"),gen:cont(r=>r.gen||"ni"),renda:cont(r=>r.renda||"ni"),mun:cont(r=>r.mun),
+  reg:cont(r=>r.mun==="Goiânia"?(r.reg||"ni"):undefined),falta:cont(r=>r.falta),trab:cont(r=>r.trab||"ni"),
+  urg:rs.filter(r=>r.urg).length,semTema:rs.filter(r=>r.semTema).length,
+  mediaPol:rs.length?rs.reduce((a,r)=>a+(r.pol||[]).length,0)/rs.length:0,
+  ate218:rs.filter(r=>["sem","ate109","ate218"].includes(r.renda)).length};
+}
+const ROTULO_SIT=Object.fromEntries([...PERGUNTAS.flatMap(q=>q.opcoes||[]),...PERFIL_ROWS.filter(r=>r.f==="on").flatMap(r=>r.op),["rua","Situação de rua"],["fome","Falta comida em casa"],["semDoc","Sem certidão ou documento"],["negado","Direito negado"]].map(([k,t])=>[k,t]));
+const nomeSit=k=>ROTULO_SIT[k]||k;
+const nomeNec=k=>(NECESSIDADES.find(n=>n.k===k)||{}).t||k;
+const nomeParada=k=>(STOPS[k]||{}).nome||k;
+const nomePol=k=>{const p=P.find(x=>x.id===k);return p?curto(p):k};
+const nomeTema=k=>(TEMAS.find(t=>t.k===k)||{}).t||k;
+const nomeRenda=k=>(RENDA_F.find(r=>r[0]===k)||[k,k])[1];
+const nomeFaixa=k=>k==="ni"?"Não informada":`${rotulo("faixa",k)} anos`;
+const nomeGen=k=>k==="ni"?"Não informado":rotulo("genero",k);
+const nomeReg=k=>k==="ni"?"Região não informada":rotulo("reg",k);
+const nomeTrab=k=>k==="ni"?"Não informado":rotulo("trab",k);
+const fmtN=(k,v)=>SENSIVEIS.has(k)&&v<3?"menos de 3":String(v);
+function alertas(a){
+ if(a.n<5)return ["Há poucos atendimentos registrados neste recorte (menos de 5) para tirar conclusões."];
+ const L=[],pct=v=>Math.round(v/a.n*100)+"%";
+ if(a.nec[0])L.push(`O assunto mais frequente é <b>${esc(nomeNec(a.nec[0][0]))}</b>: ${a.nec[0][1]} atendimentos (${pct(a.nec[0][1])}).`);
+ if(a.ate218)L.push(`<b>${pct(a.ate218)}</b> das famílias atendidas vivem com até R$ 218 por pessoa, a linha do Bolsa Família.`);
+ const baixa=a.rs.filter(r=>["sem","ate109","ate218","ate_q","ate_m"].includes(r.renda));
+ if(baixa.length>=5){const sem=baixa.filter(r=>!(r.sit||[]).includes("cad")).length;
+  if(sem)L.push(`Entre as famílias com até meio salário mínimo por pessoa, <b>${Math.round(sem/baixa.length*100)}%</b> (${sem} de ${baixa.length}) não tinham CadÚnico marcado. Um mutirão de cadastro no CRAS destrava Bolsa Família, Tarifa Social, Gás do Povo e programas do Estado.`)}
+ if(a.paradas[0])L.push(`O lugar mais acionado nos roteiros é <b>${esc(nomeParada(a.paradas[0][0]))}</b> (${a.paradas[0][1]} atendimentos): é onde a rede mais precisa de capacidade e de fluxo combinado.`);
+ if(a.urg)L.push(`<b>${a.urg}</b> atendimentos (${pct(a.urg)}) tiveram situação de urgência: violência, suicídio, exposição ao HIV ou emergência médica.`);
+ const dep=["drogas","apostas","games"].map(k=>[k,(a.sit.find(x=>x[0]===k)||[0,0])[1]]).filter(x=>x[1]>0);
+ if(dep.length)L.push(`Dependências: ${dep.map(([k,v])=>`${esc(nomeSit(k).toLowerCase())}, ${fmtN(k,v)}`).join("; ")}.`);
+ if(a.semTema)L.push(`<b>${a.semTema}</b> pedidos livres ficaram sem orientação pronta. Vale revisar com a equipe e criar novos temas no app.`);
+ const r0=a.reg.find(x=>x[0]!=="ni");if(r0)L.push(`Em Goiânia, a região com mais atendimentos é <b>${esc(rotulo("reg",r0[0]))}</b> (${r0[1]}).`);
+ const f0=a.falta[0];if(f0&&f0[1]/a.n>=0.2)L.push(`${pct(f0[1])} dos atendimentos ficaram sem <b>${esc(CAMPOS[f0[0]].t.toLowerCase())}</b>, o que pode esconder direitos. Vale reforçar essa pergunta.`);
+ return L;
+}
+
+/* ---------- PAINÉIS ---------- */
+const GRUPOS_SIT=[
+ ["Violências e violações de direitos",["violMulher","mpu","violCrianca","violIdoso","pep","trabalho","negado"]],
+ ["Saúde mental e dependências",["mental","suic","tentativa","drogas","apostas","games"]],
+ ["Saúde física",["altocusto","continuo","hiv","teste","prep","gest"]],
+ ["Renda, moradia e documentos",["fome","aluguel","rua","semDoc","cadOld"]],
+ ["Educação e trabalho",["estMedio","estud","superior","superiorApoio","eja","empreender"]],
+ ["Quem mora na casa",["c06","pcd","pcd17","tea"]]
+];
+function barras(lista,nomeFn,total,max){
+ max=max||10;
+ if(!lista.length)return `<p class="hint">Sem registros neste recorte.</p>`;
+ const top=lista.slice(0,max),m=top[0][1];
+ return `<ul class="bars">${top.map(([k,v])=>{const s=SENSIVEIS.has(k)&&v<3;const w=s?3:Math.max(3,Math.round(v/m*100));
+  return `<li><span class="bl">${esc(nomeFn(k))}</span><span class="bv">${s?"menos de 3":v}${s?"":`<small> ${Math.round(v/total*100)}%</small>`}</span><span class="bt" aria-hidden="true"><i style="width:${w}%"></i></span></li>`}).join("")}</ul>${lista.length>max?`<p class="hint">Mais ${lista.length-max} com menos registros.</p>`:""}`;
+}
+function niceMax(v){if(v<=4)return 4;const e=Math.pow(10,Math.floor(Math.log10(v))),f=v/e;return (f<=2?2:f<=5?5:10)*e}
+function grafSemanas(sem,larg){
+ const W=Math.max(300,Math.min(860,Math.round(larg||640))),H=200,pl=30,pr=6,pt=18,pb=24,n=sem.length;if(!n)return "";
+ const top=niceMax(Math.max(1,...sem.map(s=>s.n))),ih=H-pt-pb,bw=(W-pl-pr)/n,bar=Math.max(2,Math.min(26,bw-2));
+ const y=v=>H-pb-v/top*ih,ddmm=s=>s.slice(8,10)+"/"+s.slice(5,7);
+ let g="";
+ [0,top/2,top].forEach(v=>{g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" class="gl"/><text x="${pl-6}" y="${y(v)+4}" class="ax" text-anchor="end">${v}</text>`});
+ const passo=Math.ceil(n/6),imax=sem.reduce((b,s,i)=>s.n>sem[b].n?i:b,0);
+ sem.forEach((s,i)=>{const x=pl+i*bw+(bw-bar)/2,h=s.n/top*ih,yy=H-pb-h,r=Math.min(4,bar/2,h);
+  if(h>0)g+=`<path class="bar" d="M${x},${H-pb} V${yy+r} Q${x},${yy} ${x+r},${yy} H${x+bar-r} Q${x+bar},${yy} ${x+bar},${yy+r} V${H-pb} Z"/>`;
+  g+=`<rect x="${pl+i*bw}" y="${pt}" width="${bw}" height="${ih}" class="hit" data-tip="Semana de ${ddmm(s.ini)}: ${s.n} atendimento${s.n===1?"":"s"}"/>`;
+  if(i%passo===0)g+=`<text x="${x+bar/2}" y="${H-6}" class="ax" text-anchor="middle">${ddmm(s.ini)}</text>`;
+  if(i===imax&&s.n>0)g+=`<text x="${x+bar/2}" y="${yy-5}" class="vl" text-anchor="middle">${s.n}</text>`});
+ return `<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="Atendimentos por semana">${g}</svg>`;
+}
+function renderRel(){
+ const root=$("relRoot");if(!root)return;
+ const dados=relDemo?(DEMO||(DEMO=gerarExemplo(260))):REGISTROS;
+ const muns=["Todos",...new Set(dados.map(r=>r.mun))];if(!muns.includes(relMun))relMun="Todos";
+ const a=agregar(dados,relPer,relMun);
+ let h=`<div class="relhead"><div><h2>Relatórios</h2><p class="hint">Atendimentos registrados pela equipe, só com dados anônimos.</p></div>
+  <div class="relfil"><div class="segs" role="group" aria-label="Período">${[["7","7 dias"],["30","30 dias"],["90","90 dias"],["365","12 meses"],["tudo","Tudo"]].map(([v,t])=>`<button type="button" class="seg" data-per="${v}" aria-pressed="${relPer===v}">${t}</button>`).join("")}</div>
+  <label class="l" for="relMun">Município</label><select id="relMun">${muns.map(m=>`<option${m===relMun?" selected":""}>${esc(m)}</option>`).join("")}</select></div></div>`;
+ if(relDemo)h+=`<div class="demo"><b>Dados de exemplo.</b> Atendimentos simulados para mostrar os painéis; não são registros reais. <button type="button" class="link" id="relReal">Voltar aos dados reais</button></div>`;
+ else if(!DB)h+=`<div class="note">Os registros ficam guardados na versão publicada do app, aberta pela equipe. <button type="button" class="link" id="relDemoBtn">Ver os painéis com dados de exemplo</button></div>`;
+ else if(relErro)h+=`<div class="note">Não foi possível ler os registros agora. Feche e abra a aba de novo. <button type="button" class="link" id="relDemoBtn">Ver com dados de exemplo</button></div>`;
+ else if(!REGISTROS.length)h+=`<div class="note">Nenhum atendimento registrado ainda. No fim de cada plano, toque em <b>Registrar atendimento</b>. <button type="button" class="link" id="relDemoBtn">Ver os painéis com dados de exemplo</button></div>`;
+ if(!a.n&&!relDemo){root.innerHTML=h;return}
+ const pct=v=>a.n?Math.round(v/a.n*100)+"%":"—";
+ h+=`<div class="kpis">
+  <div class="kpi"><span>Atendimentos</span><b>${a.n}</b></div>
+  <div class="kpi"><span>Encaminhamentos por atendimento</span><b>${a.mediaPol.toFixed(1).replace(".",",")}</b></div>
+  <div class="kpi"><span>Com urgência</span><b>${pct(a.urg)}</b></div>
+  <div class="kpi"><span>Renda até R$ 218 por pessoa</span><b>${pct(a.ate218)}</b></div></div>`;
+ h+=`<section class="rcard insights"><h3>Informações estratégicas</h3><ul>${alertas(a).map(x=>`<li>${x}</li>`).join("")}</ul></section>`;
+ h+=`<section class="rcard"><h3>Atendimentos por semana</h3><div class="chartwrap" id="chartWrap">${grafSemanas(a.semanas,(root.clientWidth||640)-34)}<div class="tip" id="relTip" hidden></div></div></section>`;
+ h+=`<div class="rgrid">
+  <section class="rcard"><h3>O que as pessoas mais precisam</h3>${barras(a.nec,nomeNec,a.n)}</section>
+  <section class="rcard"><h3>Onde a rede é mais acionada</h3><p class="hint">Lugares que aparecem nos roteiros. Mostra a demanda que chega a cada serviço.</p>${barras(a.paradas,nomeParada,a.n)}</section>
+  <section class="rcard"><h3>Direitos e serviços indicados</h3>${barras(a.pol,nomePol,a.n,12)}</section>
+  <section class="rcard"><h3>Situações psicossociais</h3>${GRUPOS_SIT.map(([t,ks])=>{const l=a.sit.filter(([k])=>ks.includes(k));return l.length?`<h4>${esc(t)}</h4>${barras(l,nomeSit,a.n,8)}`:""}).join("")||`<p class="hint">Sem registros neste recorte.</p>`}</section>
+  <section class="rcard"><h3>Renda por pessoa</h3>${barras(RENDA_F.map(([k])=>[k,(a.renda.find(x=>x[0]===k)||[0,0])[1]]).filter(x=>x[1]>0),nomeRenda,a.n,9)}</section>
+  <section class="rcard"><h3>Faixa de idade e gênero</h3>${barras(a.faixa,nomeFaixa,a.n,8)}<h4>Gênero</h4>${barras(a.gen,nomeGen,a.n,5)}</section>
+  <section class="rcard"><h3>Território</h3>${barras(a.mun,x=>x,a.n,10)}${a.reg.length?`<h4>Regiões de Goiânia</h4>${barras(a.reg,nomeReg,a.n,7)}`:""}</section>
+  <section class="rcard"><h3>Lacunas e pedidos livres</h3><p class="hint">Ajuda a decidir o que incluir no app.</p>
+   <p><b>${a.semTema}</b> pedido${a.semTema===1?"":"s"} livre${a.semTema===1?"":"s"} sem orientação pronta.</p>${a.temas.length?`<h4>Temas reconhecidos no pedido livre</h4>${barras(a.temas,nomeTema,a.n,8)}`:""}
+   ${a.falta.length?`<h4>Respostas que mais faltaram</h4>${barras(a.falta,k=>CAMPOS[k]?CAMPOS[k].t:k,a.n,4)}`:""}</section>
+ </div>`;
+ h+=`<div class="btns"><button type="button" class="b" id="relCsv">Baixar tabela (CSV)</button><button type="button" class="b ghost" id="relCopiar">Copiar relatório</button></div>
+  <p class="hint">Privacidade: nada identifica a pessoa. Situações sensíveis com 1 ou 2 casos aparecem como "menos de 3". Os dados ficam no armazenamento deste app e são vistos por quem tem acesso a ele.</p>`;
+ root.innerHTML=h;
+ RELATUAL=a;
+}
+let RELATUAL=null;
+function relCsv(a){
+ const linhas=[["secao","item","contagem"]];
+ const add=(sec,lista,nome)=>lista.forEach(([k,v])=>linhas.push([sec,nome(k),SENSIVEIS.has(k)&&v<3?"<3":String(v)]));
+ linhas.push(["resumo","atendimentos",String(a.n)],["resumo","com urgência",String(a.urg)],["resumo","renda até R$ 218 por pessoa",String(a.ate218)],["resumo","pedidos livres sem orientação",String(a.semTema)]);
+ add("assunto",a.nec,nomeNec);add("situação",a.sit,nomeSit);add("direito ou serviço indicado",a.pol,nomePol);add("lugar do roteiro",a.paradas,nomeParada);
+ add("renda por pessoa",a.renda,nomeRenda);add("faixa de idade",a.faixa,nomeFaixa);add("gênero",a.gen,nomeGen);add("município",a.mun,x=>x);add("região de Goiânia",a.reg,nomeReg);add("tema do pedido livre",a.temas,nomeTema);
+ a.semanas.forEach(s=>linhas.push(["semana",s.ini,String(s.n)]));
+ return linhas.map(l=>l.map(c=>/[",;\n]/.test(c)?`"${c.replace(/"/g,'""')}"`:c).join(",")).join("\n");
+}
+function relTexto(a){
+ const per={"7":"últimos 7 dias","30":"últimos 30 dias","90":"últimos 90 dias","365":"últimos 12 meses","tudo":"todo o período"}[relPer];
+ return [`RELATÓRIO ENCAMINHA GOIÂNIA · ${per}${relMun!=="Todos"?" · "+relMun:""}${relDemo?" · DADOS DE EXEMPLO":""}`,`Atendimentos: ${a.n}`,`Com urgência: ${a.urg}`,`Renda até R$ 218 por pessoa: ${a.ate218}`,"",
+  "INFORMAÇÕES ESTRATÉGICAS",...alertas(a).map(x=>"• "+x.replace(/<[^>]+>/g,"")),"",
+  "ASSUNTOS",...a.nec.slice(0,10).map(([k,v])=>`• ${nomeNec(k)}: ${v}`),"","LUGARES MAIS ACIONADOS",...a.paradas.slice(0,10).map(([k,v])=>`• ${nomeParada(k)}: ${v}`)].join("\n");
 }
 
 /* ---------- DIRETÓRIO ---------- */
@@ -1603,7 +1923,7 @@ function dirRender(){
 
 /* ---------- ABAS ---------- */
 const tabs=[...document.querySelectorAll('nav.tabs [role=tab]')];
-function show(id){tabs.forEach(b=>{const on=b.id===id;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});try{localStorage.setItem("enc-tab",id)}catch(e){}}
+function show(id){tabs.forEach(b=>{const on=b.id===id;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});if(id==="tab-rel")iniciarRelatorios()}
 tabs.forEach(b=>b.addEventListener("click",()=>show(b.id)));
 
 /* ---------- CÓPIA ---------- */
@@ -1631,7 +1951,7 @@ document.addEventListener("click",e=>{
   if(E.nec.has(k)){E.nec.delete(k);(n.on||[]).forEach(c=>E.on.delete(c))}else{E.nec.add(k);(n.on||[]).forEach(c=>E.on.add(c))}
   renderInicio();return}
  if(t.dataset.urg){const u=URGENCIAS.find(x=>x.k===t.dataset.urg);E.on.add(u.k);E.urgNec=u.nec;mostrarPlano();return}
- if(t.classList.contains("seg"))return tocarPerfil(t.dataset.f,t.dataset.v);
+ if(t.dataset.f)return tocarPerfil(t.dataset.f,t.dataset.v);
  if(t.id==="start")return comecar();
  if(t.id==="qBack"){guardarCampos();if(E.voltarAoPlano){E.voltarAoPlano=false;return mostrarPlano()}if(E.qi===0){mostrarTela("vInicio");return renderInicio()}E.qi--;return renderPergunta()}
  if(t.id==="qSkip"){guardarCampos();return mostrarPlano()}
@@ -1641,6 +1961,15 @@ document.addEventListener("click",e=>{
  if(t.id==="pNew"||t.id==="pNew2"){E=novoAtendimento();mostrarTela("vInicio");return renderInicio()}
  if(t.id==="qSmEdit"){$("qSmBox").hidden=false;$("qSm").focus();return}
  if(t.dataset.q)return irParaPergunta(t.dataset.q,true);
+ if(t.id==="regBtn")return registrar(t);
+ if(t.dataset.per){relPer=t.dataset.per;return renderRel()}
+ if(t.id==="relDemoBtn"){relDemo=true;return renderRel()}
+ if(t.id==="relReal"){relDemo=false;return renderRel()}
+ if(t.id==="relCopiar"&&RELATUAL)return copy(relTexto(RELATUAL),t);
+ if(t.id==="relCsv"&&RELATUAL){const csv=relCsv(RELATUAL);
+  (async()=>{let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null}catch(e){}
+   if(!dl){copy(csv,t);t.textContent="Tabela copiada";return}
+   try{await dl.save({filename:`encaminha-relatorio-${isoDia(new Date())}.csv`,data:"\ufeff"+csv})}catch(e){if(e&&e.code!=="declined"){copy(csv,t)}}})();return}
  if(t.hasAttribute("data-next"))return avancar();
  if(t.classList.contains("opt")){const v=t.dataset.v;E.on.has(v)?E.on.delete(v):E.on.add(v);
   /* a medida protetiva só vale junto com a violência contra a mulher */
@@ -1653,18 +1982,21 @@ document.addEventListener("input",e=>{
  if(id==="qRenda"){const x=parseFloat(e.target.value);E.renda=isFinite(x)?x:null;syncPerfil()}
  if(id==="qSm"){const x=parseFloat(e.target.value);if(x>0)E.sm=x;calcRenda()}
 });
-document.addEventListener("change",e=>{if(e.target.id==="qMun"&&e.target.value){E.mun=e.target.value;E.munOutro=true;E.reg="";syncPerfil()}});
+document.addEventListener("change",e=>{if(e.target.id==="qMun"&&e.target.value){E.mun=e.target.value;E.munOutro=true;E.reg="";syncPerfil()}if(e.target.id==="relMun"){relMun=e.target.value;renderRel()}});
+/* Dica do gráfico semanal */
+document.addEventListener("pointerover",e=>{const r=e.target.closest&&e.target.closest("[data-tip]");const tip=$("relTip");if(!tip)return;if(!r){tip.hidden=true;return}const w=$("chartWrap").getBoundingClientRect(),b=r.getBoundingClientRect();tip.textContent=r.dataset.tip;tip.hidden=false;tip.style.left=Math.min(w.width-150,Math.max(0,b.left-w.left+b.width/2-75))+"px";tip.style.top="0px"});
 /* Exemplos prontos: vão direto ao plano */
 document.querySelectorAll(".case[data-case]").forEach(b=>b.addEventListener("click",()=>{
- const c=CASES[b.dataset.case];E=Object.assign(novoAtendimento(),c,{nec:new Set(c.nec),on:new Set(c.on),sm:SM_PADRAO});mostrarPlano()}));
+ const c=CASES[b.dataset.case];E=Object.assign(novoAtendimento(),c,{nec:new Set(c.nec),on:new Set(c.on),sm:SM_PADRAO,exemplo:true});mostrarPlano()}));
 /* Link da faixa de segurança: abre o card do manejo da crise */
 document.addEventListener("click",e=>{const a=e.target.closest("[data-abre]");if(!a)return;e.preventDefault();const c=$("card-"+a.dataset.abre);if(c){c.open=true;c.scrollIntoView({block:"start"})}});
-renderInicio();dirInit();
+renderInicio();dirInit();conectar();
 ["fq","fm","ft"].forEach(i=>$(i).addEventListener("input",dirRender));
 dirRender();
 /* Motor exposto para os testes automáticos (tests/motor.test.mjs). */
-window.EncaminhaMotor={perfil,avaliar,CASES,SM_PADRAO,temasDe,necSugeridas};
-try{const t=localStorage.getItem("enc-tab");if(t&&$(t))show(t)}catch(e){}
-const hash=location.hash.slice(1);if(hash==="rede")show("tab-rede");else if(hash==="servicos")show("tab-serv");
+window.EncaminhaMotor={perfil,avaliar,CASES,SM_PADRAO,temasDe,necSugeridas,registroDeDados,agregar,alertas,gerarExemplo,faixaRenda,relCsv,
+ _dados:{P,S,ROTA,STOPS,TEMAS,PERGUNTAS,PERFIL_ROWS,NECESSIDADES,URGENCIAS,CURTO,CAD_DEP,QUANDO,SENSIVEIS:[...SENSIVEIS]}};
+/* Sempre abre em Atender; links diretos: #rede, #servicos, #relatorios */
+const hash=location.hash.slice(1);if(hash==="rede")show("tab-rede");else if(hash==="servicos")show("tab-serv");else if(hash==="relatorios")show("tab-rel");
 })();
 </script>
