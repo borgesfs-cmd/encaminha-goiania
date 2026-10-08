@@ -177,47 +177,89 @@ test("EJA e Encceja para adulto que não terminou a escola", async () => {
   assert.deepEqual(r.roteiro.map((s) => s.k).sort(), ["escola", "online"]);
 });
 
+test("EJA também aparece pela escolaridade de um adulto", async () => {
+  const r = await avaliar({ idade: 30, escol: "fund-inc" });
+  assert.equal(r.hits.eja, "ver");
+  assert.equal((await avaliar({ idade: 30, escol: "medio" })).hits.eja, undefined);
+});
+
+test("pedido livre: reconhece AVC e reabilitação sem confundir palavras parecidas", async () => {
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.deepEqual(await temas("Meu pai está tendo um AVC"), ["avc"]);
+  assert.deepEqual(await temas("preciso de fisioterapia depois da cirurgia"), ["reabilitacao"]);
+  assert.deepEqual(await temas("sofreu um acidente de moto"), ["emergencia"]);
+  assert.deepEqual(await temas("estou absolutamente cansada"), []);
+  const sug = await page.evaluate(() => window.EncaminhaMotor.necSugeridas("ela apanha do marido e falta comida", new Set()));
+  assert.deepEqual(sug.sort(), ["comida", "protecao"]);
+});
+
 // ---------- tela ----------
 const inicio = async () => {
-  if (await page.isVisible("#pNew")) await page.click("#pNew");
-  if (await page.isVisible("#qBack")) { await page.goto(PAGE, { waitUntil: "domcontentloaded" }); }
+  await page.goto(PAGE, { waitUntil: "domcontentloaded" });
 };
-const opcao = (texto) => page.click(`#qBody .opt:has-text("${texto}")`);
+const seg = (f, v) => page.click(`#qBody .seg[data-f="${f}"][data-v="${v}"]`);
+const proximo = () => page.click("#qBody [data-next]");
 
 test("tela: só pergunta o que o assunto precisa", async () => {
   await inicio();
   await page.click('.tile[data-need="documentos"]');
   await page.click("#start");
-  assert.equal(await page.textContent("#qProg"), "Pergunta 1 de 2");
-  await opcao("Goiânia");
-  await page.click("[data-next]");
+  assert.equal(await page.textContent("#qProg"), "Etapa 1 de 2");
+  await proximo();
+  await proximo();
   assert.ok(await page.isVisible("#vPlano"));
   assert.ok((await page.textContent("#results")).includes("2ª via"));
 });
 
-test("tela: fluxo de renda, 'Não sei' na idade e 'Responder' volta ao plano", async () => {
+test("tela: dados da pessoa por toque, 'Responder' volta só ao que falta", async () => {
   await inicio();
   await page.click('.tile[data-need="renda"]');
   await page.click("#start");
-  await opcao("Goiânia");
-  await opcao("Desempregada");
+  await seg("pessoas", "4");
+  await seg("renda", "0");
+  await seg("renda", "0");                       // tocar de novo desmarca
+  assert.equal(await page.inputValue("#qRenda"), "");
   await page.fill("#qRenda", "400");
-  await page.fill("#qPessoas", "4");
   assert.match(await page.textContent("#qCalc"), /R\$ 100/);
-  await page.click("[data-next]");
-  await page.click("[data-naosei]");            // idade
-  await opcao("Criança de 0 a 6 anos");          // família
-  await page.click("[data-next]");
-  await page.click("[data-next]");               // cadastro: nenhum
-  await page.click("[data-next]");               // notas
+  await seg("trab", "desempregado");
+  await seg("on", "c06");
+  assert.equal(await page.getAttribute('#qBody .seg[data-f="on"][data-v="c06"]', "aria-pressed"), "true");
+  await proximo();                               // dados da pessoa
+  await proximo();                               // notas
   assert.ok(await page.isVisible("#vPlano .route"));
   assert.match(await page.textContent("#results"), /Mães de Goiás/);
-  await page.click('.falta [data-q="idade"]');
-  await page.fill("#qNum", "66");
-  await page.click("[data-next]");
+  await page.click('.falta [data-q="perfil"]');
+  await seg("faixa", "65+");
+  await proximo();
   assert.ok(await page.isVisible("#vPlano"));
   assert.ok(!(await page.isVisible(".falta")));
   assert.match(await page.textContent("#results"), /BPC/);
+  assert.match(await page.textContent("#pSum"), /65 ou mais anos/);
+});
+
+test("tela: região só aparece para Goiânia; aluguel pesado só com moradia alugada", async () => {
+  await inicio();
+  await page.click('.tile[data-need="moradia"]');
+  await page.click("#start");
+  assert.ok(await page.isVisible('[data-row="reg"]'));
+  await seg("mun", "Trindade");
+  assert.ok(!(await page.isVisible('[data-row="reg"]')));
+  assert.ok(!(await page.isVisible("#segAluguel")));
+  await seg("moradia", "alugada");
+  assert.ok(await page.isVisible("#segAluguel"));
+});
+
+test("tela: pedido livre de AVC mostra a orientação e a faixa de emergência", async () => {
+  await inicio();
+  await page.fill("#hDem", "meu pai está tendo um AVC");
+  assert.match(await page.textContent("#hSug"), /AVC \(derrame\)/);
+  assert.ok(await page.isEnabled("#start"));
+  await page.click("#start");
+  await proximo();
+  assert.equal(await page.inputValue("#qDem"), "meu pai está tendo um AVC");
+  await proximo();
+  assert.match(await page.textContent(".urgent"), /192/);
+  assert.ok(await page.isVisible('.tema-card:has-text("AVC (derrame)") .body'));
 });
 
 test("tela: atalho de urgência vai direto ao plano com o manejo; depois completa as perguntas", async () => {
@@ -226,9 +268,8 @@ test("tela: atalho de urgência vai direto ao plano com o manejo; depois complet
   assert.ok(await page.isVisible(".urgent"));
   assert.ok(await page.isVisible("#card-crise .body"));
   await page.click("#pMais");
-  await opcao("Goiânia");
-  assert.match(await page.textContent("#qBody h2"), /região/);
-  await opcao("Norte");
+  await seg("reg", "norte");
+  await proximo();
   assert.equal(await page.getAttribute('#qBody .opt[data-v="suic"]', "aria-pressed"), "true");
 });
 
@@ -241,11 +282,12 @@ test("tela: caso Crise suicida abre o manejo e o link da faixa leva até ele", a
   assert.ok(await page.isVisible("#card-crise .body"));
 });
 
-test("tela: todos os exemplos mostram roteiro sem erros", async () => {
-  for (const k of ["familia", "altocusto", "hiv", "farmacia", "crise", "faculdade"]) {
+test("tela: todos os exemplos mostram o plano sem erros", async () => {
+  for (const k of ["familia", "altocusto", "hiv", "farmacia", "crise", "faculdade", "reabilitacao"]) {
     await inicio();
     await page.click(`.case[data-case="${k}"]`);
-    assert.ok(await page.isVisible("#vPlano .route"), k);
+    assert.ok(await page.isVisible("#vPlano .planhead"), k);
   }
+  assert.ok(await page.isVisible('.tema-card:has-text("Reabilitação")'));
   assert.deepEqual(erros, []);
 });

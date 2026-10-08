@@ -12,6 +12,7 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 - Não pedir nem guardar: nome, CPF, NIS, RG, endereço da pessoa, telefone, e-mail.
 - Identificação só por **iniciais**.
 - Não pedir dados sensíveis (raça/cor, religião, orientação sexual, filiação). Se raça/cor entrar no futuro, que seja opcional, só para estatística e fora do resumo copiado.
+- Gênero é pedido como opção (Mulher, Homem, Outro, Prefere não dizer); não é dado sensível pela LGPD, mas é sempre opcional.
 - O campo livre de solicitação passa pela função `clean()`, que remove e-mails e números com 7 ou mais dígitos (CPF, NIS, RG, telefone, CEP) antes de ir para o resumo. Valores em reais e datas ficam. Nomes não são detectados: o aviso no campo pede para não escrever.
 - Dados de saúde (HIV, saúde mental) são sensíveis. Se um dia houver registro de atendimentos, exigir login de profissional, base legal, finalidade e prazo de descarte.
 
@@ -22,11 +23,18 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 
 ## Fluxo do atendimento (aba Atender)
 Atendimento guiado, pensado para o celular. Uma tela de cada vez:
-1. **Início**: "O que a pessoa precisa?" com 10 assuntos (`NECESSIDADES`): renda e benefícios, comida, moradia, saúde e remédios, saúde mental, violência e proteção, educação, trabalho, documentos, direito negado. Acima, atalhos de urgência (`URGENCIAS`) que vão direto ao plano.
-2. **Perguntas, uma por vez** (`PERGUNTAS`): cada pergunta tem `quando(estado)` e só aparece se um assunto marcado precisa dela. Município sempre; região de Goiânia só para proteção e saúde mental; renda e pessoas, idade, família e cadastro só para os assuntos que dependem deles. "Não sei" pula. Escolha única avança sozinha.
-3. **Plano**: faixa de segurança, manejo da crise (quando houver), "Falta uma resposta" (com botão que volta só àquela pergunta e retorna ao plano), roteiro por lugar e urgência ("O que levar e contatos" recolhido em cada lugar), "Por que cada direito foi indicado" e "Avaliados e não indicados" recolhidos, resumo copiável.
+1. **Início**: "O que a pessoa precisa?" com 10 assuntos (`NECESSIDADES`): renda e benefícios, comida, moradia, saúde e remédios, saúde mental, violência e proteção, educação, trabalho, documentos, direito negado. Acima, atalhos de urgência (`URGENCIAS`) que vão direto ao plano. Abaixo, **pedido livre**: texto para o que não cabe nos assuntos. Enquanto a pessoa digita, o app mostra as orientações prontas encontradas (`TEMAS`) e sugere assuntos para marcar (`SUGERE_NEC`).
+2. **Sobre a pessoa** (sempre, uma tela, `PERFIL_ROWS`): opções prontas para tocar, todas opcionais. Município (Goiânia já marcado), região de Goiânia, gênero, faixa de idade (`FAIXAS`, alinhadas aos cortes das regras: 14, 16, 18, 60, 65), pessoas na casa, renda (atalhos "Sem renda", "R$ 600", 1, 2 e 3 salários, ou valor digitado), trabalho, moradia, escolaridade, cadastro e benefícios, quem mora na casa. Tocar de novo desmarca.
+3. **Perguntas do assunto**, uma por tela (`PERGUNTAS`): cada uma tem `quando(estado)` e só aparece se um assunto marcado precisa dela. Por fim, iniciais e o pedido nas palavras da pessoa (já preenchido com o pedido livre).
+4. **Plano**: faixa de segurança (inclui a dos temas urgentes do pedido livre), manejo da crise (quando houver), orientações do pedido livre, "Falta uma resposta" (com botão que volta só àquela pergunta e retorna ao plano), roteiro por lugar e urgência ("O que levar e contatos" recolhido em cada lugar), "Por que cada direito foi indicado" e "Avaliados e não indicados" recolhidos, resumo copiável.
 
 O estado do atendimento fica em `E` (só na memória da página; nada é guardado). `dadosAtendimento()` transforma `E` nos dados do `perfil()`. A versão anterior, com formulário em 3 etapas, está em `docs/versao-formulario.html`.
+
+## Pedido livre (`TEMAS`)
+- Cada tema: `k, t, palavras[], passos[], servicos[]` e, se for urgente, `urg` (frase da faixa de segurança).
+- O texto é comparado sem acento. Palavra de até 3 letras precisa ser inteira; as demais, no começo de uma palavra (evita "dente" em "acidente").
+- A busca não entende tempo verbal ("teve AVC" e "está tendo AVC" dão o mesmo tema). Por isso a frase urgente é sempre condicional: "Se está acontecendo agora…".
+- Temas atuais: AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
 
 ## Motor de regras
 - Renda por pessoa = renda ÷ pessoas. Linhas: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), 1/4, 1/2, 1, 2 e 3 salários mínimos.
