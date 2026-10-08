@@ -115,10 +115,11 @@ td code{font-family:var(--font-mono);font-size:12px}
       <p>Roda no navegador. Nada é enviado.</p>
       <div class="box"><h3>1. Cálculo de renda</h3><p><code>renda ÷ pessoas</code> comparada a R$ 109, R$ 218, ¼, ½, 1, 2 e 3 salários mínimos.</p></div>
       <div class="box"><h3>2. Teste de cada política</h3><p>Cada política tem uma função de critério que devolve um status e o motivo:</p>
-        <ul><li><b>Provável direito</b>: critérios batem</li><li><b>Verificar</b>: falta dado que o app não sabe</li><li><b>Encaminhamento</b>: proteção, sem renda</li></ul></div>
+        <ul><li><b>Provável direito</b>: critérios batem</li><li><b>Verificar</b>: falta dado que o app não sabe</li><li><b>Encaminhamento</b>: proteção, sem renda</li><li><b>Não indicado</b>: público certo, critério não bate (mostra o motivo)</li><li><b>Falta dado</b>: renda ou idade vazia decide o resultado</li></ul></div>
       <div class="box"><h3>3. Prioridade</h3><p>PEP &gt; violência contra mulher &gt; criança &gt; HIV &gt; alto custo &gt; saúde mental &gt; CadÚnico &gt; demais.</p></div>
       <div class="box"><h3>4. Alerta de segurança</h3><p>Suicídio, violência em curso, criança em risco ou PEP geram faixa vermelha com 190, 192, 180, 100, 188.</p></div>
-      <div class="box"><h3>5. Território</h3><p>Escolhe serviços pelo município e pela região (Conselho Tutelar e CREAS de Goiânia). Sem dado local, orienta o 121 ou a prefeitura.</p></div>
+      <div class="box"><h3>5. Roteiro</h3><p>Junta os passos de todas as políticas por lugar e por urgência. Uma ida ao CRAS resolve tudo o que depende do CadÚnico; documentos sem repetição.</p></div>
+      <div class="box"><h3>6. Território</h3><p>Escolhe serviços pelo município e pela região (Conselho Tutelar e CREAS de Goiânia). Sem dado local, orienta o 121 ou a prefeitura.</p></div>
     </div>
 
     <div class="layer L-data">
@@ -137,12 +138,14 @@ td code{font-family:var(--font-mono);font-size:12px}
       <h2>Saídas <small>o que entrega</small></h2>
       <p>O que a pessoa ou o profissional leva.</p>
       <div class="box"><h3>Faixa de segurança <span class="pill on">No protótipo</span></h3><p>Primeiro o que é urgente.</p></div>
-      <div class="box"><h3>Aba 3 · Fluxo, serviços e encaminhamentos <span class="pill on">No protótipo</span></h3><p>Resumo do perfil no topo, depois os cards abaixo.</p></div>
+      <div class="box"><h3>Aba 3 · Fluxo, serviços e encaminhamentos <span class="pill on">No protótipo</span></h3><p>Resumo do perfil, quadro do que falta preencher, roteiro, cards e não indicados.</p></div>
+      <div class="box"><h3>Roteiro por lugar <span class="pill on">No protótipo</span></h3><p>Agora · Hoje ou amanhã · Nos próximos dias · Pela internet · Sem inscrição · Se for negado. Em cada lugar: o que fazer, o que levar e os contatos.</p></div>
       <div class="box"><h3>Cards de encaminhamento <span class="pill on">No protótipo</span></h3><p>Por política: status, motivo, fluxo passo a passo, documentos, onde ir com contatos copiáveis, quadros extras (remédios da Farmácia Popular, direitos da pessoa com HIV).</p></div>
-      <div class="box"><h3>Resumo copiável <span class="pill on">No protótipo</span></h3><p>Texto com iniciais, município, idade, renda por pessoa e serviços. Sem nome, endereço ou documento da pessoa.</p></div>
+      <div class="box"><h3>Resumo copiável <span class="pill on">No protótipo</span></h3><p>Roteiro, detalhe por política e não indicados, com iniciais, município, idade e renda por pessoa. Sem nome, endereço ou documento da pessoa.</p></div>
+      <div class="box"><h3>Por que não <span class="pill on">No protótipo</span></h3><p>Políticas avaliadas e não indicadas, com o motivo. Ensina a regra e mostra dado digitado errado.</p></div>
       <div class="box"><h3>Entenda a rede <span class="pill on">No protótipo</span></h3><p>Fluxo SUS e SUAS com SAMU 192 e Sistema de Garantia de Direitos.</p></div>
       <div class="box"><h3>Diretório de serviços <span class="pill on">No protótipo</span></h3><p>Busca e filtros.</p></div>
-      <div class="box"><h3>Guia de encaminhamento impresso / PDF <span class="pill next">Próxima etapa</span></h3><p>Para entregar à pessoa atendida.</p></div>
+      <div class="box"><h3>Guia para a pessoa <span class="pill next">Próxima etapa</span></h3><p>O roteiro em linguagem simples, para WhatsApp ou impressão.</p></div>
     </div>
   </section>
 
@@ -171,9 +174,9 @@ td code{font-family:var(--font-mono);font-size:12px}
       <li><b>Acolhe</b>Profissional abre o app e registra só as iniciais.</li>
       <li><b>Descreve</b>Marca município, renda, família e situações.</li>
       <li><b>Avalia risco</b>O motor mostra primeiro a faixa de segurança, se houver.</li>
-      <li><b>Cruza</b>Cada política é testada e recebe status e motivo.</li>
+      <li><b>Cruza</b>Cada política é testada e recebe status e motivo. O app avisa se falta renda ou idade.</li>
       <li><b>Localiza</b>O território define CRAS, CREAS, Conselho Tutelar e unidades de saúde.</li>
-      <li><b>Orienta</b>Cards com fluxo, documentos e contatos.</li>
+      <li><b>Orienta</b>Roteiro por lugar, com o que levar; cards com o fluxo completo.</li>
       <li><b>Registra</b>Profissional copia o resumo para o prontuário ou envia à pessoa.</li>
     </ol>
   </section>

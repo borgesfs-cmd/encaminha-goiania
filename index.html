@@ -166,6 +166,40 @@ ol.flow li::before{content:counter(s);font-family:var(--font-mono);font-size:13p
 .empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
 .note{font-size:14px;background:var(--sunk);border-radius:8px;padding:10px 12px}
 
+/* roteiro */
+button.b.sm{font-size:13px;padding:5px 10px}
+.falta{border:1px solid var(--ipe);background:var(--ipe-soft);border-radius:var(--r);padding:12px 16px}
+.falta h3{font-size:17px;margin-bottom:6px}
+.falta ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.falta li{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between;font-size:15px}
+.routehead{display:grid;gap:2px;margin-top:6px}
+.routehead h3{font-size:20px}
+.routehead .hint{margin:0}
+.route{display:grid;gap:14px}
+.rgroup{display:grid;gap:8px;border-left:4px solid var(--qc,var(--line));padding-left:12px}
+.rgroup.q0{--qc:var(--alert)} .rgroup.q1{--qc:var(--sgd)} .rgroup.q2{--qc:var(--green)}
+.rgroup.q3{--qc:var(--sus)} .rgroup.q4{--qc:var(--ipe)} .rgroup.q5{--qc:var(--muted)}
+.when{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.when b{font-family:var(--font-display);font-size:16px;color:var(--qc)}
+.when span{font-size:13px;color:var(--muted)}
+ol.stops{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.stop{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:8px;min-width:0}
+.stophead{display:flex;gap:10px;align-items:center}
+.stophead .num{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:14px;background:var(--qc,var(--green));color:var(--surface)}
+.stophead h4{font-size:17px}
+.acts{margin:0;padding-left:20px;display:grid;gap:4px}
+.acts .for{font-size:13px;color:var(--muted);white-space:nowrap}
+.acts .abre{display:block;font-size:14px;background:var(--ok-soft);color:var(--ink);border-radius:6px;padding:4px 8px;margin-top:4px}
+.levar{font-size:14px;background:var(--sunk);border-radius:8px;padding:8px 10px}
+.levar b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.levar ul{margin:2px 0 0;padding-left:18px}
+.where>summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--green)}
+.where .places{margin-top:8px}
+.nao{background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:12px 16px}
+.nao>summary{cursor:pointer;font-weight:700}
+.nao ul{margin:10px 0 6px;padding-left:18px;display:grid;gap:6px}
+.nao li span{display:block;color:var(--muted);font-size:14px}
+
 /* rede */
 .flowmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px) minmax(0,1fr);gap:16px;align-items:start}
 @media (max-width:860px){.flowmap{grid-template-columns:1fr}}
@@ -308,7 +342,7 @@ footer .wrap{padding-block:18px}
       <fieldset><legend>Direitos sociais, renda e moradia</legend><div class="chips" id="chipsSoc"></div></fieldset>
       <fieldset><label class="l" for="dem">Solicitação principal, nas palavras da pessoa</label>
         <textarea id="dem" rows="3" maxlength="400" placeholder="Ex.: precisa do remédio para artrite que o posto não tem."></textarea>
-        <span class="hint">Não escreva nomes, endereços, telefones ou números de documento. Sequências de números e e-mails são apagados do resumo.</span></fieldset>
+        <span class="hint">Não escreva nomes, endereços, telefones ou números de documento. E-mails e números longos (CPF, NIS, RG, telefone, CEP) são apagados do resumo; valores em reais e datas ficam.</span></fieldset>
       <div class="btns end"><button class="b ghost" type="button" data-go="1">Voltar</button><button class="b" type="button" data-go="3">Ver encaminhamentos</button></div>
     </div>
   </form>
@@ -390,8 +424,9 @@ footer .wrap{padding-block:18px}
     <h2>Como o cruzamento funciona</h2>
     <p>O app compara a renda por pessoa, a idade e as situações marcadas com os critérios publicados de cada política. O resultado tem três níveis:</p>
     <p><span class="status prov">Provável direito</span> os critérios principais batem. <span class="status ver">Verificar</span> depende de algo que o app não sabe (tempo de moradia, laudo, seleção). <span class="status enc">Encaminhamento</span> serviço de proteção ou atendimento, sem critério de renda.</p>
+    <p>O resultado começa pelo <b>roteiro</b>: os passos de todas as políticas juntos por lugar e por urgência, com a lista de documentos sem repetição. Assim a pessoa vai uma vez ao CRAS e resolve tudo o que depende dele. Quando falta um dado que decide o resultado (renda, idade), o app avisa quais políticas ele define. As políticas avaliadas e não indicadas aparecem no fim, com o motivo.</p>
     <p>Quem decide a concessão é sempre o órgão responsável. Vários benefícios estaduais não têm inscrição: o Estado seleciona pela base do Cadastro Único, uma ou duas vezes por ano. Por isso, manter o CadÚnico atualizado no CRAS é o passo que mais abre portas.</p>
-    <p>Os critérios em reais usam a renda por pessoa: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), e frações do salário mínimo. Confira o valor do salário mínimo vigente no campo do formulário.</p>
+    <p>Os critérios em reais usam a renda por pessoa: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), e frações do salário mínimo. O salário mínimo padrão é o de 2026, R$ 1.621 (Decreto 12.797/2025); dá para mudar no formulário.</p>
 
     <h2>Cobertura deste protótipo</h2>
     <div class="tablewrap">
@@ -574,6 +609,8 @@ CRAS.forEach((c,i)=>S.push({id:"cras"+i,tipo:"CRAS",mun:"Goiânia",nome:c[0],end
 const byId=Object.fromEntries(S.map(s=>[s.id,s]));
 
 /* ---------- CAMPOS ---------- */
+/* Salário mínimo vigente: R$ 1.621 desde 1º/01/2026 (Decreto 12.797/2025). Atualizar todo janeiro. */
+const SM_PADRAO=1621;
 const CHIPS={
  chipsCad:[["cad","Inscrito no CadÚnico"],["cadOld","CadÚnico sem atualizar há mais de 2 anos"],["pbf","Recebe Bolsa Família"],["bpcRec","Recebe BPC"]],
  chipsFam:[["c06","Criança de 0 a 6 anos"],["pcd","Pessoa com deficiência"],["pcd17","Pessoa com deficiência até 17 anos"],["tea","Pessoa com autismo (TEA)"],["gest","Gestante"],["estMedio","Estudante do ensino médio público"],["estud","Estudante (qualquer nível)"]],
@@ -590,91 +627,147 @@ const CASES={
  farmacia:{ini:"A.L.M.",mun:"Aparecida de Goiânia",idade:67,pessoas:2,renda:2800,trab:"aposentado",moradia:"propria",escol:"fund",dem:"Usa losartana e metformina e está comprando na farmácia.",on:["continuo"]}
 };
 const EX=CASES.familia;
-function fill(p){$("ini").value=p.ini||"";$("mun").value=p.mun;$("reg").value=p.reg||"";$("idade").value=p.idade??"";$("pessoas").value=p.pessoas??"";$("renda").value=p.renda??"";$("sm").value=p.sm||$("sm").value||1518;$("trab").value=p.trab||"";$("moradia").value=p.moradia||"";$("escol").value=p.escol||"";$("dem").value=p.dem||"";document.querySelectorAll('#f input[type=checkbox]').forEach(c=>c.checked=(p.on||[]).includes(c.value))}
-function read(){const on=new Set([...document.querySelectorAll('#f input[type=checkbox]:checked')].map(c=>c.value));
+function fill(p){$("ini").value=p.ini||"";$("mun").value=p.mun;$("reg").value=p.reg||"";$("idade").value=p.idade??"";$("pessoas").value=p.pessoas??"";$("renda").value=p.renda??"";$("sm").value=p.sm||$("sm").value||SM_PADRAO;$("trab").value=p.trab||"";$("moradia").value=p.moradia||"";$("escol").value=p.escol||"";$("dem").value=p.dem||"";document.querySelectorAll('#f input[type=checkbox]').forEach(c=>c.checked=(p.on||[]).includes(c.value))}
+function read(){
  const n=v=>{const x=parseFloat($(v).value);return isFinite(x)?x:null};
- const pessoas=n("pessoas"),renda=n("renda"),sm=n("sm")||1518;
- const pc=(pessoas&&renda!==null)?renda/pessoas:null;
- if($("moradia").value==="rua")on.add("rua");
- const ini=$("ini").value.replace(/[^A-Za-zÀ-ú.\s]/g,"").trim().toUpperCase().slice(0,6);
  const opt=id=>{const e=$(id);return e.value?e.options[e.selectedIndex].text:""};
- return {ini,trab:$("trab").value,trabT:opt("trab"),moradia:$("moradia").value,moradiaT:opt("moradia"),escolT:opt("escol"),dem:clean($("dem").value),mun:$("mun").value,reg:$("reg").value,idade:n("idade"),pessoas,renda,sm,pc,on,has:k=>on.has(k)}}
-const clean=t=>t.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g,"[e-mail removido]").replace(/\d[\d.\-\/ ]{3,}\d/g,"[número removido]").trim();
+ return perfil({ini:$("ini").value,mun:$("mun").value,reg:$("reg").value,idade:n("idade"),pessoas:n("pessoas"),renda:n("renda"),sm:n("sm"),
+  trab:$("trab").value,trabT:opt("trab"),moradia:$("moradia").value,moradiaT:opt("moradia"),escolT:opt("escol"),dem:$("dem").value,
+  on:[...document.querySelectorAll('#f input[type=checkbox]:checked')].map(c=>c.value)})}
+/* Monta o perfil a partir de dados simples (formulário ou testes). */
+function perfil(d){
+ const on=new Set(d.on||[]);
+ const num=v=>(typeof v==="number"&&isFinite(v))?v:null;
+ const pessoas=num(d.pessoas),renda=num(d.renda),sm=num(d.sm)||SM_PADRAO;
+ const pc=(pessoas&&renda!==null)?renda/pessoas:null;
+ if(d.moradia==="rua")on.add("rua");
+ const ini=String(d.ini||"").replace(/[^A-Za-zÀ-ú.\s]/g,"").trim().toUpperCase().slice(0,6);
+ return {ini,trab:d.trab||"",trabT:d.trabT||"",moradia:d.moradia||"",moradiaT:d.moradiaT||"",escolT:d.escolT||"",dem:clean(d.dem||""),mun:d.mun||"Goiânia",reg:d.reg||"",idade:num(d.idade),pessoas,renda,sm,pc,on,has:k=>on.has(k)}}
+/* Apaga do texto livre o que identifica a pessoa: e-mail e números longos (CPF, NIS, RG, telefone, CEP).
+   Conta só os dígitos, ignorando pontos, traços, espaços e parênteses; com 7 ou mais, apaga.
+   Valores ("R$ 1.300"), idades e datas ("12/03/2025") ficam. */
+const clean=t=>t.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g,"[e-mail removido]")
+ .replace(/\(?\d[\d.\-\s()]*\d/g,m=>m.replace(/\D/g,"").length>=7?"[número removido]":m).trim();
 const brl=v=>"R$ "+Math.round(v).toLocaleString("pt-BR");
 
 /* ---------- POLÍTICAS ---------- */
+const CRAS_DOCS=["CPF de todos da casa (ou título de eleitor)","Documento com foto do responsável familiar","Comprovante de endereço (ajuda, não é obrigatório)","Carteira de trabalho, se tiver"];
+/* Resultado de um teste quando falta um dado decisivo. O campo vai para o quadro "Complete para avaliar". */
+const FALTA_RENDA=["falta","",["renda"]],FALTA_IDADE=["falta","",["idade"]];
 const CRAS_STEP="Procurar o CRAS de referência com documento com foto e CPF de todos da casa e comprovante de endereço.";
 const P=[
  {id:"cad",nome:"Cadastro Único (CadÚnico)",esf:"nac",val:"Porta de entrada",
   test:p=>{if(p.has("cadOld"))return["ver","Cadastro desatualizado há mais de 2 anos: a família pode ser excluída dos programas estaduais."];
-   if(!p.has("cad")&&p.pc!==null&&p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo. Sem o CadÚnico, nenhum benefício abaixo é liberado.`];
-   if(!p.has("cad")&&p.renda!==null&&p.renda<=p.sm*3)return["prov","Renda familiar até 3 salários mínimos."];
-   if(!p.has("cad")&&p.has("rua"))return["prov","Pessoa em situação de rua pode se cadastrar usando o endereço do Centro POP."];return null},
+   if(p.has("cad"))return null;
+   if(p.has("rua"))return["prov","Pessoa em situação de rua pode se cadastrar usando o endereço do Centro POP."];
+   if(p.pc!==null&&p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo (${brl(p.sm/2)}). Sem o CadÚnico, nenhum benefício abaixo é liberado.`];
+   if(p.renda!==null&&p.renda<=p.sm*3)return["prov",`Renda da casa até 3 salários mínimos (${brl(p.sm*3)}).`];
+   if(p.pc===null)return FALTA_RENDA;
+   return["nao",`Renda por pessoa de ${brl(p.pc)} passa de meio salário mínimo (${brl(p.sm/2)}) e a renda da casa passa de 3 salários (${brl(p.sm*3)}).`]},
   flow:[CRAS_STEP,"Responder à entrevista com o entrevistador do CadÚnico.","Guardar o número do NIS e atualizar sempre que mudar endereço, renda ou composição da família (no máximo a cada 2 anos)."],
-  docs:["CPF ou título de eleitor de todos os membros","Documento com foto do responsável familiar","Comprovante de endereço (opcional, ajuda)","Carteira de trabalho, se tiver"],
+  docs:CRAS_DOCS,
   where:"cras",extra:["121"]},
  {id:"pbf",nome:"Bolsa Família",esf:"nac",val:"mín. R$ 600/família + adicionais",
-  test:p=>{if(p.has("pbf"))return null;if(p.pc!==null&&p.pc<=218)return["prov",`Renda de ${brl(p.pc)} por pessoa, até R$ 218.`+(p.has("c06")?" Adicional de R$ 150 por criança de 0 a 6 anos.":"")+(p.has("gest")?" Adicional de R$ 50 para gestante.":"")];return null},
+  test:p=>{if(p.has("pbf"))return null;if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=218)return["prov",`Renda de ${brl(p.pc)} por pessoa, até R$ 218.`+(p.has("c06")?" Adicional de R$ 150 por criança de 0 a 6 anos.":"")+(p.has("gest")?" Adicional de R$ 50 para gestante.":"")];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa do limite de R$ 218.`]},
   flow:["Fazer ou atualizar o CadÚnico no CRAS.","A seleção é automática pelo governo federal, conforme orçamento e ordem de renda.","Acompanhar pelo app Bolsa Família, Caixa Tem ou pelo 121.","Manter as condicionalidades: vacinação, pré-natal e frequência escolar."],
   docs:["Os mesmos do CadÚnico"],where:"cras",extra:["121"]},
  {id:"bpc",nome:"BPC, Benefício de Prestação Continuada",esf:"nac",val:"1 salário mínimo/mês",
-  test:p=>{if(p.has("bpcRec"))return null;const alvo=(p.idade!==null&&p.idade>=65)||p.has("pcd")||p.has("pcd17")||p.has("tea");if(!alvo||p.pc===null)return null;
-   if(p.pc<=p.sm/4)return["prov",`Idoso de 65+ ou pessoa com deficiência, com renda de ${brl(p.pc)} por pessoa (até 1/4 do salário mínimo).`];
-   if(p.pc<=p.sm/2)return["ver","Renda acima de 1/4 do salário mínimo, mas até meio. Pode haver direito com desconto de gastos com saúde ou pela via judicial: consultar a Defensoria."];return null},
+  test:p=>{if(p.has("bpcRec"))return null;const def=p.has("pcd")||p.has("pcd17")||p.has("tea");
+   if(!def&&p.idade===null)return FALTA_IDADE;
+   if(!def&&p.idade<65)return null;
+   if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=p.sm/4)return["prov",`Idoso de 65+ ou pessoa com deficiência, com renda de ${brl(p.pc)} por pessoa (até 1/4 do salário mínimo, ${brl(p.sm/4)}).`];
+   if(p.pc<=p.sm/2)return["ver",`Renda de ${brl(p.pc)} por pessoa: acima de 1/4 do salário mínimo (${brl(p.sm/4)}), mas até meio. Pode haver direito com desconto de gastos com saúde ou pela via judicial: consultar a Defensoria.`];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}).`]},
   flow:["Ter o CadÚnico atualizado (obrigatório).","Pedir pelo Meu INSS ou pelo 135.","Pessoa com deficiência: fazer avaliação social e perícia médica no INSS.","Se negado, procurar a Defensoria Pública para recorrer."],
   docs:["Documento com foto e CPF do requerente e da família","Laudos e exames (pessoa com deficiência)","Número do NIS"],where:"cras",extra:["135","dpe","mpf","puc-npj"]},
  {id:"tse",nome:"Tarifa Social de Energia Elétrica",esf:"nac",val:"Desconto na conta de luz",
-  test:p=>{if(p.has("bpcRec"))return["prov","Quem recebe BPC tem direito."];if(p.pc!==null&&p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo, com CadÚnico.`];return null},
+  test:p=>{if(p.has("bpcRec"))return["prov","Quem recebe BPC tem direito."];if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo (${brl(p.sm/2)}), com CadÚnico.`];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}), o limite da Tarifa Social.`]},
   flow:["Ter o CadÚnico atualizado.","A concessão costuma ser automática. Se não aparecer na conta, pedir à distribuidora de energia informando o NIS."],
   docs:["NIS","Conta de luz no nome de alguém da família"],where:"cras"},
  {id:"pdm",nome:"Pé-de-Meia",esf:"nac",val:"Poupança para estudante",
-  test:p=>p.has("estMedio")&&(p.pc===null||p.pc<=p.sm/2)?["ver","Estudante do ensino médio público de família no CadÚnico. A inclusão é automática pela escola e pelo CadÚnico."]:null,
+  test:p=>{if(!p.has("estMedio"))return null;
+   if(p.pc!==null&&p.pc>p.sm/2)return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}).`];
+   return["ver","Estudante do ensino médio público de família no CadÚnico. A inclusão é automática pela escola e pelo CadÚnico."]},
   flow:["Manter matrícula e frequência no ensino médio público.","Família com CadÚnico atualizado.","Consultar pelo app Jornada do Estudante ou pela escola."],docs:["CPF do estudante"],where:"cras"},
  {id:"cpi",nome:"Carteira da Pessoa Idosa",esf:"nac",val:"Passagem interestadual gratuita ou com desconto",
-  test:p=>(p.idade!==null&&p.idade>=60&&p.pc!==null&&p.renda<=p.sm*2*Math.max(1,p.pessoas)?["ver","Pessoa de 60+ com renda individual até 2 salários mínimos e CadÚnico."]:null),
+  test:p=>{if(p.idade===null)return FALTA_IDADE;if(p.idade<60)return null;if(p.renda===null)return FALTA_RENDA;
+   const lim=p.sm*2;
+   if(p.renda<=lim)return["prov",`Pessoa de 60+ com renda da casa até 2 salários mínimos (${brl(lim)}), então a renda própria também fica no limite. Precisa de CadÚnico.`];
+   return["ver",`A renda da casa passa de ${brl(lim)}, mas o critério é a renda própria da pessoa idosa: até 2 salários mínimos (${brl(lim)}). Confirme quanto ela recebe. Precisa de CadÚnico.`]},
   flow:["Fazer ou atualizar o CadÚnico.","Emitir a carteira no CRAS ou pelo site da Carteira da Pessoa Idosa (MDS).","Reservar a vaga na empresa de ônibus com antecedência."],docs:["Documento com foto","NIS"],where:"cras"},
  {id:"plfed",nome:"Passe Livre interestadual (pessoa com deficiência)",esf:"nac",val:"Viagem interestadual gratuita",
-  test:p=>((p.has("pcd")||p.has("pcd17")||p.has("tea"))&&p.pc!==null&&p.pc<=p.sm)?["ver","Pessoa com deficiência com renda de até 1 salário mínimo por pessoa."]:null,
+  test:p=>{if(!(p.has("pcd")||p.has("pcd17")||p.has("tea")))return null;if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=p.sm)return["ver",`Pessoa com deficiência com renda de ${brl(p.pc)} por pessoa, até 1 salário mínimo.`];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de 1 salário mínimo (${brl(p.sm)}).`]},
   flow:["Pedir pelo site do Ministério dos Transportes (Passe Livre).","Anexar laudo médico e comprovante de renda ou CadÚnico."],docs:["Laudo","Documento com foto","CadÚnico ou comprovante de renda"],where:"cras"},
  // Estaduais
  {id:"maes",nome:"Mães de Goiás",esf:"est",val:"R$ 300/mês",
-  test:p=>{if(!p.has("c06"))return null;if(p.pc!==null&&p.pc<=109)return[p.has("cadOld")?"ver":"prov",`Criança de 0 a 6 anos e renda de ${brl(p.pc)} por pessoa (até R$ 109).`+(p.has("cadOld")?" Atualize o CadÚnico antes da próxima seleção.":"")];return null},
+  test:p=>{if(!p.has("c06"))return null;if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=109)return[p.has("cadOld")?"ver":"prov",`Criança de 0 a 6 anos e renda de ${brl(p.pc)} por pessoa (até R$ 109).`+(p.has("cadOld")?" Atualize o CadÚnico antes da próxima seleção.":"")];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de R$ 109, a linha de extrema pobreza usada pelo Estado.`]},
   flow:["Não tem inscrição. O Estado seleciona 1 ou 2 vezes por ano pela base do CadÚnico.","Manter o CadÚnico atualizado no CRAS, com vacinação e frequência escolar das crianças em dia.","A prefeitura avisa por SMS ou WhatsApp o dia e o local de entrega do cartão.","Consultar situação em suas.social.go.gov.br/consulta-maesdegoias. 2ª via só pelo (62) 3270-9610."],
   docs:["Documento com foto e CPF da beneficiária (para retirar o cartão)"],where:"cras",extra:["mxc"]},
  {id:"inclusivo",nome:"Goiás + Inclusivo",esf:"est",val:"R$ 500/mês",
-  test:p=>{if(!(p.has("pcd17")))return null;if(p.pc!==null&&p.pc<=109)return["prov",`Pessoa com deficiência até 17 anos e renda de ${brl(p.pc)} por pessoa (até R$ 109).`+(p.has("c06")?" Acumula com Mães de Goiás: R$ 300 + R$ 200.":"")];if(p.pc!==null&&p.pc<=218)return["ver","Renda acima de R$ 109 por pessoa. O BPC conta como renda."];return null},
+  test:p=>{if(!p.has("pcd17"))return null;if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=109)return["prov",`Pessoa com deficiência até 17 anos e renda de ${brl(p.pc)} por pessoa (até R$ 109).`+(p.has("c06")?" Acumula com Mães de Goiás: R$ 300 + R$ 200.":"")];
+   if(p.pc<=218)return["ver",`Renda de ${brl(p.pc)} por pessoa, acima de R$ 109. Confira no CRAS a renda registrada: o BPC conta como renda.`];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de R$ 218.`]},
   flow:["Seleção automática pelo CadÚnico, sem inscrição.","Conferir no CRAS se a deficiência está registrada no cadastro.","O município avisa a data de entrega do cartão."],docs:["Documento da pessoa com deficiência e do responsável"],where:"cras",extra:["mxc"]},
  {id:"dignidade",nome:"Dignidade",esf:"est",val:"R$ 300/mês",
-  test:p=>(p.idade!==null&&p.idade>=60&&p.idade<65&&!p.has("pbf")&&p.pc!==null&&p.pc<=218)?["prov","Pessoa de 60 a 64 anos em pobreza ou extrema pobreza, sem Bolsa Família."]:null,
+  test:p=>{if(p.idade===null)return FALTA_IDADE;if(p.idade<60||p.idade>=65)return null;
+   if(p.has("pbf"))return["nao","O Dignidade é para quem não recebe Bolsa Família."];
+   if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=218)return["prov",`Pessoa de 60 a 64 anos com renda de ${brl(p.pc)} por pessoa (até R$ 218), sem Bolsa Família.`];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de R$ 218.`]},
   flow:["Sem inscrição: entrada automática pelo CadÚnico.","Manter o CadÚnico atualizado no CRAS.","Dúvidas e 2ª via: (62) 3270-9610."],docs:["Documento com foto"],where:"cras",extra:["mxc"]},
  {id:"porelas",nome:"Goiás Por Elas",esf:"est",val:"R$ 300/mês por até 12 meses",
-  test:p=>{if(!p.has("violMulher"))return null;if(!p.has("mpu"))return["ver","Exige medida protetiva de urgência ativa. Primeiro passo: DEAEM ou Defensoria."];if(p.pc!==null&&p.pc<=p.sm/2)return[p.has("cad")?"prov":"ver","Mulher com medida protetiva ativa e renda até meio salário mínimo por pessoa."+(p.has("cad")?"":" Precisa estar no CadÚnico.")];return null},
+  test:p=>{if(!p.has("violMulher"))return null;if(!p.has("mpu"))return["ver","Exige medida protetiva de urgência ativa. Primeiro passo: DEAEM ou Defensoria."];
+   if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=p.sm/2)return[p.has("cad")?"prov":"ver",`Mulher com medida protetiva ativa e renda de ${brl(p.pc)} por pessoa, até meio salário mínimo.`+(p.has("cad")?"":" Precisa estar no CadÚnico.")];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}).`]},
   flow:["Não há inscrição: a medida protetiva é enviada à Seds pelo TJGO, Defensoria ou Batalhão Maria da Penha.","Manter o CadÚnico atualizado.","A Seds entra em contato para entrega do cartão. Vale enquanto a medida estiver ativa, até 12 meses."],
   docs:["Cópia da medida protetiva","Documento com foto"],where:null,extra:["mulherseds","dpe"]},
  {id:"aluguel",nome:"Pra Ter Onde Morar, Aluguel Social",esf:"est",val:"R$ 350/mês por 18 meses",
-  test:p=>(p.has("aluguel")||(p.has("violMulher")&&p.has("mpu")))&&(p.pc===null||p.pc<=p.sm*3)?["ver","Aluguel pesado ou violência doméstica. Exige CadÚnico no município e 3 anos morando nele; há cotas para PcD, idosos e mulheres em violência."]:null,
+  test:p=>{if(!(p.has("aluguel")||(p.has("violMulher")&&p.has("mpu"))))return null;
+   if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=p.sm/2)return["ver",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo. Também exige morar de aluguel, CadÚnico no município e 3 anos morando nele, e um critério do edital (aluguel de metade da renda ou mais, mulher com medida protetiva, idoso, PcD, mãe ou pai solo).`];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}), o limite do edital.`]},
   flow:["Inscrição online em aluguelsocial.agehab.go.gov.br ou no app Aluguel Social (Android).","Anexar documentos; análise por ordem de inscrição.","Indeferida? Corrigir ou recorrer pelo próprio app.","O CRAS pode ajudar a fazer a inscrição."],
   docs:["Comprovantes de água e energia","Comprovante de 3 anos no município","Contrato ou recibo de aluguel","CadÚnico ativo"],where:"cras",extra:["agehab"]},
  {id:"ple",nome:"Passe Livre Estudantil",esf:"est",val:"48 viagens/mês",
-  test:p=>(p.has("estud")||p.has("estMedio"))&&PLE.includes(p.mun)?["prov","Estudante morando em município atendido pelo transporte metropolitano."]:null,
+  test:p=>{if(!(p.has("estud")||p.has("estMedio")))return null;
+   return PLE.includes(p.mun)?["prov","Estudante morando em município atendido pelo transporte metropolitano."]:["nao",`${p.mun} não está entre os municípios atendidos pelo Passe Livre Estudantil.`]},
   flow:["Cadastro em juventude.go.gov.br com documentos e foto.","Aprovado, agendar a retirada no Vapt Vupt em vaptvupt.go.gov.br/agendamento.","Recadastro a cada período letivo. Bloqueio: justificar pelo site da SitPass."],
   docs:["RG","CPF","Comprovante de endereço","Comprovante de matrícula","Foto 3x4"],where:null,extra:["juventude"]},
  {id:"aprendiz",nome:"Aprendiz do Futuro",esf:"est",val:"Socioaprendizagem remunerada",
-  test:p=>(p.idade!==null&&p.idade>=14&&p.idade<16&&(p.has("estud")||p.has("estMedio"))&&(p.renda===null||p.renda<=p.sm*2))?["ver","Jovem de 14 a 15 anos da rede pública, família com até 2 salários mínimos."]:null,
+  test:p=>{if(!(p.idade!==null&&p.idade>=14&&p.idade<16&&(p.has("estud")||p.has("estMedio"))))return null;
+   if(p.renda!==null&&p.renda>p.sm*2)return["nao",`Renda da casa de ${brl(p.renda)} passa de 2 salários mínimos (${brl(p.sm*2)}).`];
+   return["ver","Jovem de 14 a 15 anos da rede pública, família com até 2 salários mínimos."]},
   flow:["Acompanhar a abertura de inscrições em aprendizdofuturo.org.br.","Ter CadÚnico (exigido na contratação).","Vagas reservadas para PcD."],docs:["Documentos do jovem e do responsável","Declaração escolar"],where:null,extra:["aprendiz"]},
  {id:"ciptea",nome:"CIPTEA, Carteira de Identificação da Pessoa com Autismo",esf:"est",val:"Documento, válido 5 anos",
   test:p=>p.has("tea")?["prov","Pessoa com diagnóstico de TEA, sem critério de renda."]:null,
   flow:["Preencher o requerimento (site da Seds).","Levar à Unidade Maria Xavier Caiado, seg a sex, 8h às 18h. No interior, pedir pelo e-mail pcd@goias.gov.br.","Retirar em até 60 dias."],
   docs:["Relatório de neurologista, psiquiatra ou pediatra","Certidão de nascimento ou RG com CPF","Documentos do responsável","Comprovante de endereço em Goiás","Foto (ou tirar na hora)"],where:null,extra:["pcd"]},
  {id:"plpcd",nome:"Passe Livre intermunicipal da pessoa com deficiência",esf:"est",val:"Ônibus entre cidades de Goiás",
-  test:p=>((p.has("pcd")||p.has("pcd17")||p.has("tea"))&&p.pc!==null&&p.pc<=p.sm)?["prov","Pessoa com deficiência com renda até 1 salário mínimo por pessoa."]:null,
+  test:p=>{if(!(p.has("pcd")||p.has("pcd17")||p.has("tea")))return null;if(p.pc===null)return FALTA_RENDA;
+   if(p.pc<=p.sm)return["prov",`Pessoa com deficiência com renda de ${brl(p.pc)} por pessoa, até 1 salário mínimo.`];
+   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de 1 salário mínimo (${brl(p.sm)}).`]},
   flow:["Levar documentos à Unidade Maria Xavier Caiado (Goiânia) ou pedir pelo WhatsApp (62) 98104-3652.","Retirar em até 60 dias. Validade de 3 anos."],
   docs:["Laudo de especialista (validade 1 ano)","Espelho do CadÚnico","Comprovante de residência em Goiás","Documentos do acompanhante, se o laudo indicar"],where:null,extra:["pcd"]},
  {id:"passaporte",nome:"Passaporte da Pessoa Idosa",esf:"est",val:"Até 4 viagens/mês entre cidades de Goiás",
-  test:p=>(p.idade!==null&&p.idade>=60&&(p.renda===null||p.renda<=p.sm*3))?["prov","Pessoa de 60+ com renda familiar até 3 salários mínimos."]:null,
+  test:p=>{if(p.idade===null)return FALTA_IDADE;if(p.idade<60)return null;if(p.renda===null)return FALTA_RENDA;
+   if(p.renda<=p.sm*3)return["prov",`Pessoa de 60+ com renda da casa até 3 salários mínimos (${brl(p.sm*3)}).`];
+   return["nao",`Renda da casa de ${brl(p.renda)} passa de 3 salários mínimos (${brl(p.sm*3)}).`]},
   flow:["Goiânia: Unidade Maria Xavier Caiado. Outros municípios: CRAS ou Secretaria de Assistência Social.","Comprar o bilhete com até 5h de antecedência (até 500 km)."],docs:["RG e CPF","Comprovante do CadÚnico"],where:"cras",extra:["passaporte"]},
  {id:"credito",nome:"Crédito Social",esf:"est",val:"Até R$ 5 mil, parcela única",
-  test:p=>((p.has("empreender")||p.trab==="desempregado")&&(p.idade===null||p.idade>=18)&&(p.pc===null||p.pc<=p.sm/2))?["ver","Adulto de baixa renda no CadÚnico que nunca recebeu o Crédito Social. Liberado após curso de capacitação."]:null,
+  test:p=>{if(!((p.has("empreender")||p.trab==="desempregado")&&(p.idade===null||p.idade>=18)))return null;
+   if(p.pc!==null&&p.pc>p.sm/2)return["nao",`Renda de ${brl(p.pc)} por pessoa passa de meio salário mínimo (${brl(p.sm/2)}).`];
+   return["ver","Adulto de baixa renda no CadÚnico que nunca recebeu o Crédito Social. Liberado após curso de capacitação."]},
   flow:["Ter CadÚnico de baixa renda.","Fazer o curso de capacitação indicado (Seds/Sebrae, Retomada ou Seapa).","Receber cartão para compra de equipamentos no comércio local."],docs:["CadÚnico","Documento com foto"],where:"cras"},
  {id:"registro",nome:"2ª via gratuita de certidão (Registro Civil)",esf:"est",val:"Gratuito",
   test:p=>p.has("semDoc")?["prov","Pessoa de baixa renda sem certidão de nascimento, casamento ou óbito."]:null,
@@ -784,6 +877,125 @@ const P=[
   flow:["Procurar o CRAS para benefício eventual (cesta básica) e avaliação da família.","Fazer ou atualizar o CadÚnico para Bolsa Família e Mães de Goiás."],docs:["Documento com foto e CPF"],where:"cras"}
 ];
 
+/* ---------- ROTEIRO: onde ir e o que fazer lá ----------
+   Cada política diz em que lugar (STOPS) a pessoa resolve cada passo. O roteiro junta os passos por lugar,
+   para a pessoa ir uma vez só ao CRAS e resolver tudo o que depende dele, com a lista de documentos sem repetição.
+   Passo: [lugar, o que fazer, documentos (opcional)]. Sem documentos no passo, valem os do lugar; sem os do lugar, os da política. */
+const pickIds=ids=>ids.map(i=>byId[i]).filter(Boolean);
+const QUANDO=[
+ {t:"Agora",d:"Urgente. Não deixe para depois."},
+ {t:"Hoje ou amanhã",d:"Proteção e segurança vêm primeiro."},
+ {t:"Nos próximos dias",d:"Atendimento presencial."},
+ {t:"Pela internet ou telefone",d:"Dá para fazer pelo celular. O CRAS pode ajudar quem não tem internet."},
+ {t:"Acontece sem inscrição",d:"O governo seleciona pelo CadÚnico ou pela medida protetiva. Basta manter o cadastro em dia."},
+ {t:"Se for negado ou não resolver",d:"Guarde a negativa por escrito, o protocolo ou um print."}
+];
+const STOPS={
+ pep:{nome:"UPA ou CAIS 24h, ou HDT",q:0,lugar:p=>places("pep",p).list,docs:["Documento, se tiver (a falta não impede o atendimento)"]},
+ deaem:{nome:"Delegacia da Mulher (DEAEM) ou Plantão 24h",q:1,lugar:()=>pickIds(["deaem","plantao"]),docs:["Documento com foto, se tiver (não é obrigatório)"]},
+ ct:{nome:"Conselho Tutelar",q:1,lugar:p=>places("ct",p).list,docs:[]},
+ pop:{nome:"Centro POP",q:1,lugar:p=>places("pop",p).list,docs:[]},
+ cras:{nome:"CRAS de referência",q:2,lugar:p=>places("cras",p).list,docs:CRAS_DOCS},
+ creas:{nome:"CREAS da região",q:2,lugar:p=>places("creas",p).list,docs:[]},
+ cora:{nome:"Centro de Referência da Mulher Cora Coralina",q:2,lugar:()=>pickIds(["cora"]),docs:[]},
+ ubs:{nome:"UBS do bairro ou CAPS",q:2,lugar:p=>places("saude",p).list,docs:["Cartão do SUS","Documento com foto, se tiver"]},
+ hiv:{nome:"CTA Cidade Jardim ou HDT",q:2,lugar:p=>places("hiv",p).list,docs:["Cartão do SUS","Documento com foto (não é exigido para o teste)"]},
+ medico:{nome:"Consulta com o médico que acompanha (SUS ou particular)",q:2,lugar:()=>[]},
+ farmacia:{nome:"Farmácia com o selo Aqui Tem Farmácia Popular, ou UBS",q:2,lugar:()=>pickIds(["fp","136"])},
+ mxc:{nome:"Unidade Maria Xavier Caiado (Seds)",q:2,lugar:()=>pickIds(["mxc","pcd"])},
+ registro:{nome:"Seds, Registro Civil",q:2,lugar:()=>pickIds(["registro"])},
+ inss:{nome:"INSS: Meu INSS ou telefone 135",q:3,lugar:()=>pickIds(["135"])},
+ online:{nome:"Pela internet",q:3,lugar:()=>[]},
+ auto:{nome:"Sem inscrição",q:4,lugar:()=>pickIds(["121"]),docs:[]},
+ dpe:{nome:"Defensoria Pública",q:5,lugar:p=>pickIds([p.mun==="Aparecida de Goiânia"?"dpeap":"dpe","puc-npj"]),docs:["Negativa por escrito, protocolo ou print","Documentos usados no pedido"]},
+ mp:{nome:"Ministério Público",q:5,lugar:()=>pickIds(["mpgo","mpf","mpt"])}
+};
+const ROTA={
+ cad:p=>p.has("rua")?[["pop","Fazer o Cadastro Único usando o endereço do Centro POP",[]]]:[["cras",p.has("cadOld")?"Atualizar o Cadastro Único":"Fazer o Cadastro Único"]],
+ pbf:[["auto","Seleção pelo governo federal. Acompanhar pelo app Bolsa Família ou pelo 121"]],
+ bpc:[["inss","Pedir o BPC, com o CadÚnico em dia"],["dpe","BPC negado: recorrer"]],
+ tse:[["auto","Desconto na conta de luz. Se não aparecer, pedir à distribuidora informando o NIS"]],
+ pdm:[["auto","Inclusão pela escola. Consultar no app Jornada do Estudante"]],
+ cpi:[["cras","Emitir a Carteira da Pessoa Idosa (também pelo site do MDS)",["Documento com foto","NIS"]]],
+ plfed:[["online","Pedir no site do Ministério dos Transportes, com laudo"]],
+ maes:[["auto","O Estado seleciona pelo CadÚnico e a prefeitura avisa a entrega do cartão"]],
+ inclusivo:[["cras","Conferir se a deficiência está registrada no CadÚnico",[]],["auto","O Estado seleciona pelo CadÚnico"]],
+ dignidade:[["auto","Entrada automática pelo CadÚnico"]],
+ porelas:p=>p.has("mpu")?[["auto","A medida protetiva chega à Seds, que entra em contato para entregar o cartão"]]:[["deaem","A medida protetiva também dá acesso ao Goiás Por Elas (R$ 300/mês)",[]]],
+ aluguel:[["online","Inscrição em aluguelsocial.agehab.go.gov.br ou no app Aluguel Social"]],
+ ple:[["online","Cadastro em juventude.go.gov.br e retirada do cartão no Vapt Vupt"]],
+ aprendiz:[["online","Acompanhar a abertura de inscrições em aprendizdofuturo.org.br"]],
+ ciptea:[["mxc","Pedir a carteira (no interior, também pelo e-mail pcd@goias.gov.br)"]],
+ plpcd:[["mxc","Pedir o passe (também pelo WhatsApp (62) 98104-3652)"]],
+ passaporte:p=>p.mun==="Goiânia"?[["mxc","Pedir o passaporte"]]:[["cras","Pedir o passaporte"]],
+ credito:[["cras","Perguntar sobre o Crédito Social e o curso de capacitação",[]]],
+ registro:[["registro","Pedir a 2ª via gratuita da certidão"]],
+ ceaf:[["medico","Pedir a LME, a receita e os exames exigidos pelo protocolo da doença",["Cartão do SUS","Exames que já tiver"]],
+  ["online","Abrir o pedido no go.gov.br com a conta gov.br do paciente"],["dpe","Remédio negado ou fora da lista: pedido administrativo ou ação"]],
+ fpop:[["farmacia","Retirar os remédios de graça com a receita"]],
+ pep:[["pep","Pedir a PEP: só funciona se começar em até 72h"]],
+ hivcare:p=>p.has("hiv")?[["hiv","Consulta com infectologista no SAE e início do tratamento"]]:[["hiv","Teste rápido de HIV e IST, gratuito e sigiloso"]],
+ prep:[["hiv","Começar a PrEP"]],
+ mp:[["mp","Representação, se o pedido por escrito e a ouvidoria não resolverem"]],
+ "r-mulher":p=>[["deaem","Registrar ocorrência e pedir medida protetiva"],p.mun==="Goiânia"?["cora","Acompanhamento social, psicológico e jurídico"]:["creas","Acompanhamento social e psicológico"]],
+ "r-crianca":[["ct","Comunicar a situação ao Conselho Tutelar"],["creas","Acompanhamento da família"]],
+ "r-idoso":[["creas","Acompanhamento no CREAS (denúncia também pelo Disque 100)"]],
+ "r-rua":[["pop","Alimentação, higiene, documentos e vaga em acolhimento"]],
+ "r-mental":[["ubs","Acolhimento em saúde mental. A UBS encaminha ao CAPS, que também atende direto"]],
+ "r-gest":p=>[["ubs","Começar o pré-natal, de preferência até a 12ª semana"]].concat(p.has("pbf")||p.has("cad")?[["cras","Informar a gestação para o adicional do Bolsa Família",[]]]:[]),
+ "r-fome":[["cras","Pedir benefício eventual (cesta básica)",["Documento com foto e CPF"]]]
+};
+/* Nome curto para listas e etiquetas. */
+const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
+ ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
+ hivcare:"Cuidado em HIV",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
+ "r-rua":"População de rua","r-mental":"Saúde mental","r-gest":"Pré-natal","r-fome":"Segurança alimentar"};
+const curto=pol=>CURTO[pol.id]||pol.nome;
+/* Políticas que só saem com o CadÚnico em dia. */
+const CAD_DEP=["pbf","bpc","tse","pdm","cpi","plfed","maes","inclusivo","dignidade","porelas","aluguel","passaporte","plpcd","credito","aprendiz"];
+const CAMPOS={renda:{t:"Renda da casa e pessoas na casa",foco:["renda","pessoas"]},idade:{t:"Idade",foco:["idade"]}};
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").trim();
+
+function montarRoteiro(hits,p){
+ const paradas=new Map();
+ for(const x of hits){
+  const r=ROTA[x.pol.id];const steps=typeof r==="function"?r(p):(r||[]);
+  for(const [k,texto,docs] of steps){
+   const st=STOPS[k];if(!st)continue;
+   if(!paradas.has(k))paradas.set(k,{k,nome:st.nome,q:st.q,acoes:[],docs:[],lugares:st.lugar(p),ordem:paradas.size});
+   const pa=paradas.get(k);
+   pa.acoes.push({texto,pol:x.pol,st:x.st});
+   const d=Array.isArray(docs)?docs:Array.isArray(st.docs)?st.docs:(x.pol.docs||[]);
+   d.forEach(doc=>{if(!pa.docs.some(e=>norm(e)===norm(doc)))pa.docs.push(doc)});
+  }
+ }
+ const lista=[...paradas.values()].sort((a,b)=>a.q-b.q||a.ordem-b.ordem);
+ const cadAcao=lista.flatMap(s=>s.acoes).find(a=>a.pol.id==="cad");
+ if(cadAcao){const abre=hits.filter(h=>CAD_DEP.includes(h.pol.id)).map(h=>curto(h.pol));if(abre.length)cadAcao.abre=abre}
+ return lista;
+}
+
+/* ---------- AVALIAÇÃO ----------
+   Testa cada política contra o perfil e separa: encaminhamentos (enc, prov, ver), não indicados (nao, com o motivo)
+   e o que falta preencher para avaliar (falta, agrupado por campo). Não toca na tela: é o que os testes usam. */
+function avaliar(p){
+ const hits=[],nao=[],faltaPor={};
+ for(const pol of P){const r=pol.test(p);if(!r)continue;
+  if(r[0]==="nao")nao.push({pol,why:r[1]});
+  else if(r[0]==="falta")r[2].forEach(c=>(faltaPor[c]=faltaPor[c]||[]).push(pol));
+  else hits.push({pol,st:r[0],why:r[1]});}
+ const order={enc:0,prov:1,ver:2};
+ const top=["pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","mp","cad"];
+ const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
+ hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
+ const urg=[];
+ if(p.has("suic"))urg.push("Risco de suicídio: se há tentativa ou perigo agora, ligue <b>192</b> (SAMU). Para conversar, <b>188</b> (CVV), 24h.");
+ if(p.has("violMulher"))urg.push("Violência acontecendo agora: <b>190</b> (PM) ou <b>153</b> (GCM Goiânia). Orientação sigilosa: <b>180</b>.");
+ if(p.has("pep"))urg.push("Exposição ao HIV há menos de 72h: ir <b>agora</b> a uma UPA ou CAIS 24h ou ao HDT para a PEP. Quanto antes, melhor.");
+ if(p.has("violCrianca"))urg.push("Criança ou adolescente em risco: Conselho Tutelar ou <b>100</b>. Lesão grave: <b>192</b>.");
+ return {hits,nao,falta:faltaPor,urg,roteiro:montarRoteiro(hits,p)};
+}
+
 /* ---------- ONDE IR ---------- */
 function places(kind,p){
  const gyn=p.mun==="Goiânia",ap=p.mun==="Aparecida de Goiânia";
@@ -835,38 +1047,65 @@ function render(){
  const p=read();
  $("regBox").hidden=p.mun!=="Goiânia";
  $("calc").innerHTML=p.pc!==null?`Renda por pessoa: <strong>${brl(p.pc)}</strong> · 1/4 SM ${brl(p.sm/4)} · 1/2 SM ${brl(p.sm/2)}`:"Informe renda e número de pessoas para calcular a renda por pessoa.";
- const hits=[];
- for(const pol of P){const r=pol.test(p);if(r)hits.push({pol,st:r[0],why:r[1]})}
- const order={enc:0,prov:1,ver:2};
- const top=["pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","mp","cad"];
- const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
- hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
- const urg=[];
- if(p.has("suic"))urg.push("Risco de suicídio: se há tentativa ou perigo agora, ligue <b>192</b> (SAMU). Para conversar, <b>188</b> (CVV), 24h.");
- if(p.has("violMulher"))urg.push("Violência acontecendo agora: <b>190</b> (PM) ou <b>153</b> (GCM Goiânia). Orientação sigilosa: <b>180</b>.");
- if(p.has("pep"))urg.push("Exposição ao HIV há menos de 72h: ir <b>agora</b> a uma UPA ou CAIS 24h ou ao HDT para a PEP. Quanto antes, melhor.");
- if(p.has("violCrianca"))urg.push("Criança ou adolescente em risco: Conselho Tutelar ou <b>100</b>. Lesão grave: <b>192</b>.");
+ const {hits,nao,falta,urg,roteiro}=avaliar(p);
  const R=$("results");
  let h="";
  if(urg.length)h+=`<div class="urgent" role="alert"><h3>Antes de tudo: segurança</h3><ul>${urg.map(u=>`<li>${u}</li>`).join("")}</ul></div>`;
  const nP=hits.filter(x=>x.st==="prov").length,nV=hits.filter(x=>x.st==="ver").length,nE=hits.filter(x=>x.st==="enc").length;
  h+=`<div class="summary"><h2>${hits.length} encaminhamento${hits.length===1?"":"s"}${p.ini?" · "+esc(p.ini):""} · ${esc(p.mun)}</h2><div class="legend"><span class="status enc">${nE} proteção</span><span class="status prov">${nP} provável direito</span><span class="status ver">${nV} verificar</span></div></div>`;
  if(hits.length){h+=`<div class="btns"><button class="b" type="button" id="copyAll">Copiar resumo do encaminhamento</button></div>`}
+ const fk=Object.keys(falta);
+ if(fk.length)h+=`<div class="falta"><h3>Complete para avaliar mais direitos</h3><ul>${fk.map(c=>`<li><span><b>${esc(CAMPOS[c].t)}</b> decide: ${falta[c].map(pol=>esc(curto(pol))).join(", ")}.</span><button type="button" class="b ghost sm" data-campo="${c}">Preencher</button></li>`).join("")}</ul></div>`;
  if(!hits.length)h+=`<div class="empty">Nenhum encaminhamento ainda. Preencha a etapa 1 (município, renda e pessoas na casa) e marque as necessidades na etapa 2.</div>`;
+
+ /* roteiro */
  const lines=[`ENCAMINHAMENTO · ${p.ini?"Pessoa: "+p.ini+" · ":""}${p.mun}${p.reg?" (região "+p.reg+")":""} · ${new Date().toLocaleDateString("pt-BR")}`,p.idade!==null?`Idade: ${p.idade} anos`:"",p.pc!==null?`Renda por pessoa: ${brl(p.pc)}`:"",[p.trabT&&"Trabalho: "+p.trabT,p.moradiaT&&"Moradia: "+p.moradiaT,p.escolT&&"Escolaridade: "+p.escolT].filter(Boolean).join(" · "),p.dem?`Solicitação: ${p.dem}`:""].filter(Boolean);
- hits.forEach((x,i)=>{
+ if(roteiro.length){
+  lines.push("","ROTEIRO");
+  let n=0;
+  h+=`<section class="route" aria-label="Roteiro"><div class="routehead"><h3>Roteiro</h3><p class="hint">O que fazer, em que ordem e onde. Cada lugar aparece uma vez, com tudo o que se resolve lá.</p></div>`;
+  QUANDO.forEach((g,qi)=>{
+   const ps=roteiro.filter(s=>s.q===qi);if(!ps.length)return;
+   h+=`<div class="rgroup q${qi}"><div class="when"><b>${esc(g.t)}</b><span>${esc(g.d)}</span></div><ol class="stops">`;
+   ps.forEach(s=>{
+    n++;
+    const lug=s.lugares.filter(Boolean);
+    h+=`<li class="stop"><div class="stophead"><span class="num">${n}</span><h4>${esc(s.nome)}</h4></div>
+     <ul class="acts">${s.acoes.map(a=>`<li><span>${esc(a.texto)}</span> <span class="for">${esc(curto(a.pol))}${a.st==="ver"?` · <i>verificar</i>`:""}</span>${a.abre?`<span class="abre">Com o cadastro, a família pode ter: ${a.abre.map(esc).join(", ")}.</span>`:""}</li>`).join("")}</ul>
+     ${s.docs.length?`<div class="levar"><b>Levar</b><ul>${s.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}
+     ${lug.length?`<details class="where"><summary>Endereços e contatos (${lug.length})</summary><div class="places">${lug.map(placeHtml).join("")}</div></details>`:""}</li>`;
+    lines.push("",`${n}. [${g.t}] ${s.nome}`,...s.acoes.map(a=>`   - ${a.texto} (${curto(a.pol)}${a.st==="ver"?", verificar":""})`+(a.abre?`. Abre: ${a.abre.join(", ")}`:"")));
+    if(s.docs.length)lines.push(`   Levar: ${s.docs.join("; ")}`);
+    lug.filter(l=>!l.fake).forEach(l=>lines.push(`   → ${l.nome}${l.end?", "+l.end:""}${l.tel?" · "+l.tel.join(" / "):""}${l.email?" · "+l.email:""}`));
+   });
+   h+=`</ol></div>`;
+  });
+  h+=`</section>`;
+ }
+
+ /* detalhe por política */
+ if(hits.length){
+  h+=`<div class="routehead"><h3>Detalhe de cada encaminhamento</h3><p class="hint">Por que foi indicado, o passo a passo completo e os documentos.</p></div>`;
+  lines.push("","DETALHE");
+ }
+ hits.forEach(x=>{
   const sp=SPH[x.pol.esf],st=ST[x.st];
   const pl=[];if(x.pol.where){pl.push(...places(x.pol.where,p).list)}(x.pol.extra||[]).forEach(e=>{if(byId[e]&&!pl.includes(byId[e]))pl.push(byId[e])});
-  h+=`<details class="card"${i<2?" open":""}><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(x.pol.nome)}</h3><span class="sphere ${sp[0]}">${sp[1]}</span><span class="status ${st[0]}">${st[1]}</span></div><span class="val">${esc(x.pol.val)}</span><span class="why">${esc(x.why)}</span></summary>
+  h+=`<details class="card"><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(x.pol.nome)}</h3><span class="sphere ${sp[0]}">${sp[1]}</span><span class="status ${st[0]}">${st[1]}</span></div><span class="val">${esc(x.pol.val)}</span><span class="why">${esc(x.why)}</span></summary>
   <div class="body"><div><h4>Fluxo</h4><ol class="flow">${x.pol.flow.map(f=>`<li><span>${esc(f)}</span></li>`).join("")}</ol></div>
   ${x.pol.docs&&x.pol.docs.length?`<div><h4>Documentos</h4><ul class="docs">${x.pol.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}
   ${x.pol.html||""}
-  ${pl.length?`<div><h4>Onde ir</h4><div class="places">${pl.map(placeHtml).join("")}</div></div>`:""}</div></details>`;
+  ${pl.filter(Boolean).length?`<div><h4>Onde ir</h4><div class="places">${pl.map(placeHtml).join("")}</div></div>`:""}</div></details>`;
   lines.push("",`• ${x.pol.nome} [${sp[1]} · ${st[1]}] ${x.pol.val}`,`  Motivo: ${x.why}`,...x.pol.flow.map((f,j)=>`  ${j+1}. ${f}`));
-  pl.filter(s=>!s.fake).forEach(s=>lines.push(`  → ${s.nome}${s.end?", "+s.end:""}${s.tel?" · "+s.tel.join(" / "):""}${s.email?" · "+s.email:""}`));
  });
+
+ /* por que não */
+ if(nao.length){
+  h+=`<details class="nao"><summary>Avaliados e não indicados agora (${nao.length})</summary><ul>${nao.map(x=>`<li><b>${esc(x.pol.nome)}</b><span>${esc(x.why)}</span></li>`).join("")}</ul><p class="hint">Se a renda ou a família mudar, o resultado muda. Quem decide a concessão é sempre o órgão responsável.</p></details>`;
+  lines.push("","NÃO INDICADOS AGORA",...nao.map(x=>`• ${curto(x.pol)}: ${x.why}`));
+ }
  lines.push("","Gerado no Encaminha Goiânia. Sem nome, endereço ou documento da pessoa. Confirme contatos antes do envio.");
- lastText=lines.filter(l=>l!==undefined).join("\n");
+ lastText=lines.join("\n");
  R.innerHTML=h;
  const nNeeds=["chipsSau","chipsProt","chipsSoc"].reduce((a,k)=>a+$(k).querySelectorAll("input:checked").length,0)+(p.dem?1:0);
  $("sum1").textContent=[p.ini||"Sem iniciais",p.mun,p.pc!==null?brl(p.pc)+"/pessoa":null].filter(Boolean).join(" · ");
@@ -897,6 +1136,9 @@ const steps=[...document.querySelectorAll('.stepnav [role=tab]')];
 function step(n){steps.forEach((b,i)=>{const on=i===n-1;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});}
 steps.forEach((b,i)=>b.addEventListener("click",()=>step(i+1)));
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){step(+g.dataset.go);$("p-enc").scrollIntoView({block:"start"})}});
+/* "Preencher": volta à etapa 1 e põe o cursor no primeiro campo vazio que decide o resultado */
+document.addEventListener("click",e=>{const b=e.target.closest("[data-campo]");if(!b)return;const c=CAMPOS[b.dataset.campo];if(!c)return;
+ step(1);const el=c.foco.map($).find(x=>!x.value)||$(c.foco[0]);el.scrollIntoView({block:"center"});el.focus()});
 function show(id){tabs.forEach(b=>{const on=b.id===id;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});try{localStorage.setItem("enc-tab",id)}catch(e){}}
 tabs.forEach(b=>b.addEventListener("click",()=>show(b.id)));
 
@@ -920,6 +1162,8 @@ $("f").addEventListener("input",()=>markCase(""));
 markCase("familia");step(3);
 ["fq","fm","ft"].forEach(i=>$(i).addEventListener("input",dirRender));
 render();dirRender();
+/* Motor exposto para os testes automáticos (tests/motor.test.mjs). */
+window.EncaminhaMotor={perfil,avaliar,CASES,SM_PADRAO};
 try{const t=localStorage.getItem("enc-tab");if(t&&$(t))show(t)}catch(e){}
 const hash=location.hash.slice(1);if(hash==="rede")show("tab-rede");else if(hash==="servicos")show("tab-serv");
 })();
