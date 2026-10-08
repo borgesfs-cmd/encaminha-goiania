@@ -1,3 +1,4 @@
+<meta name="encaminha-api" content="">
 <title>Encaminha Goiânia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -367,6 +368,12 @@ th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute
 .cov.full{color:var(--ok)} .cov.part{color:var(--suas)} .cov.min{color:var(--alert)}
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 footer .wrap{padding-block:18px}
+#conexao{display:block;margin-top:6px}
+.aviso-dados{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;max-width:560px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--ink);color:var(--bg);border-radius:10px;padding:10px 14px;font-size:15px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.aviso-acoes{display:flex;gap:12px;align-items:center;flex:none}
+.aviso-dados .link{color:var(--bg)}
+.chaveform{display:flex;gap:8px;margin:10px 0 6px;flex-wrap:wrap}
+.chaveform input{flex:1 1 180px;font:16px var(--font-body);padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -595,7 +602,7 @@ footer .wrap{padding-block:18px}
 </section>
 </main>
 
-<footer><div class="wrap">Protótipo de orientação. Não substitui a avaliação da equipe técnica nem a decisão do órgão que concede o benefício. Contatos conferidos em 08/10/2026.</div></footer>
+<footer><div class="wrap">Protótipo de orientação. Não substitui a avaliação da equipe técnica nem a decisão do órgão que concede o benefício. Contatos conferidos em 08/10/2026.<span id="conexao"></span></div></footer>
 
 <!-- Dados vindos do banco de dados no Google Planilhas. Gerado por scripts/planilha-para-app.mjs: não edite à mão. -->
 <script type="application/json" id="dados-planilha">{"geradoEm":"2026-10-08","servicos":[{"id":"ciatox","nome":"CIATox Goiás, Centro de Informação e Assistência Toxicológica","tipo":"Saúde","mun":"Estado","reg":"","end":"","tel":"0800 646 4350","email":"","hor":"24h, todos os dias","site":"https://goias.gov.br/saude/ciatox/","obs":"Orienta profissionais e população em intoxicação por remédio, veneno, agrotóxico, produto de limpeza ou animal peçonhento. Fonte: SES/GO, consultado em 08/10/2026.","situacao":"Ativo","conferido":"08/10/2026"},{"id":"crer","nome":"CRER, Centro Estadual de Reabilitação e Readaptação Dr. Henrique Santillo","tipo":"Saúde","mun":"Estado","reg":"","end":"Av. Vereador José Monteiro, 1655, Setor Negrão de Lima, Goiânia, CEP 74653-230","tel":"Recepção (62) 3232-3232 / (62) 3232-3000","email":"","hor":"","site":"https://goias.gov.br/saude/crer/","obs":"Reabilitação pelo SUS. A primeira consulta é agendada pela regulação, com encaminhamento da UBS; não há procura direta. Fonte: SES/GO, consultado em 08/10/2026.","situacao":"Ativo","conferido":"08/10/2026"},{"id":"credeq","nome":"Credeq Prof. Jamil Issy, referência estadual em dependência química","tipo":"Saúde","mun":"Aparecida de Goiânia","reg":"","end":"","tel":"","email":"","hor":"","site":"","obs":"Casos graves de álcool e drogas, com internação voluntária de até 90 dias. A vaga vem pela regulação, com encaminhamento do CAPS AD. Fonte: Governo de Goiás e imprensa; endereço e telefone ainda não conferidos.","situacao":"A conferir","conferido":""},{"id":"autoexclusao","nome":"Autoexclusão de apostas (Ministério da Fazenda)","tipo":"Nacional","mun":"Nacional","reg":"","end":"","tel":"","email":"","hor":"","site":"https://www.gov.br/pt-br/servicos/plataforma-centralizada-de-autoexclusao-apostas","obs":"Bloqueia o CPF em todas as bets autorizadas, de 1 a 12 meses ou por tempo indeterminado, e corta a publicidade. Exige conta gov.br prata ou ouro. Fonte: gov.br, consultado em 08/10/2026.","situacao":"Ativo","conferido":"08/10/2026"},{"id":"sine","nome":"Sine Goiânia","tipo":"Trabalho","mun":"Goiânia","reg":"","end":"Rua 1, nº 147, Setor Central, Goiânia","tel":"","email":"","hor":"","site":"","obs":"Vagas, seguro-desemprego e orientação profissional. Agendamento pelo app Prefeitura 24h. Levar RG, CPF, carteira de trabalho e comprovante de endereço. Endereço de reportagem recente: confirme antes de ir.","situacao":"A conferir","conferido":""},{"id":"procon","nome":"Procon Goiás","tipo":"Justiça e direitos","mun":"Estado","reg":"","end":"Rua 8, nº 242, Setor Central, Goiânia","tel":"Goiânia 151 / Interior (62) 3201-7124 / Superendividados (62) 3201-2891","email":"","hor":"Seg a sex, 8h às 17h","site":"https://www.procon.go.gov.br","obs":"Reclamação de consumo, juros abusivos e renegociação de dívidas (Núcleo de Apoio aos Superendividados). Fonte: Procon Goiás, 2022: confirme os telefones.","situacao":"A conferir","conferido":""},{"id":"dpca","nome":"DPCA, Delegacia de Proteção à Criança e ao Adolescente","tipo":"Justiça e direitos","mun":"Goiânia","reg":"","end":"Rua C-190 esq. c/ C-107, Qd. 226, Lt. 13, Jardim América, Goiânia, CEP 74255-080","tel":"(62) 3286-1540 / (62) 3286-1298 / (62) 3286-1552","email":"dpca.goiania.pcgo@pc.goias.gov.br","hor":"Seg a sex, 8h às 12h e 14h às 18h","site":"","obs":"Crimes contra crianças e adolescentes, inclusive violência sexual. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026.","situacao":"Ativo","conferido":"08/10/2026"},{"id":"deacri","nome":"Deacri, Delegacia de Crimes Raciais e de Intolerância","tipo":"Justiça e direitos","mun":"Goiânia","reg":"","end":"Av. 2ª Radial, Qd. 48, Lt. 28, Setor Pedro Ludovico, Goiânia, CEP 74820-090","tel":"(62) 98495-2047","email":"deacri.pcgo@pc.goias.gov.br","hor":"Seg a sex, 8h às 18h","site":"","obs":"Racismo, injúria racial, xenofobia, intolerância religiosa e LGBTfobia, inclusive ataques a terreiros. Também é possível registrar em qualquer delegacia ou pelo 197. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026.","situacao":"Ativo","conferido":"08/10/2026"},{"id":"crei","nome":"Crei, Centro de Referência Estadual da Igualdade (Seds)","tipo":"Justiça e direitos","mun":"Estado","reg":"","end":"","tel":"","email":"crei.seds@goias.gov.br","hor":"","site":"https://goias.gov.br/social/superintendencia-da-igualdade-racial/","obs":"Atendimento psicológico, social e jurídico gratuito, presencial e on-line, a vítimas de racismo, intolerância religiosa e outras discriminações. Ligado à Superintendência da Igualdade Racial, que tem gerência para povos de terreiro. Fonte: Seds/GO; o e-mail aparece também na Superintendência da Mulher: confirme.","situacao":"A conferir","conferido":""},{"id":"deai","nome":"Delegacia Estadual de Atendimento ao Idoso","tipo":"Justiça e direitos","mun":"Goiânia","reg":"","end":"Av. Anhanguera, nº 463, Setor Universitário, Goiânia","tel":"(62) 3201-1501 / (62) 3201-1511","email":"","hor":"8h às 18h","site":"","obs":"Crimes contra a pessoa idosa. Dados da inauguração (2016): confirme antes de ir ou use o 197.","situacao":"A conferir","conferido":""},{"id":"hc-ufg","nome":"Hospital das Clínicas da UFG (Ebserh)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"","tel":"(62) 3269-8380","email":"","hor":"","site":"https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-centro-oeste/hc-ufg","obs":"Hospital-escola 100% SUS. Consultas e cirurgias pela regulação, com encaminhamento da UBS. Telefone de 2021: confirme. Carta de Serviços 2026 no site.","situacao":"A conferir","conferido":""},{"id":"araujo-jorge","nome":"Hospital de Câncer Araújo Jorge (ACCG)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"","tel":"","email":"","hor":"","site":"https://www.accg.org.br","obs":"Único Centro de Alta Complexidade em Oncologia (Cacon) do Estado, filantrópico com atendimento SUS. Acesso pela regulação. Houve suspensões de novos atendimentos em 2025: confirme antes.","situacao":"A conferir","conferido":""},{"id":"capsi","nome":"CAPSi estadual, saúde mental de crianças e adolescentes","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Rua 72 c/ Av. H, s/n, Parque da Criança, Jardim Goiás, Goiânia, CEP 74805-480","tel":"(62) 3201-4346 / (62) 3201-4473","email":"capsiestadual@gmail.com","hor":"","site":"","obs":"De 3 a 17 anos, com os pais ou responsáveis: psicologia, fonoaudiologia, terapia ocupacional, grupos e serviço social. Fonte: SES/GO; confirme o horário por telefone.","situacao":"A conferir","conferido":""},{"id":"transviver","nome":"Ambulatório Transviver (Prefeitura de Goiânia)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Nas instalações da UPA Novo Mundo, Goiânia","tel":"","email":"","hor":"Seg a sex, 7h às 19h","site":"","obs":"Para maiores de 18 anos: endocrinologia, psicologia, enfermagem, serviço social e hormônios. Fonte: imprensa, 2024: confirme.","situacao":"A conferir","conferido":""},{"id":"escritorio-social","nome":"Escritório Social, apoio a egressos do sistema prisional","tipo":"Justiça e direitos","mun":"Goiânia","reg":"","end":"Rua 83, nº 484, Setor Sul, Goiânia","tel":"","email":"","hor":"","site":"","obs":"Egressos, pré-egressos e liberados condicionais e suas famílias: documentos, trabalho, estudo e políticas sociais. Atendimento voluntário. Inaugurado em dez/2024 (Goiás Social): confirme o horário.","situacao":"A conferir","conferido":""},{"id":"pastoral-migrantes","nome":"Pastoral dos Migrantes de Goiânia","tipo":"Rede comunitária e gratuita","mun":"Goiânia","reg":"","end":"","tel":"(62) 4018-1606 / (62) 99635-1212","email":"","hor":"","site":"","obs":"Acolhe migrantes e refugiados (venezuelanos, haitianos e outros): orientação, documentos, trabalho. Tem ponto de atendimento na rodoviária. Fonte: CSEM, publicação antiga: confirme.","situacao":"A conferir","conferido":""},{"id":"cejusc","nome":"Cejusc, conciliação gratuita do TJGO","tipo":"Justiça e direitos","mun":"Goiânia","reg":"","end":"Fórum Cível de Goiânia, Av. Olinda c/ Rua PL-03, Park Lozandes","tel":"WhatsApp (62) 99218-2532","email":"","hor":"","site":"","obs":"Acordo sobre pensão, guarda, visitas, divórcio e dívidas, sem processo. WhatsApp divulgado nas Semanas da Conciliação de 2023 e 2024: confirme.","situacao":"A conferir","conferido":""},{"id":"restbem","nome":"Restaurante do Bem (OVG), refeição a R$ 2","tipo":"Rede comunitária e gratuita","mun":"Goiânia","reg":"","end":"Av. Araguaia esq. c/ Rua 3, nº 514, Setor Central, Goiânia","tel":"","email":"","hor":"","site":"https://ovg.org.br","obs":"Almoço a R$ 2 para pessoas em vulnerabilidade, idosos e população de rua. Há outras unidades em Goiânia (Campinas) e no interior. Fonte: regulamento OVG, 2024: confirme o horário.","situacao":"A conferir","conferido":""},{"id":"pestalozzi","nome":"Associação Pestalozzi de Goiânia","tipo":"Rede comunitária e gratuita","mun":"Goiânia","reg":"","end":"Centro Peter Pan: Praça da Bíblia, Qd. K, Vila Santa Isabel, Goiânia","tel":"","email":"","hor":"","site":"","obs":"Atendimento especializado e educação para pessoas com deficiência intelectual ou múltipla. Fonte: convênio com a Seduc/GO: confirme.","situacao":"A conferir","conferido":""},{"id":"apae-gyn","nome":"APAE de Goiânia","tipo":"Rede comunitária e gratuita","mun":"Goiânia","reg":"","end":"Rua 255, nº 628, Setor Coimbra, Goiânia","tel":"","email":"","hor":"","site":"","obs":"Pessoas com deficiência intelectual ou múltipla: pediatria, psicologia, neurologia, fisioterapia, odontologia. Fonte: diretório não oficial: confirme.","situacao":"A conferir","conferido":""},{"id":"anhanguera-psi","nome":"Clínica-escola de Psicologia da Faculdade Anhanguera de Goiânia","tipo":"Rede comunitária e gratuita","mun":"Goiânia","reg":"","end":"","tel":"","email":"","hor":"","site":"","obs":"Psicoterapia, orientação e avaliação psicológica para crianças, adolescentes, adultos e idosos, por alunos supervisionados. Fonte: imprensa, 2025: confirme como agendar.","situacao":"A conferir","conferido":""},{"id":"cemac","nome":"Cemac Juarez Barbosa, Centro Estadual de Medicação de Alto Custo","tipo":"Saúde","mun":"Estado","reg":"","end":"Rua 16, nº 97, Setor Central, Goiânia, CEP 74015-020","tel":"(62) 3201-7446 / (62) 3201-7450 / Dúvidas/WhatsApp (62) 3201-7453","email":"","hor":"Seg a sex, 7h às 17h","site":"https://goias.gov.br/saude/cemac-juarez-barbosa/","obs":"Pedido, renovação e acompanhamento são online pelo go.gov.br. Retirada presencial (Goiânia) ou no município/policlínica (interior).","situacao":"Ativo","conferido":""},{"id":"pep-noroeste","nome":"UPA Noroeste (PEP 24h)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Rua JC-22, Jardim Curitiba","tel":"(62) 3524-3461","email":"","hor":"","site":"","obs":"Profilaxia pós-exposição ao HIV, até 72h. Lista de 2024: confirme por telefone.","situacao":"A conferir","conferido":""},{"id":"pep-itaipu","nome":"UPA Itaipu (PEP 24h)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Av. do Povo, 13","tel":"(62) 3524-2560","email":"","hor":"","site":"","obs":"PEP até 72h. Lista de 2024: confirme por telefone.","situacao":"A conferir","conferido":""},{"id":"pep-novomundo","nome":"UPA Jardim Novo Mundo (PEP 24h)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Av. New York, Qd. 137, s/n, Jd. Novo Mundo","tel":"(62) 3524-5073","email":"","hor":"","site":"","obs":"PEP até 72h. Lista de 2024: confirme por telefone.","situacao":"A conferir","conferido":""},{"id":"pep-chacara","nome":"UPA Chácara do Governador (PEP 24h)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Rua DF-02, Lt. 14, esq. Rua DF-18","tel":"(62) 3246-2705","email":"","hor":"","site":"","obs":"PEP até 72h. Lista de 2024: confirme por telefone.","situacao":"A conferir","conferido":""},{"id":"pep-goia","nome":"CAIS Bairro Goiá (PEP 24h)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Av. Santa Maria, s/n, Bairro Goiá","tel":"(62) 3519-1781","email":"","hor":"","site":"","obs":"PEP até 72h. Lista de 2024: confirme por telefone.","situacao":"A conferir","conferido":""},{"id":"pep-campinas","nome":"CAIS Campinas (PEP 24h)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Rua P-16 c/ P-30, Campinas","tel":"(62) 3524-1930","email":"","hor":"","site":"","obs":"PEP até 72h. Lista de 2024: confirme por telefone.","situacao":"A conferir","conferido":""},{"id":"pep-vilanova","nome":"CAIS Vila Nova (PEP 24h)","tipo":"Saúde","mun":"Goiânia","reg":"","end":"Rua B, 56, Vila Viana","tel":"(62) 3524-1826","email":"","hor":"","site":"","obs":"PEP até 72h. Lista de 2024: confirme por telefone.","situacao":"A conferir","conferido":""},{"id":"ceapsol","nome":"Ceap-SOL, Casa de Apoio Condomínio Solidariedade","tipo":"Rede comunitária e gratuita","mun":"Goiânia","reg":"","end":"Av. Veneza, Qd. 62, Lt. 1/10, s/n, Jardim Europa, Goiânia, CEP 74325-100","tel":"Recepção (62) 3201-9288 / Hospedagem/WhatsApp (62) 3201-9283","email":"","hor":"Serviço Social seg a sex, 7h às 18h","site":"","obs":"Unidade estadual. Hospedagem gratuita, alimentação e transporte para consultas de pessoas vivendo com HIV, principalmente do interior. Pedir com antecedência.","situacao":"Ativo","conferido":""},{"id":"cras0","nome":"Centro de Convivência Aruanã","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua AP-04, s/n, Conj. Residencial Aruanã II, Goiânia","tel":"(62) 99206-9665","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras1","nome":"Centro de Convivência Esplanada dos Anicuns","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua São Gotardo c/ Av. Progresso, Setor Esplanada dos Anicuns, Goiânia","tel":"(62) 99206-8758","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras2","nome":"CRAS Aroeiras","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Av. das Aroeiras, Qd. 20, Lt. 02, Jardim das Aroeiras, Goiânia","tel":"(62) 99207-8792","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras3","nome":"CRAS Baliza","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua BL-11, Qd. B-8, Conjunto Baliza, Goiânia","tel":"(62) 9207-8693","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras4","nome":"CRAS Canaã","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua Langendofer, Qd. 01, Lt. 01, Vila Nova Canaã, Goiânia","tel":"(62) 99210-7217","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras5","nome":"CRAS Capuava","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua Borba Gato, nº 367, Qd. 61, Lt. 19-20, Bairro Capuava, Goiânia","tel":"(62) 99210-5147","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras6","nome":"CRAS Cerrado","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua Flor da Noite, APM 4, Jardim Cerrado III, Goiânia","tel":"(62) 99204-6164","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras7","nome":"CRAS Colorado","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Av. do Contorno, Qd. 21, Lt. 09, Jardim Colorado, Goiânia","tel":"(62) 99207-5964","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras8","nome":"CRAS Curitiba","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Av. JC-22, Qd. 12-A, Lt. 1/15, Jardim Curitiba II, Goiânia","tel":"(62) 99210-8976","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras9","nome":"CRAS Finsocial","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua VF-42, Praça 34, s/n, Vila Finsocial, Goiânia","tel":"(62) 99207-5854","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras10","nome":"CRAS Floresta","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Av. da Conquista, Qd. 25, Bairro Floresta, Goiânia","tel":"(62) 99205-9123","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras11","nome":"CRAS Goiá","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua Padre Benedito Dias, Qd. 57-A, Bairro Goiá, Goiânia","tel":"(62) 99210-6386","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras12","nome":"CRAS Guanabara","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua GB-19, Qd. 20, Lt. 17, Jardim Guanabara 2, Goiânia","tel":"(62) 99208-2569","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras13","nome":"CRAS Isaura","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua 9, Qd. A, Lt. 14, Vila Isaura, Goiânia","tel":"(62) 99207-0369","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras14","nome":"CRAS Novo Horizonte","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Av. Maurício Gomes, s/n, Vila Novo Horizonte, Goiânia","tel":"(62) 99203-9564","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras15","nome":"CRAS Novo Mundo","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Praça Washington Luiz, Qd. Área, Lt. 01, Jd. Novo Mundo, Goiânia","tel":"(62) 99210-4247","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras16","nome":"CRAS Parque Atheneu","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua 2.012, Qd. Z, Lt. 26, Unid. 201, Parque Atheneu, Goiânia","tel":"(62) 99205-2358","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras17","nome":"CRAS Pedro Ludovico","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Praça Central, Qd. 60, Lt. 7 e 8, Setor Pedro Ludovico, Goiânia","tel":"(62) 99204-7300","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras18","nome":"CRAS Real Conquista","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua RC-10 c/ Av. Real Conquista, APM 10, Residencial Real Conquista, Goiânia","tel":"(62) 99210-4621","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras19","nome":"CRAS Recanto das Minas Gerais","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua SR-01, Chácara 7, Setor Recanto das Minas Gerais, Goiânia","tel":"(62) 99210-4591","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras20","nome":"CRAS Recanto do Bosque","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua RB-20, APM 26, Residencial Recanto do Bosque, Goiânia","tel":"(62) 99206-0317","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras21","nome":"CRAS Redenção","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua R-7 esq. c/ Alameda Jardim Botânico, Vila Redenção, Goiânia","tel":"(62) 99208-0392","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras22","nome":"CRAS Rio Verde","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua RV 02, Qd. 03, Lt. 01, Residencial Rio Verde, Goiânia","tel":"(62) 99210-8255","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras23","nome":"CRAS Santo Afonso","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua Princesa Isabel, s/n, Qd. 92, Lt. 24, Vila Aurora Oeste, Goiânia","tel":"(62) 99204-5315","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras24","nome":"CRAS União","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Rua U-47, s/n, Vila União, Goiânia","tel":"(62) 99210-4012","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"},{"id":"cras25","nome":"CRAS Vera Cruz","tipo":"CRAS","mun":"Goiânia","reg":"","end":"Av. Leopoldo de Bulhões, Qd. 100, Conjunto Vera Cruz II, Goiânia","tel":"(62) 98599-2250","email":"","hor":"","site":"","obs":"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024.","situacao":"Ativo","conferido":"18/10/2024"}],"politicas":[],"temas":[]}</script>
@@ -605,7 +612,27 @@ footer .wrap{padding-block:18px}
 /* ---------- PLANILHA ----------
    Correções feitas pela equipe no Google Planilhas. Valem por cima dos dados de base do código:
    serviços (corrigir, incluir, desativar), textos das políticas e temas do pedido livre (corrigir e incluir). */
-const PLANILHA=(()=>{try{return JSON.parse(document.getElementById("dados-planilha").textContent||"{}")}catch(e){return {}}})();
+/* Fora do Claude (site próprio), o app lê a planilha ao vivo pelo Apps Script cuja URL está na meta encaminha-api.
+   A última leitura fica guardada no aparelho e vale por cima do bloco dados-planilha. */
+const API=(()=>{if(window.claude)return "";const m=document.querySelector('meta[name="encaminha-api"]'),u=m?m.content.trim():"";return /^https:\/\/script\.google\.com\/(a\/macros\/[\w.-]+|macros)\/s\/[\w-]+\/exec$/.test(u)?u:""})();
+const lerLocal=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}};
+const gravarLocal=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
+const AO_VIVO=API?lerLocal("enc-planilha"):null;
+const PLANILHA=AO_VIVO&&AO_VIVO.dados?AO_VIVO.dados:(()=>{try{return JSON.parse(document.getElementById("dados-planilha").textContent||"{}")}catch(e){return {}}})();
+/* Abas da planilha (linhas com cabeçalho, como o Google devolve) → formato do bloco dados-planilha.
+   As colunas são achadas pelo começo do nome, em qualquer ordem. */
+function tabelasParaPlanilha(e){
+ const tab=(linhas,mapa)=>{
+  if(!Array.isArray(linhas)||!linhas.length)return [];
+  const cab=linhas[0].map(c=>String(c||"").toLowerCase()),idx=Object.entries(mapa).map(([k,pre])=>[k,cab.findIndex(c=>c.startsWith(pre))]);
+  return linhas.slice(1).filter(l=>l&&String(l[idx[0][1]]??"").trim()).map(l=>Object.fromEntries(idx.map(([k,i])=>[k,i<0?undefined:String(l[i]??"").trim()])));
+ };
+ return {
+  servicos:tab(e.servicos,{id:"id",nome:"nome",tipo:"tipo",mun:"município",reg:"região",end:"endereço",tel:"telefones",email:"e-mail",hor:"horário",site:"site",obs:"observação",situacao:"situação",conferido:"conferido em"}),
+  politicas:tab(e.politicas,{id:"id",nome:"nome",curto:"nome curto",val:"valor",flow:"passo a passo",docs:"documentos",extra:"outros contatos"}),
+  temas:tab(e.temas,{id:"chave",t:"título",palavras:"palavras",on:"liga",passos:"passo a passo",servicos:"contatos",urg:"frase"}).map(({id,...r})=>({k:id,...r}))
+ };
+}
 const lista=(v,sep)=>String(v||"").split(sep).map(x=>x.trim()).filter(Boolean);
 /* ---------- MUNICÍPIOS ---------- */
 const MUNS=["Goiânia","Aparecida de Goiânia","Senador Canedo","Trindade","Goianira","Abadia de Goiás","Aragoiânia","Bela Vista de Goiás","Bonfinópolis","Brazabrantes","Caldazinha","Caturaí","Goianápolis","Guapó","Hidrolândia","Inhumas","Nerópolis","Nova Veneza","Santo Antônio de Goiás","Terezópolis de Goiás"];
@@ -1793,13 +1820,14 @@ async function conectar(){
 }
 function regBoxHtml(){
  if(E.exemplo)return `<div class="regbox"><span class="hint">Exemplo pronto: não entra nas estatísticas.</span></div>`;
- if(!DB)return "";
+ if(!DB&&!API)return "";
  return `<div class="regbox"><div><b>Estatísticas da equipe</b><span class="hint">Registra só dados anônimos: município, faixas, assuntos e encaminhamentos. Nunca iniciais nem texto.</span></div>
   <button type="button" class="b ghost" id="regBtn">${E.regId?"Atualizar registro":"Registrar atendimento"}</button></div>`;
 }
+const novoIdRegistro=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 async function registrar(btn){
- if(!DB)return;
- const rec=registroAtual();rec.id=E.regId||(Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+ if(!DB)return API?registrarNaPlanilha(btn):undefined;
+ const rec=registroAtual();rec.id=E.regId||novoIdRegistro();
  const ref=DB.doc("registros/"+rec.dia+"__"+segId(USER_ID));
  btn.disabled=true;btn.textContent="Registrando…";
  try{
@@ -1809,10 +1837,84 @@ async function registrar(btn){
  }catch(e){btn.disabled=false;btn.textContent=e&&e.code==="quota_exceeded"?"Armazenamento cheio: avise a gestão":"Não foi possível registrar. Tentar de novo"}
 }
 function iniciarRelatorios(){
+ if(!DB&&API&&!relCarregando){const k=RELCHAVE||lerLocal("enc-chave");if(k)return lerRegistrosPlanilha(k)}
  if(DB&&!unsubReg){
   unsubReg=DB.collection("registros").onSnapshot(snap=>{relErro="";REGISTROS=snap.docs.flatMap(d=>Object.values(((d.data()||{}).itens)||{}));renderRel()},e=>{relErro=e&&e.code||"unavailable";unsubReg=null;renderRel()});
  }
  renderRel();
+}
+
+/* ---------- CONEXÃO COM A PLANILHA (site fora do Claude) ----------
+   Lê Serviços, Políticas e Temas pelo Apps Script. Dados novos valem na hora se o atendimento ainda não começou;
+   senão, um aviso oferece atualizar. Registros vão para a aba Registros, com fila no aparelho se faltar internet.
+   Os relatórios leem os registros só com a chave de gestor. */
+let CONEXAO={estado:API?"lendo":"",lidoEm:(AO_VIVO&&AO_VIVO.lidoEm)||""},relChaveOk=false,relCarregando=false,RELCHAVE="";
+const FILA="enc-fila";
+const filaLer=()=>{const f=lerLocal(FILA);return Array.isArray(f)?f:[]};
+const dataHora=iso=>{const d=new Date(iso);return isNaN(d)?"":d.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})};
+function renderConexao(){
+ const el=$("conexao");if(!el||!API)return;
+ const f=filaLer().length,pend=f?` ${f} atendimento${f>1?"s":""} aguardando internet para registrar.`:"";
+ el.textContent=CONEXAO.estado==="ok"?`Dados da planilha lidos em ${dataHora(CONEXAO.lidoEm)}.${pend}`
+  :CONEXAO.estado==="lendo"?"Lendo a planilha…"
+  :CONEXAO.lidoEm?`Sem conexão com a planilha: usando a leitura de ${dataHora(CONEXAO.lidoEm)}.${pend}`
+  :`Sem conexão com a planilha: usando os dados do app.${pend}`;
+}
+const atendimentoParado=()=>!$("p-enc").hidden&&!$("vInicio").hidden&&!E.nec.size&&!E.on.size&&!String(E.dem||"").trim();
+async function atualizarDaPlanilha(){
+ if(!API)return;
+ try{
+  const r=await fetch(API+"?acao=dados",{cache:"no-store"}),j=await r.json();
+  if(!j||!j.ok)throw new Error((j&&j.erro)||"resposta");
+  const dados=tabelasParaPlanilha(j),mudou=JSON.stringify(dados)!==JSON.stringify(PLANILHA);
+  CONEXAO={estado:"ok",lidoEm:j.lidoEm||new Date().toISOString()};
+  const guardou=gravarLocal("enc-planilha",{lidoEm:CONEXAO.lidoEm,dados});
+  if(mudou&&guardou){if(atendimentoParado())return location.reload();mostrarAvisoDados()}
+ }catch(e){CONEXAO={estado:"erro",lidoEm:(AO_VIVO&&AO_VIVO.lidoEm)||""}}
+ renderConexao();
+}
+function mostrarAvisoDados(){
+ if($("avisoDados"))return;
+ const d=document.createElement("div");d.id="avisoDados";d.className="aviso-dados";d.setAttribute("role","status");
+ d.innerHTML=`<span>A planilha tem dados novos.</span><span class="aviso-acoes"><button type="button" class="link" id="avisoFechar">Agora não</button><button type="button" class="b" id="avisoAtualizar">Atualizar</button></span>`;
+ document.body.appendChild(d);
+}
+/* Envia a fila do aparelho (ou a lista dada, quando o aparelho não guarda dados). Devolve os IDs gravados. */
+async function enviarRegistros(lista){
+ const daFila=!lista;lista=(lista||filaLer()).slice(0,20);
+ if(!API||!lista.length)return [];
+ let gravados=[];
+ try{
+  const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},
+   body:JSON.stringify({acao:"registrar",registros:lista.map(x=>({id:x.id,linha:registroParaLinha(x),dados:x}))})});
+  const j=await r.json();
+  if(j&&j.ok){gravados=j.gravados||[];if(daFila)gravarLocal(FILA,filaLer().filter(x=>!gravados.includes(x.id)))}
+ }catch(e){}
+ renderConexao();
+ return gravados;
+}
+async function registrarNaPlanilha(btn){
+ const rec=registroAtual();rec.id=E.regId||novoIdRegistro();
+ btn.disabled=true;btn.textContent="Registrando…";
+ const guardou=gravarLocal(FILA,filaLer().filter(x=>x.id!==rec.id).concat([rec]));
+ const ok=(await enviarRegistros(guardou?null:[rec])).includes(rec.id);
+ if(ok){E.regId=rec.id;btn.textContent="Registrado ✓"}
+ else if(guardou){E.regId=rec.id;btn.disabled=false;btn.textContent="Sem internet: guardado no aparelho, envia depois"}
+ else{btn.disabled=false;btn.textContent="Não foi possível registrar. Tentar de novo"}
+}
+async function lerRegistrosPlanilha(chave){
+ relCarregando=true;relErro="";renderRel();
+ try{
+  const r=await fetch(API+"?acao=registros&chave="+encodeURIComponent(chave),{cache:"no-store"}),j=await r.json();
+  if(j&&j.ok){REGISTROS=Array.isArray(j.registros)?j.registros:[];relChaveOk=true;RELCHAVE=chave;gravarLocal("enc-chave",chave)}
+  else{relChaveOk=false;relErro=j&&j.erro==="chave"?"chave":"unavailable";if(relErro==="chave"){RELCHAVE="";try{localStorage.removeItem("enc-chave")}catch(e){}}}
+ }catch(e){relChaveOk=false;relErro="unavailable"}
+ relCarregando=false;renderRel();
+}
+function iniciarConexao(){
+ if(!API)return;
+ renderConexao();atualizarDaPlanilha();enviarRegistros();
+ window.addEventListener("online",()=>{enviarRegistros();atualizarDaPlanilha()});
 }
 
 /* Dados de exemplo: atendimentos simulados, gerados pelo próprio motor. Só na tela, nunca gravados. */
@@ -1924,9 +2026,13 @@ function renderRel(){
   <div class="relfil"><div class="segs" role="group" aria-label="Período">${[["7","7 dias"],["30","30 dias"],["90","90 dias"],["365","12 meses"],["tudo","Tudo"]].map(([v,t])=>`<button type="button" class="seg" data-per="${v}" aria-pressed="${relPer===v}">${t}</button>`).join("")}</div>
   <label class="l" for="relMun">Município</label><select id="relMun">${muns.map(m=>`<option${m===relMun?" selected":""}>${esc(m)}</option>`).join("")}</select></div></div>`;
  if(relDemo)h+=`<div class="demo"><b>Dados de exemplo.</b> Atendimentos simulados para mostrar os painéis; não são registros reais. <button type="button" class="link" id="relReal">Voltar aos dados reais</button></div>`;
- else if(!DB)h+=`<div class="note">Os registros ficam guardados na versão publicada do app, aberta pela equipe. <button type="button" class="link" id="relDemoBtn">Ver os painéis com dados de exemplo</button></div>`;
+ else if(!DB&&API&&relCarregando)h+=`<div class="note">Lendo os registros da planilha…</div>`;
+ else if(!DB&&API&&!relChaveOk)h+=`<div class="note"><b>Acesso da gestão.</b> Os registros ficam na planilha. Digite a chave de gestor para ver os painéis.${relErro==="chave"?" <b>A chave não confere.</b>":relErro?" <b>Não foi possível ler a planilha agora.</b>":""}
+  <form class="chaveform" id="relChaveForm"><input type="password" id="relChave" autocomplete="off" aria-label="Chave de gestor" placeholder="Chave de gestor"><button type="submit" class="b">Entrar</button></form><button type="button" class="link" id="relDemoBtn">Ver os painéis com dados de exemplo</button></div>`;
+ else if(!DB&&!API)h+=`<div class="note">Os registros ficam guardados na versão publicada do app, aberta pela equipe. <button type="button" class="link" id="relDemoBtn">Ver os painéis com dados de exemplo</button></div>`;
  else if(relErro)h+=`<div class="note">Não foi possível ler os registros agora. Feche e abra a aba de novo. <button type="button" class="link" id="relDemoBtn">Ver com dados de exemplo</button></div>`;
  else if(!REGISTROS.length)h+=`<div class="note">Nenhum atendimento registrado ainda. No fim de cada plano, toque em <b>Registrar atendimento</b>. <button type="button" class="link" id="relDemoBtn">Ver os painéis com dados de exemplo</button></div>`;
+ if(!DB&&API&&relChaveOk&&!relDemo)h+=`<p class="hint">Registros lidos da planilha. <button type="button" class="link" id="relSair">Sair do acesso de gestão</button></p>`;
  if(!a.n&&!relDemo){root.innerHTML=h;return}
  const pct=v=>a.n?Math.round(v/a.n*100)+"%":"—";
  h+=`<div class="kpis">
@@ -2029,6 +2135,9 @@ document.addEventListener("click",e=>{
  if(t.dataset.per){relPer=t.dataset.per;return renderRel()}
  if(t.id==="relDemoBtn"){relDemo=true;return renderRel()}
  if(t.id==="relReal"){relDemo=false;return renderRel()}
+ if(t.id==="relSair"){relChaveOk=false;REGISTROS=[];RELCHAVE="";try{localStorage.removeItem("enc-chave")}catch(e){}return renderRel()}
+ if(t.id==="avisoAtualizar")return location.reload();
+ if(t.id==="avisoFechar"){$("avisoDados").remove();return}
  if(t.id==="relCopiar"&&RELATUAL)return copy(relTexto(RELATUAL),t);
  if(t.id==="relCsv"&&RELATUAL){const csv=relCsv(RELATUAL);
   (async()=>{let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null}catch(e){}
@@ -2054,11 +2163,12 @@ document.querySelectorAll(".case[data-case]").forEach(b=>b.addEventListener("cli
  const c=CASES[b.dataset.case];E=Object.assign(novoAtendimento(),c,{nec:new Set(c.nec),on:new Set(c.on),sm:SM_PADRAO,exemplo:true});mostrarPlano()}));
 /* Link da faixa de segurança: abre o card do manejo da crise */
 document.addEventListener("click",e=>{const a=e.target.closest("[data-abre]");if(!a)return;e.preventDefault();const c=$("card-"+a.dataset.abre);if(c){c.open=true;c.scrollIntoView({block:"start"})}});
-renderInicio();dirInit();conectar();
+document.addEventListener("submit",e=>{if(e.target.id!=="relChaveForm")return;e.preventDefault();const k=$("relChave").value.trim();if(k)lerRegistrosPlanilha(k)});
+renderInicio();dirInit();conectar();iniciarConexao();
 ["fq","fm","ft"].forEach(i=>$(i).addEventListener("input",dirRender));
 dirRender();
 /* Motor exposto para os testes automáticos (tests/motor.test.mjs). */
-window.EncaminhaMotor={perfil,avaliar,CASES,SM_PADRAO,temasDe,necSugeridas,registroDeDados,registroParaLinha,agregar,alertas,gerarExemplo,faixaRenda,relCsv,PLANILHA,
+window.EncaminhaMotor={tabelasParaPlanilha,API,perfil,avaliar,CASES,SM_PADRAO,temasDe,necSugeridas,registroDeDados,registroParaLinha,agregar,alertas,gerarExemplo,faixaRenda,relCsv,PLANILHA,
  _dados:{P,S,ROTA,STOPS,TEMAS,PERGUNTAS,PERFIL_ROWS,NECESSIDADES,URGENCIAS,CURTO,CAD_DEP,QUANDO,SENSIVEIS:[...SENSIVEIS]}};
 /* Sempre abre em Atender; links diretos: #rede, #servicos, #relatorios */
 const hash=location.hash.slice(1);if(hash==="rede")show("tab-rede");else if(hash==="servicos")show("tab-serv");else if(hash==="relatorios")show("tab-rel");

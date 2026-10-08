@@ -15,18 +15,6 @@ const html = readFileSync(raiz + "index.html", "utf8");
 const BLOCO = /(<script type="application\/json" id="dados-planilha">)([\s\S]*?)(<\/script>)/;
 if (!BLOCO.test(html)) throw new Error("Bloco dados-planilha não encontrado no index.html");
 
-// Lê a tabela pelo nome das colunas (aceita colunas fora de ordem)
-function tabela(linhas, mapa) {
-  if (!linhas || !linhas.length) return [];
-  const cab = linhas[0].map((c) => String(c || "").toLowerCase());
-  const idx = Object.fromEntries(Object.entries(mapa).map(([k, prefixo]) => [k, cab.findIndex((c) => c.startsWith(prefixo))]));
-  return linhas.slice(1).filter((l) => l && String(l[idx.id] ?? "").trim()).map((l) =>
-    Object.fromEntries(Object.entries(idx).map(([k, i]) => [k, i < 0 ? undefined : String(l[i] ?? "").trim()])));
-}
-const servicos = tabela(entrada.servicos, { id: "id", nome: "nome", tipo: "tipo", mun: "município", reg: "região", end: "endereço", tel: "telefones", email: "e-mail", hor: "horário", site: "site", obs: "observação", situacao: "situação", conferido: "conferido em" });
-const politicas = tabela(entrada.politicas, { id: "id", nome: "nome", curto: "nome curto", val: "valor", flow: "passo a passo", docs: "documentos", extra: "outros contatos" });
-const temas = tabela(entrada.temas, { id: "chave", t: "título", palavras: "palavras", on: "liga", passos: "passo a passo", servicos: "contatos", urg: "frase" }).map(({ id, ...r }) => ({ k: id, ...r }));
-
 // Dados de base: o app com o bloco vazio
 const tmp = mkdtempSync(join(tmpdir(), "encaminha-"));
 writeFileSync(join(tmp, "index.html"), html.replace(BLOCO, "$1{}$3"));
@@ -34,6 +22,8 @@ const b = await chromium.launch();
 const p = await b.newPage();
 await p.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
 await p.goto("file://" + join(tmp, "index.html"), { waitUntil: "domcontentloaded" });
+// As abas viram objetos com a mesma função que o site usa ao ler a planilha ao vivo
+const { servicos, politicas, temas } = await p.evaluate((e) => window.EncaminhaMotor.tabelasParaPlanilha(e), entrada);
 const base = await p.evaluate(() => {
   const D = window.EncaminhaMotor._dados;
   return { S: D.S, P: D.P.map((x) => ({ id: x.id, nome: x.nome, val: x.val, flow: x.flow, docs: x.docs || [], extra: x.extra || [], curto: D.CURTO[x.id] || "" })), T: D.TEMAS };

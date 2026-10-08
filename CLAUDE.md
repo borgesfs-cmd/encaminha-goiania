@@ -85,7 +85,11 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
   - Planilha → app: ler as abas Serviços, Políticas e Temas (valores), salvar como JSON `{servicos, politicas, temas}` e rodar `node scripts/planilha-para-app.mjs planilha.json`. O script grava no bloco `<script id="dados-planilha">` do index.html só o que difere dos dados de base, avisa contatos inexistentes, e o app aplica por cima: serviço corrigido, novo ou desativado (Situação = Inativo); texto de política (o critério continua no código); tema corrigido ou novo. Depois: `npm test` e publicar.
   - App → planilha: ler a coleção `registros` do banco do app (ArtifactData list com out_dir), ler a coluna ID da aba Registros, rodar `node scripts/registros-para-planilha.mjs pasta ids.txt` e acrescentar as linhas no fim da aba Registros.
   - Testes: `tests/planilha.test.mjs`.
-- Independência completa (futuro, caminho A): app hospedado fora do Claude (ex.: GitHub Pages) e um Apps Script publicado na planilha para leitura e gravação direta.
+- **Conexão direta (caminho A, em uso no site):** o site no GitHub Pages lê a planilha e grava registros pelo Apps Script (`apps-script/Codigo.gs`), cuja URL fica na meta `encaminha-api` do `index.html`. Passo a passo e segurança: `docs/conexao-planilha.md`.
+  - O app aplica a última leitura guardada no aparelho (`localStorage` enc-planilha) por cima do bloco dados-planilha. Função de leitura das abas: `tabelasParaPlanilha` (a mesma usada por `scripts/planilha-para-app.mjs`).
+  - Registros: fila no aparelho (enc-fila) quando falta internet. Relatórios: só com a chave de gestor (Script Properties CHAVE_GESTOR); a coluna U da aba Registros guarda o registro completo.
+  - Dentro do Claude (artefato) a URL é ignorada: o artefato não acessa outros endereços e segue com o banco do artefato e a sincronização sob pedido (caminho B).
+  - Ao mudar `Codigo.gs`, a pessoa precisa publicar nova versão da implantação. Testes: `tests/conexao.test.mjs` (API simulada) e `tests/apps-script.test.mjs` (serviços Google simulados).
 
 ## Levantamentos
 - `docs/levantamento-2026-10-08.md`: políticas, rede, ONGs, instituições de ensino e demandas psicossociais, com fonte e grau de confiança de cada item.
