@@ -80,7 +80,11 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - `dados/banco-de-dados-encaminha.xlsx`: abas Leia-me, Serviços, Políticas, Temas, Registros, Resumo e Fontes. Gerada a partir do app por `node scripts/exportar-planilha.mjs` (Playwright + Python/openpyxl).
 - Serviços tem Situação (Ativo, A conferir, Inativo), Conferido em, Conferido por e a fórmula "Precisa conferir?" (Sim se nunca conferido ou com mais de 180 dias).
 - Os critérios de direito ficam no código; a planilha guarda textos, contatos e palavras-chave. Pedido de mudança de critério: coluna própria na aba Políticas.
-- Ligação com o app: em definição (ver conversa). Um app dentro do Claude não pode buscar dados em outro endereço; a leitura da planilha e o envio de registros exigem o app hospedado fora (ex.: GitHub Pages) com um Apps Script publicado na planilha.
+- **Sincronização (caminho B, sob pedido):** o app publicado no Claude não busca dados em outro endereço, então a sincronização é feita pelo Claude com os conectores Google Drive e Google Planilhas.
+  - Planilha → app: ler as abas Serviços, Políticas e Temas (valores), salvar como JSON `{servicos, politicas, temas}` e rodar `node scripts/planilha-para-app.mjs planilha.json`. O script grava no bloco `<script id="dados-planilha">` do index.html só o que difere dos dados de base, avisa contatos inexistentes, e o app aplica por cima: serviço corrigido, novo ou desativado (Situação = Inativo); texto de política (o critério continua no código); tema corrigido ou novo. Depois: `npm test` e publicar.
+  - App → planilha: ler a coleção `registros` do banco do app (ArtifactData list com out_dir), ler a coluna ID da aba Registros, rodar `node scripts/registros-para-planilha.mjs pasta ids.txt` e acrescentar as linhas no fim da aba Registros.
+  - Testes: `tests/planilha.test.mjs`.
+- Independência completa (futuro, caminho A): app hospedado fora do Claude (ex.: GitHub Pages) e um Apps Script publicado na planilha para leitura e gravação direta.
 
 ## Levantamentos
 - `docs/levantamento-2026-10-08.md`: políticas, rede, ONGs, instituições de ensino e demandas psicossociais, com fonte e grau de confiança de cada item.

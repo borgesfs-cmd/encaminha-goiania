@@ -597,9 +597,16 @@ footer .wrap{padding-block:18px}
 
 <footer><div class="wrap">Protótipo de orientação. Não substitui a avaliação da equipe técnica nem a decisão do órgão que concede o benefício. Contatos conferidos em 08/10/2026.</div></footer>
 
+<!-- Dados vindos do banco de dados no Google Planilhas. Gerado por scripts/planilha-para-app.mjs: não edite à mão. -->
+<script type="application/json" id="dados-planilha">{}</script>
 <script>
 (function(){
 "use strict";
+/* ---------- PLANILHA ----------
+   Correções feitas pela equipe no Google Planilhas. Valem por cima dos dados de base do código:
+   serviços (corrigir, incluir, desativar), textos das políticas e temas do pedido livre (corrigir e incluir). */
+const PLANILHA=(()=>{try{return JSON.parse(document.getElementById("dados-planilha").textContent||"{}")}catch(e){return {}}})();
+const lista=(v,sep)=>String(v||"").split(sep).map(x=>x.trim()).filter(Boolean);
 /* ---------- MUNICÍPIOS ---------- */
 const MUNS=["Goiânia","Aparecida de Goiânia","Senador Canedo","Trindade","Goianira","Abadia de Goiás","Aragoiânia","Bela Vista de Goiás","Bonfinópolis","Brazabrantes","Caldazinha","Caturaí","Goianápolis","Guapó","Hidrolândia","Inhumas","Nerópolis","Nova Veneza","Santo Antônio de Goiás","Terezópolis de Goiás"];
 /* municípios cobertos pelo Passe Livre Estudantil (Seds) */
@@ -749,6 +756,13 @@ const CRAS=[
  ["CRAS Vera Cruz","Av. Leopoldo de Bulhões, Qd. 100, Conjunto Vera Cruz II","(62) 98599-2250"]
 ];
 CRAS.forEach((c,i)=>S.push({id:"cras"+i,tipo:"CRAS",mun:"Goiânia",nome:c[0],end:c[1]+", Goiânia",tel:[c[2]],obs:"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."}));
+(PLANILHA.servicos||[]).forEach(r=>{
+ const i=S.findIndex(s=>s.id===r.id);
+ if(r.situacao==="Inativo"){if(i>=0)S.splice(i,1);return}
+ const v={id:r.id,nome:r.nome,tipo:r.tipo,mun:r.mun,reg:r.reg||undefined,end:r.end||undefined,tel:lista(r.tel,"/"),email:r.email||undefined,hor:r.hor||undefined,site:r.site||undefined,obs:r.obs||undefined,conferido:r.conferido||undefined,situacao:r.situacao||undefined};
+ if(!v.tel.length)delete v.tel;
+ if(i>=0)S[i]=v;else S.push(v);
+});
 const byId=Object.fromEntries(S.map(s=>[s.id,s]));
 
 /* ---------- ATENDIMENTO GUIADO ----------
@@ -906,6 +920,13 @@ const TEMAS=[
   passos:["Primeira consulta na UBS, com a equipe de saúde bucal.","Tratamento especializado (canal, prótese, cirurgia): a UBS encaminha ao Centro de Especialidades Odontológicas (CEO).","Dor forte ou rosto inchado: UPA ou CAIS 24h."],
   servicos:[]}
 ];
+(PLANILHA.temas||[]).forEach(r=>{
+ const t={k:r.k,t:r.t,palavras:lista(r.palavras,","),passos:lista(r.passos,"\n"),servicos:lista(r.servicos,","),on:lista(r.on,",")};
+ if(r.urg)t.urg=r.urg;
+ if(!t.on.length)delete t.on;
+ if(!t.passos.length&&!t.on)return;
+ const i=TEMAS.findIndex(x=>x.k===t.k);if(i>=0)TEMAS[i]=t;else TEMAS.push(t);
+});
 /* Palavras do texto livre que sugerem marcar um assunto. */
 const SUGERE_NEC=[["renda",["bolsa familia","bpc","loas","beneficio","cadunico","cadastro unico"]],["comida",["fome","comida","cesta basica","alimento"]],["moradia",["aluguel","despejo","moradia","morar na rua","sem casa"]],["saude",["remedio","medicamento","hiv","gravida","gestante"]],["mental",["depress","ansiedade","suicid","se matar","droga","alcool","crise"]],["protecao",["violencia","agress","apanha","bate","abuso","estupro","maus tratos","abandono"]],["educacao",["escola","faculdade","enem","prouni","fies","creche","estudar"]],["trabalho",["emprego","trabalho","negocio"]],["documentos",["certidao"]]];
 const normT=t=>" "+String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g," ")+" ";
@@ -1435,6 +1456,13 @@ const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pess
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
  hivcare:"Cuidado em HIV",crise:"Crise suicida",discrim:"Discriminação",gas:"Gás do Povo",mcmv:"Minha Casa, Minha Vida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
  "r-rua":"População de rua","r-mental":"Saúde mental","r-gest":"Pré-natal","r-fome":"Segurança alimentar"};
+/* Textos das políticas vindos da planilha (o critério de direito continua no código). */
+(PLANILHA.politicas||[]).forEach(r=>{const p=P.find(x=>x.id===r.id);if(!p)return;
+ if(r.nome)p.nome=r.nome;if(r.val)p.val=r.val;
+ const fl=lista(r.flow,"\n");if(fl.length)p.flow=fl;
+ if(r.docs!==undefined)p.docs=lista(r.docs,"\n");
+ if(r.extra!==undefined)p.extra=lista(r.extra,",");
+ if(r.curto)CURTO[p.id]=r.curto;});
 const curto=pol=>CURTO[pol.id]||pol.nome;
 /* Políticas que só saem com o CadÚnico em dia. */
 const CAD_DEP=["gas","mcmv","probem","pbf","bpc","tse","pdm","cpi","plfed","maes","inclusivo","dignidade","porelas","aluguel","passaporte","plpcd","credito","aprendiz"];
@@ -1523,7 +1551,8 @@ function placeHtml(s){
  ${s.email?`<span class="contact"><code>${esc(s.email)}</code><button type="button" class="copy" data-c="${esc(s.email)}">Copiar</button></span>`:""}
  ${s.hor?`<span class="meta">${esc(s.hor)}</span>`:""}
  ${s.site?`<a href="${esc(s.site)}" target="_blank" rel="noopener">${esc(s.site.replace(/^https?:\/\//,""))}</a>`:""}
- ${s.obs?`<span class="meta">${esc(s.obs)}</span>`:""}</div>`;
+ ${s.obs?`<span class="meta">${esc(s.obs)}</span>`:""}
+ ${s.situacao==="A conferir"?`<span class="meta"><b>Confirme antes de enviar a pessoa.</b></span>`:s.conferido?`<span class="meta">Conferido em ${esc(s.conferido)}.</span>`:""}</div>`;
 }
 /* ---------- TELAS ---------- */
 function mostrarTela(v){["vInicio","vPergunta","vPlano"].forEach(id=>$(id).hidden=id!==v);const t=$("p-enc");if(t.getBoundingClientRect().top<0)t.scrollIntoView({block:"start"})}
@@ -1740,6 +1769,14 @@ function registroDeDados(d,nec,quando){
 }
 const registroAtual=()=>registroDeDados(dadosAtendimento(),E.nec,new Date());
 
+/* Linha da aba Registros da planilha (mesmas colunas, com nomes legíveis). */
+function registroParaLinha(r){
+ const sn=b=>b?"Sim":"Não",j=(l,f)=>(l||[]).map(f).join("; "),[a,m,d]=String(r.dia).split("-");
+ const st={enc:"encaminhamento",prov:"provável direito",ver:"verificar"};
+ return [r.id||"",`${d}/${m}/${a}`,r.hora??"",r.mun||"",r.reg?nomeReg(r.reg):"",r.gen?nomeGen(r.gen):"",r.faixa?rotulo("faixa",r.faixa):"Não informada",r.pess||"",nomeRenda(r.renda||"ni"),
+  r.trab?nomeTrab(r.trab):"",r.mor?rotulo("moradia",r.mor):"",r.escol?rotulo("escol",r.escol):"",j(r.nec,nomeNec),j(r.sit,nomeSit),
+  j(r.pol,x=>{const[k,s2]=x.split(":");return `${nomePol(k)} (${st[s2]||s2})`}),j((r.paradas||[]).filter(k=>!NAO_LUGAR.has(k)),nomeParada),j(r.temas,nomeTema),sn(r.semTema),sn(r.urg),j(r.falta,k=>CAMPOS[k]?CAMPOS[k].t:k)];
+}
 let DB=null,USER_ID=null,REGISTROS=[],unsubReg=null,relErro="",relDemo=false,relPer="30",relMun="Todos",DEMO=null;
 const segId=s=>String(s).replace(/[^A-Za-z0-9_\-.~:@+]/g,"_").slice(0,120);
 async function conectar(){
@@ -2018,7 +2055,7 @@ renderInicio();dirInit();conectar();
 ["fq","fm","ft"].forEach(i=>$(i).addEventListener("input",dirRender));
 dirRender();
 /* Motor exposto para os testes automáticos (tests/motor.test.mjs). */
-window.EncaminhaMotor={perfil,avaliar,CASES,SM_PADRAO,temasDe,necSugeridas,registroDeDados,agregar,alertas,gerarExemplo,faixaRenda,relCsv,
+window.EncaminhaMotor={perfil,avaliar,CASES,SM_PADRAO,temasDe,necSugeridas,registroDeDados,registroParaLinha,agregar,alertas,gerarExemplo,faixaRenda,relCsv,PLANILHA,
  _dados:{P,S,ROTA,STOPS,TEMAS,PERGUNTAS,PERFIL_ROWS,NECESSIDADES,URGENCIAS,CURTO,CAD_DEP,QUANDO,SENSIVEIS:[...SENSIVEIS]}};
 /* Sempre abre em Atender; links diretos: #rede, #servicos, #relatorios */
 const hash=location.hash.slice(1);if(hash==="rede")show("tab-rede");else if(hash==="servicos")show("tab-serv");else if(hash==="relatorios")show("tab-rel");
