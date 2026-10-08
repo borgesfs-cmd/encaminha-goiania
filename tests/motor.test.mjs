@@ -159,26 +159,93 @@ test("tentativa de suicídio: pronto atendimento agora, com embalagem e CIATox",
   assert.deepEqual(r.roteiro.map((s) => s.k), ["urgencia", "cvv", "caps"]);
 });
 
+test("educação: Prouni integral, Fies Social, ProBem e isenção do Enem para quem quer a faculdade", async () => {
+  const r = await avaliar({ idade: 18, pessoas: 4, renda: 2400, on: ["superior", "cad"] });
+  assert.equal(r.hits.prouni, "ver");
+  assert.equal(r.hits.fies, "ver");
+  assert.equal(r.hits.probem, "ver");
+  assert.equal(r.hits.enem, "prov");
+  const online = r.roteiro.find((s) => s.k === "online").acoes.map((a) => a.id);
+  for (const id of ["enem", "prouni", "fies", "cotas", "probem"]) assert.ok(online.includes(id), id);
+  const rico = await avaliar({ pessoas: 1, renda: 6000, on: ["superior"] });
+  assert.ok(rico.nao.prouni && rico.nao.fies && rico.nao.probem);
+});
+
+test("EJA e Encceja para adulto que não terminou a escola", async () => {
+  const r = await avaliar({ idade: 40, on: ["eja"] });
+  assert.equal(r.hits.eja, "prov");
+  assert.deepEqual(r.roteiro.map((s) => s.k).sort(), ["escola", "online"]);
+});
+
+// ---------- tela ----------
+const inicio = async () => {
+  if (await page.isVisible("#pNew")) await page.click("#pNew");
+  if (await page.isVisible("#qBack")) { await page.goto(PAGE, { waitUntil: "domcontentloaded" }); }
+};
+const opcao = (texto) => page.click(`#qBody .opt:has-text("${texto}")`);
+
+test("tela: só pergunta o que o assunto precisa", async () => {
+  await inicio();
+  await page.click('.tile[data-need="documentos"]');
+  await page.click("#start");
+  assert.equal(await page.textContent("#qProg"), "Pergunta 1 de 2");
+  await opcao("Goiânia");
+  await page.click("[data-next]");
+  assert.ok(await page.isVisible("#vPlano"));
+  assert.ok((await page.textContent("#results")).includes("2ª via"));
+});
+
+test("tela: fluxo de renda, 'Não sei' na idade e 'Responder' volta ao plano", async () => {
+  await inicio();
+  await page.click('.tile[data-need="renda"]');
+  await page.click("#start");
+  await opcao("Goiânia");
+  await opcao("Desempregada");
+  await page.fill("#qRenda", "400");
+  await page.fill("#qPessoas", "4");
+  assert.match(await page.textContent("#qCalc"), /R\$ 100/);
+  await page.click("[data-next]");
+  await page.click("[data-naosei]");            // idade
+  await opcao("Criança de 0 a 6 anos");          // família
+  await page.click("[data-next]");
+  await page.click("[data-next]");               // cadastro: nenhum
+  await page.click("[data-next]");               // notas
+  assert.ok(await page.isVisible("#vPlano .route"));
+  assert.match(await page.textContent("#results"), /Mães de Goiás/);
+  await page.click('.falta [data-q="idade"]');
+  await page.fill("#qNum", "66");
+  await page.click("[data-next]");
+  assert.ok(await page.isVisible("#vPlano"));
+  assert.ok(!(await page.isVisible(".falta")));
+  assert.match(await page.textContent("#results"), /BPC/);
+});
+
+test("tela: atalho de urgência vai direto ao plano com o manejo; depois completa as perguntas", async () => {
+  await inicio();
+  await page.click('.tile[data-urg="suic"]');
+  assert.ok(await page.isVisible(".urgent"));
+  assert.ok(await page.isVisible("#card-crise .body"));
+  await page.click("#pMais");
+  await opcao("Goiânia");
+  assert.match(await page.textContent("#qBody h2"), /região/);
+  await opcao("Norte");
+  assert.equal(await page.getAttribute('#qBody .opt[data-v="suic"]', "aria-pressed"), "true");
+});
+
 test("tela: caso Crise suicida abre o manejo e o link da faixa leva até ele", async () => {
+  await inicio();
   await page.click('.case[data-case="crise"]');
   assert.ok(await page.isVisible("#card-crise .body"));
   await page.evaluate(() => { document.getElementById("card-crise").open = false; });
   await page.click('.urgent [data-abre="crise"]');
   assert.ok(await page.isVisible("#card-crise .body"));
-  assert.deepEqual(erros, []);
 });
 
-test("tela: casos de exemplo mostram roteiro; Novo atendimento mostra o que falta e o botão leva ao campo", async () => {
-  for (const k of ["familia", "altocusto", "hiv", "farmacia", "crise"]) {
+test("tela: todos os exemplos mostram roteiro sem erros", async () => {
+  for (const k of ["familia", "altocusto", "hiv", "farmacia", "crise", "faculdade"]) {
+    await inicio();
     await page.click(`.case[data-case="${k}"]`);
-    assert.ok(await page.isVisible("#st3 .route"), k);
+    assert.ok(await page.isVisible("#vPlano .route"), k);
   }
-  await page.click("#clear");
-  await page.click("#sb3");
-  assert.ok(await page.isVisible(".falta"));
-  await page.click('.falta [data-campo="renda"]');
-  assert.ok(await page.isVisible("#st1"));
-  const foco = await page.evaluate(() => document.activeElement.id);
-  assert.ok(["renda", "pessoas"].includes(foco), foco);
   assert.deepEqual(erros, []);
 });

@@ -20,16 +20,13 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 - Endereços de serviços públicos podem aparecer. Endereço de abrigo sigiloso (Casa Abrigo Sempre Viva, CEVAM), nunca.
 - Linguagem simples, voz ativa, sem jargão de sistema.
 
-## Fluxo do atendimento (aba Encaminhar)
-1. **Dados socioeconômicos**: iniciais, município, região de Goiânia, idade, pessoas na casa, renda, salário mínimo de referência, trabalho, moradia, escolaridade, benefícios atuais, composição da família.
-2. **Necessidades e solicitações**: saúde e medicamentos, proteção e violência, direitos sociais, texto livre.
-3. **Fluxo, serviços e encaminhamentos**, nesta ordem:
-   - alerta de segurança;
-   - quadro "Complete para avaliar": campos vazios que decidem o resultado (renda, idade) e quais políticas dependem deles, com botão que leva ao campo;
-   - **roteiro**: os passos de todas as políticas agrupados por lugar e por urgência (Agora, Hoje ou amanhã, Nos próximos dias, Pela internet, Sem inscrição, Se for negado), com documentos sem repetição. O passo do CadÚnico lista o que ele abre;
-   - cards por política (status, motivo, fluxo, documentos, onde ir), fechados;
-   - "Avaliados e não indicados agora", com o motivo;
-   - resumo copiável (roteiro, detalhe e não indicados).
+## Fluxo do atendimento (aba Atender)
+Atendimento guiado, pensado para o celular. Uma tela de cada vez:
+1. **Início**: "O que a pessoa precisa?" com 10 assuntos (`NECESSIDADES`): renda e benefícios, comida, moradia, saúde e remédios, saúde mental, violência e proteção, educação, trabalho, documentos, direito negado. Acima, atalhos de urgência (`URGENCIAS`) que vão direto ao plano.
+2. **Perguntas, uma por vez** (`PERGUNTAS`): cada pergunta tem `quando(estado)` e só aparece se um assunto marcado precisa dela. Município sempre; região de Goiânia só para proteção e saúde mental; renda e pessoas, idade, família e cadastro só para os assuntos que dependem deles. "Não sei" pula. Escolha única avança sozinha.
+3. **Plano**: faixa de segurança, manejo da crise (quando houver), "Falta uma resposta" (com botão que volta só àquela pergunta e retorna ao plano), roteiro por lugar e urgência ("O que levar e contatos" recolhido em cada lugar), "Por que cada direito foi indicado" e "Avaliados e não indicados" recolhidos, resumo copiável.
+
+O estado do atendimento fica em `E` (só na memória da página; nada é guardado). `dadosAtendimento()` transforma `E` nos dados do `perfil()`. A versão anterior, com formulário em 3 etapas, está em `docs/versao-formulario.html`.
 
 ## Motor de regras
 - Renda por pessoa = renda ÷ pessoas. Linhas: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), 1/4, 1/2, 1, 2 e 3 salários mínimos.
@@ -48,6 +45,7 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 
 ## Cobertura atual
 - Nacional: CadÚnico, Bolsa Família, BPC, Tarifa Social, Pé-de-Meia, Carteira da Pessoa Idosa, Passe Livre interestadual, Farmácia Popular.
+- Educação: Enem e isenção da taxa, Prouni, Fies e Fies Social, Sisu e cotas, ProBem (OVG), assistência estudantil, EJA e Encceja.
 - Estadual: Mães de Goiás, Goiás + Inclusivo, Dignidade, Goiás Por Elas, Aluguel Social (Agehab), Passe Livre Estudantil, Aprendiz do Futuro, CIPTEA, Passe Livre PcD, Passaporte da Pessoa Idosa, Crédito Social, 2ª via de registro civil, alto custo (Cemac Juarez Barbosa).
 - Rede: mulher, criança, idoso/PcD, população de rua, saúde mental, gestante, fome, HIV (teste, PEP, PrEP, SAE), Ministério Público (MPGO, MPF, MPT).
 - Goiânia: 26 CRAS/centros de convivência, 5 CREAS, Centro POP, 6 Conselhos Tutelares, rede da mulher, Defensoria, CTA/SAE, UPAs com PEP.

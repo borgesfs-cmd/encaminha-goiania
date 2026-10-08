@@ -66,7 +66,6 @@ header.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;
 .brand h1{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.01em}
 .brand h1 i{font-style:normal;background:linear-gradient(transparent 62%,var(--ipe) 62%)}
 .brand p{margin:4px 0 14px;color:var(--muted);max-width:60ch}
-@media (max-width:640px){.brand p{display:none}.brand h1{margin-bottom:8px}header.top .wrap{padding-block:12px 0}}
 nav.tabs{display:flex;gap:4px;overflow-x:auto;width:100%}
 nav.tabs button{font:600 15px var(--font-body);background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:10px 14px;cursor:pointer;white-space:nowrap}
 nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--green)}
@@ -143,12 +142,12 @@ textarea{width:100%;font:16px var(--font-body);padding:9px 10px;border:1px solid
 .status.enc{background:var(--sgd-soft);color:var(--sgd)}
 
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.card>summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;gap:4px}
+.card>summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px}
 .card>summary::-webkit-details-marker{display:none}
 .card .t{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
 .card h3{font-size:18px}
 .card .why{grid-column:1/-1;color:var(--muted);font-size:14px}
-.card .val{font-family:var(--font-mono);font-size:14px}
+.card .val{font-family:var(--font-mono);font-size:14px;align-self:start;text-align:right}
 .card .chev{transition:transform .15s}
 .card[open] .chev{transform:rotate(90deg)}
 .body{padding:0 16px 16px;display:grid;gap:14px;border-top:1px dashed var(--line);padding-top:14px}
@@ -201,63 +200,6 @@ ol.stops{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .nao>summary{cursor:pointer;font-weight:700}
 .nao ul{margin:10px 0 6px;padding-left:18px;display:grid;gap:6px}
 .nao li span{display:block;color:var(--muted);font-size:14px}
-
-/* atendimento guiado */
-.view{display:grid;gap:18px;max-width:760px}
-#p-enc{display:grid;justify-items:start}
-#p-enc>.view{width:100%}
-.ask h2,.urgbox h2,.qbody h2,.planhead h2{font-size:clamp(22px,4.5vw,28px)}
-.ask .hint{margin:4px 0 0}
-.urgbox{display:grid;gap:8px}
-.urgbox h2{font-size:15px;font-family:var(--font-body);font-weight:700;color:var(--alert);letter-spacing:.02em}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:10px}
-.tiles.urg{grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr));gap:8px}
-.tile{position:relative;display:grid;gap:2px;align-content:start;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:14px 40px 14px 14px;cursor:pointer;min-height:76px}
-.tile b{font-size:17px;line-height:1.2}
-.tile span{font-size:14px;color:var(--muted);line-height:1.35}
-.tile::after{content:"";position:absolute;top:14px;right:12px;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line);background:var(--bg)}
-.tile[aria-pressed="true"]{border:2px solid var(--green);background:var(--ok-soft);padding:13.5px 39.5px 13.5px 13.5px}
-.tile[aria-pressed="true"]::after{background:var(--green);border-color:var(--green);content:"✓";color:var(--green-ink);font-size:14px;font-weight:700;display:grid;place-items:center}
-.tile.urg{background:var(--alert-soft);border-color:color-mix(in srgb,var(--alert) 45%,var(--line));min-height:0;padding:11px 12px}
-.tile.urg::after{display:none}
-.tile.urg b{font-size:15px;color:var(--alert)}
-.startbar{position:sticky;bottom:0;z-index:2;padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));background:linear-gradient(to bottom,transparent,var(--bg) 35%)}
-button.b.big{font-size:17px;padding:14px 18px;width:100%}
-button.b:disabled{opacity:.55;cursor:not-allowed}
-.link{font:700 15px var(--font-body);color:var(--green);background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.qhead{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:space-between}
-.qbar{height:6px;border-radius:999px;background:var(--sunk);overflow:hidden}
-.qbar i{display:block;height:100%;background:var(--green);border-radius:999px;transition:width .2s}
-.qbody{display:grid;gap:12px}
-.qbody h2:focus{outline:none}
-.qbody .hint{margin:0}
-.opts{display:grid;gap:8px}
-.opt{display:grid;grid-template-columns:24px 1fr;column-gap:12px;align-items:center;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:14px;cursor:pointer;min-height:56px}
-.opt::before{content:"";grid-row:1/span 2;width:22px;height:22px;border:1.5px solid var(--muted);background:var(--bg)}
-.opt.um::before{border-radius:50%}
-.opt.varios::before{border-radius:6px}
-.opt .ot{font-size:16px;font-weight:700;line-height:1.3}
-.opt .od{grid-column:2;font-size:14px;color:var(--muted)}
-.opt[aria-pressed="true"]{border:2px solid var(--green);background:var(--ok-soft);padding:13.5px}
-.opt.um[aria-pressed="true"]::before{border:7px solid var(--green);background:var(--surface)}
-.opt.varios[aria-pressed="true"]::before{background:var(--green);border-color:var(--green);content:"✓";color:var(--green-ink);font-size:14px;font-weight:700;display:grid;place-items:center}
-.qnav{display:flex;gap:10px;margin-top:6px}
-.qnav .b.ghost{flex:none}
-.fgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
-.fgrid2>div{display:grid;gap:6px}
-.qbody input,.qbody select{width:100%;font:18px var(--font-body);padding:12px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
-.qbody textarea{font-size:16px}
-.psum{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--muted)}
-.psum b{color:var(--ink)}
-.planhead{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end;justify-content:space-between}
-.planhead .hint{margin:4px 0 0}
-.fold{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
-.fold>summary{cursor:pointer;font-weight:700;padding:14px 16px}
-.foldbody{display:grid;gap:10px;padding:0 12px 12px}
-.naol{margin:0;padding-left:18px;display:grid;gap:6px}
-.naol li span{display:block;color:var(--muted);font-size:14px}
-.meta2{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.note .link{padding:0}
 
 /* rede */
 .flowmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px) minmax(0,1fr);gap:16px;align-items:start}
@@ -327,13 +269,13 @@ footer .wrap{padding-block:18px}
   <div class="wrap">
     <div class="brand">
       <h1>Encaminha <i>Goiânia</i></h1>
-      <p>Diga o que a pessoa precisa e veja onde ir, o que levar e a que ela tem direito. Goiânia e região metropolitana.</p>
+      <p>Políticas públicas nacionais, do Estado de Goiás e da rede municipal para Goiânia e região metropolitana. Descreva a situação e veja o fluxo e onde ir.</p>
     </div>
     <nav class="tabs" role="tablist" aria-label="Seções">
-      <button role="tab" id="tab-enc" aria-controls="p-enc" aria-selected="true">Atender</button>
-      <button role="tab" id="tab-rede" aria-controls="p-rede" aria-selected="false">A rede</button>
-      <button role="tab" id="tab-serv" aria-controls="p-serv" aria-selected="false">Contatos</button>
-      <button role="tab" id="tab-sobre" aria-controls="p-sobre" aria-selected="false">Sobre</button>
+      <button role="tab" id="tab-enc" aria-controls="p-enc" aria-selected="true">Encaminhar</button>
+      <button role="tab" id="tab-rede" aria-controls="p-rede" aria-selected="false">Entenda a rede</button>
+      <button role="tab" id="tab-serv" aria-controls="p-serv" aria-selected="false">Serviços e contatos</button>
+      <button role="tab" id="tab-sobre" aria-controls="p-sobre" aria-selected="false">Sobre os dados</button>
     </nav>
   </div>
 </header>
@@ -342,51 +284,75 @@ footer .wrap{padding-block:18px}
 
 <!-- ENCAMINHAR -->
 <section id="p-enc" role="tabpanel" aria-labelledby="tab-enc">
-
-  <!-- 1. Início: o que a pessoa precisa -->
-  <div id="vInicio" class="view">
-    <div class="urgbox">
-      <h2>É urgente agora?</h2>
-      <div class="tiles urg" id="urgTiles" role="group" aria-label="Situações urgentes"></div>
-    </div>
-    <div class="ask">
-      <h2>O que a pessoa precisa?</h2>
-      <p class="hint">Marque um ou mais assuntos. O app pergunta só o que muda o resultado.</p>
-    </div>
-    <div class="tiles" id="needTiles" role="group" aria-label="Assuntos"></div>
-    <div class="startbar"><button class="b big" id="start" type="button" disabled>Marque pelo menos um assunto</button></div>
-    <p class="hint">Nada é enviado nem guardado. Não registre nome, endereço nem documentos da pessoa.</p>
-    <div class="cases" role="group" aria-label="Exemplos">
-      <span class="hint">Ver um exemplo pronto:</span>
+  <div class="casebar">
+    <p class="hint">Nada é enviado ou guardado. Use só as iniciais: não registre nome, endereço da pessoa nem números de documento. <span class="example" id="exTag">Exemplo preenchido</span></p>
+    <div class="cases" role="group" aria-label="Casos de exemplo">
+      <span class="hint">Casos de exemplo:</span>
       <button type="button" class="case" data-case="familia">Família com violência</button>
       <button type="button" class="case" data-case="altocusto">Alto custo</button>
       <button type="button" class="case" data-case="hiv">HIV</button>
       <button type="button" class="case" data-case="farmacia">Farmácia Popular</button>
       <button type="button" class="case" data-case="crise">Crise suicida</button>
-      <button type="button" class="case" data-case="faculdade">Faculdade</button>
+      <button class="case ghostcase" type="button" id="clear">Novo atendimento</button>
     </div>
   </div>
 
-  <!-- 2. Perguntas, uma por vez -->
-  <div id="vPergunta" class="view" hidden>
-    <div class="qhead">
-      <button type="button" class="link" id="qBack">‹ Voltar</button>
-      <span class="hint" id="qProg"></span>
-      <button type="button" class="link" id="qSkip">Ver o plano</button>
-    </div>
-    <div class="qbar" aria-hidden="true"><i id="qBar"></i></div>
-    <div class="qbody" id="qBody"></div>
+  <div class="stepnav" role="tablist" aria-label="Etapas do atendimento">
+    <button role="tab" id="sb1" aria-controls="st1" aria-selected="true"><span class="sn">1</span><span class="st"><b>Dados socioeconômicos</b><small id="sum1">Sem identificação</small></span></button>
+    <button role="tab" id="sb2" aria-controls="st2" aria-selected="false"><span class="sn">2</span><span class="st"><b>Necessidades e solicitações</b><small id="sum2">Nada marcado</small></span></button>
+    <button role="tab" id="sb3" aria-controls="st3" aria-selected="false"><span class="sn">3</span><span class="st"><b>Fluxo, serviços e encaminhamentos</b><small id="sum3">—</small></span></button>
   </div>
 
-  <!-- 3. Plano de encaminhamento -->
-  <div id="vPlano" class="view" hidden>
-    <div class="qhead">
-      <button type="button" class="link" id="pEdit">‹ Editar respostas</button>
-      <button type="button" class="link" id="pNew">Novo atendimento</button>
+  <form id="f" novalidate>
+    <div id="st1" class="panel step" role="tabpanel" aria-labelledby="sb1">
+      <div class="stephead"><h2>Dados socioeconômicos</h2>
+        <p class="hint">Só o necessário para cruzar critérios. Não pedimos nome, CPF, NIS, endereço, telefone, raça/cor, religião ou orientação sexual: são dados que identificam a pessoa ou dados sensíveis pela LGPD (art. 5º, II).</p></div>
+      <div class="fgrid">
+        <fieldset><label class="l" for="ini">Iniciais da pessoa</label><input id="ini" type="text" maxlength="6" autocomplete="off" placeholder="Ex.: M.S.A." style="text-transform:uppercase"></fieldset>
+        <fieldset><label class="l" for="mun">Município onde mora</label><select id="mun"></select></fieldset>
+        <fieldset id="regBox"><label class="l" for="reg">Região de Goiânia</label>
+          <select id="reg">
+            <option value="">Não sei</option>
+            <option value="centro-sul">Centro-Sul (Central e Sul)</option>
+            <option value="leste">Leste (Leste e Sudeste)</option>
+            <option value="norte">Norte (Vale do Meia Ponte e Norte)</option>
+            <option value="noroeste">Noroeste (Mendanha e Noroeste)</option>
+            <option value="oeste">Oeste (Macambira/Cascavel e Sudoeste)</option>
+            <option value="campinas">Campinas (Campinas e Oeste)</option>
+          </select><span class="hint">Indica Conselho Tutelar e CREAS de referência.</span></fieldset>
+        <fieldset><label class="l" for="idade">Idade</label><input id="idade" type="number" min="0" max="120" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="pessoas">Pessoas na casa</label><input id="pessoas" type="number" min="1" max="30" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="renda">Renda total da casa (R$/mês)</label><input id="renda" type="number" min="0" step="1" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="sm">Salário mínimo de referência (R$)</label><input id="sm" type="number" min="1" step="1" inputmode="numeric"></fieldset>
+        <fieldset><label class="l" for="trab">Trabalho</label>
+          <select id="trab"><option value="">Não informado</option><option value="formal">Com carteira ou servidor</option><option value="informal">Informal ou por conta própria</option><option value="desempregado">Desempregado</option><option value="aposentado">Aposentado ou pensionista</option><option value="nao">Não trabalha (estuda, cuida da casa)</option></select></fieldset>
+        <fieldset><label class="l" for="moradia">Moradia</label>
+          <select id="moradia"><option value="">Não informado</option><option value="propria">Própria</option><option value="alugada">Alugada</option><option value="cedida">Cedida</option><option value="ocupacao">Ocupação</option><option value="rua">Situação de rua</option><option value="acolhimento">Acolhimento institucional</option></select></fieldset>
+        <fieldset><label class="l" for="escol">Escolaridade</label>
+          <select id="escol"><option value="">Não informado</option><option value="sem">Sem escolaridade</option><option value="fund-inc">Fundamental incompleto</option><option value="fund">Fundamental completo</option><option value="medio">Médio completo</option><option value="sup">Superior</option></select></fieldset>
+      </div>
+      <div class="calc" id="calc" aria-live="polite"></div>
+      <fieldset><legend>Cadastro e benefícios que já tem</legend><div class="chips" id="chipsCad"></div></fieldset>
+      <fieldset><legend>Quem está na família</legend><div class="chips" id="chipsFam"></div></fieldset>
+      <div class="btns end"><button class="b" type="button" data-go="2">Próximo: necessidades</button></div>
     </div>
-    <div class="psum" id="pSum"></div>
+
+    <div id="st2" class="panel step" role="tabpanel" aria-labelledby="sb2" hidden>
+      <div class="stephead"><h2>Necessidades e solicitações</h2><p class="hint">Marque tudo o que a pessoa trouxe ou o que foi percebido no atendimento.</p></div>
+      <fieldset><legend>Saúde e medicamentos</legend><div class="chips" id="chipsSau"></div></fieldset>
+      <fieldset><legend>Proteção e violência</legend><div class="chips" id="chipsProt"></div></fieldset>
+      <fieldset><legend>Direitos sociais, renda e moradia</legend><div class="chips" id="chipsSoc"></div></fieldset>
+      <fieldset><label class="l" for="dem">Solicitação principal, nas palavras da pessoa</label>
+        <textarea id="dem" rows="3" maxlength="400" placeholder="Ex.: precisa do remédio para artrite que o posto não tem."></textarea>
+        <span class="hint">Não escreva nomes, endereços, telefones ou números de documento. E-mails e números longos (CPF, NIS, RG, telefone, CEP) são apagados do resumo; valores em reais e datas ficam.</span></fieldset>
+      <div class="btns end"><button class="b ghost" type="button" data-go="1">Voltar</button><button class="b" type="button" data-go="3">Ver encaminhamentos</button></div>
+    </div>
+  </form>
+
+  <div id="st3" class="step" role="tabpanel" aria-labelledby="sb3" hidden>
+    <div class="profile" id="profile"></div>
     <div class="results" id="results" aria-live="polite"></div>
-    <div class="btns end"><button class="b ghost" type="button" id="pNew2">Novo atendimento</button></div>
+    <div class="btns end"><button class="b ghost" type="button" data-go="2">Voltar às necessidades</button></div>
   </div>
 </section>
 
@@ -547,10 +513,6 @@ const S=[
  {id:"180",tipo:"Nacional",mun:"Nacional",nome:"Ligue 180, Central de Atendimento à Mulher",tel:["180"],obs:"Gratuito, sigiloso, 24h."},
  {id:"188",tipo:"Nacional",mun:"Nacional",nome:"CVV, Centro de Valorização da Vida",tel:["188"],site:"https://cvv.org.br",hor:"Telefone 24h, todos os dias",obs:"Apoio emocional e prevenção do suicídio. Ligação gratuita e sigilosa, de qualquer telefone. Também há chat em cvv.org.br, em horários limitados: confira no site."},
  {id:"ciatox",tipo:"Saúde",mun:"Estado",nome:"CIATox Goiás, Centro de Informação e Assistência Toxicológica",tel:["0800 646 4350"],hor:"24h, todos os dias",site:"https://goias.gov.br/saude/ciatox/",obs:"Orienta profissionais e população em intoxicação por remédio, veneno, agrotóxico, produto de limpeza ou animal peçonhento. Fonte: SES/GO, consultado em 08/10/2026."},
- // Educação
- {id:"mec",tipo:"Educação",mun:"Nacional",nome:"MEC: Prouni, Fies e Sisu",tel:["Fale Conosco 0800 616161"],site:"https://acessounico.mec.gov.br",obs:"Inscrições com a conta gov.br, nas datas de cada edital. Prouni e Fies abrem duas vezes por ano; o Sisu, no início do ano."},
- {id:"inep",tipo:"Educação",mun:"Nacional",nome:"Inep: Enem e Encceja",site:"https://www.gov.br/inep",obs:"Isenção da taxa do Enem (em abril), inscrições e Encceja, na Página do Participante, com a conta gov.br."},
- {id:"ovg",tipo:"Educação",mun:"Estado",nome:"ProBem, OVG (bolsas universitárias do Estado)",tel:["Região metropolitana (62) 3270-8500","Interior 0800 062 9413","WhatsApp (62) 99641-6090"],site:"https://www.ovg.org.br",obs:"Inscrições por edital, uma vez por semestre, só pelo site da OVG. Seleção pelo CadÚnico. Fonte: Governo de Goiás e imprensa, 2026."},
  // Saúde
  {id:"samu",tipo:"Saúde",mun:"Região metropolitana",nome:"SAMU 192",tel:["192"],obs:"Emergência com risco de vida. A Central de Regulação de Goiânia atende a região metropolitana."},
  {id:"hugo",tipo:"Saúde",mun:"Goiânia",nome:"HUGO, Hospital Estadual de Urgências de Goiânia",tel:["(62) 3201-4420"]},
@@ -649,86 +611,33 @@ const CRAS=[
 CRAS.forEach((c,i)=>S.push({id:"cras"+i,tipo:"CRAS",mun:"Goiânia",nome:c[0],end:c[1]+", Goiânia",tel:[c[2]],obs:"Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."}));
 const byId=Object.fromEntries(S.map(s=>[s.id,s]));
 
-/* ---------- ATENDIMENTO GUIADO ----------
-   Começa pelo que a pessoa precisa. Cada assunto puxa só as perguntas que decidem os direitos ligados a ele.
-   As respostas viram o mesmo perfil que o motor de regras usa (perfil + avaliar). */
+/* ---------- CAMPOS ---------- */
 /* Salário mínimo vigente: R$ 1.621 desde 1º/01/2026 (Decreto 12.797/2025). Atualizar todo janeiro. */
 const SM_PADRAO=1621;
-const $=id=>document.getElementById(id);
-const NECESSIDADES=[
- {k:"renda",t:"Renda e benefícios",d:"Bolsa Família, BPC, programas do Estado"},
- {k:"comida",t:"Comida",d:"Falta alimento em casa",on:["fome"]},
- {k:"moradia",t:"Moradia",d:"Aluguel pesado, situação de rua"},
- {k:"saude",t:"Saúde e remédios",d:"Remédio, alto custo, HIV, gravidez"},
- {k:"mental",t:"Saúde mental",d:"Sofrimento, álcool e drogas, suicídio"},
- {k:"protecao",t:"Violência e proteção",d:"Mulher, criança, idoso, pessoa com deficiência"},
- {k:"educacao",t:"Educação",d:"Escola, Enem, faculdade e bolsas"},
- {k:"trabalho",t:"Trabalho",d:"Desemprego, negócio próprio, direitos"},
- {k:"documentos",t:"Documentos",d:"Certidão de nascimento ou casamento",on:["semDoc"]},
- {k:"negado",t:"Direito negado",d:"Vaga, remédio, cirurgia ou benefício recusado",on:["negado"]}
-];
-/* Atalhos de urgência: vão direto ao plano, com a faixa de segurança no topo. */
-const URGENCIAS=[
- {k:"suic",t:"Risco de suicídio",nec:"mental"},
- {k:"violMulher",t:"Violência contra mulher acontecendo",nec:"protecao"},
- {k:"violCrianca",t:"Criança em perigo",nec:"protecao"},
- {k:"pep",t:"Exposição ao HIV nas últimas 72h",nec:"protecao"}
-];
-const tem=(s,ks)=>ks.some(k=>s.nec.has(k));
-const PERGUNTAS=[
- {id:"mun",tipo:"mun",t:"Em que município a pessoa mora?",quando:()=>true},
- {id:"reg",tipo:"um",campo:"reg",t:"Em que região de Goiânia?",d:"Define o Conselho Tutelar e o CREAS de referência.",
-  opcoes:[["centro-sul","Centro-Sul","Central e Sul"],["leste","Leste","Leste e Sudeste"],["norte","Norte","Vale do Meia Ponte e Norte"],["noroeste","Noroeste","Mendanha e Noroeste"],["oeste","Oeste","Macambira/Cascavel e Sudoeste"],["campinas","Campinas","Campinas e Oeste"],["","Não sei"]],
-  quando:s=>s.mun==="Goiânia"&&tem(s,["protecao","mental"])},
- {id:"protecao",tipo:"varios",t:"O que está acontecendo?",
-  opcoes:[["violMulher","Mulher em situação de violência"],["mpu","Ela já tem medida protetiva"],["violCrianca","Criança ou adolescente com direito violado"],["violIdoso","Idoso ou pessoa com deficiência sofrendo violência ou abandono"],["pep","Exposição de risco ao HIV há menos de 72h, inclusive violência sexual"],["trabalho","Trabalho infantil, escravo ou discriminação no trabalho"]],
-  quando:s=>tem(s,["protecao"])},
- {id:"mental",tipo:"varios",t:"O que a pessoa está vivendo?",
-  opcoes:[["mental","Sofrimento mental: tristeza, ansiedade, crise"],["drogas","Uso de álcool ou drogas"],["suic","Pensamento de suicídio"],["tentativa","Tentativa de suicídio ou autolesão recente"]],
-  quando:s=>tem(s,["mental"])},
- {id:"saude",tipo:"varios",t:"Do que precisa na saúde?",
-  opcoes:[["altocusto","Remédio de alto custo receitado"],["continuo","Remédio de uso contínuo: pressão, diabetes, asma…"],["hiv","Vive com HIV"],["teste","Fazer teste de HIV ou IST"],["prep","Prevenção ao HIV (PrEP)"],["gest","Está grávida"]],
-  quando:s=>tem(s,["saude"])},
- {id:"moradia",tipo:"um",campo:"moradia",t:"Como a pessoa mora?",
-  opcoes:[["propria","Casa própria"],["alugada","De aluguel"],["alugada+aluguel","De aluguel, e ele leva metade da renda ou mais"],["cedida","Casa cedida"],["ocupacao","Ocupação"],["rua","Na rua"],["acolhimento","Em abrigo ou acolhimento"]],
-  quando:s=>tem(s,["moradia"])},
- {id:"educacao",tipo:"varios",t:"Qual é a situação de estudo?",
-  opcoes:[["estMedio","Estuda no ensino médio público"],["estud","Estuda em outro nível"],["superior","Quer entrar na faculdade"],["superiorApoio","Está na faculdade e precisa de apoio para continuar"],["eja","Adulto que não terminou a escola"],["negado","Vaga em creche ou escola negada"]],
-  quando:s=>tem(s,["educacao"])},
- {id:"trab",tipo:"um",campo:"trab",t:"Como está o trabalho da pessoa?",
-  opcoes:[["formal","Com carteira assinada ou servidor"],["informal","Informal ou por conta própria"],["desempregado","Desempregada"],["aposentado","Aposentada ou pensionista"],["nao","Não trabalha: estuda ou cuida da casa"]],
-  quando:s=>tem(s,["trabalho","renda"])},
- {id:"trab2",tipo:"varios",t:"Mais alguma coisa sobre trabalho?",
-  opcoes:[["empreender","Quer abrir um negócio ou trabalhar por conta própria"],["trabalho","Trabalho infantil, escravo ou discriminação"]],
-  quando:s=>tem(s,["trabalho"])},
- {id:"renda",tipo:"renda",t:"Quanto a casa recebe por mês?",d:"Some o que todos ganham: salário, bicos, aposentadoria, pensão. Não conte o Bolsa Família.",
-  quando:s=>tem(s,["renda","comida","moradia","educacao","trabalho"])},
- {id:"idade",tipo:"num",campo:"idade",t:"Qual a idade da pessoa atendida?",
-  quando:s=>tem(s,["renda","educacao","trabalho","saude"])},
- {id:"familia",tipo:"varios",t:"Quem mora na casa?",d:"Marque o que houver.",
-  opcoes:[["c06","Criança de 0 a 6 anos"],["pcd","Pessoa com deficiência"],["pcd17","Pessoa com deficiência de até 17 anos"],["tea","Pessoa com autismo"],["gest","Gestante"]],
-  quando:s=>tem(s,["renda","comida","moradia"])},
- {id:"cad",tipo:"varios",t:"O que a família já tem?",
-  opcoes:[["cad","Cadastro Único (CadÚnico)"],["cadOld","CadÚnico sem atualizar há mais de 2 anos"],["pbf","Bolsa Família"],["bpcRec","BPC"]],
-  quando:s=>tem(s,["renda","comida","moradia","educacao","trabalho"])},
- {id:"notas",tipo:"notas",t:"Para o resumo",d:"Opcional. Use só as iniciais.",quando:()=>true}
-];
-/* Campo vazio que decide o resultado → pergunta que o preenche (quadro "Complete para avaliar"). */
-const CAMPOS={renda:{t:"Renda da casa e pessoas na casa",q:"renda"},idade:{t:"Idade",q:"idade"}};
-const CASES={
- familia:{nec:["renda","moradia","protecao"],ini:"M.S.A.",mun:"Goiânia",reg:"noroeste",idade:29,pessoas:4,renda:400,trab:"informal",moradia:"alugada",dem:"Saiu de casa com os filhos depois de agressão; precisa de renda e de lugar para morar.",on:["cad","c06","pcd17","violMulher","mpu","aluguel"]},
- altocusto:{nec:["saude","renda"],ini:"J.P.R.",mun:"Trindade",idade:52,pessoas:3,renda:2600,trab:"formal",moradia:"propria",dem:"Precisa do remédio para artrite reumatoide que a reumatologista receitou; não tem no posto.",on:["cad","altocusto","continuo"]},
- hiv:{nec:["saude","mental"],ini:"R.C.",mun:"Goiânia",reg:"leste",idade:34,pessoas:1,renda:1300,trab:"informal",moradia:"alugada",dem:"Recebeu diagnóstico de HIV no teste rápido e não sabe por onde começar.",on:["hiv","mental"]},
- farmacia:{nec:["saude"],ini:"A.L.M.",mun:"Aparecida de Goiânia",idade:67,pessoas:2,renda:2800,trab:"aposentado",moradia:"propria",dem:"Usa losartana e metformina e está comprando na farmácia.",on:["continuo"]},
- crise:{nec:["mental","educacao"],ini:"L.F.",mun:"Goiânia",reg:"norte",idade:19,pessoas:3,renda:1800,trab:"nao",moradia:"alugada",dem:"Disse que não aguenta mais e que pensou em tomar os remédios da mãe.",on:["suic","estud"]},
- faculdade:{nec:["educacao","renda"],ini:"K.S.",mun:"Senador Canedo",idade:18,pessoas:4,renda:2400,trab:"nao",moradia:"alugada",dem:"Terminou o ensino médio em escola estadual, fez o Enem e quer cursar enfermagem.",on:["superior","cad"]}
+const CHIPS={
+ chipsCad:[["cad","Inscrito no CadÚnico"],["cadOld","CadÚnico sem atualizar há mais de 2 anos"],["pbf","Recebe Bolsa Família"],["bpcRec","Recebe BPC"]],
+ chipsFam:[["c06","Criança de 0 a 6 anos"],["pcd","Pessoa com deficiência"],["pcd17","Pessoa com deficiência até 17 anos"],["tea","Pessoa com autismo (TEA)"],["gest","Gestante"],["estMedio","Estudante do ensino médio público"],["estud","Estudante (qualquer nível)"]],
+ chipsSau:[["altocusto","Precisa de medicamento de alto custo"],["continuo","Usa remédio contínuo (pressão, diabetes, asma…)"],["hiv","Vive com HIV"],["teste","Quer fazer teste de HIV/IST"],["pep","Exposição de risco ao HIV há menos de 72h"],["prep","Quer prevenção ao HIV (PrEP)"],["mental","Sofrimento mental"],["drogas","Uso de álcool ou drogas"],["suic","Pensamento de suicídio"],["tentativa","Tentativa de suicídio ou autolesão recente"]],
+ chipsProt:[["violMulher","Mulher em situação de violência"],["mpu","Tem medida protetiva ativa"],["violCrianca","Criança/adolescente com direito violado"],["violIdoso","Idoso ou PcD sofrendo violência ou abandono"],["rua","Em situação de rua"],["trabalho","Trabalho infantil, escravo ou discriminação no trabalho"]],
+ chipsSoc:[["fome","Falta comida em casa"],["aluguel","Aluguel pesa metade da renda ou mais"],["empreender","Quer trabalhar por conta própria"],["semDoc","Sem certidão ou documento"],["negado","Serviço público negou ou não atendeu (vaga, remédio, cirurgia, escola)"]]
 };
-const novoAtendimento=()=>({nec:new Set(),mun:"Goiânia",reg:"",idade:null,pessoas:null,renda:null,sm:SM_PADRAO,trab:"",moradia:"",ini:"",dem:"",on:new Set(),qi:0,voltarAoPlano:false});
-let E=novoAtendimento();
-const perguntas=()=>PERGUNTAS.filter(q=>q.quando(E));
-const rotulo=(campo,v)=>{const q=PERGUNTAS.find(x=>x.campo===campo);const o=q&&q.opcoes.find(o=>o[0]===v);return o?o[1]:""};
-const dadosAtendimento=()=>({...E,on:[...E.on],trabT:rotulo("trab",E.trab),moradiaT:rotulo("moradia",E.moradia)});
-function read(){return perfil(dadosAtendimento())}
+const $=id=>document.getElementById(id);
+function buildChips(){for(const k in CHIPS){$(k).innerHTML=CHIPS[k].map(([v,t])=>`<label class="chip"><input type="checkbox" id="ck-${v}" value="${v}"><span>${t}</span></label>`).join("")}}
+const CASES={
+ familia:{ini:"M.S.A.",mun:"Goiânia",reg:"noroeste",idade:29,pessoas:4,renda:400,trab:"informal",moradia:"alugada",escol:"fund-inc",dem:"Saiu de casa com os filhos depois de agressão; precisa de renda e de lugar para morar.",on:["cad","c06","pcd17","violMulher","mpu","aluguel"]},
+ altocusto:{ini:"J.P.R.",mun:"Trindade",idade:52,pessoas:3,renda:2600,trab:"formal",moradia:"propria",escol:"medio",dem:"Precisa do remédio para artrite reumatoide que a reumatologista receitou; não tem no posto.",on:["cad","altocusto","continuo"]},
+ hiv:{ini:"R.C.",mun:"Goiânia",reg:"leste",idade:34,pessoas:1,renda:1300,trab:"informal",moradia:"alugada",escol:"medio",dem:"Recebeu diagnóstico de HIV no teste rápido e não sabe por onde começar.",on:["hiv","mental"]},
+ crise:{ini:"L.F.",mun:"Goiânia",reg:"norte",idade:19,pessoas:3,renda:1800,trab:"nao",moradia:"alugada",escol:"medio",dem:"Disse que não aguenta mais e que pensou em tomar os remédios da mãe.",on:["suic","estud"]},
+ farmacia:{ini:"A.L.M.",mun:"Aparecida de Goiânia",idade:67,pessoas:2,renda:2800,trab:"aposentado",moradia:"propria",escol:"fund",dem:"Usa losartana e metformina e está comprando na farmácia.",on:["continuo"]}
+};
+const EX=CASES.familia;
+function fill(p){$("ini").value=p.ini||"";$("mun").value=p.mun;$("reg").value=p.reg||"";$("idade").value=p.idade??"";$("pessoas").value=p.pessoas??"";$("renda").value=p.renda??"";$("sm").value=p.sm||$("sm").value||SM_PADRAO;$("trab").value=p.trab||"";$("moradia").value=p.moradia||"";$("escol").value=p.escol||"";$("dem").value=p.dem||"";document.querySelectorAll('#f input[type=checkbox]').forEach(c=>c.checked=(p.on||[]).includes(c.value))}
+function read(){
+ const n=v=>{const x=parseFloat($(v).value);return isFinite(x)?x:null};
+ const opt=id=>{const e=$(id);return e.value?e.options[e.selectedIndex].text:""};
+ return perfil({ini:$("ini").value,mun:$("mun").value,reg:$("reg").value,idade:n("idade"),pessoas:n("pessoas"),renda:n("renda"),sm:n("sm"),
+  trab:$("trab").value,trabT:opt("trab"),moradia:$("moradia").value,moradiaT:opt("moradia"),escolT:opt("escol"),dem:$("dem").value,
+  on:[...document.querySelectorAll('#f input[type=checkbox]:checked')].map(c=>c.value)})}
 /* Monta o perfil a partir de dados simples (formulário ou testes). */
 function perfil(d){
  const on=new Set(d.on||[]);
@@ -867,65 +776,6 @@ const P=[
  {id:"registro",nome:"2ª via gratuita de certidão (Registro Civil)",esf:"est",val:"Gratuito",
   test:p=>p.has("semDoc")?["prov","Pessoa de baixa renda sem certidão de nascimento, casamento ou óbito."]:null,
   flow:["Ir à Seds (Bloco B, sala 2) ou a um evento do Goiás Social.","Sem nenhum dado do registro, a Seds encaminha à Defensoria."],docs:["Cópia de qualquer documento, se tiver","Comprovante de endereço","Telefone"],where:null,extra:["registro","dpe"]},
- // Educação
- {id:"enem",nome:"Enem e isenção da taxa",esf:"nac",val:"Porta de entrada para Prouni, Fies e Sisu",
-  test:p=>{if(!(p.has("superior")||p.has("estMedio")))return null;
-   if(p.has("cad")||p.has("pbf"))return["prov","Família no CadÚnico tem isenção da taxa do Enem."];
-   if(p.has("estMedio"))return["prov","Estudante do 3º ano do ensino médio em escola pública tem isenção da taxa. Quem recebe o Pé-de-Meia também."];
-   return["ver","Tem isenção quem fez todo o ensino médio em escola pública (ou como bolsista integral) com renda de até 1,5 salário mínimo por pessoa, ou quem está no CadÚnico."]},
-  flow:["Pedir a isenção da taxa na Página do Participante, com a conta gov.br, no prazo do Inep (em abril).",
-   "Fazer a inscrição no Enem no período do edital, mesmo quem já tem a isenção.",
-   "Fazer as duas provas. Para Prouni e Fies, a média precisa ser de pelo menos 450 pontos, sem zerar a redação.",
-   "Quem tinha isenção e faltou precisa justificar a falta para ter isenção no ano seguinte."],
-  docs:["CPF","Conta gov.br","NIS, se estiver no CadÚnico"],where:null,extra:["inep"]},
- {id:"prouni",nome:"Prouni, bolsa em faculdade particular",esf:"nac",val:"Bolsa de 100% ou 50%",
-  test:p=>{if(!p.has("superior"))return null;if(p.pc===null)return FALTA_RENDA;
-   const req=" Exige Enem com média de 450 pontos e redação acima de zero, e ensino médio em escola pública ou como bolsista integral.";
-   if(p.pc<=p.sm*1.5)return["ver",`Renda de ${brl(p.pc)} por pessoa, dentro do limite da bolsa integral (até 1,5 salário mínimo, ${brl(p.sm*1.5)}).`+req];
-   if(p.pc<=p.sm*3)return["ver",`Renda de ${brl(p.pc)} por pessoa, dentro do limite da bolsa parcial de 50% (até 3 salários mínimos, ${brl(p.sm*3)}).`+req];
-   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de 3 salários mínimos (${brl(p.sm*3)}).`]},
-  flow:["Fazer o Enem e conseguir média de pelo menos 450 pontos, sem zerar a redação.",
-   "Inscrever-se no Prouni com a conta gov.br, nas datas do edital (duas vezes por ano), escolhendo até duas opções de curso.",
-   "Acompanhar as chamadas e a lista de espera.",
-   "Pré-selecionado: levar os documentos à faculdade no prazo, para comprovar renda e escola.",
-   "Manter frequência e aprovação para não perder a bolsa."],
-  docs:["Documento com foto e CPF","Comprovantes de renda de todos da casa","Histórico do ensino médio","Comprovante de endereço"],where:null,extra:["mec"]},
- {id:"fies",nome:"Fies e Fies Social, financiamento da faculdade",esf:"nac",val:"Financia até 100% no Fies Social",
-  test:p=>{if(!p.has("superior"))return null;if(p.pc===null)return FALTA_RENDA;
-   const req=" Precisa de média de 450 pontos no Enem, sem zerar a redação.";
-   if(p.pc<=p.sm/2)return["ver",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo (${brl(p.sm/2)}): perfil do Fies Social, que financia até 100% e tem metade das vagas reservada.`+(p.has("cad")?"":" Exige CadÚnico ativo.")+req];
-   if(p.pc<=p.sm*3)return["ver",`Renda de ${brl(p.pc)} por pessoa, até 3 salários mínimos (${brl(p.sm*3)}).`+req];
-   return["nao",`Renda de ${brl(p.pc)} por pessoa passa de 3 salários mínimos (${brl(p.sm*3)}).`]},
-  flow:["Fazer o Enem (de 2010 em diante) com média de pelo menos 450 pontos, sem zerar a redação. Prova feita como treineiro não vale.",
-   "Inscrever-se no Fies com a conta gov.br, nas datas do edital (duas vezes por ano).",
-   "Fies Social: a vaga é identificada pelo CPF na base do CadÚnico. Atualize o cadastro antes da inscrição.",
-   "Pré-selecionado: validar a inscrição na comissão da faculdade (CPSA) e assinar o contrato no banco.",
-   "As parcelas do financiamento são pagas depois de formado."],
-  docs:["Documento com foto e CPF","Comprovantes de renda de todos da casa","Conta gov.br"],where:null,extra:["mec"]},
- {id:"cotas",nome:"Universidade pública: Sisu e cotas",esf:"nac",val:"Gratuito",
-  test:p=>p.has("superior")?["ver","UFG, IFG e IF Goiano selecionam pelo Sisu, com a nota do Enem; a UEG tem processo seletivo próprio. Quem fez todo o ensino médio em escola pública concorre às cotas, com parte das vagas para renda de até 1 salário mínimo por pessoa"+(p.pc!==null?` (a renda informada é de ${brl(p.pc)}).`:".")]:null,
-  flow:["Fazer o Enem.","Inscrever-se no Sisu com a conta gov.br, no início do ano, escolhendo a modalidade de cota.","UEG: acompanhar o edital do processo seletivo próprio.","Aprovado por cota: levar na matrícula os comprovantes de escola pública e de renda.","Já na universidade, procurar a assistência estudantil."],
-  docs:["Histórico escolar do ensino médio","Comprovantes de renda de todos da casa (cota de renda)","Documento com foto e CPF"],where:null,extra:["mec"]},
- {id:"probem",nome:"ProBem, bolsa universitária do Estado (OVG)",esf:"est",val:"Bolsa integral ou parcial",
-  test:p=>{if(!(p.has("superior")||p.has("superiorApoio")))return null;
-   if(p.pc!==null&&p.pc>p.sm/2&&p.renda>p.sm*3)return["nao","A seleção é pelo CadÚnico, e a renda informada passa do perfil do cadastro (meio salário mínimo por pessoa ou 3 salários na casa)."];
-   return["ver","Bolsa do Governo de Goiás em faculdade particular parceira, para estudante em vulnerabilidade e sem diploma de graduação. A seleção usa o CadÚnico feito ou atualizado em Goiás."+(p.has("cad")?"":" Precisa estar no CadÚnico.")]},
-  flow:["Ter o CadÚnico feito ou atualizado em Goiás antes da data de corte do edital.",
-   "Acompanhar a abertura das inscrições no site da OVG (uma vez por semestre).",
-   "Inscrever-se pelo site da OVG, matriculada ou aprovada em curso presencial de faculdade parceira (confira o edital).",
-   "Acompanhar o resultado e manter frequência e aprovação."],
-  docs:["Documento com foto e CPF","Comprovante de matrícula","NIS"],where:null,extra:["ovg"]},
- {id:"pnaes",nome:"Assistência estudantil na faculdade",esf:"nac",val:"Alimentação, moradia, transporte",
-  test:p=>p.has("superiorApoio")?["ver","Universidades e institutos federais (UFG, IFG, IF Goiano) têm assistência estudantil, com prioridade para renda de até 1,5 salário mínimo por pessoa"+(p.pc!==null?` (a renda informada é de ${brl(p.pc)})`:"")+". Em faculdade particular, pergunte pelo ProBem e pelas bolsas da própria instituição."]:null,
-  flow:["Procurar a pró-reitoria ou o setor de assistência estudantil da instituição.","Acompanhar os editais de auxílio: alimentação, moradia, transporte, creche.","Levar os comprovantes de renda da família.","Estudante indígena ou quilombola em universidade federal: perguntar pela Bolsa Permanência do MEC."],
-  docs:["Comprovantes de renda de todos da casa","Comprovante de matrícula","Documento com foto e CPF"],where:null},
- {id:"eja",nome:"Terminar os estudos: EJA e Encceja",esf:"nac",val:"Gratuito",
-  test:p=>p.has("eja")?["prov","O Encceja dá o certificado do ensino fundamental (a partir de 15 anos) e do médio (a partir de 18), com prova gratuita. A EJA é a turma para jovens e adultos na escola pública."]:null,
-  flow:["Encceja: inscrição no site do Inep com a conta gov.br, no período do edital. A prova é gratuita.",
-   "Aprovado em todas as áreas: pedir o certificado à Secretaria de Educação indicada na inscrição.",
-   "Prefere estudar em sala: matrícula na EJA da escola estadual ou municipal mais próxima.",
-   "Com o certificado do ensino médio, já pode fazer o Enem e tentar Prouni, Fies e Sisu."],
-  docs:["Documento com foto e CPF","Histórico escolar, se tiver","Comprovante de endereço (para a EJA)"],where:null,extra:["inep"]},
  // Saúde: medicamentos e HIV
  {id:"ceaf",nome:"Medicamento de alto custo (Componente Especializado, Cemac Juarez Barbosa)",esf:"est",val:"Gratuito pelo SUS",
   test:p=>p.has("altocusto")?["enc","Medicamento especializado do SUS, liberado conforme o Protocolo Clínico (PCDT) do Ministério da Saúde para a doença. Sem critério de renda."]:null,
@@ -1093,8 +943,6 @@ const STOPS={
  registro:{nome:"Seds, Registro Civil",q:2,lugar:()=>pickIds(["registro"])},
  inss:{nome:"INSS: Meu INSS ou telefone 135",q:3,lugar:()=>pickIds(["135"])},
  online:{nome:"Pela internet",q:3,lugar:()=>[]},
- faculdade:{nome:"Faculdade ou universidade",q:2,lugar:()=>[]},
- escola:{nome:"Escola pública mais próxima ou Secretaria de Educação",q:2,lugar:()=>[],docs:["Documento com foto e CPF","Histórico escolar, se tiver","Comprovante de endereço"]},
  auto:{nome:"Sem inscrição",q:4,lugar:()=>pickIds(["121"]),docs:[]},
  dpe:{nome:"Defensoria Pública",q:5,lugar:p=>pickIds([p.mun==="Aparecida de Goiânia"?"dpeap":"dpe","puc-npj"]),docs:["Negativa por escrito, protocolo ou print","Documentos usados no pedido"]},
  mp:{nome:"Ministério Público",q:5,lugar:()=>pickIds(["mpgo","mpf","mpt"])}
@@ -1135,23 +983,17 @@ const ROTA={
  "r-rua":[["pop","Alimentação, higiene, documentos e vaga em acolhimento"]],
  "r-mental":[["ubs","Acolhimento em saúde mental. A UBS encaminha ao CAPS, que também atende direto"]],
  "r-gest":p=>[["ubs","Começar o pré-natal, de preferência até a 12ª semana"]].concat(p.has("pbf")||p.has("cad")?[["cras","Informar a gestação para o adicional do Bolsa Família",[]]]:[]),
- "r-fome":[["cras","Pedir benefício eventual (cesta básica)",["Documento com foto e CPF"]]],
- enem:[["online","Isenção da taxa (em abril) e inscrição no Enem, com a conta gov.br"]],
- prouni:[["online","Inscrição no Prouni com a conta gov.br, nas datas do edital"]],
- fies:[["online","Inscrição no Fies com a conta gov.br, nas datas do edital"]],
- cotas:[["online","Sisu com a nota do Enem, escolhendo a cota; ou edital da UEG"]],
- probem:[["online","Inscrição no ProBem pelo site da OVG, quando abrir o edital"]],
- pnaes:[["faculdade","Pedir auxílio na assistência estudantil"]],
- eja:[["online","Encceja: inscrição gratuita no site do Inep"],["escola","Ou matrícula na EJA"]]
+ "r-fome":[["cras","Pedir benefício eventual (cesta básica)",["Documento com foto e CPF"]]]
 };
 /* Nome curto para listas e etiquetas. */
 const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
- hivcare:"Cuidado em HIV",crise:"Crise suicida",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
+ hivcare:"Cuidado em HIV",crise:"Crise suicida",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
  "r-rua":"População de rua","r-mental":"Saúde mental","r-gest":"Pré-natal","r-fome":"Segurança alimentar"};
 const curto=pol=>CURTO[pol.id]||pol.nome;
 /* Políticas que só saem com o CadÚnico em dia. */
-const CAD_DEP=["probem","pbf","bpc","tse","pdm","cpi","plfed","maes","inclusivo","dignidade","porelas","aluguel","passaporte","plpcd","credito","aprendiz"];
+const CAD_DEP=["pbf","bpc","tse","pdm","cpi","plfed","maes","inclusivo","dignidade","porelas","aluguel","passaporte","plpcd","credito","aprendiz"];
+const CAMPOS={renda:{t:"Renda da casa e pessoas na casa",foco:["renda","pessoas"]},idade:{t:"Idade",foco:["idade"]}};
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").trim();
 
 function montarRoteiro(hits,p){
@@ -1239,141 +1081,40 @@ function placeHtml(s){
  ${s.site?`<a href="${esc(s.site)}" target="_blank" rel="noopener">${esc(s.site.replace(/^https?:\/\//,""))}</a>`:""}
  ${s.obs?`<span class="meta">${esc(s.obs)}</span>`:""}</div>`;
 }
-/* ---------- TELAS ---------- */
-function mostrarTela(v){["vInicio","vPergunta","vPlano"].forEach(id=>$(id).hidden=id!==v);const t=$("p-enc");if(t.getBoundingClientRect().top<0)t.scrollIntoView({block:"start"})}
-
-function renderInicio(){
- $("needTiles").innerHTML=NECESSIDADES.map(n=>`<button type="button" class="tile" data-need="${n.k}" aria-pressed="${E.nec.has(n.k)}"><b>${esc(n.t)}</b><span>${esc(n.d)}</span></button>`).join("");
- const n=E.nec.size;
- $("start").disabled=!n;
- $("start").textContent=n?`Continuar com ${n} assunto${n===1?"":"s"}`:"Marque pelo menos um assunto";
-}
-
-/* Opção de resposta: botão grande, marcado ou não. */
-const opcao=(v,t,d,on,tipo)=>`<button type="button" class="opt ${tipo}" data-v="${esc(v)}" aria-pressed="${on}"><span class="ot">${esc(t)}</span>${d?`<span class="od">${esc(d)}</span>`:""}</button>`;
-function marcadoUm(q,v){
- if(q.campo==="moradia"){const [base,extra]=v.split("+");return E.moradia===base&&!!extra===E.on.has("aluguel")}
- return E[q.campo]===v&&(v!==""||E[q.campo+"Resp"]);
-}
-function renderPergunta(){
- const qs=perguntas();
- if(E.qi>=qs.length)return mostrarPlano();
- const q=qs[E.qi];
- $("qProg").textContent=`Pergunta ${E.qi+1} de ${qs.length}`;
- $("qBar").style.width=`${Math.round((E.qi+1)/qs.length*100)}%`;
- let h=`<h2 id="qTitle" tabindex="-1">${esc(q.t)}</h2>${q.d?`<p class="hint">${esc(q.d)}</p>`:""}`;
- if(q.tipo==="mun"){
-  const top=["Goiânia","Aparecida de Goiânia","Senador Canedo","Trindade"];
-  h+=`<div class="opts">${top.map(m=>opcao(m,m,"",E.mun===m,"um")).join("")}</div>
-   <label class="l" for="qMun">Outro município da região</label>
-   <select id="qMun"><option value="">Escolha…</option>${MUNS.filter(m=>!top.includes(m)).map(m=>`<option${E.mun===m?" selected":""}>${esc(m)}</option>`).join("")}</select>`;
- }
- if(q.tipo==="um")h+=`<div class="opts">${q.opcoes.map(([v,t,d])=>opcao(v,t,d,marcadoUm(q,v),"um")).join("")}</div>`;
- if(q.tipo==="varios"){
-  h+=`<p class="hint">Marque todas que valem.</p><div class="opts">${q.opcoes.map(([v,t])=>opcao(v,t,"",E.on.has(v),"varios")).join("")}</div>`;
-  const algum=q.opcoes.some(([v])=>E.on.has(v));
-  h+=`<div class="qnav"><button type="button" class="b big" data-next>${algum?"Continuar":"Nenhuma destas, continuar"}</button></div>`;
- }
- if(q.tipo==="renda"){
-  h+=`<div class="fgrid2">
-   <div><label class="l" for="qRenda">Renda total da casa (R$ por mês)</label><input id="qRenda" type="number" min="0" step="1" inputmode="numeric" value="${E.renda??""}"></div>
-   <div><label class="l" for="qPessoas">Pessoas que moram na casa</label><input id="qPessoas" type="number" min="1" max="30" inputmode="numeric" value="${E.pessoas??""}"></div>
-  </div>
-  <div class="calc" id="qCalc" aria-live="polite"></div>
-  <p class="hint">Salário mínimo usado: <b>${brl(E.sm)}</b> (2026). <button type="button" class="link" id="qSmEdit">Alterar</button></p>
-  <div id="qSmBox" hidden><label class="l" for="qSm">Salário mínimo (R$)</label><input id="qSm" type="number" min="1" inputmode="numeric" value="${E.sm}"></div>
-  <div class="qnav"><button type="button" class="b ghost" data-naosei>Não sei</button><button type="button" class="b big" data-next>Continuar</button></div>`;
- }
- if(q.tipo==="num"){
-  h+=`<label class="l" for="qNum">Idade em anos</label><input id="qNum" type="number" min="0" max="120" inputmode="numeric" value="${E[q.campo]??""}">
-  <div class="qnav"><button type="button" class="b ghost" data-naosei>Não sei</button><button type="button" class="b big" data-next>Continuar</button></div>`;
- }
- if(q.tipo==="notas"){
-  h+=`<label class="l" for="qIni">Iniciais da pessoa</label><input id="qIni" type="text" maxlength="6" autocomplete="off" placeholder="Ex.: M.S.A." value="${esc(E.ini)}" style="text-transform:uppercase">
-  <label class="l" for="qDem">O que a pessoa pediu, nas palavras dela</label><textarea id="qDem" rows="3" maxlength="400" placeholder="Ex.: precisa do remédio para artrite que o posto não tem.">${esc(E.dem)}</textarea>
-  <span class="hint">Não escreva nomes, endereços, telefones ou números de documento. E-mails e números longos são apagados do resumo.</span>
-  <div class="qnav"><button type="button" class="b big" data-next>Ver o plano</button></div>`;
- }
- $("qBody").innerHTML=h;
- $("qBody").dataset.q=q.id;
- if(q.tipo==="renda")calcRenda();
- $("qTitle").focus({preventScroll:true});
-}
-function calcRenda(){
- const r=parseFloat($("qRenda").value),n=parseFloat($("qPessoas").value);
- $("qCalc").innerHTML=(isFinite(r)&&n>0)?`Renda por pessoa: <strong>${brl(r/n)}</strong>`:"Preencha os dois campos para ver a renda por pessoa.";
-}
-/* Guarda o que está digitado na pergunta atual antes de sair dela. */
-function guardarCampos(){
- const n=id=>{const e=$(id);if(!e)return undefined;const x=parseFloat(e.value);return isFinite(x)?x:null};
- const q=$("qBody").dataset.q;
- if(q==="renda"){E.renda=n("qRenda");E.pessoas=n("qPessoas");const sm=n("qSm");if(sm)E.sm=sm}
- if(q==="idade")E.idade=n("qNum");
- if(q==="notas"){E.ini=$("qIni").value;E.dem=$("qDem").value}
-}
-function avancar(){
- guardarCampos();
- if(E.voltarAoPlano){E.voltarAoPlano=false;return mostrarPlano()}
- E.qi++;renderPergunta();
-}
-function irParaPergunta(id,voltarAoPlano){
- const i=perguntas().findIndex(q=>q.id===id);if(i<0)return;
- E.qi=i;E.voltarAoPlano=!!voltarAoPlano;mostrarTela("vPergunta");renderPergunta();
-}
-function comecar(){E.qi=0;E.voltarAoPlano=false;mostrarTela("vPergunta");renderPergunta()}
-function mostrarPlano(){E.voltarAoPlano=false;mostrarTela("vPlano");render()}
-
-/* ---------- PLANO ---------- */
 const SPH={nac:["nac","Nacional"],est:["est","Estadual"],mun:["mun","Municipal"],rede:["rede","Rede de proteção"]};
 const ST={prov:["prov","Provável direito"],ver:["ver","Verificar"],enc:["enc","Encaminhamento"]};
 let lastText="";
-function cardHtml(x,p,aberto){
- const sp=SPH[x.pol.esf],st=ST[x.st];
- const pl=[];if(x.pol.where){pl.push(...places(x.pol.where,p).list)}(x.pol.extra||[]).forEach(e=>{if(byId[e]&&!pl.includes(byId[e]))pl.push(byId[e])});
- return `<details class="card"${aberto?" open":""}${x.pol.id==="crise"?' id="card-crise"':""}><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(x.pol.nome)}</h3><span class="status ${st[0]}">${st[1]}</span></div><span class="why">${esc(x.why)}</span></summary>
-  <div class="body"><div class="meta2"><span class="sphere ${sp[0]}">${sp[1]}</span><span class="val">${esc(x.pol.val)}</span></div>
-  <div><h4>Passo a passo</h4><ol class="flow">${x.pol.flow.map(f=>`<li><span>${esc(f)}</span></li>`).join("")}</ol></div>
-  ${x.pol.docs&&x.pol.docs.length?`<div><h4>Documentos</h4><ul class="docs">${x.pol.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}
-  ${x.pol.html||""}
-  ${pl.filter(Boolean).length?`<div><h4>Onde ir</h4><div class="places">${pl.map(placeHtml).join("")}</div></div>`:""}</div></details>`;
-}
 function render(){
- const d=dadosAtendimento(),p=perfil(d);
+ const p=read();
+ $("regBox").hidden=p.mun!=="Goiânia";
+ $("calc").innerHTML=p.pc!==null?`Renda por pessoa: <strong>${brl(p.pc)}</strong> · 1/4 SM ${brl(p.sm/4)} · 1/2 SM ${brl(p.sm/2)}`:"Informe renda e número de pessoas para calcular a renda por pessoa.";
  const {hits,nao,falta,urg,roteiro}=avaliar(p);
- const qs=perguntas().map(q=>q.id);
- /* resumo do perfil numa linha */
- const regT=p.reg?rotulo("reg",p.reg):"";
- $("pSum").innerHTML=[p.ini?`<b>${esc(p.ini)}</b>`:"",esc(p.mun)+(regT?` (${esc(regT)})`:""),p.idade!==null?`${p.idade} anos`:"",p.pessoas?`${p.pessoas} pessoa${p.pessoas===1?"":"s"} na casa`:"",p.pc!==null?`${brl(p.pc)} por pessoa`:""].filter(Boolean).map(x=>`<span>${x}</span>`).join("");
+ const R=$("results");
  let h="";
  if(urg.length)h+=`<div class="urgent" role="alert"><h3>Antes de tudo: segurança</h3><ul>${urg.map(u=>`<li>${u}</li>`).join("")}</ul></div>`;
- const crise=hits.find(x=>x.pol.id==="crise");
- if(crise)h+=cardHtml(crise,p,true);
- const lines=[`ENCAMINHAMENTO · ${p.ini?"Pessoa: "+p.ini+" · ":""}${p.mun}${p.reg?" (região "+p.reg+")":""} · ${new Date().toLocaleDateString("pt-BR")}`,p.idade!==null?`Idade: ${p.idade} anos`:"",p.pc!==null?`Renda por pessoa: ${brl(p.pc)}`:"",[p.trabT&&"Trabalho: "+p.trabT,p.moradiaT&&"Moradia: "+p.moradiaT].filter(Boolean).join(" · "),p.dem?`Solicitação: ${p.dem}`:""].filter(Boolean);
-
- h+=`<div class="planhead"><div><h2>Plano de encaminhamento</h2><p class="hint">${roteiro.length?`${roteiro.length} passo${roteiro.length===1?"":"s"}, na ordem. Toque em "O que levar e contatos" em cada um.`:"Nenhum encaminhamento com essas respostas."}</p></div>${hits.length?`<button class="b" type="button" id="copyAll">Copiar resumo</button>`:""}</div>`;
- /* falta dado: só para perguntas que fazem parte deste atendimento */
- const fk=Object.keys(falta).filter(c=>qs.includes(CAMPOS[c].q));
- if(fk.length)h+=`<div class="falta"><h3>Falta uma resposta</h3><ul>${fk.map(c=>`<li><span><b>${esc(CAMPOS[c].t)}</b> decide: ${falta[c].map(pol=>esc(curto(pol))).join(", ")}.</span><button type="button" class="b ghost sm" data-q="${CAMPOS[c].q}">Responder</button></li>`).join("")}</ul></div>`;
- if(!E.nec.size&&hits.length)h+=`<div class="note">Plano feito só com a urgência. <button type="button" class="link" id="pMais">Responder as perguntas</button> para incluir renda, benefícios e outros direitos.</div>`;
- if(!hits.length)h+=`<div class="empty">Nenhum encaminhamento ainda. <button type="button" class="link" id="pVoltarInicio">Escolha o que a pessoa precisa</button></div>`;
+ const nP=hits.filter(x=>x.st==="prov").length,nV=hits.filter(x=>x.st==="ver").length,nE=hits.filter(x=>x.st==="enc").length;
+ h+=`<div class="summary"><h2>${hits.length} encaminhamento${hits.length===1?"":"s"}${p.ini?" · "+esc(p.ini):""} · ${esc(p.mun)}</h2><div class="legend"><span class="status enc">${nE} proteção</span><span class="status prov">${nP} provável direito</span><span class="status ver">${nV} verificar</span></div></div>`;
+ if(hits.length){h+=`<div class="btns"><button class="b" type="button" id="copyAll">Copiar resumo do encaminhamento</button></div>`}
+ const fk=Object.keys(falta);
+ if(fk.length)h+=`<div class="falta"><h3>Complete para avaliar mais direitos</h3><ul>${fk.map(c=>`<li><span><b>${esc(CAMPOS[c].t)}</b> decide: ${falta[c].map(pol=>esc(curto(pol))).join(", ")}.</span><button type="button" class="b ghost sm" data-campo="${c}">Preencher</button></li>`).join("")}</ul></div>`;
+ if(!hits.length)h+=`<div class="empty">Nenhum encaminhamento ainda. Preencha a etapa 1 (município, renda e pessoas na casa) e marque as necessidades na etapa 2.</div>`;
 
  /* roteiro */
+ const lines=[`ENCAMINHAMENTO · ${p.ini?"Pessoa: "+p.ini+" · ":""}${p.mun}${p.reg?" (região "+p.reg+")":""} · ${new Date().toLocaleDateString("pt-BR")}`,p.idade!==null?`Idade: ${p.idade} anos`:"",p.pc!==null?`Renda por pessoa: ${brl(p.pc)}`:"",[p.trabT&&"Trabalho: "+p.trabT,p.moradiaT&&"Moradia: "+p.moradiaT,p.escolT&&"Escolaridade: "+p.escolT].filter(Boolean).join(" · "),p.dem?`Solicitação: ${p.dem}`:""].filter(Boolean);
  if(roteiro.length){
   lines.push("","ROTEIRO");
   let n=0;
-  h+=`<section class="route" aria-label="Roteiro">`;
+  h+=`<section class="route" aria-label="Roteiro"><div class="routehead"><h3>Roteiro</h3><p class="hint">O que fazer, em que ordem e onde. Cada lugar aparece uma vez, com tudo o que se resolve lá.</p></div>`;
   QUANDO.forEach((g,qi)=>{
    const ps=roteiro.filter(s=>s.q===qi);if(!ps.length)return;
    h+=`<div class="rgroup q${qi}"><div class="when"><b>${esc(g.t)}</b><span>${esc(g.d)}</span></div><ol class="stops">`;
    ps.forEach(s=>{
     n++;
     const lug=s.lugares.filter(Boolean);
-    const mais=s.docs.length||lug.length;
     h+=`<li class="stop"><div class="stophead"><span class="num">${n}</span><h4>${esc(s.nome)}</h4></div>
-     <ul class="acts">${s.acoes.map(a=>`<li><span>${esc(a.texto)}</span> <span class="for">${esc(curto(a.pol))}${a.st==="ver"?" · verificar":""}</span>${a.abre?`<span class="abre">Com o cadastro, a família pode ter: ${a.abre.map(esc).join(", ")}.</span>`:""}</li>`).join("")}</ul>
-     ${mais?`<details class="where"><summary>O que levar e contatos</summary>
-      ${s.docs.length?`<div class="levar"><b>Levar</b><ul>${s.docs.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
-      ${lug.length?`<div class="places">${lug.map(placeHtml).join("")}</div>`:""}</details>`:""}</li>`;
+     <ul class="acts">${s.acoes.map(a=>`<li><span>${esc(a.texto)}</span> <span class="for">${esc(curto(a.pol))}${a.st==="ver"?` · <i>verificar</i>`:""}</span>${a.abre?`<span class="abre">Com o cadastro, a família pode ter: ${a.abre.map(esc).join(", ")}.</span>`:""}</li>`).join("")}</ul>
+     ${s.docs.length?`<div class="levar"><b>Levar</b><ul>${s.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}
+     ${lug.length?`<details class="where"><summary>Endereços e contatos (${lug.length})</summary><div class="places">${lug.map(placeHtml).join("")}</div></details>`:""}</li>`;
     lines.push("",`${n}. [${g.t}] ${s.nome}`,...s.acoes.map(a=>`   - ${a.texto} (${curto(a.pol)}${a.st==="ver"?", verificar":""})`+(a.abre?`. Abre: ${a.abre.join(", ")}`:"")));
     if(s.docs.length)lines.push(`   Levar: ${s.docs.join("; ")}`);
     lug.filter(l=>!l.fake).forEach(l=>lines.push(`   → ${l.nome}${l.end?", "+l.end:""}${l.tel?" · "+l.tel.join(" / "):""}${l.email?" · "+l.email:""}`));
@@ -1383,19 +1124,36 @@ function render(){
   h+=`</section>`;
  }
 
- /* por que cada direito: recolhido */
- const outros=hits.filter(x=>x.pol.id!=="crise");
- if(outros.length){
-  h+=`<details class="fold"><summary>Por que cada direito foi indicado (${outros.length})</summary><div class="foldbody">${outros.map(x=>cardHtml(x,p,false)).join("")}</div></details>`;
+ /* detalhe por política */
+ if(hits.length){
+  h+=`<div class="routehead"><h3>Detalhe de cada encaminhamento</h3><p class="hint">Por que foi indicado, o passo a passo completo e os documentos.</p></div>`;
+  lines.push("","DETALHE");
  }
- if(hits.length){lines.push("","DETALHE");hits.forEach(x=>{const sp=SPH[x.pol.esf],st=ST[x.st];lines.push("",`• ${x.pol.nome} [${sp[1]} · ${st[1]}] ${x.pol.val}`,`  Motivo: ${x.why}`,...x.pol.flow.map((f,j)=>`  ${j+1}. ${f}`))})}
+ hits.forEach(x=>{
+  const sp=SPH[x.pol.esf],st=ST[x.st];
+  const pl=[];if(x.pol.where){pl.push(...places(x.pol.where,p).list)}(x.pol.extra||[]).forEach(e=>{if(byId[e]&&!pl.includes(byId[e]))pl.push(byId[e])});
+  h+=`<details class="card"${x.pol.id==="crise"?' open id="card-crise"':""}><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(x.pol.nome)}</h3><span class="sphere ${sp[0]}">${sp[1]}</span><span class="status ${st[0]}">${st[1]}</span></div><span class="val">${esc(x.pol.val)}</span><span class="why">${esc(x.why)}</span></summary>
+  <div class="body"><div><h4>Fluxo</h4><ol class="flow">${x.pol.flow.map(f=>`<li><span>${esc(f)}</span></li>`).join("")}</ol></div>
+  ${x.pol.docs&&x.pol.docs.length?`<div><h4>Documentos</h4><ul class="docs">${x.pol.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}
+  ${x.pol.html||""}
+  ${pl.filter(Boolean).length?`<div><h4>Onde ir</h4><div class="places">${pl.map(placeHtml).join("")}</div></div>`:""}</div></details>`;
+  lines.push("",`• ${x.pol.nome} [${sp[1]} · ${st[1]}] ${x.pol.val}`,`  Motivo: ${x.why}`,...x.pol.flow.map((f,j)=>`  ${j+1}. ${f}`));
+ });
+
+ /* por que não */
  if(nao.length){
-  h+=`<details class="fold"><summary>Avaliados e não indicados agora (${nao.length})</summary><div class="foldbody"><ul class="naol">${nao.map(x=>`<li><b>${esc(x.pol.nome)}</b><span>${esc(x.why)}</span></li>`).join("")}</ul><p class="hint">Se a renda ou a família mudar, o resultado muda. Quem decide a concessão é sempre o órgão responsável.</p></div></details>`;
+  h+=`<details class="nao"><summary>Avaliados e não indicados agora (${nao.length})</summary><ul>${nao.map(x=>`<li><b>${esc(x.pol.nome)}</b><span>${esc(x.why)}</span></li>`).join("")}</ul><p class="hint">Se a renda ou a família mudar, o resultado muda. Quem decide a concessão é sempre o órgão responsável.</p></details>`;
   lines.push("","NÃO INDICADOS AGORA",...nao.map(x=>`• ${curto(x.pol)}: ${x.why}`));
  }
  lines.push("","Gerado no Encaminha Goiânia. Sem nome, endereço ou documento da pessoa. Confirme contatos antes do envio.");
  lastText=lines.join("\n");
- $("results").innerHTML=h;
+ R.innerHTML=h;
+ const nNeeds=["chipsSau","chipsProt","chipsSoc"].reduce((a,k)=>a+$(k).querySelectorAll("input:checked").length,0)+(p.dem?1:0);
+ $("sum1").textContent=[p.ini||"Sem iniciais",p.mun,p.pc!==null?brl(p.pc)+"/pessoa":null].filter(Boolean).join(" · ");
+ $("sum2").textContent=nNeeds?`${nNeeds} ${nNeeds===1?"item":"itens"} marcado${nNeeds===1?"":"s"}`:"Nada marcado";
+ $("sum3").textContent=`${hits.length} encaminhamento${hits.length===1?"":"s"}${urg.length?" · com alerta":""}`;
+ const needsT=["chipsSau","chipsProt","chipsSoc"].flatMap(k=>[...$(k).querySelectorAll("input:checked")].map(c=>c.nextElementSibling.textContent));
+ $("profile").innerHTML=`<span>Pessoa <b>${esc(p.ini||"—")}</b></span><span>Município <b>${esc(p.mun)}</b></span>${p.idade!==null?`<span>Idade <b>${p.idade}</b></span>`:""}${p.pc!==null?`<span>Renda por pessoa <b>${brl(p.pc)}</b></span>`:""}${p.trabT?`<span>Trabalho <b>${esc(p.trabT)}</b></span>`:""}${p.moradiaT?`<span>Moradia <b>${esc(p.moradiaT)}</b></span>`:""}${needsT.length?`<span class="dem">Necessidades: ${esc(needsT.join("; "))}</span>`:""}${p.dem?`<span class="dem">Solicitação: “${esc(p.dem)}”</span>`:""}`;
 }
 
 /* ---------- DIRETÓRIO ---------- */
@@ -1415,6 +1173,15 @@ function dirRender(){
 
 /* ---------- ABAS ---------- */
 const tabs=[...document.querySelectorAll('nav.tabs [role=tab]')];
+const steps=[...document.querySelectorAll('.stepnav [role=tab]')];
+function step(n){steps.forEach((b,i)=>{const on=i===n-1;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});}
+steps.forEach((b,i)=>b.addEventListener("click",()=>step(i+1)));
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){step(+g.dataset.go);$("p-enc").scrollIntoView({block:"start"})}});
+/* Link da faixa de segurança: abre o card do manejo da crise */
+document.addEventListener("click",e=>{const a=e.target.closest("[data-abre]");if(!a)return;e.preventDefault();const c=$("card-"+a.dataset.abre);if(c){c.open=true;c.scrollIntoView({block:"start"})}});
+/* "Preencher": volta à etapa 1 e põe o cursor no primeiro campo vazio que decide o resultado */
+document.addEventListener("click",e=>{const b=e.target.closest("[data-campo]");if(!b)return;const c=CAMPOS[b.dataset.campo];if(!c)return;
+ step(1);const el=c.foco.map($).find(x=>!x.value)||$(c.foco[0]);el.scrollIntoView({block:"center"});el.focus()});
 function show(id){tabs.forEach(b=>{const on=b.id===id;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});try{localStorage.setItem("enc-tab",id)}catch(e){}}
 tabs.forEach(b=>b.addEventListener("click",()=>show(b.id)));
 
@@ -1425,46 +1192,19 @@ function fallback(txt,btn,done){const ta=document.createElement("textarea");ta.v
 document.addEventListener("click",e=>{const b=e.target.closest(".copy");if(b){e.preventDefault();copy(b.dataset.c,b)}if(e.target.id==="copyAll")copy(lastText,e.target)});
 
 /* ---------- INIT ---------- */
-$("urgTiles").innerHTML=URGENCIAS.map(u=>`<button type="button" class="tile urg" data-urg="${u.k}"><b>${esc(u.t)}</b></button>`).join("");
-document.addEventListener("click",e=>{
- const t=e.target.closest("button");if(!t)return;
- if(t.dataset.need){const k=t.dataset.need,n=NECESSIDADES.find(x=>x.k===k);
-  if(E.nec.has(k)){E.nec.delete(k);(n.on||[]).forEach(c=>E.on.delete(c))}else{E.nec.add(k);(n.on||[]).forEach(c=>E.on.add(c))}
-  renderInicio();return}
- if(t.dataset.urg){const u=URGENCIAS.find(x=>x.k===t.dataset.urg);E.on.add(u.k);E.urgNec=u.nec;mostrarPlano();return}
- if(t.id==="start")return comecar();
- if(t.id==="qBack"){guardarCampos();if(E.voltarAoPlano){E.voltarAoPlano=false;return mostrarPlano()}if(E.qi===0){mostrarTela("vInicio");return renderInicio()}E.qi--;return renderPergunta()}
- if(t.id==="qSkip"){guardarCampos();return mostrarPlano()}
- if(t.id==="pEdit")return E.nec.size?comecar():(mostrarTela("vInicio"),renderInicio());
- if(t.id==="pMais"){E.nec.add(E.urgNec||"protecao");renderInicio();return comecar()}
- if(t.id==="pVoltarInicio"){mostrarTela("vInicio");return renderInicio()}
- if(t.id==="pNew"||t.id==="pNew2"){E=novoAtendimento();mostrarTela("vInicio");return renderInicio()}
- if(t.id==="qSmEdit"){$("qSmBox").hidden=false;$("qSm").focus();return}
- if(t.dataset.q)return irParaPergunta(t.dataset.q,true);
- if(t.hasAttribute("data-next"))return avancar();
- if(t.hasAttribute("data-naosei")){const q=$("qBody").dataset.q;if(q==="renda"){E.renda=null;E.pessoas=null}if(q==="idade")E.idade=null;
-  if(E.voltarAoPlano){E.voltarAoPlano=false;return mostrarPlano()}E.qi++;return renderPergunta()}
- if(t.classList.contains("opt")){
-  const q=perguntas()[E.qi],v=t.dataset.v;
-  if(q.tipo==="varios"){E.on.has(v)?E.on.delete(v):E.on.add(v);
-   /* a medida protetiva só vale junto com a violência contra a mulher */
-   if(v==="mpu"&&E.on.has("mpu"))E.on.add("violMulher");if(v==="violMulher"&&!E.on.has("violMulher"))E.on.delete("mpu");
-   guardarCampos();return renderPergunta()}
-  if(q.tipo==="mun"){E.mun=v;if(v!=="Goiânia")E.reg="";return avancar()}
-  if(q.campo==="moradia"){const [base,extra]=v.split("+");E.moradia=base;E.on.delete("aluguel");if(extra)E.on.add("aluguel");if(base==="rua")E.on.add("rua");else E.on.delete("rua");return avancar()}
-  E[q.campo]=v;E[q.campo+"Resp"]=true;return avancar();
- }
-});
-document.addEventListener("input",e=>{if(e.target.id==="qRenda"||e.target.id==="qPessoas")calcRenda()});
-document.addEventListener("change",e=>{if(e.target.id==="qMun"&&e.target.value){E.mun=e.target.value;E.reg="";avancar()}});
-/* Exemplos prontos: vão direto ao plano */
-document.querySelectorAll(".case[data-case]").forEach(b=>b.addEventListener("click",()=>{
- const c=CASES[b.dataset.case];E=Object.assign(novoAtendimento(),c,{nec:new Set(c.nec),on:new Set(c.on),sm:SM_PADRAO});mostrarPlano()}));
-/* Link da faixa de segurança: abre o card do manejo da crise */
-document.addEventListener("click",e=>{const a=e.target.closest("[data-abre]");if(!a)return;e.preventDefault();const c=$("card-"+a.dataset.abre);if(c){c.open=true;c.scrollIntoView({block:"start"})}});
-renderInicio();dirInit();
+$("mun").innerHTML=MUNS.map(m=>`<option>${esc(m)}</option>`).join("");
+buildChips();fill(EX);dirInit();
+$("f").addEventListener("input",()=>{$("exTag").hidden=true;render()});
+$("f").addEventListener("change",render);
+$("f").addEventListener("submit",e=>e.preventDefault());
+const caseBtns=[...document.querySelectorAll(".case[data-case]")];
+function markCase(k){caseBtns.forEach(b=>b.setAttribute("aria-pressed",b.dataset.case===k?"true":"false"))}
+$("clear").addEventListener("click",()=>{fill({mun:"Goiânia",on:[]});$("exTag").hidden=true;markCase("");render();step(1)});
+caseBtns.forEach(b=>b.addEventListener("click",()=>{fill(CASES[b.dataset.case]);$("exTag").hidden=false;markCase(b.dataset.case);render();step(3)}));
+$("f").addEventListener("input",()=>markCase(""));
+markCase("familia");step(3);
 ["fq","fm","ft"].forEach(i=>$(i).addEventListener("input",dirRender));
-dirRender();
+render();dirRender();
 /* Motor exposto para os testes automáticos (tests/motor.test.mjs). */
 window.EncaminhaMotor={perfil,avaliar,CASES,SM_PADRAO};
 try{const t=localStorage.getItem("enc-tab");if(t&&$(t))show(t)}catch(e){}
