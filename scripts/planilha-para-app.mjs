@@ -20,7 +20,7 @@ const tmp = mkdtempSync(join(tmpdir(), "encaminha-"));
 writeFileSync(join(tmp, "index.html"), html.replace(BLOCO, "$1{}$3"));
 const b = await chromium.launch();
 const p = await b.newPage();
-await p.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+await p.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
 await p.goto("file://" + join(tmp, "index.html"), { waitUntil: "domcontentloaded" });
 // As abas viram objetos com a mesma função que o site usa ao ler a planilha ao vivo
 const { servicos, politicas, temas } = await p.evaluate((e) => window.EncaminhaMotor.tabelasParaPlanilha(e), entrada);

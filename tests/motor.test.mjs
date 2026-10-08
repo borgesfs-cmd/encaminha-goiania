@@ -15,7 +15,7 @@ before(async () => {
   page = await browser.newPage();
   page.on("pageerror", (e) => erros.push(e.message));
   // Fontes externas não importam para o teste e podem não carregar sem rede.
-  await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await page.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
 });
 after(async () => browser && browser.close());

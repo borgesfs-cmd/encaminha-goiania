@@ -89,6 +89,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
   - O app aplica a última leitura guardada no aparelho (`localStorage` enc-planilha) por cima do bloco dados-planilha. Função de leitura das abas: `tabelasParaPlanilha` (a mesma usada por `scripts/planilha-para-app.mjs`).
   - Registros: fila no aparelho (enc-fila) quando falta internet. Relatórios: só com a chave de gestor (Script Properties CHAVE_GESTOR); a coluna U da aba Registros guarda o registro completo.
   - Dentro do Claude (artefato) a URL é ignorada: o artefato não acessa outros endereços e segue com o banco do artefato e a sincronização sob pedido (caminho B).
+  - A URL real está no `index.html`: todo teste e script que abre o app bloqueia `script.google.com` (junto com as fontes), para nunca ler nem gravar na planilha de verdade. Página nova em teste: bloquear também.
   - Ao mudar `Codigo.gs`, a pessoa precisa publicar nova versão da implantação. Testes: `tests/conexao.test.mjs` (API simulada) e `tests/apps-script.test.mjs` (serviços Google simulados).
 
 ## Levantamentos

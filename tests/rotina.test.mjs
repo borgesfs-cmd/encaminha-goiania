@@ -16,7 +16,7 @@ before(async () => {
   page = await browser.newPage();
   page.on("pageerror", (e) => erros.push(e.message));
   page.on("console", (m) => { if (m.type() === "error" && !/fonts|ERR_FAILED/.test(m.text())) erros.push(m.text()); });
-  await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await page.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
 });
 after(async () => browser && browser.close());
@@ -242,7 +242,7 @@ async function semRolagemLateral(p, rotulo) {
 
 test("E1. Celular de 360px: nenhuma tela rola para o lado", async () => {
   const p = await browser.newPage({ viewport: { width: 360, height: 780 } });
-  await p.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await p.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
   await p.goto(PAGE, { waitUntil: "domcontentloaded" });
   await semRolagemLateral(p, "início");
   await p.click('.tile[data-need="renda"]');
@@ -288,7 +288,7 @@ test("E2. Acessibilidade: todo campo tem rótulo e todo botão tem texto", async
 
 test("E3. Tema escuro: fundo escuro, texto claro, sem erros", async () => {
   const p = await browser.newPage({ colorScheme: "dark" });
-  await p.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await p.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
   await p.goto(PAGE, { waitUntil: "domcontentloaded" });
   await p.click('.case[data-case="familia"]');
   const c = await p.evaluate(() => { const s = getComputedStyle(document.body); return [s.backgroundColor, s.color]; });

@@ -28,7 +28,7 @@ test("planilha → app: corrige telefone, desativa serviço, cria tema e avisa c
   assert.match(saida, /Serviços alterados, novos ou desativados: 3/);
   assert.match(saida, /contato-que-nao-existe/);
   const b = await chromium.launch(); const p = await b.newPage();
-  await p.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await p.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
   const erros = []; p.on("pageerror", (e) => erros.push(e.message));
   await p.goto("file://" + join(tmp, "index.html"), { waitUntil: "domcontentloaded" });
   const r = await p.evaluate(() => {

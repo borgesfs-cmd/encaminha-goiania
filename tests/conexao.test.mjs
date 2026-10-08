@@ -10,8 +10,12 @@ const API = "https://script.google.com/macros/s/TESTE_encaminha/exec";
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 const tmp = mkdtempSync(join(tmpdir(), "conexao-"));
 const COM_API = join(tmp, "com-api.html");
-writeFileSync(COM_API, html.replace('<meta name="encaminha-api" content="">', `<meta name="encaminha-api" content="${API}">`));
-const SEM_API = new URL("../index.html", import.meta.url).href;
+// Duas cópias do app: com a URL de teste e sem URL nenhuma (a URL real do index.html nunca é chamada).
+const META = /<meta name="encaminha-api" content="[^"]*">/;
+if (!META.test(html)) throw new Error("Falta a meta encaminha-api no index.html");
+writeFileSync(COM_API, html.replace(META, `<meta name="encaminha-api" content="${API}">`));
+writeFileSync(join(tmp, "sem-api.html"), html.replace(META, '<meta name="encaminha-api" content="">'));
+const SEM_API = "file://" + join(tmp, "sem-api.html");
 const CHAVE = "chave-teste-123";
 const CAB_S = ["ID (não altere)", "Nome", "Tipo", "Município", "Região de Goiânia", "Endereço", "Telefones (separe com /)", "E-mail", "Horário", "Site", "Observação", "Fonte", "Situação", "Conferido em", "Conferido por (setor)", "Precisa conferir?"];
 

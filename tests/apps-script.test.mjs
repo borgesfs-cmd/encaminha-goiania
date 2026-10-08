@@ -25,6 +25,8 @@ function ambiente(abas) {
       getDataRange: () => intervalo(1, 1, linhas.length, largura()),
       appendRow: (l) => linhas.push(l),
       hideColumns: () => {},
+      getMaxColumns: () => (abas[nome].maxCol ??= largura()),
+      insertColumnsAfter: (_, n) => { abas[nome].maxCol += n; abas[nome].inseridas = (abas[nome].inseridas || 0) + n; },
     };
   };
   const saidas = [];
@@ -70,10 +72,13 @@ test("doGet dados: devolve as três abas sem linhas vazias e usa o cache", () =>
 
 test("configurar cria a chave, o cabeçalho da coluna U e devolve a mesma chave depois", () => {
   const amb = novo();
+  assert.equal(amb.abas.Registros[0].length, 20, "a aba começa só com A a T, como na planilha real");
   const k = amb.ctx.configurar();
   assert.match(k, /^[0-9a-f]{12}$/);
   assert.equal(amb.abas.Registros[0][20], "Dados do app (não altere)");
+  assert.equal(amb.abas.Registros.inseridas, 1, "cria a coluna U que faltava");
   assert.equal(amb.ctx.configurar(), k);
+  assert.equal(amb.abas.Registros.inseridas, 1, "não cria de novo");
 });
 
 test("doPost grava registros válidos, atualiza pelo ID e recusa os inválidos", () => {

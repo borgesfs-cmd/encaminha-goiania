@@ -46,6 +46,7 @@ function doPost(e) {
   trava.waitLock(20000);
   try {
     const aba = SpreadsheetApp.getActive().getSheetByName(ABA_REGISTROS);
+    garantirColunas_(aba);
     const ultima = aba.getLastRow();
     const ids = ultima > 1 ? aba.getRange(2, 1, ultima - 1, 1).getDisplayValues().map((r) => r[0]) : [];
     const gravados = [];
@@ -76,6 +77,7 @@ function configurar() {
     props.setProperty("CHAVE_GESTOR", chave);
   }
   const aba = SpreadsheetApp.getActive().getSheetByName(ABA_REGISTROS);
+  garantirColunas_(aba);
   aba.getRange(1, COLUNA_DADOS).setValue("Dados do app (não altere)");
   aba.hideColumns(COLUNA_DADOS);
   console.log("Chave de gestor: " + chave);
@@ -86,6 +88,12 @@ function configurar() {
 function trocarChave() {
   PropertiesService.getScriptProperties().deleteProperty("CHAVE_GESTOR");
   return configurar();
+}
+
+/* A aba Registros precisa ter a coluna U (registro completo). */
+function garantirColunas_(aba) {
+  const falta = COLUNA_DADOS - aba.getMaxColumns();
+  if (falta > 0) aba.insertColumnsAfter(aba.getMaxColumns(), falta);
 }
 
 function dadosComCache_() {

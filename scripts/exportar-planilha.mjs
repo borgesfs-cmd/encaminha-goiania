@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const raiz = fileURLToPath(new URL("..", import.meta.url));
 const b = await chromium.launch();
 const p = await b.newPage();
-await p.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+await p.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
 await p.goto("file://" + raiz + "index.html", { waitUntil: "domcontentloaded" });
 const dados = await p.evaluate(() => {
   const D = window.EncaminhaMotor._dados;

@@ -20,7 +20,7 @@ const registros = arquivos.flatMap((f) => {
 
 const b = await chromium.launch();
 const p = await b.newPage();
-await p.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+await p.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
 await p.goto("file://" + raiz + "index.html", { waitUntil: "domcontentloaded" });
 const linhas = await p.evaluate((rs) => rs.map((r) => window.EncaminhaMotor.registroParaLinha(r)), registros);
 await b.close();
