@@ -76,6 +76,12 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Aparecida: parcial. Demais municípios da RMG: só nacional e estadual.
 - Comunitária: PUC Goiás (NPJ, CEPSI, Clínica Escola Vida, CRESA, Cecom), Centro de Psicologia da UFG, Ceap-SOL, CEVAM.
 
+## Banco de dados no Google Planilhas
+- `dados/banco-de-dados-encaminha.xlsx`: abas Leia-me, Serviços, Políticas, Temas, Registros, Resumo e Fontes. Gerada a partir do app por `node scripts/exportar-planilha.mjs` (Playwright + Python/openpyxl).
+- Serviços tem Situação (Ativo, A conferir, Inativo), Conferido em, Conferido por e a fórmula "Precisa conferir?" (Sim se nunca conferido ou com mais de 180 dias).
+- Os critérios de direito ficam no código; a planilha guarda textos, contatos e palavras-chave. Pedido de mudança de critério: coluna própria na aba Políticas.
+- Ligação com o app: em definição (ver conversa). Um app dentro do Claude não pode buscar dados em outro endereço; a leitura da planilha e o envio de registros exigem o app hospedado fora (ex.: GitHub Pages) com um Apps Script publicado na planilha.
+
 ## Levantamentos
 - `docs/levantamento-2026-10-08.md`: políticas, rede, ONGs, instituições de ensino e demandas psicossociais, com fonte e grau de confiança de cada item.
 

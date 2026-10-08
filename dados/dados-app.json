@@ -1,0 +1,3079 @@
+{
+ "S": [
+  {
+   "id": "mxc",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Unidade de Integração e Referência Social Maria Xavier Caiado",
+   "end": "Av. Anhanguera, 3463, Setor Leste Universitário, Goiânia, CEP 74610-010",
+   "tel": [
+    "(62) 3270-9610"
+   ],
+   "hor": "Seg a sex, 8h às 17h",
+   "obs": "Entrega e 2ª via dos cartões Mães de Goiás, Dignidade e Goiás + Inclusivo. CIPTEA, Passe Livre PcD e Passaporte da Pessoa Idosa."
+  },
+  {
+   "id": "seds",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Seds, Secretaria de Estado de Desenvolvimento Social",
+   "end": "Praça Dr. Pedro Ludovico Teixeira, 332, Blocos A a D, Setor Central, Goiânia, CEP 74003-010",
+   "tel": [
+    "(62) 3270-9603",
+    "Ouvidoria (62) 3270-9604"
+   ],
+   "email": "ouvidoria.seds@goias.gov.br",
+   "hor": "Seg a sex, 8h às 18h"
+  },
+  {
+   "id": "pcd",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Gerência da Pessoa com Deficiência (Seds)",
+   "end": "Av. Anhanguera, 3463, Setor Leste Universitário, Goiânia, CEP 74610-010",
+   "tel": [
+    "(62) 3270-9620",
+    "WhatsApp (62) 98104-3652"
+   ],
+   "email": "pcd@goias.gov.br",
+   "hor": "Seg a sex, 7h30 às 18h"
+  },
+  {
+   "id": "passaporte",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Passaporte da Pessoa Idosa (Seds)",
+   "end": "Av. Anhanguera, 3463, Setor Leste Universitário, Goiânia, CEP 74610-010",
+   "tel": [
+    "(62) 3270-9621",
+    "(62) 98306-0327"
+   ],
+   "email": "passaporte.seds@goias.gov.br",
+   "hor": "Seg a sex, 7h às 17h30"
+  },
+  {
+   "id": "mulherseds",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Superintendência da Mulher (Seds), Goiás Por Elas",
+   "end": "Praça Dr. Pedro Ludovico Teixeira, 332, Bloco B, térreo, Setor Central, Goiânia",
+   "tel": [
+    "WhatsApp (62) 98270-0214"
+   ],
+   "email": "crei.seds@goias.gov.br"
+  },
+  {
+   "id": "juventude",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Passe Livre Estudantil (Seds)",
+   "end": "Praça Dr. Pedro Ludovico Teixeira, 332, Bloco C, térreo, Setor Central, Goiânia, CEP 74083-010",
+   "tel": [
+    "(62) 3270-9624",
+    "WhatsApp (62) 98306-0294",
+    "RedeMob 0800 648 2222"
+   ],
+   "email": "passelivre@goias.gov.br",
+   "site": "https://www.juventude.go.gov.br/"
+  },
+  {
+   "id": "registro",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Registro Civil, 2ª via gratuita (Seds)",
+   "end": "Av. Anhanguera, 3463, Setor Leste Universitário, Goiânia, CEP 74610-010",
+   "tel": [
+    "WhatsApp (62) 3270-9644"
+   ],
+   "email": "garantiadedireitos.seds@goias.gov.br"
+  },
+  {
+   "id": "agehab",
+   "tipo": "Estadual (Agehab)",
+   "mun": "Estado",
+   "nome": "Agehab, Agência Goiana de Habitação",
+   "end": "Rua 18-A, nº 541, Setor Aeroporto, Goiânia, CEP 74070-060",
+   "tel": [
+    "(62) 3096-5005",
+    "(62) 3096-5050"
+   ],
+   "hor": "8h às 17h",
+   "site": "https://aluguelsocial.agehab.go.gov.br"
+  },
+  {
+   "id": "aprendiz",
+   "tipo": "Estadual (Seds)",
+   "mun": "Estado",
+   "nome": "Aprendiz do Futuro",
+   "tel": [
+    "0800 494 1052"
+   ],
+   "site": "https://aprendizdofuturo.org.br"
+  },
+  {
+   "id": "121",
+   "tipo": "Nacional",
+   "mun": "Nacional",
+   "nome": "Disque Social 121 (MDS)",
+   "tel": [
+    "121"
+   ],
+   "obs": "Bolsa Família, Cadastro Único e endereço do CRAS mais próximo."
+  },
+  {
+   "id": "135",
+   "tipo": "Nacional",
+   "mun": "Nacional",
+   "nome": "INSS, Central 135 e Meu INSS",
+   "tel": [
+    "135"
+   ],
+   "site": "https://meu.inss.gov.br",
+   "obs": "Pedido de BPC, agendamento de perícia e avaliação social."
+  },
+  {
+   "id": "100",
+   "tipo": "Nacional",
+   "mun": "Nacional",
+   "nome": "Disque 100, Direitos Humanos",
+   "tel": [
+    "100"
+   ],
+   "obs": "Denúncia anônima de violência contra criança, idoso, pessoa com deficiência, população de rua e LGBTQIA+, tráfico de pessoas e trabalho escravo. 24h. Também por WhatsApp (61) 99611-0100."
+  },
+  {
+   "id": "180",
+   "tipo": "Nacional",
+   "mun": "Nacional",
+   "nome": "Ligue 180, Central de Atendimento à Mulher",
+   "tel": [
+    "180"
+   ],
+   "obs": "Gratuito, sigiloso, 24h."
+  },
+  {
+   "id": "188",
+   "tipo": "Nacional",
+   "mun": "Nacional",
+   "nome": "CVV, Centro de Valorização da Vida",
+   "tel": [
+    "188"
+   ],
+   "site": "https://cvv.org.br",
+   "hor": "Telefone 24h, todos os dias",
+   "obs": "Apoio emocional e prevenção do suicídio. Ligação gratuita e sigilosa, de qualquer telefone. Também há chat em cvv.org.br, em horários limitados: confira no site."
+  },
+  {
+   "id": "ciatox",
+   "tipo": "Saúde",
+   "mun": "Estado",
+   "nome": "CIATox Goiás, Centro de Informação e Assistência Toxicológica",
+   "tel": [
+    "0800 646 4350"
+   ],
+   "hor": "24h, todos os dias",
+   "site": "https://goias.gov.br/saude/ciatox/",
+   "obs": "Orienta profissionais e população em intoxicação por remédio, veneno, agrotóxico, produto de limpeza ou animal peçonhento. Fonte: SES/GO, consultado em 08/10/2026."
+  },
+  {
+   "id": "crer",
+   "tipo": "Saúde",
+   "mun": "Estado",
+   "nome": "CRER, Centro Estadual de Reabilitação e Readaptação Dr. Henrique Santillo",
+   "end": "Av. Vereador José Monteiro, 1655, Setor Negrão de Lima, Goiânia, CEP 74653-230",
+   "tel": [
+    "Recepção (62) 3232-3232",
+    "(62) 3232-3000"
+   ],
+   "site": "https://goias.gov.br/saude/crer/",
+   "obs": "Reabilitação pelo SUS. A primeira consulta é agendada pela regulação, com encaminhamento da UBS; não há procura direta. Fonte: SES/GO, consultado em 08/10/2026."
+  },
+  {
+   "id": "credeq",
+   "tipo": "Saúde",
+   "mun": "Aparecida de Goiânia",
+   "nome": "Credeq Prof. Jamil Issy, referência estadual em dependência química",
+   "obs": "Casos graves de álcool e drogas, com internação voluntária de até 90 dias. A vaga vem pela regulação, com encaminhamento do CAPS AD. Fonte: Governo de Goiás e imprensa; endereço e telefone ainda não conferidos."
+  },
+  {
+   "id": "autoexclusao",
+   "tipo": "Nacional",
+   "mun": "Nacional",
+   "nome": "Autoexclusão de apostas (Ministério da Fazenda)",
+   "site": "https://www.gov.br/pt-br/servicos/plataforma-centralizada-de-autoexclusao-apostas",
+   "obs": "Bloqueia o CPF em todas as bets autorizadas, de 1 a 12 meses ou por tempo indeterminado, e corta a publicidade. Exige conta gov.br prata ou ouro. Fonte: gov.br, consultado em 08/10/2026."
+  },
+  {
+   "id": "sine",
+   "tipo": "Trabalho",
+   "mun": "Goiânia",
+   "nome": "Sine Goiânia",
+   "end": "Rua 1, nº 147, Setor Central, Goiânia",
+   "obs": "Vagas, seguro-desemprego e orientação profissional. Agendamento pelo app Prefeitura 24h. Levar RG, CPF, carteira de trabalho e comprovante de endereço. Endereço de reportagem recente: confirme antes de ir."
+  },
+  {
+   "id": "procon",
+   "tipo": "Justiça e direitos",
+   "mun": "Estado",
+   "nome": "Procon Goiás",
+   "end": "Rua 8, nº 242, Setor Central, Goiânia",
+   "tel": [
+    "Goiânia 151",
+    "Interior (62) 3201-7124",
+    "Superendividados (62) 3201-2891"
+   ],
+   "site": "https://www.procon.go.gov.br",
+   "hor": "Seg a sex, 8h às 17h",
+   "obs": "Reclamação de consumo, juros abusivos e renegociação de dívidas (Núcleo de Apoio aos Superendividados). Fonte: Procon Goiás, 2022: confirme os telefones."
+  },
+  {
+   "id": "pc197",
+   "tipo": "Justiça e direitos",
+   "mun": "Estado",
+   "nome": "Disque Polícia Civil 197",
+   "tel": [
+    "197"
+   ],
+   "hor": "24h",
+   "obs": "Orientação e denúncia à Polícia Civil de Goiás."
+  },
+  {
+   "id": "dpca",
+   "tipo": "Justiça e direitos",
+   "mun": "Goiânia",
+   "nome": "DPCA, Delegacia de Proteção à Criança e ao Adolescente",
+   "end": "Rua C-190 esq. c/ C-107, Qd. 226, Lt. 13, Jardim América, Goiânia, CEP 74255-080",
+   "tel": [
+    "(62) 3286-1540",
+    "(62) 3286-1298",
+    "(62) 3286-1552"
+   ],
+   "email": "dpca.goiania.pcgo@pc.goias.gov.br",
+   "hor": "Seg a sex, 8h às 12h e 14h às 18h",
+   "obs": "Crimes contra crianças e adolescentes, inclusive violência sexual. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026."
+  },
+  {
+   "id": "deacri",
+   "tipo": "Justiça e direitos",
+   "mun": "Goiânia",
+   "nome": "Deacri, Delegacia de Crimes Raciais e de Intolerância",
+   "end": "Av. 2ª Radial, Qd. 48, Lt. 28, Setor Pedro Ludovico, Goiânia, CEP 74820-090",
+   "tel": [
+    "(62) 98495-2047"
+   ],
+   "email": "deacri.pcgo@pc.goias.gov.br",
+   "hor": "Seg a sex, 8h às 18h",
+   "obs": "Racismo, injúria racial, xenofobia, intolerância religiosa e LGBTfobia, inclusive ataques a terreiros. Também é possível registrar em qualquer delegacia ou pelo 197. Fonte: Polícia Civil de Goiás, consultado em 08/10/2026."
+  },
+  {
+   "id": "crei",
+   "tipo": "Justiça e direitos",
+   "mun": "Estado",
+   "nome": "Crei, Centro de Referência Estadual da Igualdade (Seds)",
+   "site": "https://goias.gov.br/social/superintendencia-da-igualdade-racial/",
+   "email": "crei.seds@goias.gov.br",
+   "obs": "Atendimento psicológico, social e jurídico gratuito, presencial e on-line, a vítimas de racismo, intolerância religiosa e outras discriminações. Ligado à Superintendência da Igualdade Racial, que tem gerência para povos de terreiro. Fonte: Seds/GO; o e-mail aparece também na Superintendência da Mulher: confirme."
+  },
+  {
+   "id": "deai",
+   "tipo": "Justiça e direitos",
+   "mun": "Goiânia",
+   "nome": "Delegacia Estadual de Atendimento ao Idoso",
+   "end": "Av. Anhanguera, nº 463, Setor Universitário, Goiânia",
+   "tel": [
+    "(62) 3201-1501",
+    "(62) 3201-1511"
+   ],
+   "hor": "8h às 18h",
+   "obs": "Crimes contra a pessoa idosa. Dados da inauguração (2016): confirme antes de ir ou use o 197."
+  },
+  {
+   "id": "hc-ufg",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "Hospital das Clínicas da UFG (Ebserh)",
+   "tel": [
+    "(62) 3269-8380"
+   ],
+   "site": "https://www.gov.br/ebserh/pt-br/hospitais-universitarios/regiao-centro-oeste/hc-ufg",
+   "obs": "Hospital-escola 100% SUS. Consultas e cirurgias pela regulação, com encaminhamento da UBS. Telefone de 2021: confirme. Carta de Serviços 2026 no site."
+  },
+  {
+   "id": "araujo-jorge",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "Hospital de Câncer Araújo Jorge (ACCG)",
+   "site": "https://www.accg.org.br",
+   "obs": "Único Centro de Alta Complexidade em Oncologia (Cacon) do Estado, filantrópico com atendimento SUS. Acesso pela regulação. Houve suspensões de novos atendimentos em 2025: confirme antes."
+  },
+  {
+   "id": "capsi",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "CAPSi estadual, saúde mental de crianças e adolescentes",
+   "end": "Rua 72 c/ Av. H, s/n, Parque da Criança, Jardim Goiás, Goiânia, CEP 74805-480",
+   "tel": [
+    "(62) 3201-4346",
+    "(62) 3201-4473"
+   ],
+   "email": "capsiestadual@gmail.com",
+   "obs": "De 3 a 17 anos, com os pais ou responsáveis: psicologia, fonoaudiologia, terapia ocupacional, grupos e serviço social. Fonte: SES/GO; confirme o horário por telefone."
+  },
+  {
+   "id": "hgg-tx",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "Ambulatório TX do HGG, saúde da pessoa trans",
+   "site": "https://goias.gov.br/saude/ambulatorio-para-transexuais-comeca-a-funcionar-no-hgg/",
+   "obs": "Hormonização, psicologia, fonoaudiologia e cirurgias pelo SUS. Entrada com encaminhamento da UBS. Fonte: SES/GO."
+  },
+  {
+   "id": "transviver",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "Ambulatório Transviver (Prefeitura de Goiânia)",
+   "end": "Nas instalações da UPA Novo Mundo, Goiânia",
+   "hor": "Seg a sex, 7h às 19h",
+   "obs": "Para maiores de 18 anos: endocrinologia, psicologia, enfermagem, serviço social e hormônios. Fonte: imprensa, 2024: confirme."
+  },
+  {
+   "id": "escritorio-social",
+   "tipo": "Justiça e direitos",
+   "mun": "Goiânia",
+   "nome": "Escritório Social, apoio a egressos do sistema prisional",
+   "end": "Rua 83, nº 484, Setor Sul, Goiânia",
+   "obs": "Egressos, pré-egressos e liberados condicionais e suas famílias: documentos, trabalho, estudo e políticas sociais. Atendimento voluntário. Inaugurado em dez/2024 (Goiás Social): confirme o horário."
+  },
+  {
+   "id": "pastoral-migrantes",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Pastoral dos Migrantes de Goiânia",
+   "tel": [
+    "(62) 4018-1606",
+    "(62) 99635-1212"
+   ],
+   "obs": "Acolhe migrantes e refugiados (venezuelanos, haitianos e outros): orientação, documentos, trabalho. Tem ponto de atendimento na rodoviária. Fonte: CSEM, publicação antiga: confirme."
+  },
+  {
+   "id": "cejusc",
+   "tipo": "Justiça e direitos",
+   "mun": "Goiânia",
+   "nome": "Cejusc, conciliação gratuita do TJGO",
+   "end": "Fórum Cível de Goiânia, Av. Olinda c/ Rua PL-03, Park Lozandes",
+   "tel": [
+    "WhatsApp (62) 99218-2532"
+   ],
+   "obs": "Acordo sobre pensão, guarda, visitas, divórcio e dívidas, sem processo. WhatsApp divulgado nas Semanas da Conciliação de 2023 e 2024: confirme."
+  },
+  {
+   "id": "restbem",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Restaurante do Bem (OVG), refeição a R$ 2",
+   "end": "Av. Araguaia esq. c/ Rua 3, nº 514, Setor Central, Goiânia",
+   "site": "https://ovg.org.br",
+   "obs": "Almoço a R$ 2 para pessoas em vulnerabilidade, idosos e população de rua. Há outras unidades em Goiânia (Campinas) e no interior. Fonte: regulamento OVG, 2024: confirme o horário."
+  },
+  {
+   "id": "bancoalimentos",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Estado",
+   "nome": "Banco de Alimentos da OVG (para entidades)",
+   "site": "https://ovg.org.br",
+   "obs": "Entidades sem fins lucrativos que servem refeições se cadastram pelo site da OVG e recebem alimentos da Ceasa. Útil para igrejas e ONGs da rede."
+  },
+  {
+   "id": "pestalozzi",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Associação Pestalozzi de Goiânia",
+   "end": "Centro Peter Pan: Praça da Bíblia, Qd. K, Vila Santa Isabel, Goiânia",
+   "obs": "Atendimento especializado e educação para pessoas com deficiência intelectual ou múltipla. Fonte: convênio com a Seduc/GO: confirme."
+  },
+  {
+   "id": "apae-gyn",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "APAE de Goiânia",
+   "end": "Rua 255, nº 628, Setor Coimbra, Goiânia",
+   "obs": "Pessoas com deficiência intelectual ou múltipla: pediatria, psicologia, neurologia, fisioterapia, odontologia. Fonte: diretório não oficial: confirme."
+  },
+  {
+   "id": "anhanguera-psi",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Clínica-escola de Psicologia da Faculdade Anhanguera de Goiânia",
+   "obs": "Psicoterapia, orientação e avaliação psicológica para crianças, adolescentes, adultos e idosos, por alunos supervisionados. Fonte: imprensa, 2025: confirme como agendar."
+  },
+  {
+   "id": "mec",
+   "tipo": "Educação",
+   "mun": "Nacional",
+   "nome": "MEC: Prouni, Fies e Sisu",
+   "tel": [
+    "Fale Conosco 0800 616161"
+   ],
+   "site": "https://acessounico.mec.gov.br",
+   "obs": "Inscrições com a conta gov.br, nas datas de cada edital. Prouni e Fies abrem duas vezes por ano; o Sisu, no início do ano."
+  },
+  {
+   "id": "inep",
+   "tipo": "Educação",
+   "mun": "Nacional",
+   "nome": "Inep: Enem e Encceja",
+   "site": "https://www.gov.br/inep",
+   "obs": "Isenção da taxa do Enem (em abril), inscrições e Encceja, na Página do Participante, com a conta gov.br."
+  },
+  {
+   "id": "ovg",
+   "tipo": "Educação",
+   "mun": "Estado",
+   "nome": "ProBem, OVG (bolsas universitárias do Estado)",
+   "tel": [
+    "Região metropolitana (62) 3270-8500",
+    "Interior 0800 062 9413",
+    "WhatsApp (62) 99641-6090"
+   ],
+   "site": "https://www.ovg.org.br",
+   "obs": "Inscrições por edital, uma vez por semestre, só pelo site da OVG. Seleção pelo CadÚnico. Fonte: Governo de Goiás e imprensa, 2026."
+  },
+  {
+   "id": "samu",
+   "tipo": "Saúde",
+   "mun": "Região metropolitana",
+   "nome": "SAMU 192",
+   "tel": [
+    "192"
+   ],
+   "obs": "Emergência com risco de vida. A Central de Regulação de Goiânia atende a região metropolitana."
+  },
+  {
+   "id": "hugo",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "HUGO, Hospital Estadual de Urgências de Goiânia",
+   "tel": [
+    "(62) 3201-4420"
+   ]
+  },
+  {
+   "id": "hmi",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "HMI, Hospital Estadual Materno-Infantil",
+   "tel": [
+    "(62) 3956-2900"
+   ]
+  },
+  {
+   "id": "hem",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "Hemu, Hospital Estadual da Mulher",
+   "tel": [
+    "(62) 3956-2901"
+   ],
+   "site": "https://goias.gov.br/saude/hemu/",
+   "obs": "Ambulatório de Atendimento às Vítimas de Violência Sexual (mulheres, homens, adolescentes e crianças), por procura direta ou encaminhamento: contracepção de emergência, profilaxia de IST e HIV, psicologia. Referência estadual para o aborto previsto em lei."
+  },
+  {
+   "id": "huapa",
+   "tipo": "Saúde",
+   "mun": "Aparecida de Goiânia",
+   "nome": "Huapa, Hospital Estadual de Aparecida",
+   "tel": [
+    "(62) 3217-8900"
+   ]
+  },
+  {
+   "id": "hutrin",
+   "tipo": "Saúde",
+   "mun": "Trindade",
+   "nome": "Hutrin, Hospital Estadual de Trindade",
+   "tel": [
+    "(62) 3506-7002"
+   ]
+  },
+  {
+   "id": "cemac",
+   "tipo": "Saúde",
+   "mun": "Estado",
+   "nome": "Cemac Juarez Barbosa, Centro Estadual de Medicação de Alto Custo",
+   "end": "Rua 16, nº 97, Setor Central, Goiânia, CEP 74015-020",
+   "tel": [
+    "(62) 3201-7446",
+    "(62) 3201-7450",
+    "Dúvidas/WhatsApp (62) 3201-7453"
+   ],
+   "hor": "Seg a sex, 7h às 17h",
+   "site": "https://goias.gov.br/saude/cemac-juarez-barbosa/",
+   "obs": "Pedido, renovação e acompanhamento são online pelo go.gov.br. Retirada presencial (Goiânia) ou no município/policlínica (interior)."
+  },
+  {
+   "id": "cta",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "CTA/SAE Centro de Saúde Cidade Jardim (HIV, IST e hepatites)",
+   "end": "Praça Abel Coimbra, s/n, Cidade Jardim, Goiânia, CEP 74425-250",
+   "tel": [
+    "(62) 3524-1570",
+    "(62) 3524-1577"
+   ],
+   "hor": "Seg a sex, 7h às 19h",
+   "obs": "Testagem rápida, aconselhamento, infectologista, entrega contínua de antirretrovirais e PrEP. Recebeu os serviços do antigo CRDT."
+  },
+  {
+   "id": "hdt",
+   "tipo": "Saúde",
+   "mun": "Estado",
+   "nome": "HDT, Hospital Estadual de Doenças Tropicais Dr. Anuar Auad",
+   "end": "Av. Contorno, s/n, Jardim Bela Vista, Goiânia, CEP 74853-120",
+   "tel": [
+    "Recepção (62) 3201-3658",
+    "Ouvidoria (62) 3201-3799"
+   ],
+   "obs": "Referência estadual em infectologia e HIV/aids. Oferece PEP e PrEP. Programa Prevenir para a Vida (gestantes)."
+  },
+  {
+   "id": "pep-noroeste",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "UPA Noroeste (PEP 24h)",
+   "end": "Rua JC-22, Jardim Curitiba",
+   "tel": [
+    "(62) 3524-3461"
+   ],
+   "obs": "Profilaxia pós-exposição ao HIV, até 72h. Lista de 2024: confirme por telefone."
+  },
+  {
+   "id": "pep-itaipu",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "UPA Itaipu (PEP 24h)",
+   "end": "Av. do Povo, 13",
+   "tel": [
+    "(62) 3524-2560"
+   ],
+   "obs": "PEP até 72h. Lista de 2024: confirme por telefone."
+  },
+  {
+   "id": "pep-novomundo",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "UPA Jardim Novo Mundo (PEP 24h)",
+   "end": "Av. New York, Qd. 137, s/n, Jd. Novo Mundo",
+   "tel": [
+    "(62) 3524-5073"
+   ],
+   "obs": "PEP até 72h. Lista de 2024: confirme por telefone."
+  },
+  {
+   "id": "pep-chacara",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "UPA Chácara do Governador (PEP 24h)",
+   "end": "Rua DF-02, Lt. 14, esq. Rua DF-18",
+   "tel": [
+    "(62) 3246-2705"
+   ],
+   "obs": "PEP até 72h. Lista de 2024: confirme por telefone."
+  },
+  {
+   "id": "pep-goia",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "CAIS Bairro Goiá (PEP 24h)",
+   "end": "Av. Santa Maria, s/n, Bairro Goiá",
+   "tel": [
+    "(62) 3519-1781"
+   ],
+   "obs": "PEP até 72h. Lista de 2024: confirme por telefone."
+  },
+  {
+   "id": "pep-campinas",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "CAIS Campinas (PEP 24h)",
+   "end": "Rua P-16 c/ P-30, Campinas",
+   "tel": [
+    "(62) 3524-1930"
+   ],
+   "obs": "PEP até 72h. Lista de 2024: confirme por telefone."
+  },
+  {
+   "id": "pep-vilanova",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "CAIS Vila Nova (PEP 24h)",
+   "end": "Rua B, 56, Vila Viana",
+   "tel": [
+    "(62) 3524-1826"
+   ],
+   "obs": "PEP até 72h. Lista de 2024: confirme por telefone."
+  },
+  {
+   "id": "fp",
+   "tipo": "Saúde",
+   "mun": "Nacional",
+   "nome": "Farmácia Popular (farmácias credenciadas)",
+   "site": "https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular",
+   "obs": "Procure o selo \"Aqui Tem Farmácia Popular\". O endereço das credenciadas está no painel do gov.br. Os mesmos medicamentos também saem de graça nas UBS."
+  },
+  {
+   "id": "136",
+   "tipo": "Nacional",
+   "mun": "Nacional",
+   "nome": "Disque Saúde 136, Ouvidoria do SUS",
+   "tel": [
+    "136"
+   ],
+   "obs": "Informações sobre SUS, Farmácia Popular e reclamações."
+  },
+  {
+   "id": "reggyn",
+   "tipo": "Saúde",
+   "mun": "Goiânia",
+   "nome": "Regulação da Saúde de Goiânia",
+   "tel": [
+    "(62) 3524-1580",
+    "(62) 3524-1616"
+   ],
+   "obs": "Consultas especializadas e exames encaminhados pela UBS."
+  },
+  {
+   "id": "dpe",
+   "tipo": "Justiça e direitos",
+   "mun": "Goiânia",
+   "nome": "Defensoria Pública de Goiás, sede",
+   "end": "Alameda Cel. Joaquim de Bastos, nº 282, Qd. 217, Lt. 14, Setor Marista, Goiânia",
+   "tel": [
+    "Central (62) 3602-1224"
+   ],
+   "hor": "Seg a sex, 8h às 18h",
+   "site": "https://www2.defensoria.go.def.br/unidades-de-atendimento",
+   "obs": "Família, moradia, documentos, benefício negado, medida protetiva. Lista de documentos no site."
+  },
+  {
+   "id": "mpgo",
+   "tipo": "Ministério Público",
+   "mun": "Estado",
+   "nome": "MPGO, Ministério Público de Goiás, sede e atendimento ao cidadão",
+   "end": "Rua 23 esq. c/ Av. Fued José Sebba, Qd. A-06, Lts. 15/24, Jardim Goiás, Goiânia, CEP 74805-100",
+   "tel": [
+    "(62) 3243-8000"
+   ],
+   "site": "https://www.mpgo.mp.br/portal/pagina/atendimento-ao-cidadao",
+   "obs": "Representação contra omissão do poder público, defesa coletiva de criança, idoso, PcD, saúde, educação, consumidor e vítimas de violência. Pode ser feita online ou na promotoria da comarca onde a pessoa mora."
+  },
+  {
+   "id": "mpgo-dh",
+   "tipo": "Ministério Público",
+   "mun": "Estado",
+   "nome": "MPGO, Centro de Apoio de Políticas Públicas e Direitos Humanos (CAO DH)",
+   "end": "Edifício-sede do MPGO, Sala T-10, térreo, Ala A, Goiânia",
+   "tel": [
+    "(62) 3243-8203",
+    "(62) 3243-8711",
+    "(62) 3243-8347",
+    "Plantão (62) 92002-7158"
+   ],
+   "email": "caodh@mpgo.mp.br",
+   "obs": "Apoia as promotorias em direitos humanos, população de rua, idoso, PcD e vítimas e testemunhas ameaçadas."
+  },
+  {
+   "id": "mpgo-gen",
+   "tipo": "Ministério Público",
+   "mun": "Estado",
+   "nome": "MPGO, Núcleo Estadual de Gênero",
+   "tel": [
+    "(62) 3243-8665"
+   ],
+   "obs": "Atua na violência contra a mulher e acompanha medidas protetivas. Fonte: cartilha OAB-GO, março de 2026."
+  },
+  {
+   "id": "mpf",
+   "tipo": "Ministério Público",
+   "mun": "Estado",
+   "nome": "MPF, Procuradoria da República em Goiás",
+   "end": "Av. Olinda, nº 500, Qd. G, Lt. 2, Ed. Rosângela Pofahl Batista, Park Lozandes, Goiânia, CEP 74884-120",
+   "tel": [
+    "(62) 3243-5400",
+    "WhatsApp (62) 99513-3507 (seg a sex, 10h às 17h)"
+   ],
+   "site": "https://www.mpf.mp.br/servicos",
+   "obs": "Assuntos federais: INSS e BPC, programas federais, universidades e hospitais federais, indígenas e quilombolas, verba federal do SUS."
+  },
+  {
+   "id": "mpt",
+   "tipo": "Ministério Público",
+   "mun": "Nacional",
+   "nome": "MPT, Ministério Público do Trabalho (Goiás)",
+   "site": "https://mpt.mp.br",
+   "obs": "Trabalho infantil, trabalho escravo, assédio, discriminação no emprego (inclusive por HIV ou deficiência), falta de acessibilidade. Denúncia online pelo site, com sigilo."
+  },
+  {
+   "id": "provita",
+   "tipo": "Ministério Público",
+   "mun": "Estado",
+   "nome": "Provita/GO e SEPDE, proteção a vítimas e testemunhas ameaçadas",
+   "end": "Av. Anhanguera, 7364, Aeroviário, Goiânia, CEP 74435-300",
+   "tel": [
+    "(62) 3201-1069",
+    "(62) 3201-1068"
+   ],
+   "obs": "Inclusão depende de pedido da autoridade (MP, polícia, juiz). Acione pelo promotor do caso."
+  },
+  {
+   "id": "dpeap",
+   "tipo": "Justiça e direitos",
+   "mun": "Aparecida de Goiânia",
+   "nome": "Defensoria Pública, unidade Aparecida de Goiânia",
+   "tel": [
+    "(62) 3157-1001"
+   ]
+  },
+  {
+   "id": "puc-npj",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "NPJ PUC Goiás, Núcleo de Prática Jurídica",
+   "end": "Câmpus V, Jardim Goiás, Goiânia",
+   "tel": [
+    "(62) 3946-3008",
+    "(62) 3946-3009"
+   ],
+   "email": "npj@pucgoias.edu.br",
+   "obs": "Escritório-modelo: atendimento jurídico gratuito para quem não pode pagar. Alternativa à Defensoria. Fonte: PUC Goiás, 2023."
+  },
+  {
+   "id": "puc-cepsi",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "CEPSI PUC Goiás, clínica-escola de psicologia",
+   "end": "Rua 232, Área 5, Setor Leste Universitário, Goiânia",
+   "tel": [
+    "(62) 3946-1198"
+   ],
+   "site": "https://www.pucgoias.edu.br",
+   "obs": "Atendimento psicológico gratuito para todas as idades. Inscrições no início de cada semestre pelo site."
+  },
+  {
+   "id": "ufg-psi",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Centro de Psicologia da Faculdade de Educação, UFG",
+   "end": "Rua 235, nº 575, Setor Leste Universitário, Goiânia, CEP 74605-050",
+   "obs": "Psicoterapia gratuita, prioridade para baixa renda. Adultos e crianças de 5 a 11 anos. Inscrição presencial em períodos divulgados pela UFG (última em abril de 2025)."
+  },
+  {
+   "id": "puc-vida",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Clínica Escola Vida, PUC Goiás",
+   "end": "Rua Colônia, Jardim Novo Mundo, Goiânia",
+   "tel": [
+    "(62) 3946-1808"
+   ],
+   "obs": "Clínica-escola de saúde que atende pessoas encaminhadas pelo SUS. Pedir o encaminhamento na UBS."
+  },
+  {
+   "id": "puc-cresa",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "CRESA PUC Goiás, saúde auditiva",
+   "end": "Área 5, Rua 232, Setor Leste Universitário, Goiânia",
+   "tel": [
+    "(62) 3946-1419"
+   ],
+   "obs": "Saúde auditiva em parceria com o SUS (avaliação e aparelhos). Acesso por encaminhamento da UBS."
+  },
+  {
+   "id": "puc-cecom",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Cecom e Escola de Circo Dom Fernando, PUC Goiás",
+   "end": "Rua 15, Setor Santos Dumont, Goiânia",
+   "tel": [
+    "(62) 3299-7753"
+   ],
+   "obs": "Extensão comunitária nas regiões Mendanha e Noroeste: circo, formação de jovens de 14 a 29 anos."
+  },
+  {
+   "id": "ceapsol",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "Ceap-SOL, Casa de Apoio Condomínio Solidariedade",
+   "end": "Av. Veneza, Qd. 62, Lt. 1/10, s/n, Jardim Europa, Goiânia, CEP 74325-100",
+   "tel": [
+    "Recepção (62) 3201-9288",
+    "Hospedagem/WhatsApp (62) 3201-9283"
+   ],
+   "hor": "Serviço Social seg a sex, 7h às 18h",
+   "obs": "Unidade estadual. Hospedagem gratuita, alimentação e transporte para consultas de pessoas vivendo com HIV, principalmente do interior. Pedir com antecedência."
+  },
+  {
+   "id": "cevam",
+   "tipo": "Rede comunitária e gratuita",
+   "mun": "Goiânia",
+   "nome": "CEVAM, Centro de Valorização da Mulher Consuelo Nasser",
+   "tel": [
+    "(62) 99144-5948"
+   ],
+   "obs": "Entidade filantrópica que acolhe mulheres em situação de violência com seus filhos e distribui cestas a famílias. Endereço não divulgado por segurança. O acolhimento é articulado pela rede (DEAEM, Cora Coralina, CREAS)."
+  },
+  {
+   "id": "deaem",
+   "tipo": "Mulher",
+   "mun": "Goiânia",
+   "nome": "DEAEM, Delegacia Estadual de Atendimento Especializado à Mulher",
+   "end": "Rua 24, nº 203, Qd. 49, Lt. 27, Centro, Goiânia, CEP 74030-060",
+   "tel": [
+    "(62) 3201-2013",
+    "Plantão (62) 3201-2802"
+   ],
+   "email": "deaem@policiacivil.go.gov.br",
+   "hor": "Plantão 24h",
+   "obs": "Registro de ocorrência e pedido de medida protetiva."
+  },
+  {
+   "id": "plantao",
+   "tipo": "Mulher",
+   "mun": "Goiânia",
+   "nome": "Polícia Civil, Plantão 24h (Cidade Jardim)",
+   "end": "Av. Atílio Corrêa Lima, s/n, Cidade Jardim, Goiânia, CEP 74425-030",
+   "tel": [
+    "(62) 3201-2013",
+    "Plantão (62) 3201-2801"
+   ],
+   "email": "deaem@policiacivil.go.gov.br",
+   "hor": "24h"
+  },
+  {
+   "id": "cora",
+   "tipo": "Mulher",
+   "mun": "Goiânia",
+   "nome": "Centro de Referência da Mulher Cora Coralina",
+   "end": "Rua 8 c/ Rua 9, nº 558, Ed. Small Tower, Setor Oeste, Goiânia",
+   "tel": [
+    "(62) 3524-2422",
+    "(62) 3524-2934"
+   ],
+   "email": "secmulher@goiania.go.gov.br",
+   "hor": "Seg a sex, 8h às 17h",
+   "obs": "Atendimento social, psicológico e jurídico. Faz o encaminhamento para a Casa Abrigo Sempre Viva (endereço sigiloso)."
+  },
+  {
+   "id": "bmp",
+   "tipo": "Mulher",
+   "mun": "Goiânia",
+   "nome": "Batalhão Maria da Penha (PM)",
+   "end": "Av. Perimetral esq. c/ Av. T-6, Setor Coimbra, Goiânia, CEP 74530-020",
+   "tel": [
+    "(62) 99930-9778",
+    "Emergência 190"
+   ],
+   "hor": "Seg a sex, 8h às 12h e 14h às 18h",
+   "obs": "Fiscaliza medidas protetivas."
+  },
+  {
+   "id": "gcm",
+   "tipo": "Mulher",
+   "mun": "Goiânia",
+   "nome": "Patrulha Mulher Mais Segura (GCM Goiânia)",
+   "tel": [
+    "153"
+   ],
+   "obs": "Visitas a mulheres com medida protetiva e botão de pânico no app Prefeitura 24h."
+  },
+  {
+   "id": "pop",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Goiânia",
+   "nome": "Centro POP Goiânia",
+   "end": "Rua Francisca Costa Cunha Tita, Setor Aeroporto, Goiânia",
+   "hor": "Todos os dias, 7h às 17h",
+   "obs": "Alimentação, higiene, documentos e encaminhamentos para pessoas em situação de rua. Telefone direto não localizado: use a gestão da assistência social abaixo."
+  },
+  {
+   "id": "gestaogyn",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Goiânia",
+   "nome": "Assistência Social de Goiânia (Semasdh), gestão da proteção especial",
+   "end": "Rua 25-A esq. c/ Av. República do Líbano, Qd. 63, s/n, Setor Aeroporto, Goiânia",
+   "tel": [
+    "(62) 3524-2603",
+    "(62) 3524-2714"
+   ],
+   "email": "sedhs@goiania.go.gov.br",
+   "hor": "Seg a sex, 8h às 18h"
+  },
+  {
+   "id": "creas-cs",
+   "reg": "centro-sul",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Goiânia",
+   "nome": "CREAS Centro-Sul",
+   "end": "Rua 104, nº 614, Setor Sul",
+   "tel": [
+    "(62) 3524-4607",
+    "(62) 99208-4933"
+   ]
+  },
+  {
+   "id": "creas-l",
+   "reg": "leste",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Goiânia",
+   "nome": "CREAS Leste",
+   "end": "Rua Indiana, Qd. 21, Jardim Novo Mundo",
+   "tel": [
+    "(62) 3524-1770",
+    "(62) 99210-4518"
+   ]
+  },
+  {
+   "id": "creas-no",
+   "reg": "noroeste",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Goiânia",
+   "nome": "CREAS Noroeste",
+   "end": "Rua da República c/ Cláudio Manoel da Costa, Qd. 20, Lt. 32, Setor Capuava",
+   "tel": [
+    "(62) 3524-3431",
+    "(62) 99208-2462"
+   ]
+  },
+  {
+   "id": "creas-n",
+   "reg": "norte",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Goiânia",
+   "nome": "CREAS Norte",
+   "end": "Alameda Capim Puba, nº 60, Qd. 01, Lt. 04, Setor Centro-Oeste",
+   "tel": [
+    "(62) 3524-2147",
+    "(62) 99210-7904"
+   ]
+  },
+  {
+   "id": "creas-o",
+   "reg": "oeste",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Goiânia",
+   "nome": "CREAS Oeste",
+   "end": "Av. Sonemberg c/ Antônio Xavier, nº 01, Praça Conj. Romildo Francisco Amaral, Setor Cidade Jardim",
+   "tel": [
+    "(62) 3524-6914",
+    "(62) 99206-0636"
+   ]
+  },
+  {
+   "id": "ct-cs",
+   "reg": "centro-sul",
+   "tipo": "Conselho Tutelar",
+   "mun": "Goiânia",
+   "nome": "Conselho Tutelar Centro-Sul",
+   "tel": [
+    "(62) 3524-1760"
+   ],
+   "obs": "Regiões Central e Sul."
+  },
+  {
+   "id": "ct-l",
+   "reg": "leste",
+   "tipo": "Conselho Tutelar",
+   "mun": "Goiânia",
+   "nome": "Conselho Tutelar Leste",
+   "tel": [
+    "(62) 3524-1743"
+   ],
+   "obs": "Regiões Leste e Sudeste."
+  },
+  {
+   "id": "ct-n",
+   "reg": "norte",
+   "tipo": "Conselho Tutelar",
+   "mun": "Goiânia",
+   "nome": "Conselho Tutelar Norte",
+   "tel": [
+    "(62) 3524-2404"
+   ],
+   "obs": "Regiões Vale do Meia Ponte e Norte."
+  },
+  {
+   "id": "ct-o",
+   "reg": "oeste",
+   "tipo": "Conselho Tutelar",
+   "mun": "Goiânia",
+   "nome": "Conselho Tutelar Oeste",
+   "tel": [
+    "(62) 3524-1765"
+   ],
+   "obs": "Regiões Macambira/Cascavel e Sudoeste."
+  },
+  {
+   "id": "ct-no",
+   "reg": "noroeste",
+   "tipo": "Conselho Tutelar",
+   "mun": "Goiânia",
+   "nome": "Conselho Tutelar Noroeste",
+   "tel": [
+    "(62) 3524-3446"
+   ],
+   "obs": "Regiões Mendanha e Noroeste."
+  },
+  {
+   "id": "ct-c",
+   "reg": "campinas",
+   "tipo": "Conselho Tutelar",
+   "mun": "Goiânia",
+   "nome": "Conselho Tutelar Campinas",
+   "tel": [
+    "(62) 3524-2481"
+   ],
+   "obs": "Regiões Campinas e Oeste."
+  },
+  {
+   "id": "semas-ap",
+   "tipo": "CRAS",
+   "mun": "Aparecida de Goiânia",
+   "nome": "Secretaria de Assistência Social de Aparecida",
+   "tel": [
+    "(62) 3545-5970"
+   ],
+   "obs": "Informa o CRAS de referência do bairro (o município tem 8 unidades)."
+  },
+  {
+   "id": "creas-ap",
+   "tipo": "CREAS e Centro POP",
+   "mun": "Aparecida de Goiânia",
+   "nome": "CREAS II Aparecida",
+   "end": "Rua 07, Jardim Tiradentes, Aparecida de Goiânia",
+   "tel": [
+    "(62) 3545-9980"
+   ]
+  },
+  {
+   "id": "ct-ap-c",
+   "tipo": "Conselho Tutelar",
+   "mun": "Aparecida de Goiânia",
+   "nome": "Conselho Tutelar Regional Centro (Aparecida)",
+   "end": "Av. B, Qd. F, Lt. 01",
+   "tel": [
+    "(62) 3545-5880",
+    "(62) 99282-9025"
+   ],
+   "email": "ctutelarapgyn132@gmail.com"
+  },
+  {
+   "id": "ct-ap-g",
+   "tipo": "Conselho Tutelar",
+   "mun": "Aparecida de Goiânia",
+   "nome": "Conselho Tutelar Regional Garavelo (Aparecida)",
+   "end": "Av. Tropical, Qd. 25, Lt. 04",
+   "tel": [
+    "(62) 3545-4897",
+    "(62) 98459-9726"
+   ]
+  },
+  {
+   "id": "dpca-ap",
+   "tipo": "Justiça e direitos",
+   "mun": "Aparecida de Goiânia",
+   "nome": "DPCA, Delegacia de Proteção à Criança e ao Adolescente",
+   "end": "Av. Furnas, Qd. 03, Lt. 8/9, Residencial Maria Luíza",
+   "tel": [
+    "(62) 3201-2295"
+   ]
+  },
+  {
+   "id": "jij-ap",
+   "tipo": "Justiça e direitos",
+   "mun": "Aparecida de Goiânia",
+   "nome": "Juizado da Infância e Juventude de Aparecida",
+   "end": "Fórum do Centro de Aparecida",
+   "tel": [
+    "(62) 3238-5138"
+   ],
+   "email": "comarcadeaparecida@tjgo.jus.br"
+  },
+  {
+   "id": "cras0",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "Centro de Convivência Aruanã",
+   "end": "Rua AP-04, s/n, Conj. Residencial Aruanã II, Goiânia",
+   "tel": [
+    "(62) 99206-9665"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras1",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "Centro de Convivência Esplanada dos Anicuns",
+   "end": "Rua São Gotardo c/ Av. Progresso, Setor Esplanada dos Anicuns, Goiânia",
+   "tel": [
+    "(62) 99206-8758"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras2",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Aroeiras",
+   "end": "Av. das Aroeiras, Qd. 20, Lt. 02, Jardim das Aroeiras, Goiânia",
+   "tel": [
+    "(62) 99207-8792"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras3",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Baliza",
+   "end": "Rua BL-11, Qd. B-8, Conjunto Baliza, Goiânia",
+   "tel": [
+    "(62) 9207-8693"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras4",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Canaã",
+   "end": "Rua Langendofer, Qd. 01, Lt. 01, Vila Nova Canaã, Goiânia",
+   "tel": [
+    "(62) 99210-7217"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras5",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Capuava",
+   "end": "Rua Borba Gato, nº 367, Qd. 61, Lt. 19-20, Bairro Capuava, Goiânia",
+   "tel": [
+    "(62) 99210-5147"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras6",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Cerrado",
+   "end": "Rua Flor da Noite, APM 4, Jardim Cerrado III, Goiânia",
+   "tel": [
+    "(62) 99204-6164"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras7",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Colorado",
+   "end": "Av. do Contorno, Qd. 21, Lt. 09, Jardim Colorado, Goiânia",
+   "tel": [
+    "(62) 99207-5964"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras8",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Curitiba",
+   "end": "Av. JC-22, Qd. 12-A, Lt. 1/15, Jardim Curitiba II, Goiânia",
+   "tel": [
+    "(62) 99210-8976"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras9",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Finsocial",
+   "end": "Rua VF-42, Praça 34, s/n, Vila Finsocial, Goiânia",
+   "tel": [
+    "(62) 99207-5854"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras10",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Floresta",
+   "end": "Av. da Conquista, Qd. 25, Bairro Floresta, Goiânia",
+   "tel": [
+    "(62) 99205-9123"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras11",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Goiá",
+   "end": "Rua Padre Benedito Dias, Qd. 57-A, Bairro Goiá, Goiânia",
+   "tel": [
+    "(62) 99210-6386"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras12",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Guanabara",
+   "end": "Rua GB-19, Qd. 20, Lt. 17, Jardim Guanabara 2, Goiânia",
+   "tel": [
+    "(62) 99208-2569"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras13",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Isaura",
+   "end": "Rua 9, Qd. A, Lt. 14, Vila Isaura, Goiânia",
+   "tel": [
+    "(62) 99207-0369"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras14",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Novo Horizonte",
+   "end": "Av. Maurício Gomes, s/n, Vila Novo Horizonte, Goiânia",
+   "tel": [
+    "(62) 99203-9564"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras15",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Novo Mundo",
+   "end": "Praça Washington Luiz, Qd. Área, Lt. 01, Jd. Novo Mundo, Goiânia",
+   "tel": [
+    "(62) 99210-4247"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras16",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Parque Atheneu",
+   "end": "Rua 2.012, Qd. Z, Lt. 26, Unid. 201, Parque Atheneu, Goiânia",
+   "tel": [
+    "(62) 99205-2358"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras17",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Pedro Ludovico",
+   "end": "Praça Central, Qd. 60, Lt. 7 e 8, Setor Pedro Ludovico, Goiânia",
+   "tel": [
+    "(62) 99204-7300"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras18",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Real Conquista",
+   "end": "Rua RC-10 c/ Av. Real Conquista, APM 10, Residencial Real Conquista, Goiânia",
+   "tel": [
+    "(62) 99210-4621"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras19",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Recanto das Minas Gerais",
+   "end": "Rua SR-01, Chácara 7, Setor Recanto das Minas Gerais, Goiânia",
+   "tel": [
+    "(62) 99210-4591"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras20",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Recanto do Bosque",
+   "end": "Rua RB-20, APM 26, Residencial Recanto do Bosque, Goiânia",
+   "tel": [
+    "(62) 99206-0317"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras21",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Redenção",
+   "end": "Rua R-7 esq. c/ Alameda Jardim Botânico, Vila Redenção, Goiânia",
+   "tel": [
+    "(62) 99208-0392"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras22",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Rio Verde",
+   "end": "Rua RV 02, Qd. 03, Lt. 01, Residencial Rio Verde, Goiânia",
+   "tel": [
+    "(62) 99210-8255"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras23",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Santo Afonso",
+   "end": "Rua Princesa Isabel, s/n, Qd. 92, Lt. 24, Vila Aurora Oeste, Goiânia",
+   "tel": [
+    "(62) 99204-5315"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras24",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS União",
+   "end": "Rua U-47, s/n, Vila União, Goiânia",
+   "tel": [
+    "(62) 99210-4012"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  },
+  {
+   "id": "cras25",
+   "tipo": "CRAS",
+   "mun": "Goiânia",
+   "nome": "CRAS Vera Cruz",
+   "end": "Av. Leopoldo de Bulhões, Qd. 100, Conjunto Vera Cruz II, Goiânia",
+   "tel": [
+    "(62) 98599-2250"
+   ],
+   "obs": "Cadastro Único, Bolsa Família, BPC e benefícios estaduais. Fonte: Seds/GO, 18/10/2024."
+  }
+ ],
+ "P": [
+  {
+   "id": "cad",
+   "nome": "Cadastro Único (CadÚnico)",
+   "esf": "nac",
+   "val": "Porta de entrada",
+   "flow": [
+    "Procurar o CRAS de referência com documento com foto e CPF de todos da casa e comprovante de endereço.",
+    "Responder à entrevista com o entrevistador do CadÚnico.",
+    "Guardar o número do NIS e atualizar sempre que mudar endereço, renda ou composição da família (no máximo a cada 2 anos)."
+   ],
+   "docs": [
+    "CPF de todos da casa (ou título de eleitor)",
+    "Documento com foto do responsável familiar",
+    "Comprovante de endereço (ajuda, não é obrigatório)",
+    "Carteira de trabalho, se tiver"
+   ],
+   "where": "cras",
+   "extra": [
+    "121"
+   ],
+   "curto": "CadÚnico"
+  },
+  {
+   "id": "pbf",
+   "nome": "Bolsa Família",
+   "esf": "nac",
+   "val": "mín. R$ 600/família + adicionais",
+   "flow": [
+    "Fazer ou atualizar o CadÚnico no CRAS.",
+    "A seleção é automática pelo governo federal, conforme orçamento e ordem de renda.",
+    "Acompanhar pelo app Bolsa Família, Caixa Tem ou pelo 121.",
+    "Manter as condicionalidades: vacinação, pré-natal e frequência escolar."
+   ],
+   "docs": [
+    "Os mesmos do CadÚnico"
+   ],
+   "where": "cras",
+   "extra": [
+    "121"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "bpc",
+   "nome": "BPC, Benefício de Prestação Continuada",
+   "esf": "nac",
+   "val": "1 salário mínimo/mês",
+   "flow": [
+    "Ter o CadÚnico atualizado (obrigatório).",
+    "Pedir pelo Meu INSS ou pelo 135.",
+    "Pessoa com deficiência: fazer avaliação social e perícia médica no INSS.",
+    "Se negado, procurar a Defensoria Pública para recorrer."
+   ],
+   "docs": [
+    "Documento com foto e CPF do requerente e da família",
+    "Laudos e exames (pessoa com deficiência)",
+    "Número do NIS"
+   ],
+   "where": "cras",
+   "extra": [
+    "135",
+    "dpe",
+    "mpf",
+    "puc-npj"
+   ],
+   "curto": "BPC"
+  },
+  {
+   "id": "tse",
+   "nome": "Tarifa Social de Energia Elétrica",
+   "esf": "nac",
+   "val": "Luz grátis até 80 kWh/mês",
+   "flow": [
+    "Ter o CadÚnico atualizado, com o endereço da conta de luz.",
+    "Desde julho de 2025, o consumo até 80 kWh por mês é gratuito; o que passar disso é cobrado normalmente. Impostos e iluminação pública continuam na conta.",
+    "A concessão costuma ser automática. Se não aparecer, pedir à distribuidora (Equatorial Goiás) informando o NIS.",
+    "A conta precisa estar no nome de alguém da família."
+   ],
+   "docs": [
+    "NIS",
+    "Conta de luz no nome de alguém da família"
+   ],
+   "where": "cras",
+   "extra": [],
+   "curto": "Tarifa Social"
+  },
+  {
+   "id": "gas",
+   "nome": "Gás do Povo (botijão gratuito)",
+   "esf": "nac",
+   "val": "Botijão de 13 kg sem custo",
+   "flow": [
+    "Não há inscrição: o MDS seleciona pelo CadÚnico (atualizado nos últimos 24 meses), com prioridade para quem recebe Bolsa Família.",
+    "Consultar pelo app Meu Social ou pelo 121.",
+    "Selecionado: levar o botijão vazio a uma revenda credenciada e trocar pelo cheio, sem pagar.",
+    "O governo não cobra taxa: desconfie de quem pedir dinheiro."
+   ],
+   "docs": [
+    "CPF do responsável familiar"
+   ],
+   "where": "cras",
+   "extra": [
+    "121"
+   ],
+   "curto": "Gás do Povo"
+  },
+  {
+   "id": "mcmv",
+   "nome": "Minha Casa, Minha Vida (Faixa 1)",
+   "esf": "nac",
+   "val": "Moradia subsidiada",
+   "flow": [
+    "Faixa 1 (baixa renda): inscrição pela prefeitura (Goiânia: site e app Prefeitura 24h) ou pela Agehab, quando abrem cadastro. Faixas 2 e 3: direto na Caixa.",
+    "Ter o CadÚnico atualizado.",
+    "Acompanhar a abertura de cadastros: a seleção segue os critérios do edital (mulher chefe de família, PcD, idoso, área de risco, violência doméstica).",
+    "Enquanto espera: Aluguel Social (Agehab), se tiver direito."
+   ],
+   "docs": [
+    "Documento com foto e CPF de todos",
+    "Comprovante de renda",
+    "CadÚnico"
+   ],
+   "where": "",
+   "extra": [
+    "agehab"
+   ],
+   "curto": "Minha Casa, Minha Vida"
+  },
+  {
+   "id": "pdm",
+   "nome": "Pé-de-Meia",
+   "esf": "nac",
+   "val": "Poupança para estudante",
+   "flow": [
+    "Manter matrícula e frequência no ensino médio público.",
+    "Família com CadÚnico atualizado.",
+    "Consultar pelo app Jornada do Estudante ou pela escola."
+   ],
+   "docs": [
+    "CPF do estudante"
+   ],
+   "where": "cras",
+   "extra": [],
+   "curto": ""
+  },
+  {
+   "id": "cpi",
+   "nome": "Carteira da Pessoa Idosa",
+   "esf": "nac",
+   "val": "Passagem interestadual gratuita ou com desconto",
+   "flow": [
+    "Fazer ou atualizar o CadÚnico.",
+    "Emitir a carteira no CRAS ou pelo site da Carteira da Pessoa Idosa (MDS).",
+    "Reservar a vaga na empresa de ônibus com antecedência."
+   ],
+   "docs": [
+    "Documento com foto",
+    "NIS"
+   ],
+   "where": "cras",
+   "extra": [],
+   "curto": "Carteira da Pessoa Idosa"
+  },
+  {
+   "id": "plfed",
+   "nome": "Passe Livre interestadual (pessoa com deficiência)",
+   "esf": "nac",
+   "val": "Viagem interestadual gratuita",
+   "flow": [
+    "Pedir pelo site do Ministério dos Transportes (Passe Livre).",
+    "Anexar laudo médico e comprovante de renda ou CadÚnico."
+   ],
+   "docs": [
+    "Laudo",
+    "Documento com foto",
+    "CadÚnico ou comprovante de renda"
+   ],
+   "where": "cras",
+   "extra": [],
+   "curto": "Passe Livre interestadual"
+  },
+  {
+   "id": "maes",
+   "nome": "Mães de Goiás",
+   "esf": "est",
+   "val": "R$ 300/mês",
+   "flow": [
+    "Não tem inscrição. O Estado seleciona 1 ou 2 vezes por ano pela base do CadÚnico.",
+    "Manter o CadÚnico atualizado no CRAS, com vacinação e frequência escolar das crianças em dia.",
+    "A prefeitura avisa por SMS ou WhatsApp o dia e o local de entrega do cartão.",
+    "Consultar situação em suas.social.go.gov.br/consulta-maesdegoias. 2ª via só pelo (62) 3270-9610."
+   ],
+   "docs": [
+    "Documento com foto e CPF da beneficiária (para retirar o cartão)"
+   ],
+   "where": "cras",
+   "extra": [
+    "mxc"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "inclusivo",
+   "nome": "Goiás + Inclusivo",
+   "esf": "est",
+   "val": "R$ 500/mês",
+   "flow": [
+    "Seleção automática pelo CadÚnico, sem inscrição.",
+    "Conferir no CRAS se a deficiência está registrada no cadastro.",
+    "O município avisa a data de entrega do cartão."
+   ],
+   "docs": [
+    "Documento da pessoa com deficiência e do responsável"
+   ],
+   "where": "cras",
+   "extra": [
+    "mxc"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "dignidade",
+   "nome": "Dignidade",
+   "esf": "est",
+   "val": "R$ 300/mês",
+   "flow": [
+    "Sem inscrição: entrada automática pelo CadÚnico.",
+    "Manter o CadÚnico atualizado no CRAS.",
+    "Dúvidas e 2ª via: (62) 3270-9610."
+   ],
+   "docs": [
+    "Documento com foto"
+   ],
+   "where": "cras",
+   "extra": [
+    "mxc"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "porelas",
+   "nome": "Goiás Por Elas",
+   "esf": "est",
+   "val": "R$ 300/mês por até 12 meses",
+   "flow": [
+    "Não há inscrição: a medida protetiva é enviada à Seds pelo TJGO, Defensoria ou Batalhão Maria da Penha.",
+    "Manter o CadÚnico atualizado.",
+    "A Seds entra em contato para entrega do cartão. Vale enquanto a medida estiver ativa, até 12 meses."
+   ],
+   "docs": [
+    "Cópia da medida protetiva",
+    "Documento com foto"
+   ],
+   "where": "",
+   "extra": [
+    "mulherseds",
+    "dpe"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "aluguel",
+   "nome": "Pra Ter Onde Morar, Aluguel Social",
+   "esf": "est",
+   "val": "R$ 350/mês por 18 meses",
+   "flow": [
+    "Inscrição online em aluguelsocial.agehab.go.gov.br ou no app Aluguel Social (Android).",
+    "Anexar documentos; análise por ordem de inscrição.",
+    "Indeferida? Corrigir ou recorrer pelo próprio app.",
+    "O CRAS pode ajudar a fazer a inscrição."
+   ],
+   "docs": [
+    "Comprovantes de água e energia",
+    "Comprovante de 3 anos no município",
+    "Contrato ou recibo de aluguel",
+    "CadÚnico ativo"
+   ],
+   "where": "cras",
+   "extra": [
+    "agehab"
+   ],
+   "curto": "Aluguel Social"
+  },
+  {
+   "id": "ple",
+   "nome": "Passe Livre Estudantil",
+   "esf": "est",
+   "val": "48 viagens/mês",
+   "flow": [
+    "Cadastro em juventude.go.gov.br com documentos e foto.",
+    "Aprovado, agendar a retirada no Vapt Vupt em vaptvupt.go.gov.br/agendamento.",
+    "Recadastro a cada período letivo. Bloqueio: justificar pelo site da SitPass."
+   ],
+   "docs": [
+    "RG",
+    "CPF",
+    "Comprovante de endereço",
+    "Comprovante de matrícula",
+    "Foto 3x4"
+   ],
+   "where": "",
+   "extra": [
+    "juventude"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "aprendiz",
+   "nome": "Aprendiz do Futuro",
+   "esf": "est",
+   "val": "Socioaprendizagem remunerada",
+   "flow": [
+    "Acompanhar a abertura de inscrições em aprendizdofuturo.org.br.",
+    "Ter CadÚnico (exigido na contratação).",
+    "Vagas reservadas para PcD."
+   ],
+   "docs": [
+    "Documentos do jovem e do responsável",
+    "Declaração escolar"
+   ],
+   "where": "",
+   "extra": [
+    "aprendiz"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "ciptea",
+   "nome": "CIPTEA, Carteira de Identificação da Pessoa com Autismo",
+   "esf": "est",
+   "val": "Documento, válido 5 anos",
+   "flow": [
+    "Preencher o requerimento (site da Seds).",
+    "Levar à Unidade Maria Xavier Caiado, seg a sex, 8h às 18h. No interior, pedir pelo e-mail pcd@goias.gov.br.",
+    "Retirar em até 60 dias."
+   ],
+   "docs": [
+    "Relatório de neurologista, psiquiatra ou pediatra",
+    "Certidão de nascimento ou RG com CPF",
+    "Documentos do responsável",
+    "Comprovante de endereço em Goiás",
+    "Foto (ou tirar na hora)"
+   ],
+   "where": "",
+   "extra": [
+    "pcd"
+   ],
+   "curto": "CIPTEA"
+  },
+  {
+   "id": "plpcd",
+   "nome": "Passe Livre intermunicipal da pessoa com deficiência",
+   "esf": "est",
+   "val": "Ônibus entre cidades de Goiás",
+   "flow": [
+    "Levar documentos à Unidade Maria Xavier Caiado (Goiânia) ou pedir pelo WhatsApp (62) 98104-3652.",
+    "Retirar em até 60 dias. Validade de 3 anos."
+   ],
+   "docs": [
+    "Laudo de especialista (validade 1 ano)",
+    "Espelho do CadÚnico",
+    "Comprovante de residência em Goiás",
+    "Documentos do acompanhante, se o laudo indicar"
+   ],
+   "where": "",
+   "extra": [
+    "pcd"
+   ],
+   "curto": "Passe Livre PcD"
+  },
+  {
+   "id": "passaporte",
+   "nome": "Passaporte da Pessoa Idosa",
+   "esf": "est",
+   "val": "Até 4 viagens/mês entre cidades de Goiás",
+   "flow": [
+    "Goiânia: Unidade Maria Xavier Caiado. Outros municípios: CRAS ou Secretaria de Assistência Social.",
+    "Comprar o bilhete com até 5h de antecedência (até 500 km)."
+   ],
+   "docs": [
+    "RG e CPF",
+    "Comprovante do CadÚnico"
+   ],
+   "where": "cras",
+   "extra": [
+    "passaporte"
+   ],
+   "curto": "Passaporte da Pessoa Idosa"
+  },
+  {
+   "id": "credito",
+   "nome": "Crédito Social",
+   "esf": "est",
+   "val": "Até R$ 5 mil, parcela única",
+   "flow": [
+    "Ter CadÚnico de baixa renda.",
+    "Fazer o curso de capacitação indicado (Seds/Sebrae, Retomada ou Seapa).",
+    "Receber cartão para compra de equipamentos no comércio local."
+   ],
+   "docs": [
+    "CadÚnico",
+    "Documento com foto"
+   ],
+   "where": "cras",
+   "extra": [],
+   "curto": ""
+  },
+  {
+   "id": "registro",
+   "nome": "2ª via gratuita de certidão (Registro Civil)",
+   "esf": "est",
+   "val": "Gratuito",
+   "flow": [
+    "Ir à Seds (Bloco B, sala 2) ou a um evento do Goiás Social.",
+    "Sem nenhum dado do registro, a Seds encaminha à Defensoria."
+   ],
+   "docs": [
+    "Cópia de qualquer documento, se tiver",
+    "Comprovante de endereço",
+    "Telefone"
+   ],
+   "where": "",
+   "extra": [
+    "registro",
+    "dpe"
+   ],
+   "curto": "2ª via de certidão"
+  },
+  {
+   "id": "enem",
+   "nome": "Enem e isenção da taxa",
+   "esf": "nac",
+   "val": "Porta de entrada para Prouni, Fies e Sisu",
+   "flow": [
+    "Pedir a isenção da taxa na Página do Participante, com a conta gov.br, no prazo do Inep (em abril).",
+    "Fazer a inscrição no Enem no período do edital, mesmo quem já tem a isenção.",
+    "Fazer as duas provas. Para Prouni e Fies, a média precisa ser de pelo menos 450 pontos, sem zerar a redação.",
+    "Quem tinha isenção e faltou precisa justificar a falta para ter isenção no ano seguinte."
+   ],
+   "docs": [
+    "CPF",
+    "Conta gov.br",
+    "NIS, se estiver no CadÚnico"
+   ],
+   "where": "",
+   "extra": [
+    "inep"
+   ],
+   "curto": "Enem"
+  },
+  {
+   "id": "prouni",
+   "nome": "Prouni, bolsa em faculdade particular",
+   "esf": "nac",
+   "val": "Bolsa de 100% ou 50%",
+   "flow": [
+    "Fazer o Enem e conseguir média de pelo menos 450 pontos, sem zerar a redação.",
+    "Inscrever-se no Prouni com a conta gov.br, nas datas do edital (duas vezes por ano), escolhendo até duas opções de curso.",
+    "Acompanhar as chamadas e a lista de espera.",
+    "Pré-selecionado: levar os documentos à faculdade no prazo, para comprovar renda e escola.",
+    "Manter frequência e aprovação para não perder a bolsa."
+   ],
+   "docs": [
+    "Documento com foto e CPF",
+    "Comprovantes de renda de todos da casa",
+    "Histórico do ensino médio",
+    "Comprovante de endereço"
+   ],
+   "where": "",
+   "extra": [
+    "mec"
+   ],
+   "curto": "Prouni"
+  },
+  {
+   "id": "fies",
+   "nome": "Fies e Fies Social, financiamento da faculdade",
+   "esf": "nac",
+   "val": "Financia até 100% no Fies Social",
+   "flow": [
+    "Fazer o Enem (de 2010 em diante) com média de pelo menos 450 pontos, sem zerar a redação. Prova feita como treineiro não vale.",
+    "Inscrever-se no Fies com a conta gov.br, nas datas do edital (duas vezes por ano).",
+    "Fies Social: a vaga é identificada pelo CPF na base do CadÚnico. Atualize o cadastro antes da inscrição.",
+    "Pré-selecionado: validar a inscrição na comissão da faculdade (CPSA) e assinar o contrato no banco.",
+    "As parcelas do financiamento são pagas depois de formado."
+   ],
+   "docs": [
+    "Documento com foto e CPF",
+    "Comprovantes de renda de todos da casa",
+    "Conta gov.br"
+   ],
+   "where": "",
+   "extra": [
+    "mec"
+   ],
+   "curto": "Fies"
+  },
+  {
+   "id": "cotas",
+   "nome": "Universidade pública: Sisu e cotas",
+   "esf": "nac",
+   "val": "Gratuito",
+   "flow": [
+    "Fazer o Enem.",
+    "Inscrever-se no Sisu com a conta gov.br, no início do ano, escolhendo a modalidade de cota.",
+    "UEG: acompanhar o edital do processo seletivo próprio.",
+    "Aprovado por cota: levar na matrícula os comprovantes de escola pública e de renda.",
+    "Já na universidade, procurar a assistência estudantil."
+   ],
+   "docs": [
+    "Histórico escolar do ensino médio",
+    "Comprovantes de renda de todos da casa (cota de renda)",
+    "Documento com foto e CPF"
+   ],
+   "where": "",
+   "extra": [
+    "mec"
+   ],
+   "curto": "Sisu e cotas"
+  },
+  {
+   "id": "probem",
+   "nome": "ProBem, bolsa universitária do Estado (OVG)",
+   "esf": "est",
+   "val": "Bolsa integral ou parcial",
+   "flow": [
+    "Ter o CadÚnico feito ou atualizado em Goiás antes da data de corte do edital.",
+    "Acompanhar a abertura das inscrições no site da OVG (uma vez por semestre).",
+    "Inscrever-se pelo site da OVG, matriculada ou aprovada em curso presencial de faculdade parceira (confira o edital).",
+    "Acompanhar o resultado e manter frequência e aprovação."
+   ],
+   "docs": [
+    "Documento com foto e CPF",
+    "Comprovante de matrícula",
+    "NIS"
+   ],
+   "where": "",
+   "extra": [
+    "ovg"
+   ],
+   "curto": "ProBem"
+  },
+  {
+   "id": "pnaes",
+   "nome": "Assistência estudantil na faculdade",
+   "esf": "nac",
+   "val": "Alimentação, moradia, transporte",
+   "flow": [
+    "Procurar a pró-reitoria ou o setor de assistência estudantil da instituição.",
+    "Acompanhar os editais de auxílio: alimentação, moradia, transporte, creche.",
+    "Levar os comprovantes de renda da família.",
+    "Estudante indígena ou quilombola em universidade federal: perguntar pela Bolsa Permanência do MEC."
+   ],
+   "docs": [
+    "Comprovantes de renda de todos da casa",
+    "Comprovante de matrícula",
+    "Documento com foto e CPF"
+   ],
+   "where": "",
+   "extra": [],
+   "curto": "Assistência estudantil"
+  },
+  {
+   "id": "eja",
+   "nome": "Terminar os estudos: EJA e Encceja",
+   "esf": "nac",
+   "val": "Gratuito",
+   "flow": [
+    "Encceja: inscrição no site do Inep com a conta gov.br, no período do edital. A prova é gratuita.",
+    "Aprovado em todas as áreas: pedir o certificado à Secretaria de Educação indicada na inscrição.",
+    "Prefere estudar em sala: matrícula na EJA da escola estadual ou municipal mais próxima.",
+    "Com o certificado do ensino médio, já pode fazer o Enem e tentar Prouni, Fies e Sisu."
+   ],
+   "docs": [
+    "Documento com foto e CPF",
+    "Histórico escolar, se tiver",
+    "Comprovante de endereço (para a EJA)"
+   ],
+   "where": "",
+   "extra": [
+    "inep"
+   ],
+   "curto": "EJA e Encceja"
+  },
+  {
+   "id": "ceaf",
+   "nome": "Medicamento de alto custo (Componente Especializado, Cemac Juarez Barbosa)",
+   "esf": "est",
+   "val": "Gratuito pelo SUS",
+   "flow": [
+    "Confirmar se o medicamento é fornecido para a doença (CID): consultar a \"Relação de medicamentos, doenças e agravos\" no site da Cemac.",
+    "Na consulta, pedir ao médico (SUS ou particular) a LME (Laudo de Solicitação, Avaliação e Autorização de Medicamentos) preenchida, a receita e os exames exigidos pelo protocolo da doença.",
+    "Baixar no site da Cemac a lista de documentos e exames da doença e conferir se está tudo junto.",
+    "Criar ou acessar a conta gov.br do paciente.",
+    "Abrir o pedido online no go.gov.br: serviço \"Solicitar abertura de processo ou alteração e/ou inclusão de medicamentos de alto custo\".",
+    "Acompanhar em \"Minhas solicitações\". A análise leva até 5 dias úteis. Se faltar documento, o pedido volta com a pendência para corrigir.",
+    "Aprovado: retirar presencialmente. Quem mora em Goiânia retira na Cemac. No interior e na região metropolitana, o local (município ou policlínica) é informado no processo.",
+    "Renovar online antes de vencer o período autorizado, com nova LME e receita (análise em até 10 dias úteis). Mudou só a dose? Levar a nova receita e o protocolo direto ao guichê de dispensação.",
+    "Pedido negado ou remédio fora da lista: guardar a resposta por escrito e procurar a Defensoria Pública, que avalia pedido administrativo ou ação judicial."
+   ],
+   "docs": [
+    "LME preenchida e assinada pelo médico",
+    "Receita médica",
+    "Exames e laudos exigidos pelo protocolo da doença",
+    "Documento com foto e CPF do paciente",
+    "Cartão Nacional de Saúde (CNS)",
+    "Comprovante de endereço",
+    "Conta gov.br do paciente"
+   ],
+   "where": "",
+   "extra": [
+    "cemac",
+    "dpe",
+    "puc-npj",
+    "mpgo",
+    "136"
+   ],
+   "curto": "Alto custo"
+  },
+  {
+   "id": "fpop",
+   "nome": "Farmácia Popular",
+   "esf": "nac",
+   "val": "Gratuito, sem limite de renda",
+   "flow": [
+    "Conferir se o tratamento está entre as indicações do programa (quadro abaixo).",
+    "Ter receita válida com nome do paciente, nome do medicamento, dose e posologia. Vale receita do SUS ou de médico particular.",
+    "Ir a uma farmácia com o selo \"Aqui Tem Farmácia Popular\" (ou consultar o painel de farmácias credenciadas no gov.br). Ligar antes para confirmar se tem o item.",
+    "Apresentar documento oficial com foto e CPF. O medicamento é entregue de graça.",
+    "Não pode ir? Um representante legal ou procurador retira com a receita, documentos com foto e CPF dos dois e a procuração ou decisão judicial.",
+    "Remédio em falta ou recusa indevida: registrar no Disque Saúde 136. Os mesmos medicamentos também saem na UBS do bairro."
+   ],
+   "docs": [
+    "Documento oficial com foto e CPF",
+    "Receita médica dentro da validade",
+    "Fralda geriátrica: prescrição, laudo ou atestado (PcD: com o CID)",
+    "Absorvente: autorização do Dignidade Menstrual, válida por 180 dias"
+   ],
+   "where": "",
+   "extra": [
+    "fp",
+    "136"
+   ],
+   "curto": ""
+  },
+  {
+   "id": "pep",
+   "nome": "PEP, Profilaxia Pós-Exposição ao HIV",
+   "esf": "rede",
+   "val": "Urgente: até 72h",
+   "flow": [
+    "Ir imediatamente a uma UPA ou CAIS 24h, ou ao HDT. Não esperar o dia seguinte.",
+    "Fazer o teste rápido de HIV no próprio serviço.",
+    "Receber os antirretrovirais para 28 dias e tomar todos os dias, sem parar.",
+    "Retornar para os testes de acompanhamento no CTA Cidade Jardim ou na UBS.",
+    "Violência sexual: além da PEP, procurar o Hospital Estadual da Mulher (mulheres) e registrar ocorrência, se quiser."
+   ],
+   "docs": [
+    "Documento, se tiver. A falta de documento não impede o atendimento."
+   ],
+   "where": "pep",
+   "extra": [],
+   "curto": "PEP"
+  },
+  {
+   "id": "hivcare",
+   "nome": "Cuidado contínuo para pessoa vivendo com HIV",
+   "esf": "rede",
+   "val": "SUS gratuito e sigiloso",
+   "flow": [
+    "Fazer o teste rápido na UBS ou no CTA Cidade Jardim. Resultado reagente: o próprio serviço faz a confirmação e o aconselhamento.",
+    "Vincular-se ao SAE (Serviço de Atendimento Especializado) do CTA Cidade Jardim ou ao HDT para consulta com infectologista.",
+    "Fazer os exames iniciais (carga viral, CD4 e outros) e começar o tratamento o quanto antes. O tratamento não espera o resultado do CD4.",
+    "Retirar os antirretrovirais todo mês na unidade dispensadora (o CTA Cidade Jardim faz a entrega contínua). Levar o cartão do SUS.",
+    "Repetir carga viral e consultas conforme a agenda do SAE. A meta é carga viral indetectável.",
+    "Gestante vivendo com HIV: pré-natal com acompanhamento do SAE e do programa Prevenir para a Vida do HDT, para evitar a transmissão ao bebê.",
+    "Apoio emocional: UBS, CAPS ou CVV 188. Discriminação no trabalho, escola ou serviço: Defensoria Pública ou Disque 100."
+   ],
+   "docs": [
+    "Cartão do SUS",
+    "Documento com foto (não é exigido para o teste)"
+   ],
+   "where": "hiv",
+   "extra": [
+    "ceapsol",
+    "100",
+    "mpt"
+   ],
+   "curto": "Cuidado em HIV"
+  },
+  {
+   "id": "prep",
+   "nome": "PrEP, Profilaxia Pré-Exposição ao HIV",
+   "esf": "rede",
+   "val": "Comprimido gratuito",
+   "flow": [
+    "Procurar o CTA Cidade Jardim ou o HDT.",
+    "Fazer teste de HIV e outros exames de triagem.",
+    "Iniciar o uso diário (ou sob demanda, se indicado pelo profissional).",
+    "Voltar a cada consulta para testar e retirar novos frascos."
+   ],
+   "docs": [
+    "Documento com foto",
+    "Cartão do SUS"
+   ],
+   "where": "hiv",
+   "extra": [],
+   "curto": "PrEP"
+  },
+  {
+   "id": "mp",
+   "nome": "Ministério Público: quando e como acionar",
+   "esf": "rede",
+   "val": "Gratuito, sem advogado",
+   "flow": [
+    "Primeiro, pedir o serviço por escrito e guardar o comprovante: protocolo, número de atendimento, resposta negativa, receita, laudo ou print.",
+    "Reclamar na ouvidoria do órgão (SUS 136, ouvidoria da Seds, da prefeitura). Muitas vezes resolve sem processo.",
+    "Caso individual que precisa de ação na Justiça (um remédio para uma pessoa, guarda, pensão, vaga): Defensoria Pública ou escritório-modelo.",
+    "Caso que atinge muitas pessoas, ou pessoa vulnerável sem proteção (criança, idoso, PcD, população de rua, falta geral de remédio, fila de cirurgia, escola sem vaga): fazer representação ao Ministério Público certo (quadro abaixo).",
+    "Registrar a representação no atendimento ao cidadão do site do MP ou presencialmente na promotoria da comarca. Pode pedir sigilo da identidade.",
+    "Anotar o número da representação e acompanhar. O promotor pode requisitar informações, fazer recomendação, acordo (TAC) ou ação civil pública.",
+    "Vítima ou testemunha ameaçada: pedir ao promotor do caso a inclusão no Provita."
+   ],
+   "docs": [
+    "Relato curto: o que aconteceu, quando, onde, quem foi afetado",
+    "Comprovantes: protocolos, negativas, laudos, receitas, fotos",
+    "Contato para retorno (pode pedir sigilo)"
+   ],
+   "where": "",
+   "extra": [
+    "mpgo",
+    "mpgo-dh",
+    "mpf",
+    "mpt",
+    "dpe"
+   ],
+   "curto": "Ministério Público"
+  },
+  {
+   "id": "r-mulher",
+   "nome": "Rede de proteção à mulher",
+   "esf": "rede",
+   "val": "Atendimento 24h",
+   "flow": [
+    "Perigo agora: 190 (PM) ou 153 (GCM Goiânia).",
+    "Registrar ocorrência e pedir medida protetiva na DEAEM (24h).",
+    "Acompanhamento social, psicológico e jurídico no Centro de Referência Cora Coralina.",
+    "Risco de morte: Casa Abrigo Sempre Viva, acessada pela rede.",
+    "Violência sexual: Hospital Estadual da Mulher em até 72h."
+   ],
+   "docs": [
+    "Documento com foto, se possível. Não é obrigatório para ser atendida."
+   ],
+   "where": "mulher",
+   "extra": [
+    "mpgo-gen",
+    "cevam",
+    "puc-npj"
+   ],
+   "curto": "Proteção à mulher"
+  },
+  {
+   "id": "r-crianca",
+   "nome": "Proteção à criança e ao adolescente",
+   "esf": "rede",
+   "val": "Conselho Tutelar",
+   "flow": [
+    "Acionar o Conselho Tutelar da região (plantão à noite e no fim de semana).",
+    "Denúncia anônima: Disque 100.",
+    "Acompanhamento da família no CREAS.",
+    "Lesão ou violência sexual: UPA, hospital ou SAMU 192."
+   ],
+   "docs": [
+    "Não é preciso documento para denunciar"
+   ],
+   "where": "ct",
+   "extra": [
+    "dpca",
+    "mpgo"
+   ],
+   "curto": "Proteção à criança"
+  },
+  {
+   "id": "r-idoso",
+   "nome": "Proteção a idosos e pessoas com deficiência",
+   "esf": "rede",
+   "val": "CREAS",
+   "flow": [
+    "Denunciar pelo Disque 100 ou pelo 197 (Polícia Civil).",
+    "Crime contra a pessoa idosa: Delegacia do Idoso (Goiânia).",
+    "Acompanhamento no CREAS da região.",
+    "Casos graves: Ministério Público e Defensoria."
+   ],
+   "docs": [],
+   "where": "creas",
+   "extra": [
+    "100",
+    "deai",
+    "mpgo"
+   ],
+   "curto": "Proteção ao idoso e PcD"
+  },
+  {
+   "id": "r-rua",
+   "nome": "Atendimento à população em situação de rua",
+   "esf": "rede",
+   "val": "Centro POP",
+   "flow": [
+    "Ir ao Centro POP (7h às 17h).",
+    "Fazer o CadÚnico usando o endereço do Centro POP.",
+    "Pedir vaga em acolhimento pela equipe do Centro POP.",
+    "Sem documento: 2ª via de certidão e Defensoria."
+   ],
+   "docs": [
+    "Nenhum documento é exigido para o primeiro atendimento"
+   ],
+   "where": "pop",
+   "extra": [
+    "mpgo-dh"
+   ],
+   "curto": "População de rua"
+  },
+  {
+   "id": "crise",
+   "nome": "Manejo da crise suicida",
+   "esf": "rede",
+   "val": "Agir no mesmo dia",
+   "flow": [
+    "Não deixe a pessoa sozinha. Fique com ela, ou com alguém de confiança, até o próximo cuidado começar.",
+    "Pergunte diretamente: \"Você está pensando em se matar?\". Perguntar não induz; abre espaço para a pessoa falar.",
+    "Avalie o risco: há plano (como, quando, onde)? Tem acesso ao meio? Já tentou antes? Está sob efeito de álcool ou drogas agora?",
+    "Risco alto (plano com meio disponível, tentativa recente, intoxicação, agitação): SAMU 192 ou pronto atendimento agora. A pessoa não vai sozinha.",
+    "Tomou remédio ou veneno: pronto atendimento mesmo sem sintomas, levando a embalagem. Orientação 24h no CIATox Goiás, 0800 646 4350.",
+    "Para conversar a qualquer hora: CVV 188, ligação gratuita e sigilosa. Ofereça ligar junto ou salvar o número no celular dela.",
+    "Reduza o acesso aos meios: com a família, guarde remédios, venenos, armas e cordas fora do alcance.",
+    "Acione a rede de apoio: um familiar ou pessoa de confiança, de preferência com o conhecimento da pessoa. O risco à vida permite quebrar o sigilo, contando só o necessário. Registre a decisão.",
+    "Faça com ela um plano de segurança (quadro abaixo). O plano fica com a pessoa, não no app.",
+    "Garanta o seguimento: CAPS (acesso direto) ou UBS nos próximos dias, com data marcada antes de a pessoa sair. Retome o contato se ela faltar.",
+    "Tentativa ou autolesão: o serviço de saúde faz a notificação compulsória (ficha de violência autoprovocada, SINAN) em até 24h. A notificação não é denúncia; serve para a rede acompanhar.",
+    "Cuide de você: discuta o caso com a equipe ou com a supervisão."
+   ],
+   "docs": [
+    "Nenhum documento é exigido no atendimento de urgência"
+   ],
+   "where": "saude",
+   "extra": [
+    "188",
+    "ciatox"
+   ],
+   "curto": "Crise suicida"
+  },
+  {
+   "id": "ad",
+   "nome": "Álcool e outras drogas: cuidado pelo SUS",
+   "esf": "rede",
+   "val": "Gratuito, sem encaminhamento",
+   "flow": [
+    "Primeiro passo: CAPS AD (álcool e drogas) ou UBS. Não precisa de encaminhamento nem de estar sem usar.",
+    "No CAPS AD a equipe monta um plano de cuidado: consultas, grupos, atendimento à família e, se preciso, remédios.",
+    "Crise de abstinência grave (convulsão, confusão, delírio, tremor forte) ou intoxicação: SAMU 192 ou UPA.",
+    "Casos graves: internação breve em leito de hospital geral ou no Credeq (Aparecida de Goiânia, até 90 dias, voluntária), pedida pelo CAPS AD pela regulação.",
+    "Precisa de moradia temporária durante o tratamento: o CAPS AD avalia a vaga em Unidade de Acolhimento.",
+    "Em situação de rua: Centro POP e Consultório na Rua.",
+    "Comunidade terapêutica: só com entrada voluntária. Prefira as acompanhadas pelo CAPS e pela assistência social.",
+    "Internação involuntária: só com pedido da família ou do responsável e decisão de um médico, em unidade de saúde, comunicada ao Ministério Público em até 72h (Lei 13.840/2019). Não é o primeiro caminho.",
+    "Grupos gratuitos de ajuda mútua: Alcoólicos Anônimos e Narcóticos Anônimos; para a família, Al-Anon e Nar-Anon."
+   ],
+   "docs": [
+    "Cartão do SUS e documento, se tiver (a falta não impede o atendimento)"
+   ],
+   "where": "",
+   "extra": [
+    "credeq",
+    "samu",
+    "188"
+   ],
+   "curto": "Álcool e drogas"
+  },
+  {
+   "id": "apostas",
+   "nome": "Apostas e bets fora de controle",
+   "esf": "rede",
+   "val": "Bloqueio no gov.br + cuidado no SUS",
+   "flow": [
+    "Bloquear todas as bets de uma vez: Plataforma Centralizada de Autoexclusão (gov.br/autoexclusaoapostas), com conta gov.br prata ou ouro. Vale de 1 a 12 meses ou por tempo indeterminado e corta a publicidade.",
+    "O bloqueio não pode ser desfeito antes do prazo escolhido (no indeterminado, dá para cancelar em até 30 dias). Ele só alcança as bets autorizadas: sites ilegais continuam abertos.",
+    "Cuidado em saúde: UBS ou CAPS (em geral o CAPS AD), sem encaminhamento. O Ministério da Saúde também oferece teleatendimento para problemas com apostas pelo app Meu SUS Digital.",
+    "Pergunte sobre pensamentos de suicídio: dívida e vergonha aumentam o risco. Havendo, siga o manejo da crise e o CVV 188.",
+    "Proteger o dinheiro: por um tempo, deixar cartão e senhas com alguém de confiança, tirar limites e Pix automático, não pegar empréstimo para cobrir aposta.",
+    "Dívidas: Procon Goiás (Núcleo de Apoio aos Superendividados) ou Defensoria, para renegociar.",
+    "Bolsa Família e BPC: desde 2025 as bets autorizadas devem barrar beneficiários (Portaria SPA/MF 2.217/2025). A regra está em discussão no STF; se a pessoa ainda consegue apostar, use a autoexclusão.",
+    "Menor de 18 anos não pode apostar. Se está apostando, usa conta de adulto ou site ilegal: converse com a família; se um adulto facilita, Conselho Tutelar.",
+    "Família: o CAPS orienta os familiares. Há grupos gratuitos de Jogadores Anônimos."
+   ],
+   "docs": [
+    "Conta gov.br prata ou ouro (para a autoexclusão)",
+    "Cartão do SUS"
+   ],
+   "where": "",
+   "extra": [
+    "autoexclusao",
+    "188",
+    "procon",
+    "dpe"
+   ],
+   "curto": "Apostas"
+  },
+  {
+   "id": "games",
+   "nome": "Uso excessivo de jogos eletrônicos e internet",
+   "esf": "rede",
+   "val": "UBS e CAPS",
+   "flow": [
+    "Primeiro acolhimento na UBS: avaliar sono, humor, ansiedade, isolamento e rendimento na escola ou no trabalho.",
+    "Prejuízo grave, agressividade ao ser interrompido ou outro sofrimento junto: CAPS, sem encaminhamento (CAPSij até 18 anos).",
+    "Criança e adolescente: combinar com a família horários e lugar do aparelho, usar o controle parental e manter o celular fora do quarto à noite.",
+    "Abandono da escola: conversar com a escola; se persistir, Conselho Tutelar.",
+    "Jogo com dinheiro (caixas de recompensa, apostas em itens, cassino): tratar também como aposta. O ECA Digital (Lei 15.211/2025) proíbe caixas de recompensa em jogos para crianças e adolescentes.",
+    "Psicoterapia gratuita: clínicas-escola de psicologia (PUC Goiás e UFG)."
+   ],
+   "docs": [
+    "Cartão do SUS"
+   ],
+   "where": "",
+   "extra": [
+    "capsi",
+    "puc-cepsi",
+    "ufg-psi",
+    "anhanguera-psi"
+   ],
+   "curto": "Jogos eletrônicos"
+  },
+  {
+   "id": "discrim",
+   "nome": "Discriminação: racismo, xenofobia, intolerância religiosa, LGBTfobia",
+   "esf": "rede",
+   "val": "É crime: denuncie",
+   "flow": [
+    "Acolher e acreditar no relato. Perguntar se há risco agora (ameaça, ataque ao terreiro, à casa ou à pessoa): se houver, 190.",
+    "Guardar provas: prints com data, áudios, vídeos, nomes e contatos de testemunhas, local e horário.",
+    "Registrar ocorrência: Deacri (Goiânia), especializada em crimes raciais e de intolerância, ou em qualquer delegacia. Também pelo 197 (Polícia Civil). Não precisa de advogado.",
+    "Denúncia, anônima se quiser, pelo Disque 100 (24h, também por WhatsApp).",
+    "Apoio psicológico, social e jurídico gratuito: Crei, Centro de Referência Estadual da Igualdade (Seds), presencial ou on-line.",
+    "Reparação e direitos: Defensoria Pública (há o projeto Terreiro de Direitos para comunidades de matriz africana). Casos coletivos, contra escolas, empresas ou órgãos públicos: Ministério Público.",
+    "No trabalho: Ministério Público do Trabalho. Na escola: direção e, se a vítima for criança ou adolescente, Conselho Tutelar. Em serviço público: ouvidoria do órgão.",
+    "Pessoa migrante: além da delegacia, a Pastoral dos Migrantes acompanha; a Defensoria Pública da União orienta sobre documentos.",
+    "Sofrimento depois da violência: UBS, CAPS ou clínicas-escola de psicologia."
+   ],
+   "docs": [
+    "Documento com foto, se tiver (migrante: qualquer documento ou protocolo)",
+    "Provas: prints, áudios, vídeos, testemunhas"
+   ],
+   "where": "",
+   "extra": [
+    "deacri",
+    "crei",
+    "100",
+    "pc197",
+    "dpe",
+    "mpgo-dh",
+    "mpt"
+   ],
+   "curto": "Discriminação"
+  },
+  {
+   "id": "r-mental",
+   "nome": "Cuidado em saúde mental",
+   "esf": "rede",
+   "val": "UBS e CAPS",
+   "flow": [
+    "Risco imediato ou tentativa de suicídio: SAMU 192.",
+    "Apoio emocional 24h: CVV 188.",
+    "Primeiro atendimento: UBS do bairro ou CAPS (acesso direto).",
+    "Crise sem risco de vida: UPA ou CAIS."
+   ],
+   "docs": [
+    "Cartão do SUS e documento, se tiver"
+   ],
+   "where": "saude",
+   "extra": [
+    "capsi",
+    "puc-cepsi",
+    "ufg-psi",
+    "anhanguera-psi"
+   ],
+   "curto": "Saúde mental"
+  },
+  {
+   "id": "r-gest",
+   "nome": "Pré-natal e parto",
+   "esf": "rede",
+   "val": "SUS",
+   "flow": [
+    "Iniciar o pré-natal na UBS do bairro, de preferência até a 12ª semana.",
+    "Informar a gestação no CRAS para o adicional do Bolsa Família.",
+    "Urgência na gravidez ou parto com risco: SAMU 192 ou HMI."
+   ],
+   "docs": [
+    "Cartão do SUS",
+    "Documento com foto"
+   ],
+   "where": "saude",
+   "extra": [
+    "hmi"
+   ],
+   "curto": "Pré-natal"
+  },
+  {
+   "id": "r-fome",
+   "nome": "Segurança alimentar",
+   "esf": "rede",
+   "val": "CRAS",
+   "flow": [
+    "Procurar o CRAS para benefício eventual (cesta básica) e avaliação da família.",
+    "Fazer ou atualizar o CadÚnico para Bolsa Família, Mães de Goiás e Gás do Povo.",
+    "Refeição a R$ 2 no Restaurante do Bem (OVG).",
+    "Igreja ou ONG que serve refeições pode se cadastrar no Banco de Alimentos da OVG."
+   ],
+   "docs": [
+    "Documento com foto e CPF"
+   ],
+   "where": "cras",
+   "extra": [
+    "restbem",
+    "bancoalimentos"
+   ],
+   "curto": "Segurança alimentar"
+  }
+ ],
+ "T": [
+  {
+   "k": "avc",
+   "t": "AVC (derrame)",
+   "palavras": [
+    "avc",
+    "derrame",
+    "boca torta",
+    "fala enrolada",
+    "nao consegue falar",
+    "braco fraco",
+    "perdeu a forca",
+    "paralisia"
+   ],
+   "passos": [
+    "Acontecendo agora: ligar 192 (SAMU). O tratamento do AVC depende do tempo, cada minuto conta.",
+    "Sinais de alerta: boca torta ao sorrir, braço fraco ao levantar os dois, fala enrolada ou confusa.",
+    "Anotar a hora em que os sintomas começaram e os remédios que a pessoa usa. Não dar comida, bebida nem remédio; se vomitar, deitar a pessoa de lado.",
+    "AVC que já passou: pedir na UBS o encaminhamento para reabilitação (fisioterapia, fonoaudiologia) e acompanhar pressão, diabetes e remédios na UBS.",
+    "Novo sinal de AVC a qualquer momento: 192 de novo."
+   ],
+   "servicos": [
+    "samu",
+    "hugo"
+   ],
+   "on": [],
+   "urg": "Se os sinais de AVC estão acontecendo agora (boca torta, braço fraco, fala enrolada): ligue <b>192</b> (SAMU) e anote a hora em que começaram."
+  },
+  {
+   "k": "emergencia",
+   "t": "Emergência médica",
+   "palavras": [
+    "infarto",
+    "dor no peito",
+    "falta de ar",
+    "desmai",
+    "convuls",
+    "sangramento",
+    "acidente",
+    "inconsciente",
+    "overdose",
+    "engasg",
+    "queimadura grave"
+   ],
+   "passos": [
+    "Risco de vida: ligar 192 (SAMU). O médico regulador orienta pelo telefone e envia a ambulância.",
+    "Sem risco de vida, mas precisa de atendimento hoje: UPA ou CAIS 24h.",
+    "Intoxicação ou picada de animal: CIATox 0800 646 4350, 24h."
+   ],
+   "servicos": [
+    "samu",
+    "ciatox"
+   ],
+   "on": [],
+   "urg": "Se há risco de vida agora: ligue <b>192</b> (SAMU)."
+  },
+  {
+   "k": "reabilitacao",
+   "t": "Reabilitação: fisioterapia, fono, órteses e próteses",
+   "palavras": [
+    "reabilita",
+    "fisioterap",
+    "fisio",
+    "pos cirurg",
+    "pos-cirurg",
+    "sequela",
+    "protese",
+    "ortese",
+    "cadeira de rodas",
+    "andador",
+    "fonoaudio",
+    "terapia ocupacional",
+    "amputa",
+    "lesao medular"
+   ],
+   "passos": [
+    "Pedir na UBS, ou ao médico que fez a cirurgia, o encaminhamento para reabilitação, com relatório e exames.",
+    "A UBS coloca o pedido na regulação. A vaga (fisioterapia, fonoaudiologia, CRER ou clínica-escola) é marcada pela Secretaria de Saúde.",
+    "Em Goiânia, o CRER é a referência estadual em reabilitação. A primeira consulta vem pela regulação, não por procura direta.",
+    "Cadeira de rodas, órtese e prótese também são pedidas pela UBS, com prescrição.",
+    "Pessoa que não consegue sair de casa: perguntar na UBS ou no hospital pelo Melhor em Casa (atendimento no domicílio).",
+    "Demora longa: guardar o protocolo e procurar a Ouvidoria do SUS (136) ou a Defensoria."
+   ],
+   "servicos": [
+    "crer",
+    "puc-vida",
+    "reggyn",
+    "136"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "acamado",
+   "t": "Pessoa acamada ou que depende de cuidados",
+   "palavras": [
+    "acamad",
+    "cuidador",
+    "home care",
+    "melhor em casa",
+    "curativo em casa",
+    "sonda",
+    "oxigenio",
+    "nao anda",
+    "dependente de cuidado"
+   ],
+   "passos": [
+    "Pedir à UBS a visita da equipe de saúde da família.",
+    "Atendimento em casa pelo SUS (Melhor em Casa): pedido pela UBS ou pelo hospital, na alta.",
+    "Fralda geriátrica de graça na Farmácia Popular (60 anos ou mais, ou pessoa com deficiência), com receita.",
+    "Renda baixa: BPC, se a família tiver até 1/4 do salário mínimo por pessoa. O CRAS orienta.",
+    "Cuidador sobrecarregado: o CRAS orienta sobre apoio à família."
+   ],
+   "servicos": [
+    "fp",
+    "121"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "fila",
+   "t": "Consulta, exame ou cirurgia demorando",
+   "palavras": [
+    "fila",
+    "demora",
+    "esperando",
+    "aguardando",
+    "especialista",
+    "ressonancia",
+    "tomografia",
+    "regulacao",
+    "marcar consulta"
+   ],
+   "passos": [
+    "Confirmar na UBS se o pedido está na regulação e anotar o número do protocolo.",
+    "Demora sem resposta: Ouvidoria do SUS, 136.",
+    "Risco à saúde pela demora: Defensoria Pública ou Ministério Público, com laudo e protocolo."
+   ],
+   "servicos": [
+    "reggyn",
+    "136",
+    "dpe",
+    "mpgo"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "familia",
+   "t": "Pensão alimentícia, guarda, divórcio, paternidade",
+   "palavras": [
+    "pensao aliment",
+    "pensao do filho",
+    "pensao para",
+    "guarda",
+    "divorcio",
+    "separacao",
+    "paternidade",
+    "dna",
+    "visita dos filhos",
+    "uniao estavel",
+    "inventario",
+    "heranca",
+    "curatela",
+    "interdicao"
+   ],
+   "passos": [
+    "Defensoria Pública: atende de graça quem não pode pagar advogado.",
+    "Acordo sem processo: Cejusc do TJGO (conciliação gratuita sobre pensão, guarda, visitas e divórcio).",
+    "Levar documentos pessoais, certidões (nascimento dos filhos, casamento) e comprovantes de renda e despesas.",
+    "Alternativa: escritório-modelo de faculdade de Direito (NPJ PUC Goiás).",
+    "Se houver violência: medida protetiva na DEAEM ou na Defensoria."
+   ],
+   "servicos": [
+    "dpe",
+    "cejusc",
+    "puc-npj"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "inss",
+   "t": "INSS: aposentadoria, auxílio-doença, pensão por morte",
+   "palavras": [
+    "inss",
+    "aposentad",
+    "auxilio doenca",
+    "auxilio-doenca",
+    "incapacidade",
+    "pericia",
+    "pensao por morte",
+    "auxilio reclusao",
+    "salario maternidade"
+   ],
+   "passos": [
+    "Pedir pelo Meu INSS (app ou site, com a conta gov.br) ou pelo telefone 135.",
+    "Auxílio por incapacidade: levar laudo e exames à perícia.",
+    "Negado: recorrer pelo Meu INSS em até 30 dias, ou procurar a Defensoria Pública da União ou o NPJ.",
+    "BPC (LOAS): veja o assunto Renda e benefícios."
+   ],
+   "servicos": [
+    "135",
+    "puc-npj"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "emprego",
+   "t": "Desemprego e seguro-desemprego",
+   "palavras": [
+    "desempreg",
+    "seguro desemprego",
+    "seguro-desemprego",
+    "emprego",
+    "curriculo",
+    "demitid",
+    "fgts"
+   ],
+   "passos": [
+    "Seguro-desemprego: pedir pelo app Carteira de Trabalho Digital ou pelo gov.br, do 7º ao 120º dia depois da demissão.",
+    "Vagas e orientação: Sine Goiânia, com agendamento pelo app Prefeitura 24h.",
+    "Quer abrir um negócio: veja o assunto Trabalho (Crédito Social).",
+    "Família sem renda: CRAS, para CadÚnico e benefícios."
+   ],
+   "servicos": [
+    "sine"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "dividas",
+   "t": "Dívidas, golpes e problemas de consumo",
+   "palavras": [
+    "divida",
+    "nome sujo",
+    "negativad",
+    "serasa",
+    "juros",
+    "emprestimo",
+    "consignado",
+    "golpe",
+    "fraude",
+    "cobranca",
+    "cartao de credito",
+    "superendivid"
+   ],
+   "passos": [
+    "Procon Goiás: reclamação e renegociação de dívidas (Núcleo de Apoio aos Superendividados).",
+    "Negociação online: consumidor.gov.br.",
+    "Golpe ou fraude: registrar boletim de ocorrência e avisar o banco na hora.",
+    "Desconto indevido na aposentadoria: Meu INSS e Defensoria."
+   ],
+   "servicos": [
+    "procon",
+    "dpe"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "desastre",
+   "t": "Enchente, incêndio ou desabamento",
+   "palavras": [
+    "enchente",
+    "alagamento",
+    "incendio",
+    "desabamento",
+    "desabrigad",
+    "deslizamento",
+    "perdeu a casa"
+   ],
+   "passos": [
+    "Risco agora: Bombeiros 193 ou Defesa Civil 199.",
+    "Perdeu bens ou a casa: CRAS, para benefício eventual e acolhimento provisório.",
+    "Documentos perdidos: 2ª via gratuita de certidão (assunto Documentos)."
+   ],
+   "servicos": [
+    "121"
+   ],
+   "on": [],
+   "urg": "Risco agora: <b>193</b> (Bombeiros) ou <b>199</b> (Defesa Civil)."
+  },
+  {
+   "k": "funeral",
+   "t": "Morte na família: funeral e luto",
+   "palavras": [
+    "funeral",
+    "enterro",
+    "sepultamento",
+    "obito",
+    "faleceu",
+    "falecimento",
+    "luto",
+    "morreu"
+   ],
+   "passos": [
+    "Família de baixa renda: pedir o auxílio funeral (benefício eventual) no CRAS ou na Secretaria de Assistência Social.",
+    "Certidão de óbito: no cartório, com a declaração de óbito do hospital ou do IML.",
+    "Pensão por morte: Meu INSS ou 135.",
+    "Luto difícil: UBS, CAPS ou CVV 188. Se a morte foi por suicídio, ofereça acompanhamento à família."
+   ],
+   "servicos": [
+    "121",
+    "188"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "rg",
+   "t": "RG, CPF ou carteira de trabalho",
+   "palavras": [
+    "rg",
+    "identidade",
+    "cpf",
+    "carteira de trabalho",
+    "titulo de eleitor",
+    "documento perdido",
+    "documentos perdidos"
+   ],
+   "passos": [
+    "Carteira de Identidade: agendar no Vapt Vupt (vaptvupt.go.gov.br), levando a certidão de nascimento ou casamento.",
+    "CPF: de graça pelo site da Receita Federal.",
+    "Carteira de Trabalho: é digital, pelo app Carteira de Trabalho Digital com a conta gov.br.",
+    "Sem certidão: 2ª via gratuita (assunto Documentos)."
+   ],
+   "servicos": [],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "apostas",
+   "t": "Apostas e bets",
+   "palavras": [
+    "bet",
+    "bets",
+    "aposta",
+    "apostas",
+    "apostando",
+    "apostador",
+    "cassino",
+    "tigrinho",
+    "jogo do tigre",
+    "jogo do bicho",
+    "jogos de azar",
+    "roleta",
+    "aviator"
+   ],
+   "passos": [],
+   "servicos": [],
+   "on": [
+    "apostas"
+   ],
+   "urg": ""
+  },
+  {
+   "k": "games",
+   "t": "Jogos eletrônicos e internet",
+   "palavras": [
+    "videogame",
+    "video game",
+    "jogos eletronicos",
+    "jogo eletronico",
+    "games",
+    "free fire",
+    "roblox",
+    "minecraft",
+    "fortnite",
+    "viciado em jogo",
+    "vicio em jogo",
+    "viciado no celular",
+    "vicio em celular",
+    "vicio em internet"
+   ],
+   "passos": [],
+   "servicos": [],
+   "on": [
+    "games"
+   ],
+   "urg": ""
+  },
+  {
+   "k": "drogas",
+   "t": "Álcool e outras drogas",
+   "palavras": [
+    "alcool",
+    "bebida",
+    "bebe muito",
+    "alcoolismo",
+    "alcoolatra",
+    "droga",
+    "drogas",
+    "crack",
+    "cocaina",
+    "maconha",
+    "dependencia quimica",
+    "dependente quimico",
+    "internar",
+    "internacao",
+    "clinica de recuperacao",
+    "comunidade terapeutica"
+   ],
+   "passos": [],
+   "servicos": [],
+   "on": [
+    "drogas"
+   ],
+   "urg": ""
+  },
+  {
+   "k": "violsexual",
+   "t": "Violência sexual",
+   "palavras": [
+    "estupro",
+    "estuprad",
+    "abuso sexual",
+    "abusada",
+    "abusado",
+    "violencia sexual",
+    "assedio sexual",
+    "importunacao"
+   ],
+   "passos": [
+    "Nas primeiras 72h: atendimento de saúde imediato para profilaxia de HIV e IST e contracepção de emergência. Em Goiânia, o Hemu tem ambulatório próprio para vítimas de violência sexual (procura direta ou encaminhamento); também UPA ou CAIS 24h.",
+    "Registrar ocorrência é um direito, não uma condição para o atendimento de saúde. Mulher: DEAEM (24h). Criança ou adolescente: DPCA e Conselho Tutelar.",
+    "Gravidez resultante de estupro: a interrupção é prevista em lei. O Hemu é a referência estadual.",
+    "Acompanhamento psicológico e social: CREAS e, para mulheres, Centro de Referência Cora Coralina.",
+    "Criança ou adolescente: comunicar sempre ao Conselho Tutelar."
+   ],
+   "servicos": [
+    "hem",
+    "deaem",
+    "dpca",
+    "cora",
+    "100"
+   ],
+   "on": [],
+   "urg": "Violência sexual nas últimas 72h: atendimento de saúde <b>agora</b> (profilaxia de HIV e IST e contracepção de emergência), mesmo sem registrar ocorrência."
+  },
+  {
+   "k": "discriminacao",
+   "t": "Discriminação: racismo, xenofobia, intolerância religiosa, LGBTfobia",
+   "palavras": [
+    "racismo",
+    "racista",
+    "injuria racial",
+    "ofensa racial",
+    "preconceito",
+    "discrimina",
+    "xenofob",
+    "por ser nordestin",
+    "por ser estrangeir",
+    "por ser venezuelan",
+    "por ser haitian",
+    "volta pro seu pais",
+    "homofobia",
+    "homofob",
+    "transfobia",
+    "lgbtfobia",
+    "intolerancia religiosa",
+    "racismo religioso",
+    "atacaram o terreiro",
+    "ataque ao terreiro",
+    "invadiram o terreiro",
+    "por ser do candomble",
+    "por ser da umbanda",
+    "por causa da religiao",
+    "por causa da minha religiao",
+    "perseguido pela religiao",
+    "perseguida pela religiao",
+    "por ser evangelic",
+    "por ser catolic",
+    "por ser espirita",
+    "por ser muculman",
+    "por ser judeu",
+    "por ser judia",
+    "macumbeir",
+    "chutaram a imagem",
+    "capacitismo",
+    "capacitista",
+    "idadismo",
+    "etarismo",
+    "xingou de macaco"
+   ],
+   "passos": [],
+   "servicos": [],
+   "on": [
+    "discrim"
+   ],
+   "urg": ""
+  },
+  {
+   "k": "trans",
+   "t": "Pessoa trans: saúde e documentos",
+   "palavras": [
+    "pessoa trans",
+    "mulher trans",
+    "homem trans",
+    "menina trans",
+    "menino trans",
+    "transexual",
+    "travesti",
+    "transgenero",
+    "hormonizacao",
+    "nome social",
+    "mudar o nome",
+    "redesignacao"
+   ],
+   "passos": [
+    "Saúde: pedir na UBS o encaminhamento para o Ambulatório TX do HGG (hormonização, psicologia, cirurgias). Maiores de 18 em Goiânia também podem procurar o Transviver.",
+    "Nome social: pode ser usado no SUS, na escola e no CadÚnico, sem mudar documento.",
+    "Mudar nome e gênero nos documentos: direto no cartório, sem processo e sem cirurgia, para maiores de 18 anos. Defensoria orienta quem não pode pagar as taxas.",
+    "Violência ou discriminação: Deacri e Disque 100."
+   ],
+   "servicos": [
+    "hgg-tx",
+    "transviver",
+    "deacri",
+    "dpe"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "migrante",
+   "t": "Migrantes e refugiados",
+   "palavras": [
+    "migrante",
+    "imigrante",
+    "refugiad",
+    "venezuelan",
+    "haitian",
+    "estrangeir",
+    "refugio",
+    "sem documento brasileiro"
+   ],
+   "passos": [
+    "O SUS atende sem exigir documento brasileiro. A criança tem direito à matrícula na escola.",
+    "CadÚnico e benefícios: pode se cadastrar com a Carteira de Registro Nacional Migratório (CRNM) ou o protocolo de refúgio, no CRAS.",
+    "Documentos, trabalho e orientação: Pastoral dos Migrantes de Goiânia.",
+    "Regularização migratória com problema: Defensoria Pública da União.",
+    "Sofreu xenofobia: é crime (Lei 7.716/1989). Registrar na Deacri ou em qualquer delegacia, ou pelo Disque 100."
+   ],
+   "servicos": [
+    "pastoral-migrantes",
+    "deacri",
+    "100",
+    "121"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "egresso",
+   "t": "Saiu do sistema prisional (egresso) e família",
+   "palavras": [
+    "egresso",
+    "saiu da prisao",
+    "saiu da cadeia",
+    "ex-detento",
+    "ex detento",
+    "presidiario",
+    "tornozeleira",
+    "liberdade condicional",
+    "foi preso",
+    "esta preso",
+    "presidio"
+   ],
+   "passos": [
+    "Escritório Social (Goiânia): documentos, trabalho, estudo e acesso a políticas sociais para egressos e famílias. Atendimento voluntário.",
+    "Família de pessoa presa: auxílio-reclusão no INSS, se a pessoa contribuía (Meu INSS ou 135).",
+    "CadÚnico e benefícios no CRAS; situação de rua: Centro POP.",
+    "Dúvidas sobre a pena ou o processo: Defensoria Pública."
+   ],
+   "servicos": [
+    "escritorio-social",
+    "dpe",
+    "135"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "cancer",
+   "t": "Câncer: diagnóstico e tratamento",
+   "palavras": [
+    "cancer",
+    "tumor",
+    "quimioterapia",
+    "radioterapia",
+    "oncolog",
+    "biopsia",
+    "nodulo",
+    "metastase"
+   ],
+   "passos": [
+    "Pela lei, exames para confirmar câncer devem sair em até 30 dias (Lei 13.896/2019) e o tratamento no SUS deve começar em até 60 dias do diagnóstico (Lei 12.732/2012).",
+    "O encaminhamento sai da UBS ou do médico, pela regulação. Em Goiânia, a referência é o Hospital Araújo Jorge; também o HC-UFG.",
+    "Demora: guardar laudos e protocolos e procurar a Ouvidoria do SUS (136), a Defensoria ou o Ministério Público.",
+    "Direitos: saque do FGTS e do PIS, auxílio por incapacidade no INSS, isenção de IR sobre aposentadoria; BPC se a renda for baixa.",
+    "Transporte e hospedagem para quem vem do interior: pedir o Tratamento Fora de Domicílio (TFD) na Secretaria de Saúde do município."
+   ],
+   "servicos": [
+    "araujo-jorge",
+    "hc-ufg",
+    "136",
+    "dpe"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "trafico",
+   "t": "Tráfico de pessoas e trabalho escravo",
+   "palavras": [
+    "trafico de pessoas",
+    "trabalho escravo",
+    "escravidao",
+    "proposta de emprego no exterior",
+    "retiveram o passaporte",
+    "sem salario",
+    "nao deixam sair"
+   ],
+   "passos": [
+    "Risco agora: 190.",
+    "Denunciar pelo Disque 100 (24h, também pelo WhatsApp (61) 99611-0100) ou pelo Ligue 180. As denúncias de trabalho escravo seguem para a fiscalização do Ministério do Trabalho.",
+    "Trabalho análogo à escravidão: Ministério Público do Trabalho e Sistema Ipê do Ministério do Trabalho.",
+    "Proposta de emprego no exterior boa demais, com passagem paga e documento retido: sinal de alerta."
+   ],
+   "servicos": [
+    "100",
+    "180",
+    "mpt"
+   ],
+   "on": [],
+   "urg": ""
+  },
+  {
+   "k": "dentista",
+   "t": "Dentista",
+   "palavras": [
+    "dente",
+    "dentista",
+    "odonto",
+    "dentadura",
+    "protese dentaria"
+   ],
+   "passos": [
+    "Primeira consulta na UBS, com a equipe de saúde bucal.",
+    "Tratamento especializado (canal, prótese, cirurgia): a UBS encaminha ao Centro de Especialidades Odontológicas (CEO).",
+    "Dor forte ou rosto inchado: UPA ou CAIS 24h."
+   ],
+   "servicos": [],
+   "on": [],
+   "urg": ""
+  }
+ ]
+}
