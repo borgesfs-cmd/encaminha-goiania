@@ -126,7 +126,8 @@ textarea{width:100%;font:16px var(--font-body);padding:9px 10px;border:1px solid
 .results{display:grid;gap:16px;min-width:0}
 .urgent{border:2px solid var(--alert);background:var(--alert-soft);border-radius:var(--r);padding:14px 16px}
 .urgent h3{color:var(--alert);font-size:18px;margin-bottom:6px}
-.urgent ul{margin:0;padding-left:18px}
+.urgent ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.urgent a{color:var(--alert);font-weight:700}
 .summary{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
 .summary h2{font-size:22px}
 .legend{display:flex;flex-wrap:wrap;gap:6px;font-size:13px}
@@ -291,6 +292,7 @@ footer .wrap{padding-block:18px}
       <button type="button" class="case" data-case="altocusto">Alto custo</button>
       <button type="button" class="case" data-case="hiv">HIV</button>
       <button type="button" class="case" data-case="farmacia">Farmácia Popular</button>
+      <button type="button" class="case" data-case="crise">Crise suicida</button>
       <button class="case ghostcase" type="button" id="clear">Novo atendimento</button>
     </div>
   </div>
@@ -509,7 +511,8 @@ const S=[
  {id:"135",tipo:"Nacional",mun:"Nacional",nome:"INSS, Central 135 e Meu INSS",tel:["135"],site:"https://meu.inss.gov.br",obs:"Pedido de BPC, agendamento de perícia e avaliação social."},
  {id:"100",tipo:"Nacional",mun:"Nacional",nome:"Disque 100, Direitos Humanos",tel:["100"],obs:"Denúncia anônima de violência contra criança, idoso, pessoa com deficiência, população de rua e LGBTQIA+. 24h."},
  {id:"180",tipo:"Nacional",mun:"Nacional",nome:"Ligue 180, Central de Atendimento à Mulher",tel:["180"],obs:"Gratuito, sigiloso, 24h."},
- {id:"188",tipo:"Nacional",mun:"Nacional",nome:"CVV, Centro de Valorização da Vida",tel:["188"],site:"https://cvv.org.br",obs:"Apoio emocional e prevenção do suicídio, 24h, gratuito."},
+ {id:"188",tipo:"Nacional",mun:"Nacional",nome:"CVV, Centro de Valorização da Vida",tel:["188"],site:"https://cvv.org.br",hor:"Telefone 24h, todos os dias",obs:"Apoio emocional e prevenção do suicídio. Ligação gratuita e sigilosa, de qualquer telefone. Também há chat em cvv.org.br, em horários limitados: confira no site."},
+ {id:"ciatox",tipo:"Saúde",mun:"Estado",nome:"CIATox Goiás, Centro de Informação e Assistência Toxicológica",tel:["0800 646 4350"],hor:"24h, todos os dias",site:"https://goias.gov.br/saude/ciatox/",obs:"Orienta profissionais e população em intoxicação por remédio, veneno, agrotóxico, produto de limpeza ou animal peçonhento. Fonte: SES/GO, consultado em 08/10/2026."},
  // Saúde
  {id:"samu",tipo:"Saúde",mun:"Região metropolitana",nome:"SAMU 192",tel:["192"],obs:"Emergência com risco de vida. A Central de Regulação de Goiânia atende a região metropolitana."},
  {id:"hugo",tipo:"Saúde",mun:"Goiânia",nome:"HUGO, Hospital Estadual de Urgências de Goiânia",tel:["(62) 3201-4420"]},
@@ -614,7 +617,7 @@ const SM_PADRAO=1621;
 const CHIPS={
  chipsCad:[["cad","Inscrito no CadÚnico"],["cadOld","CadÚnico sem atualizar há mais de 2 anos"],["pbf","Recebe Bolsa Família"],["bpcRec","Recebe BPC"]],
  chipsFam:[["c06","Criança de 0 a 6 anos"],["pcd","Pessoa com deficiência"],["pcd17","Pessoa com deficiência até 17 anos"],["tea","Pessoa com autismo (TEA)"],["gest","Gestante"],["estMedio","Estudante do ensino médio público"],["estud","Estudante (qualquer nível)"]],
- chipsSau:[["altocusto","Precisa de medicamento de alto custo"],["continuo","Usa remédio contínuo (pressão, diabetes, asma…)"],["hiv","Vive com HIV"],["teste","Quer fazer teste de HIV/IST"],["pep","Exposição de risco ao HIV há menos de 72h"],["prep","Quer prevenção ao HIV (PrEP)"],["mental","Sofrimento mental"],["drogas","Uso de álcool ou drogas"],["suic","Pensamento ou risco de suicídio"]],
+ chipsSau:[["altocusto","Precisa de medicamento de alto custo"],["continuo","Usa remédio contínuo (pressão, diabetes, asma…)"],["hiv","Vive com HIV"],["teste","Quer fazer teste de HIV/IST"],["pep","Exposição de risco ao HIV há menos de 72h"],["prep","Quer prevenção ao HIV (PrEP)"],["mental","Sofrimento mental"],["drogas","Uso de álcool ou drogas"],["suic","Pensamento de suicídio"],["tentativa","Tentativa de suicídio ou autolesão recente"]],
  chipsProt:[["violMulher","Mulher em situação de violência"],["mpu","Tem medida protetiva ativa"],["violCrianca","Criança/adolescente com direito violado"],["violIdoso","Idoso ou PcD sofrendo violência ou abandono"],["rua","Em situação de rua"],["trabalho","Trabalho infantil, escravo ou discriminação no trabalho"]],
  chipsSoc:[["fome","Falta comida em casa"],["aluguel","Aluguel pesa metade da renda ou mais"],["empreender","Quer trabalhar por conta própria"],["semDoc","Sem certidão ou documento"],["negado","Serviço público negou ou não atendeu (vaga, remédio, cirurgia, escola)"]]
 };
@@ -624,6 +627,7 @@ const CASES={
  familia:{ini:"M.S.A.",mun:"Goiânia",reg:"noroeste",idade:29,pessoas:4,renda:400,trab:"informal",moradia:"alugada",escol:"fund-inc",dem:"Saiu de casa com os filhos depois de agressão; precisa de renda e de lugar para morar.",on:["cad","c06","pcd17","violMulher","mpu","aluguel"]},
  altocusto:{ini:"J.P.R.",mun:"Trindade",idade:52,pessoas:3,renda:2600,trab:"formal",moradia:"propria",escol:"medio",dem:"Precisa do remédio para artrite reumatoide que a reumatologista receitou; não tem no posto.",on:["cad","altocusto","continuo"]},
  hiv:{ini:"R.C.",mun:"Goiânia",reg:"leste",idade:34,pessoas:1,renda:1300,trab:"informal",moradia:"alugada",escol:"medio",dem:"Recebeu diagnóstico de HIV no teste rápido e não sabe por onde começar.",on:["hiv","mental"]},
+ crise:{ini:"L.F.",mun:"Goiânia",reg:"norte",idade:19,pessoas:3,renda:1800,trab:"nao",moradia:"alugada",escol:"medio",dem:"Disse que não aguenta mais e que pensou em tomar os remédios da mãe.",on:["suic","estud"]},
  farmacia:{ini:"A.L.M.",mun:"Aparecida de Goiânia",idade:67,pessoas:2,renda:2800,trab:"aposentado",moradia:"propria",escol:"fund",dem:"Usa losartana e metformina e está comprando na farmácia.",on:["continuo"]}
 };
 const EX=CASES.familia;
@@ -866,8 +870,38 @@ const P=[
  {id:"r-rua",nome:"Atendimento à população em situação de rua",esf:"rede",val:"Centro POP",
   test:p=>p.has("rua")?["enc","Pessoa em situação de rua: alimentação, higiene, documentos e acolhimento."]:null,
   flow:["Ir ao Centro POP (7h às 17h).","Fazer o CadÚnico usando o endereço do Centro POP.","Pedir vaga em acolhimento pela equipe do Centro POP.","Sem documento: 2ª via de certidão e Defensoria."],docs:["Nenhum documento é exigido para o primeiro atendimento"],where:"pop",extra:["mpgo-dh"]},
+ {id:"crise",nome:"Manejo da crise suicida",esf:"rede",val:"Agir no mesmo dia",
+  test:p=>p.has("tentativa")?["enc","Tentativa de suicídio ou autolesão recente: avaliação médica agora e seguimento próximo. O período logo depois de uma tentativa é de risco aumentado."]
+   :p.has("suic")?["enc","Pensamento de suicídio: perguntar diretamente, avaliar o risco, não deixar a pessoa sozinha e garantir cuidado no mesmo dia."]:null,
+  flow:["Não deixe a pessoa sozinha. Fique com ela, ou com alguém de confiança, até o próximo cuidado começar.",
+   "Pergunte diretamente: \"Você está pensando em se matar?\". Perguntar não induz; abre espaço para a pessoa falar.",
+   "Avalie o risco: há plano (como, quando, onde)? Tem acesso ao meio? Já tentou antes? Está sob efeito de álcool ou drogas agora?",
+   "Risco alto (plano com meio disponível, tentativa recente, intoxicação, agitação): SAMU 192 ou pronto atendimento agora. A pessoa não vai sozinha.",
+   "Tomou remédio ou veneno: pronto atendimento mesmo sem sintomas, levando a embalagem. Orientação 24h no CIATox Goiás, 0800 646 4350.",
+   "Para conversar a qualquer hora: CVV 188, ligação gratuita e sigilosa. Ofereça ligar junto ou salvar o número no celular dela.",
+   "Reduza o acesso aos meios: com a família, guarde remédios, venenos, armas e cordas fora do alcance.",
+   "Acione a rede de apoio: um familiar ou pessoa de confiança, de preferência com o conhecimento da pessoa. O risco à vida permite quebrar o sigilo, contando só o necessário. Registre a decisão.",
+   "Faça com ela um plano de segurança (quadro abaixo). O plano fica com a pessoa, não no app.",
+   "Garanta o seguimento: CAPS (acesso direto) ou UBS nos próximos dias, com data marcada antes de a pessoa sair. Retome o contato se ela faltar.",
+   "Tentativa ou autolesão: o serviço de saúde faz a notificação compulsória (ficha de violência autoprovocada, SINAN) em até 24h. A notificação não é denúncia; serve para a rede acompanhar.",
+   "Cuide de você: discuta o caso com a equipe ou com a supervisão."],
+  docs:["Nenhum documento é exigido no atendimento de urgência"],
+  html:`<div><h4>Como perguntar e acolher</h4><div class="med">
+   <div><b>Perguntar</b>"Percebo que você está sofrendo muito. Você tem pensado em morrer ou em se matar?" "Já pensou em como faria?" "O que tem te ajudado a continuar até aqui?"</div>
+   <div><b>Evitar</b>Julgar, discutir se é certo ou errado, minimizar ("isso passa"), dar sermão, prometer segredo, deixar a pessoa sozinha para "pensar".</div>
+   <div><b>Sinais de risco alto</b>Plano definido, acesso ao meio, tentativa recente ou anterior, despedidas e organização de assuntos, álcool ou drogas, desesperança intensa, calma repentina depois de agitação.</div>
+  </div></div>
+  <div><h4>Plano de segurança (fazer junto com a pessoa)</h4><ol class="rights">
+   <li>Sinais de que a crise está chegando (pensamentos, sentimentos, situações).</li>
+   <li>O que ela pode fazer sozinha para atravessar o momento.</li>
+   <li>Pessoas e lugares que ajudam a distrair.</li>
+   <li>Pessoas a quem pedir ajuda. Nomes e telefones ficam com ela.</li>
+   <li>Serviços: CAPS ou UBS, CVV 188, SAMU 192.</li>
+   <li>Como deixar o ambiente seguro (remédios, venenos, armas).</li>
+  </ol><p class="src">Baseado nas orientações do Ministério da Saúde e da OMS para prevenção do suicídio. Notificação: Portaria de Consolidação nº 4/2017 e Lei 13.819/2019.</p></div>`,
+  where:"saude",extra:["188","ciatox"]},
  {id:"r-mental",nome:"Cuidado em saúde mental",esf:"rede",val:"UBS e CAPS",
-  test:p=>(p.has("mental")||p.has("drogas")||p.has("suic"))?["enc","Sofrimento psíquico ou uso de álcool e drogas: cuidado pela Rede de Atenção Psicossocial."]:null,
+  test:p=>(p.has("mental")||p.has("drogas"))?["enc","Sofrimento psíquico ou uso de álcool e drogas: cuidado pela Rede de Atenção Psicossocial."]:null,
   flow:["Risco imediato ou tentativa de suicídio: SAMU 192.","Apoio emocional 24h: CVV 188.","Primeiro atendimento: UBS do bairro ou CAPS (acesso direto).","Crise sem risco de vida: UPA ou CAIS."],docs:["Cartão do SUS e documento, se tiver"],where:"saude",extra:["puc-cepsi","ufg-psi"]},
  {id:"r-gest",nome:"Pré-natal e parto",esf:"rede",val:"SUS",
   test:p=>p.has("gest")?["enc","Gestante: pré-natal na UBS e referência para o parto."]:null,
@@ -891,6 +925,9 @@ const QUANDO=[
  {t:"Se for negado ou não resolver",d:"Guarde a negativa por escrito, o protocolo ou um print."}
 ];
 const STOPS={
+ urgencia:{nome:"Pronto atendimento: SAMU 192, UPA ou CAIS 24h",q:0,lugar:()=>[{nome:"UPA ou CAIS 24h mais próximo",obs:"Atende tentativa e risco imediato sem encaminhamento. Endereços de UPAs e CAIS 24h na aba Serviços e contatos.",fake:true}].concat(pickIds(["samu","ciatox"])),docs:["Embalagem do remédio ou produto, se houve ingestão","Cartão do SUS e documento, se tiver (a falta não impede o atendimento)"]},
+ cvv:{nome:"CVV, telefone 188",q:0,lugar:()=>pickIds(["188"]),docs:[]},
+ caps:{nome:"CAPS ou UBS do bairro",q:1,lugar:p=>places("saude",p).list,docs:["Cartão do SUS","Documento com foto, se tiver"]},
  pep:{nome:"UPA ou CAIS 24h, ou HDT",q:0,lugar:p=>places("pep",p).list,docs:["Documento, se tiver (a falta não impede o atendimento)"]},
  deaem:{nome:"Delegacia da Mulher (DEAEM) ou Plantão 24h",q:1,lugar:()=>pickIds(["deaem","plantao"]),docs:["Documento com foto, se tiver (não é obrigatório)"]},
  ct:{nome:"Conselho Tutelar",q:1,lugar:p=>places("ct",p).list,docs:[]},
@@ -934,6 +971,9 @@ const ROTA={
   ["online","Abrir o pedido no go.gov.br com a conta gov.br do paciente"],["dpe","Remédio negado ou fora da lista: pedido administrativo ou ação"]],
  fpop:[["farmacia","Retirar os remédios de graça com a receita"]],
  pep:[["pep","Pedir a PEP: só funciona se começar em até 72h"]],
+ crise:p=>p.has("tentativa")
+  ?[["urgencia","Avaliação médica agora, mesmo que a pessoa pareça bem. Ela vai acompanhada"],["cvv","Apoio emocional 24h. Ofereça ligar junto ou salvar o número no celular dela"],["caps","Seguimento nos próximos dias, com data marcada antes de a pessoa sair"]]
+  :[["cvv","Apoio emocional 24h. Ofereça ligar junto ou salvar o número no celular dela"],["caps","Acolhimento no CAPS (acesso direto) ou na UBS, hoje ou amanhã"]],
  hivcare:p=>p.has("hiv")?[["hiv","Consulta com infectologista no SAE e início do tratamento"]]:[["hiv","Teste rápido de HIV e IST, gratuito e sigiloso"]],
  prep:[["hiv","Começar a PrEP"]],
  mp:[["mp","Representação, se o pedido por escrito e a ouvidoria não resolverem"]],
@@ -948,7 +988,7 @@ const ROTA={
 /* Nome curto para listas e etiquetas. */
 const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
- hivcare:"Cuidado em HIV",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
+ hivcare:"Cuidado em HIV",crise:"Crise suicida",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
  "r-rua":"População de rua","r-mental":"Saúde mental","r-gest":"Pré-natal","r-fome":"Segurança alimentar"};
 const curto=pol=>CURTO[pol.id]||pol.nome;
 /* Políticas que só saem com o CadÚnico em dia. */
@@ -985,11 +1025,12 @@ function avaliar(p){
   else if(r[0]==="falta")r[2].forEach(c=>(faltaPor[c]=faltaPor[c]||[]).push(pol));
   else hits.push({pol,st:r[0],why:r[1]});}
  const order={enc:0,prov:1,ver:2};
- const top=["pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","mp","cad"];
+ const top=["crise","pep","r-mulher","r-crianca","hivcare","ceaf","r-mental","mp","cad"];
  const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
  hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
  const urg=[];
- if(p.has("suic"))urg.push("Risco de suicídio: se há tentativa ou perigo agora, ligue <b>192</b> (SAMU). Para conversar, <b>188</b> (CVV), 24h.");
+ if(p.has("tentativa"))urg.push("Tentativa de suicídio ou autolesão: avaliação médica <b>agora</b> (SAMU <b>192</b>, UPA ou CAIS 24h), mesmo que a pessoa pareça bem. Tomou remédio ou veneno: leve a embalagem; orientação 24h no CIATox <b>0800 646 4350</b>.");
+ if(p.has("suic")||p.has("tentativa"))urg.push("Não deixe a pessoa sozinha. Pergunte se há plano e acesso a meios; com plano e meio disponível, ligue <b>192</b>. Para conversar a qualquer hora: <b>188</b> (CVV), gratuito e sigiloso. Ofereça ligar junto. <a href=\"#card-crise\" data-abre=\"crise\">Ver o manejo da crise</a>");
  if(p.has("violMulher"))urg.push("Violência acontecendo agora: <b>190</b> (PM) ou <b>153</b> (GCM Goiânia). Orientação sigilosa: <b>180</b>.");
  if(p.has("pep"))urg.push("Exposição ao HIV há menos de 72h: ir <b>agora</b> a uma UPA ou CAIS 24h ou ao HDT para a PEP. Quanto antes, melhor.");
  if(p.has("violCrianca"))urg.push("Criança ou adolescente em risco: Conselho Tutelar ou <b>100</b>. Lesão grave: <b>192</b>.");
@@ -1091,7 +1132,7 @@ function render(){
  hits.forEach(x=>{
   const sp=SPH[x.pol.esf],st=ST[x.st];
   const pl=[];if(x.pol.where){pl.push(...places(x.pol.where,p).list)}(x.pol.extra||[]).forEach(e=>{if(byId[e]&&!pl.includes(byId[e]))pl.push(byId[e])});
-  h+=`<details class="card"><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(x.pol.nome)}</h3><span class="sphere ${sp[0]}">${sp[1]}</span><span class="status ${st[0]}">${st[1]}</span></div><span class="val">${esc(x.pol.val)}</span><span class="why">${esc(x.why)}</span></summary>
+  h+=`<details class="card"${x.pol.id==="crise"?' open id="card-crise"':""}><summary><div class="t"><span class="chev" aria-hidden="true">›</span><h3>${esc(x.pol.nome)}</h3><span class="sphere ${sp[0]}">${sp[1]}</span><span class="status ${st[0]}">${st[1]}</span></div><span class="val">${esc(x.pol.val)}</span><span class="why">${esc(x.why)}</span></summary>
   <div class="body"><div><h4>Fluxo</h4><ol class="flow">${x.pol.flow.map(f=>`<li><span>${esc(f)}</span></li>`).join("")}</ol></div>
   ${x.pol.docs&&x.pol.docs.length?`<div><h4>Documentos</h4><ul class="docs">${x.pol.docs.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`:""}
   ${x.pol.html||""}
@@ -1136,6 +1177,8 @@ const steps=[...document.querySelectorAll('.stepnav [role=tab]')];
 function step(n){steps.forEach((b,i)=>{const on=i===n-1;b.setAttribute("aria-selected",on);$(b.getAttribute("aria-controls")).hidden=!on});}
 steps.forEach((b,i)=>b.addEventListener("click",()=>step(i+1)));
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){step(+g.dataset.go);$("p-enc").scrollIntoView({block:"start"})}});
+/* Link da faixa de segurança: abre o card do manejo da crise */
+document.addEventListener("click",e=>{const a=e.target.closest("[data-abre]");if(!a)return;e.preventDefault();const c=$("card-"+a.dataset.abre);if(c){c.open=true;c.scrollIntoView({block:"start"})}});
 /* "Preencher": volta à etapa 1 e põe o cursor no primeiro campo vazio que decide o resultado */
 document.addEventListener("click",e=>{const b=e.target.closest("[data-campo]");if(!b)return;const c=CAMPOS[b.dataset.campo];if(!c)return;
  step(1);const el=c.foco.map($).find(x=>!x.value)||$(c.foco[0]);el.scrollIntoView({block:"center"});el.focus()});

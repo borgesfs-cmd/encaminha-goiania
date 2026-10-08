@@ -141,8 +141,35 @@ test("PEP vem antes de tudo no roteiro", async () => {
   assert.equal(r.roteiro[0].q, 0);
 });
 
+test("pensamento de suicídio: manejo da crise primeiro, CVV agora e CAPS hoje ou amanhã", async () => {
+  const r = await avaliar({ idade: 19, pessoas: 3, renda: 1800, on: ["suic"] });
+  assert.equal(r.ordem[0], "crise");
+  assert.equal(r.hits["r-mental"], undefined, "o manejo da crise substitui o card genérico de saúde mental");
+  assert.deepEqual(r.roteiro.slice(0, 2).map((s) => [s.k, s.q]), [["cvv", 0], ["caps", 1]]);
+  const urg = await page.evaluate(() => window.EncaminhaMotor.avaliar(window.EncaminhaMotor.perfil({ on: ["suic"] })).urg.join(" "));
+  assert.match(urg, /188/);
+  assert.match(urg, /192/);
+});
+
+test("tentativa de suicídio: pronto atendimento agora, com embalagem e CIATox", async () => {
+  const r = await avaliar({ on: ["tentativa"] });
+  assert.equal(r.hits.crise, "enc");
+  assert.equal(r.roteiro[0].k, "urgencia");
+  assert.ok(r.roteiro[0].docs.some((d) => /embalagem/i.test(d)));
+  assert.deepEqual(r.roteiro.map((s) => s.k), ["urgencia", "cvv", "caps"]);
+});
+
+test("tela: caso Crise suicida abre o manejo e o link da faixa leva até ele", async () => {
+  await page.click('.case[data-case="crise"]');
+  assert.ok(await page.isVisible("#card-crise .body"));
+  await page.evaluate(() => { document.getElementById("card-crise").open = false; });
+  await page.click('.urgent [data-abre="crise"]');
+  assert.ok(await page.isVisible("#card-crise .body"));
+  assert.deepEqual(erros, []);
+});
+
 test("tela: casos de exemplo mostram roteiro; Novo atendimento mostra o que falta e o botão leva ao campo", async () => {
-  for (const k of ["familia", "altocusto", "hiv", "farmacia"]) {
+  for (const k of ["familia", "altocusto", "hiv", "farmacia", "crise"]) {
     await page.click(`.case[data-case="${k}"]`);
     assert.ok(await page.isVisible("#st3 .route"), k);
   }

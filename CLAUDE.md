@@ -38,7 +38,8 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 - `avaliar(perfil)` não toca na tela e devolve `{hits, nao, falta, urg, roteiro}`. `perfil(dados)` monta o perfil a partir de dados simples. Os dois ficam em `window.EncaminhaMotor` para os testes.
 - Roteiro: `ROTA[id]` lista os passos de cada política como `[lugar, o que fazer, documentos?]` (ou uma função do perfil). `STOPS` define cada lugar (nome, grupo de urgência, contatos, documentos padrão). Sem documentos no passo, valem os do lugar; sem os do lugar, os da política. `CAD_DEP` lista as políticas que dependem do CadÚnico.
 - Todo critério novo ou alterado precisa de teste em `tests/motor.test.mjs`.
-- Ordem de prioridade: PEP, violência contra mulher, criança, HIV, alto custo, saúde mental, Ministério Público, CadÚnico, demais.
+- Ordem de prioridade: crise suicida, PEP, violência contra mulher, criança, HIV, alto custo, saúde mental, Ministério Público, CadÚnico, demais.
+- Crise suicida (chips "Pensamento de suicídio" e "Tentativa de suicídio ou autolesão recente"): faixa de segurança com 192, 188 e CIATox (0800 646 4350); card "Manejo da crise suicida" aberto, com como perguntar, sinais de risco alto e plano de segurança; roteiro com CVV agora, pronto atendimento agora (só na tentativa) e CAPS ou UBS hoje ou amanhã. Tentativa e autolesão: notificação compulsória em até 24h pelo serviço de saúde (Portaria de Consolidação nº 4/2017; Lei 13.819/2019).
 - `places(kind, perfil)` escolhe serviços pelo município e pela região (Conselho Tutelar e CREAS de Goiânia).
 
 ## Estrutura dos registros
@@ -54,7 +55,7 @@ O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependência
 - Comunitária: PUC Goiás (NPJ, CEPSI, Clínica Escola Vida, CRESA, Cecom), Centro de Psicologia da UFG, Ceap-SOL, CEVAM.
 
 ## Pendências conhecidas
-- Lista de UBS e CAPS (importar do CNES/DataSUS).
+- Lista de UBS e CAPS (importar do CNES/DataSUS). Prioridade: o roteiro da crise suicida manda ao CAPS, mas ainda sem endereço.
 - Promotorias do MPGO por comarca (site do MPGO não respondia na pesquisa).
 - CRAS de Aparecida e dos demais municípios da RMG.
 - Telefone direto do Centro POP de Goiânia; telefone do MPT em Goiás.
