@@ -49,7 +49,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Tema com `on[]` não tem passos próprios: liga situações do motor (ex.: "tigrinho" → `apostas`), e o plano mostra o card e o roteiro da política correspondente.
 - O texto é comparado sem acento. Palavra de até 3 letras precisa ser inteira; as demais, no começo de uma palavra (evita "dente" em "acidente").
 - A busca não entende tempo verbal ("teve AVC" e "está tendo AVC" dão o mesmo tema). Por isso a frase urgente é sempre condicional: "Se está acontecendo agora…".
-- Temas atuais: apostas, jogos eletrônicos, álcool e drogas, discriminação (racismo, xenofobia, intolerância religiosa, LGBTfobia, capacitismo, idadismo) (com `on`), violência sexual, pessoa trans, migrantes, egressos, câncer, tráfico de pessoas, AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
+- Temas atuais: psicoterapia, transtorno mental grave e crise psiquiátrica (com `on`), apostas, jogos eletrônicos, álcool e drogas, discriminação (racismo, xenofobia, intolerância religiosa, LGBTfobia, capacitismo, idadismo) (com `on`), violência sexual, pessoa trans, migrantes, egressos, câncer, tráfico de pessoas, AVC, emergência médica, reabilitação, pessoa acamada, fila de consulta ou cirurgia, pensão e guarda, INSS, desemprego, dívidas e golpes, desastre, funeral e luto, RG e CPF, dentista. Sem tema encontrado, o plano mostra os caminhos gerais.
 
 ## Motor de regras
 - Renda por pessoa = renda ÷ pessoas. Linhas: R$ 109 (extrema pobreza, usada pelo Estado), R$ 218 (Bolsa Família), 1/4, 1/2, 1, 2 e 3 salários mínimos.
@@ -58,7 +58,11 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - `avaliar(perfil)` não toca na tela e devolve `{hits, nao, falta, urg, roteiro}`. `perfil(dados)` monta o perfil a partir de dados simples. Os dois ficam em `window.EncaminhaMotor` para os testes.
 - Roteiro: `ROTA[id]` lista os passos de cada política como `[lugar, o que fazer, documentos?]` (ou uma função do perfil). `STOPS` define cada lugar (nome, grupo de urgência, contatos, documentos padrão). Sem documentos no passo, valem os do lugar; sem os do lugar, os da política. `CAD_DEP` lista as políticas que dependem do CadÚnico.
 - Todo critério novo ou alterado precisa de teste em `tests/motor.test.mjs`.
-- Ordem de prioridade: crise suicida, PEP, violência contra mulher, criança, HIV, alto custo, saúde mental, Ministério Público, CadÚnico, demais.
+- Ordem de prioridade: crise suicida, crise psiquiátrica, PEP, violência contra mulher, criança, HIV, alto custo, CAPS, psicoterapia, Ministério Público, CadÚnico, demais.
+- Saúde mental tem três caminhos, escolhidos na pergunta "O que a pessoa está vivendo?":
+  - `crisePsiq` (crise agora: surto, vozes, agitação, confusão) → `r-psiq`: faixa de segurança com 192 e o Pronto-Socorro Psiquiátrico Wassily Chuc (Goiânia) ou UPA/CAIS 24h (região); lembra que confusão súbita pode ser causa clínica; depois CAPS. Também é atalho de urgência.
+  - `mentalGrave` (transtorno grave ou persistente) → `r-caps`: CAPS da região sem encaminhamento (`places("caps")`: por região de Goiânia, CAPSi abaixo de 18 anos, CAPS AD com drogas).
+  - `mental` (sofrimento sem crise, quer psicoterapia) → `r-mental`: UBS e clínicas-escola (`places("clinica")`). Explica que CRAS e CREAS não fazem psicoterapia. Some quando há `mentalGrave` ou `crisePsiq`.
 - Crise suicida (chips "Pensamento de suicídio" e "Tentativa de suicídio ou autolesão recente"): faixa de segurança com 192, 188 e CIATox (0800 646 4350); card "Manejo da crise suicida" aberto, com como perguntar, sinais de risco alto e plano de segurança; roteiro com CVV agora, pronto atendimento agora (só na tentativa) e CAPS ou UBS hoje ou amanhã. Tentativa e autolesão: notificação compulsória em até 24h pelo serviço de saúde (Portaria de Consolidação nº 4/2017; Lei 13.819/2019).
 - `places(kind, perfil)` escolhe serviços pelo município e pela região (Conselho Tutelar e CREAS de Goiânia).
 
@@ -90,17 +94,17 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
   - Registros: fila no aparelho (enc-fila) quando falta internet. Relatórios: só com a chave de gestor (Script Properties CHAVE_GESTOR); a coluna U da aba Registros guarda o registro completo.
   - Dentro do Claude (artefato) a URL é ignorada: o artefato não acessa outros endereços e segue com o banco do artefato e a sincronização sob pedido (caminho B).
   - A URL real está no `index.html`: todo teste e script que abre o app bloqueia `script.google.com` (junto com as fontes), para nunca ler nem gravar na planilha de verdade. Página nova em teste: bloquear também.
+  - O site aplica os textos da planilha por cima dos do código. Mudou texto de política ou tema no código: atualize também a linha na planilha (abas Políticas e Temas), senão a planilha desfaz a mudança no site. Serviço novo no código: inclua na aba Serviços.
   - Ao mudar `Codigo.gs`, a pessoa precisa publicar nova versão da implantação. Testes: `tests/conexao.test.mjs` (API simulada) e `tests/apps-script.test.mjs` (serviços Google simulados).
 
 ## Levantamentos
 - `docs/levantamento-2026-10-08.md`: políticas, rede, ONGs, instituições de ensino e demandas psicossociais, com fonte e grau de confiança de cada item.
 
 ## Pendências conhecidas
-- Lista de UBS e CAPS, inclusive CAPS AD e CAPSij (importar do CNES/DataSUS). Credeq sem endereço e telefone conferidos.
+- Lista de UBS (importar do CNES/DataSUS). CAPS de Goiânia entraram em 09/10/2026 (vários "A conferir": telefones divergem entre páginas da Prefeitura); faltam CAPS AD III Ipê e os CAPS de Aparecida e da RMG. Credeq sem endereço e telefone conferidos. Pronto-Socorro Psiquiátrico Wassily Chuc vai mudar de endereço (anúncio de 2026).
 - Não encontrados no levantamento: clínicas-escola de UNIP, Universo, Estácio e Unialfa; Bento Cottolengo; núcleo de enfrentamento ao tráfico de pessoas de Goiás; endereço da Defensoria Pública da União em Goiânia.
 - Acompanhar no STF (ADI 7721) o bloqueio de bets para beneficiários do Bolsa Família e do BPC.
 - Quadro "Falta uma resposta": `CAMPOS[c].nec` diz em que assuntos vale cobrar renda ou idade.
-- Lista de UBS e CAPS (importar do CNES/DataSUS). Prioridade: o roteiro da crise suicida manda ao CAPS, mas ainda sem endereço.
 - Promotorias do MPGO por comarca (site do MPGO não respondia na pesquisa).
 - CRAS de Aparecida e dos demais municípios da RMG.
 - Telefone direto do Centro POP de Goiânia; telefone do MPT em Goiás.

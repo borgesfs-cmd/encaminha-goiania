@@ -190,6 +190,43 @@ test("EJA também aparece pela escolaridade de um adulto", async () => {
   assert.equal((await avaliar({ idade: 30, escol: "medio" })).hits.eja, undefined);
 });
 
+test("saúde mental: crise, transtorno grave e psicoterapia levam a lugares diferentes", async () => {
+  const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
+    return { hits: a.hits.map((h) => h.pol.id), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])), urg: a.urg.join(" ") }; }, d);
+  // psicoterapia: UBS e clínicas-escola, nunca CRAS só pela saúde mental
+  const psi = await ver({ on: ["mental"] });
+  assert.deepEqual(psi.hits, ["r-mental"]);
+  assert.deepEqual(psi.rot, ["ubs", "clinica"]);
+  assert.ok(psi.lugares.clinica.includes("puc-cepsi") && psi.lugares.clinica.includes("ufg-psi"));
+  // transtorno grave: CAPS da região (adulto) ou CAPSi (criança)
+  const grave = await ver({ on: ["mentalGrave"], reg: "noroeste" });
+  assert.deepEqual(grave.hits, ["r-caps"]);
+  assert.deepEqual(grave.lugares.capsReg, ["caps-noroeste", "raps-gyn"]);
+  assert.ok((await ver({ on: ["mentalGrave"], idade: 12 })).lugares.capsReg.includes("caps-aguaviva"));
+  assert.ok((await ver({ on: ["mentalGrave", "mental"] })).hits.every((h) => h !== "r-mental"), "com transtorno grave o CAPS substitui a psicoterapia avulsa");
+  // crise: urgência agora, pronto-socorro psiquiátrico em Goiânia, UPA na região; depois CAPS
+  const crise = await ver({ on: ["crisePsiq"] });
+  assert.equal(crise.hits[0], "r-psiq");
+  assert.deepEqual(crise.rot, ["psiq", "capsReg"]);
+  assert.deepEqual(crise.lugares.psiq, ["wassily", "samu"]);
+  assert.match(crise.urg, /192/);
+  assert.match(crise.urg, /Wassily Chuc/);
+  assert.equal((await ver({ on: ["crisePsiq"], mun: "Aparecida de Goiânia" })).lugares.psiq[0], "UPA ou CAIS 24h mais próximo");
+  // a crise suicida continua em primeiro lugar
+  assert.deepEqual((await ver({ on: ["suic", "crisePsiq"] })).hits.slice(0, 2), ["crise", "r-psiq"]);
+});
+
+test("pedido livre: crise, transtorno grave e psicoterapia sem confundir com outros assuntos", async () => {
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.deepEqual(await temas("minha irmã está em surto, ouvindo vozes"), ["crisepsiq"]);
+  assert.deepEqual(await temas("filho com esquizofrenia parou o remédio"), ["transtornograve"]);
+  assert.deepEqual(await temas("quer fazer terapia por ansiedade"), ["psicoterapia"]);
+  assert.deepEqual(await temas("surto de dengue no bairro"), []);
+  assert.deepEqual(await temas("ela tem botão do pânico"), []);
+  assert.deepEqual(await temas("sofre violência psicológica do marido"), []);
+  assert.deepEqual(await temas("precisa de terapia ocupacional"), ["reabilitacao"]);
+});
+
 test("pedido livre: violência contra pessoa idosa liga a urgência, sem pegar casos parecidos", async () => {
   const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
   assert.deepEqual(await temas("minha avó está apanhando do neto"), ["violidoso"]);

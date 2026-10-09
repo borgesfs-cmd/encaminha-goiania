@@ -76,3 +76,17 @@ Depois deste levantamento o app tem 45 políticas, 125 serviços e contatos, 23 
 - Reconferir os itens de confiança baixa e média a cada 6 meses (regra do CLAUDE.md).
 - A lista oficial do CNES resolve de uma vez UBS, CAPS, CAPS AD e CAPSi.
 - O painel "Lacunas e pedidos livres" da aba Relatórios mostra quais pedidos ficaram sem orientação. É a fila natural do próximo levantamento.
+
+## 7. Saúde mental: crise, CAPS e psicoterapia (09/10/2026)
+
+| Serviço | Para quê | Fonte | Confiança |
+|---|---|---|---|
+| Pronto-Socorro Psiquiátrico Wassily Chuc | Porta de entrada para crise ou surto em Goiânia, 24h | [Prefeitura de Goiânia, RAPS](https://www.goiania.go.gov.br/sing_servicos/centros-de-atencao-psicossocial-caps/); [Poder Goiás, 19/05/2026](https://www.podergoias.com.br/materia/26203/pronto-socorro-psiquiatrico-wassily-chuc-vai-mudar-de-endereco-em-goiania) | Média: mudança de endereço anunciada |
+| CAPS II Vida, CAPS II Noroeste, CAPS II Esperança | Adultos, transtorno grave ou persistente | Páginas de cada CAPS no [site da Prefeitura](https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-saude/centros-de-atencao-psicossocial/caps-ii-vida/) | Alta |
+| CAPS Beija-Flor | Adultos | [SMS Goiânia, Unidades de Saúde Mental](https://saude.goiania.go.gov.br/unidadesdesaudemental/) | Alta |
+| CAPS III Novo Mundo, CAPS AD III Noroeste | Adultos; álcool e drogas | Prefeitura de Goiânia | Média: horário e endereço divergem |
+| CAPSi Água Viva, CAPSi Girassol | Crianças e adolescentes; álcool e drogas até 17 anos | [Prefeitura de Goiânia](https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-saude/centros-de-atencao-psicossocial/caps-iii-agua-viva-transtorno-infantil/) | Média: telefones e endereço divergem |
+| Rede de Atenção Psicossocial (SMS) | Informa o CAPS de referência do bairro | Prefeitura de Goiânia | Média |
+| Clínicas-escola Unialfa, Universo, Estácio | Psicoterapia gratuita por estagiários | [Portal 6, 2024](https://portal6.com.br/2024/09/24/saiba-onde-garantir-acolhimento-psicologico-gratuito-em-goiania-e-anapolis/); [Curta Mais](https://curtamais.com.br/goiania/7-clinicas-que-oferecem-atendimento-psicologico-gratuito-em-goiania/) | Baixa: guias locais, confirmar vagas |
+
+Não incluídos por dados conflitantes: Centro de Psicologia Aplicada da UNIP (endereço e telefone divergentes), CAPS AD III Ipê (sem endereço), CAPS III Bem-Me-Quer de Aparecida (sem contato atual).
