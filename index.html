@@ -876,7 +876,11 @@ const PERGUNTAS=[
 ];
 /* Campo vazio que decide o resultado → tela que o preenche (quadro "Falta uma resposta"). */
 /* nec: assuntos em que vale cobrar o dado; fora deles, o quadro não aparece. */
-const CAMPOS={renda:{t:"Renda da casa e pessoas na casa",q:"perfil",nec:["renda","comida","moradia","educacao","trabalho"]},idade:{t:"Idade",q:"perfil",nec:["renda","educacao","trabalho","saude"]}};
+const CAMPOS={renda:{t:"Renda da casa e pessoas na casa",q:"perfil",ni:"renda",nec:["renda","comida","moradia","educacao","trabalho"]},idade:{t:"Idade",q:"perfil",ni:"faixa",nec:["renda","educacao","trabalho","saude"]}};
+/* Respostas que a pessoa não sabe ou não quer dar ("Não sabe ou não quer dizer"): o campo fica vazio e o plano diz o que depende dele. */
+const NI_ROWS=["reg","faixa","pessoas","renda","trab","moradia","escol"];
+const NI_NOME={reg:"região",faixa:"idade",pessoas:"pessoas na casa",renda:"renda",trab:"trabalho",moradia:"moradia",escol:"escolaridade"};
+const NI_CHIP=f=>`<button type="button" class="seg" data-f="ni" data-v="${f}">Não sabe ou não quer dizer</button>`;
 
 /* ---------- PEDIDO LIVRE ----------
    Situações que não cabem nos assuntos. O texto livre é comparado com palavras-chave (sem acento);
@@ -992,7 +996,7 @@ const CASES={
  faculdade:{nec:["educacao","renda"],ini:"K.S.",mun:"Senador Canedo",genero:"mulher",idade:18,pessoas:4,renda:2400,trab:"nao",moradia:"alugada",escol:"medio",dem:"Terminou o ensino médio em escola estadual, fez o Enem e quer cursar enfermagem.",on:["superior","cad"]},
  reabilitacao:{nec:["saude"],ini:"P.A.",mun:"Goiânia",reg:"oeste",genero:"homem",idade:71,pessoas:2,renda:1621,trab:"aposentado",moradia:"propria",escol:"fund-inc",dem:"Meu pai teve AVC no mês passado, recebeu alta e precisa de fisioterapia e cadeira de rodas.",on:["continuo"]}
 };
-const novoAtendimento=()=>({nec:new Set(),mun:"Goiânia",munOutro:false,reg:"",genero:"",faixa:"",idade:null,pessoas:null,renda:null,sm:SM_PADRAO,trab:"",moradia:"",escol:"",ini:"",dem:"",on:new Set(),qi:0,voltarAoPlano:false});
+const novoAtendimento=()=>({nec:new Set(),mun:"Goiânia",munOutro:false,reg:"",genero:"",faixa:"",idade:null,pessoas:null,renda:null,sm:SM_PADRAO,trab:"",moradia:"",escol:"",ini:"",dem:"",on:new Set(),ni:new Set(),qi:0,voltarAoPlano:false});
 let E=novoAtendimento();
 const perguntas=()=>PERGUNTAS.filter(q=>q.quando(E));
 const rotulo=(campo,v)=>{const r=PERFIL_ROWS.find(x=>x.f===campo);const o=r&&r.op&&r.op.find(o=>o[0]===v);return o?o[1]:""};
@@ -1006,7 +1010,8 @@ function perfil(d){
  const pc=(pessoas&&renda!==null)?renda/pessoas:null;
  if(d.moradia==="rua")on.add("rua");
  const ini=String(d.ini||"").replace(/[^A-Za-zÀ-ú.\s]/g,"").trim().toUpperCase().slice(0,6);
- return {ini,trab:d.trab||"",trabT:d.trabT||"",moradia:d.moradia||"",moradiaT:d.moradiaT||"",escol:d.escol||"",escolT:d.escolT||"",genero:d.genero||"",dem:clean(d.dem||""),mun:d.mun||"Goiânia",reg:d.reg||"",idade:num(d.idade),pessoas,renda,sm,pc,on,has:k=>on.has(k)}}
+ return {ini,trab:d.trab||"",trabT:d.trabT||"",moradia:d.moradia||"",moradiaT:d.moradiaT||"",escol:d.escol||"",escolT:d.escolT||"",genero:d.genero||"",dem:clean(d.dem||""),mun:d.mun||"Goiânia",reg:d.reg||"",idade:num(d.idade),pessoas,renda,sm,pc,on,has:k=>on.has(k),
+  rendaNi:!!(d.ni&&(d.ni instanceof Set?d.ni.has("renda"):[].concat(d.ni).includes("renda")))}}
 /* Apaga do texto livre o que identifica a pessoa: e-mail e números longos (CPF, NIS, RG, telefone, CEP).
    Conta só os dígitos, ignorando pontos, traços, espaços e parênteses; com 7 ou mais, apaga.
    Valores ("R$ 1.300"), idades e datas ("12/03/2025") ficam. */
@@ -1026,6 +1031,7 @@ const P=[
    if(p.has("rua"))return["prov","Pessoa em situação de rua pode se cadastrar usando o endereço do Centro POP."];
    if(p.pc!==null&&p.pc<=p.sm/2)return["prov",`Renda de ${brl(p.pc)} por pessoa, até meio salário mínimo (${brl(p.sm/2)}). Sem o CadÚnico, nenhum benefício abaixo é liberado.`];
    if(p.renda!==null&&p.renda<=p.sm*3)return["prov",`Renda da casa até 3 salários mínimos (${brl(p.sm*3)}).`];
+   if(p.pc===null&&p.rendaNi)return["ver","Renda não informada: no CRAS, a entrevista do CadÚnico levanta a renda da família e mostra a que benefícios ela tem direito."];
    if(p.pc===null)return FALTA_RENDA;
    return["nao",`Renda por pessoa de ${brl(p.pc)} passa de meio salário mínimo (${brl(p.sm/2)}) e a renda da casa passa de 3 salários (${brl(p.sm*3)}).`]},
   flow:[CRAS_STEP,"Responder à entrevista com o entrevistador do CadÚnico.","Guardar o número do NIS e atualizar sempre que mudar endereço, renda ou composição da família (no máximo a cada 2 anos)."],
@@ -1676,7 +1682,7 @@ function linhaPerfil(r){
  if(r.f==="renda"){
   const pre=[["0","Sem renda"],["600","R$ 600"],[String(E.sm),"1 salário"],[String(E.sm*2),"2 salários"],[String(E.sm*3),"3 salários"]];
   return `<div class="prow" data-row="renda"><span class="pl">${esc(r.t)}</span><span class="hint">${esc(r.d)}</span>
-   <div class="segs">${pre.map(([v,t])=>`<button type="button" class="seg" data-f="renda" data-v="${v}">${esc(t)}</button>`).join("")}</div>
+   <div class="segs">${pre.map(([v,t])=>`<button type="button" class="seg" data-f="renda" data-v="${v}">${esc(t)}</button>`).join("")}${NI_CHIP("renda")}</div>
    <div class="rin"><label for="qRenda">Ou digite o valor (R$)</label><input id="qRenda" type="number" min="0" step="1" inputmode="numeric" value="${E.renda??""}"></div>
    <div class="calc" id="qCalc" aria-live="polite"></div>
    <p class="hint">Salário mínimo usado: <b>${brl(E.sm)}</b> (2026). <button type="button" class="link" id="qSmEdit">Alterar</button></p>
@@ -1685,7 +1691,7 @@ function linhaPerfil(r){
  const extra=r.f==="mun"?`<select id="qMun" aria-label="Outro município" hidden><option value="">Escolha o município…</option>${MUNS.filter(m=>!MUN_TOP.includes(m)).map(m=>`<option${E.mun===m?" selected":""}>${esc(m)}</option>`).join("")}</select>`
   :r.f==="moradia"?`<div class="segs"><button type="button" class="seg" data-f="on" data-v="aluguel" id="segAluguel">O aluguel leva metade da renda ou mais</button></div>`:"";
  return `<div class="prow" data-row="${r.f}"><span class="pl">${esc(r.t)}</span>${r.d?`<span class="hint">${esc(r.d)}</span>`:""}
-  <div class="segs">${r.op.map(([v,t])=>`<button type="button" class="seg${r.f==="on"?" multi":""}" data-f="${r.f}" data-v="${esc(v)}">${esc(t)}</button>`).join("")}</div>${extra}</div>`;
+  <div class="segs">${r.op.map(([v,t])=>`<button type="button" class="seg${r.f==="on"?" multi":""}" data-f="${r.f}" data-v="${esc(v)}">${esc(t)}</button>`).join("")}${NI_ROWS.includes(r.f)?NI_CHIP(r.f):""}</div>${extra}</div>`;
 }
 /* Marca as opções conforme o estado e mostra ou esconde as linhas que dependem de outra resposta. */
 function syncPerfil(){
@@ -1693,6 +1699,7 @@ function syncPerfil(){
  document.querySelectorAll("#qBody .seg").forEach(b=>{
   const f=b.dataset.f,v=b.dataset.v;let on;
   if(f==="on")on=E.on.has(v);
+  else if(f==="ni")on=E.ni.has(v);
   else if(f==="mun")on=v==="outro"?outro:(!outro&&E.mun===v);
   else if(f==="faixa")on=fx===v;
   else if(f==="pessoas")on=E.pessoas!==null&&String(Math.min(E.pessoas,7))===v;
@@ -1790,12 +1797,14 @@ function render(){
  const semCaminho=E.dem.trim()&&!temas.length&&!hits.length;
  if(semCaminho)h+=`<div class="card tema-card"><div class="body" style="border-top:0"><h3>Caminhos gerais para o pedido descrito</h3><ul class="docs">
   <li>Saúde: UBS do bairro. Se for urgente, SAMU 192 ou UPA.</li><li>Assistência social: CRAS (endereço pelo 121).</li><li>Direitos e justiça: Defensoria Pública.</li><li>Procure também na aba Contatos.</li></ul></div></div>`;
- const lines=[`ENCAMINHAMENTO · ${p.ini?"Pessoa: "+p.ini+" · ":""}${p.mun}${p.reg?" (região "+p.reg+")":""} · ${new Date().toLocaleDateString("pt-BR")}`,[genT,idadeT].filter(Boolean).join(" · "),p.pessoas?`Pessoas na casa: ${p.pessoas}`:"",p.pc!==null?`Renda por pessoa: ${brl(p.pc)}`:"",[p.trabT&&"Trabalho: "+p.trabT,p.moradiaT&&"Moradia: "+p.moradiaT,p.escolT&&"Escolaridade: "+p.escolT].filter(Boolean).join(" · "),p.dem?`Solicitação: ${p.dem}`:""].filter(Boolean);
+ const lines=[`ENCAMINHAMENTO · ${p.ini?"Pessoa: "+p.ini+" · ":""}${p.mun}${p.reg?" (região "+p.reg+")":""} · ${new Date().toLocaleDateString("pt-BR")}`,[genT,idadeT].filter(Boolean).join(" · "),p.pessoas?`Pessoas na casa: ${p.pessoas}`:"",p.pc!==null?`Renda por pessoa: ${brl(p.pc)}`:"",[p.trabT&&"Trabalho: "+p.trabT,p.moradiaT&&"Moradia: "+p.moradiaT,p.escolT&&"Escolaridade: "+p.escolT].filter(Boolean).join(" · "),E.ni.size?`Não soube ou não quis informar: ${[...E.ni].map(k=>NI_NOME[k]).join(", ")}`:"",p.dem?`Solicitação: ${p.dem}`:""].filter(Boolean);
  temas.filter(t=>t.passos).forEach(t=>lines.push("",`PEDIDO DESCRITO: ${t.t.toUpperCase()}`,...t.passos.map((x,j)=>`  ${j+1}. ${x}`),...pickIds(t.servicos).map(l=>`  → ${l.nome}${l.end?", "+l.end:""}${l.tel?" · "+l.tel.join(" / "):""}`)));
 
  h+=`<div class="planhead"><div><h2>Plano de encaminhamento</h2><p class="hint">${roteiro.length?`${roteiro.length} passo${roteiro.length===1?"":"s"}, na ordem. Toque em "O que levar e contatos" em cada um.`:temas.length?"Siga a orientação acima.":"Nenhum encaminhamento com essas respostas."}</p></div>${hits.length||temas.length?`<button class="b" type="button" id="copyAll">Copiar resumo</button>`:""}</div>`;
  /* falta dado: só para perguntas que fazem parte deste atendimento */
- const fk=Object.keys(falta).filter(c=>qs.includes(CAMPOS[c].q)&&tem(E,CAMPOS[c].nec));
+ const fkTodos=Object.keys(falta).filter(c=>qs.includes(CAMPOS[c].q)&&tem(E,CAMPOS[c].nec));
+ const fk=fkTodos.filter(c=>!E.ni.has(CAMPOS[c].ni)),fni=fkTodos.filter(c=>E.ni.has(CAMPOS[c].ni));
+ if(fni.length)h+=`<div class="note"><b>Não informado.</b> ${fni.map(c=>`${esc(CAMPOS[c].t)}: a pessoa não soube ou não quis dizer. Dependem disso: ${falta[c].map(pol=>esc(curto(pol))).join(", ")}. ${c==="renda"?"O CRAS confirma pelo CadÚnico.":"Confira no documento quando ela for ao serviço."}`).join(" ")}</div>`;
  if(fk.length)h+=`<div class="falta"><h3>Falta uma resposta</h3><ul>${fk.map(c=>`<li><span><b>${esc(CAMPOS[c].t)}</b> decide: ${falta[c].map(pol=>esc(curto(pol))).join(", ")}.</span><button type="button" class="b ghost sm" data-q="${CAMPOS[c].q}">Responder</button></li>`).join("")}</ul></div>`;
  if(E.urgNec&&!E.nec.size&&hits.length)h+=`<div class="note">Plano feito só com a urgência. <button type="button" class="link" id="pMais">Responder as perguntas</button> para incluir renda, benefícios e outros direitos.</div>`;
  if(!hits.length&&!temas.length&&!semCaminho)h+=`<div class="empty">Nenhum encaminhamento ainda. <button type="button" class="link" id="pVoltarInicio">Escolha o que a pessoa precisa</button></div>`;
@@ -2170,6 +2179,15 @@ document.addEventListener("click",e=>{const b=e.target.closest(".copy");if(b){e.
 $("urgTiles").innerHTML=URGENCIAS.map(u=>`<button type="button" class="tile urg" data-urg="${u.k}"><b>${esc(u.t)}</b></button>`).join("");
 /* Toque numa opção da tela "Sobre a pessoa": escolhe, ou desmarca se já estava escolhida. */
 function tocarPerfil(f,v){
+ if(f==="ni"){
+  if(E.ni.has(v))E.ni.delete(v);
+  else{E.ni.add(v);
+   if(v==="faixa"){E.faixa="";E.idade=null}
+   else if(v==="pessoas"||v==="renda"){E[v]=null;if(v==="renda"&&$("qRenda"))$("qRenda").value=""}
+   else{E[v]="";if(v==="moradia"){E.on.delete("aluguel");E.on.delete("rua")}}}
+  return syncPerfil();
+ }
+ if(f!=="on")E.ni.delete(f);
  if(f==="on"){E.on.has(v)?E.on.delete(v):E.on.add(v)}
  else if(f==="mun"){if(v==="outro"){E.munOutro=true;const sel=$("qMun");if(sel&&sel.value)E.mun=sel.value}else{E.munOutro=false;E.mun=v}if(E.mun!=="Goiânia"||E.munOutro)E.reg=""}
  else if(f==="faixa"){const fx=FAIXAS.find(x=>x[0]===v);if((E.faixa||faixaDe(E.idade))===v){E.faixa="";E.idade=null}else{E.faixa=v;E.idade=fx[2]}}
@@ -2216,7 +2234,7 @@ document.addEventListener("click",e=>{
 document.addEventListener("input",e=>{
  const id=e.target.id;
  if(id==="hDem"){E.dem=e.target.value;renderSugestoes()}
- if(id==="qRenda"){const x=parseFloat(e.target.value);E.renda=isFinite(x)?x:null;syncPerfil()}
+ if(id==="qRenda"){const x=parseFloat(e.target.value);E.renda=isFinite(x)?x:null;if(E.renda!==null)E.ni.delete("renda");syncPerfil()}
  if(id==="qSm"){const x=parseFloat(e.target.value);if(x>0)E.sm=x;calcRenda()}
 });
 document.addEventListener("change",e=>{if(e.target.id==="qMun"&&e.target.value){E.mun=e.target.value;E.munOutro=true;E.reg="";syncPerfil()}if(e.target.id==="relMun"){relMun=e.target.value;renderRel()}});

@@ -190,6 +190,15 @@ test("EJA também aparece pela escolaridade de um adulto", async () => {
   assert.equal((await avaliar({ idade: 30, escol: "medio" })).hits.eja, undefined);
 });
 
+test("renda não informada: o CadÚnico vira \"verificar\" no CRAS em vez de ficar sem caminho", async () => {
+  const r = await page.evaluate(() => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil({ ni: ["renda"] })), b = M.avaliar(M.perfil({}));
+    return { cad: (a.hits.find((h) => h.pol.id === "cad") || {}).st, rot: a.roteiro.map((s) => s.k), semNi: (b.hits.find((h) => h.pol.id === "cad") || {}).st, faltaSemNi: (b.falta.renda || []).map((p) => p.id) }; });
+  assert.equal(r.cad, "ver");
+  assert.ok(r.rot.includes("cras"));
+  assert.equal(r.semNi, undefined, "sem a marcação, continua pedindo a renda");
+  assert.ok(r.faltaSemNi.includes("cad"));
+});
+
 test("saúde mental: crise, transtorno grave e psicoterapia levam a lugares diferentes", async () => {
   const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
     return { hits: a.hits.map((h) => h.pol.id), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])), urg: a.urg.join(" ") }; }, d);
@@ -349,6 +358,26 @@ test("tela: pedido livre de AVC mostra a orientação e a faixa de emergência",
   await proximo();
   assert.match(await page.textContent(".urgent"), /192/);
   assert.ok(await page.isVisible('.tema-card:has-text("AVC (derrame)") .body'));
+});
+
+test("tela: \"Não sabe ou não quer dizer\" na renda e na região não trava o plano nem cobra a resposta", async () => {
+  await page.goto(PAGE, { waitUntil: "domcontentloaded" });
+  await page.click('.tile[data-need="renda"]');
+  await page.click("#start");
+  await page.click('#qBody .seg[data-f="ni"][data-v="renda"]');
+  await page.click('#qBody .seg[data-f="ni"][data-v="reg"]');
+  assert.equal(await page.getAttribute('#qBody .seg[data-f="ni"][data-v="renda"]', "aria-pressed"), "true");
+  await page.click("#qSkip");
+  const plano = await page.textContent("#vPlano");
+  assert.match(plano, /Não informado\./);
+  assert.match(plano, /O CRAS confirma pelo CadÚnico/);
+  const falta = (await page.$(".falta")) ? await page.textContent(".falta") : "";
+  assert.doesNotMatch(falta, /Renda da casa/, "não pede de novo o que a pessoa não sabe ou não quer dizer");
+  // escolher um valor depois desmarca o "não sabe"
+  await page.click("#pEdit");
+  await page.click('#qBody .seg[data-f="renda"][data-v="600"]');
+  assert.equal(await page.getAttribute('#qBody .seg[data-f="ni"][data-v="renda"]', "aria-pressed"), "false");
+  assert.equal(await page.getAttribute('#qBody .seg[data-f="ni"][data-v="reg"]', "aria-pressed"), "true");
 });
 
 test("tela: atalho de urgência vai direto ao plano com o manejo; depois completa as perguntas", async () => {
