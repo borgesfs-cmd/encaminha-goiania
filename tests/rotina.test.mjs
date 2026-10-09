@@ -258,10 +258,13 @@ test("E1. Celular de 360px: nenhuma tela rola para o lado", async () => {
     await semRolagemLateral(p, "plano " + k);
   }
   for (const k of await p.evaluate(() => window.EncaminhaMotor._dados.URGENCIAS.map((u) => u.k))) {
-    await p.goto(PAGE, { waitUntil: "domcontentloaded" });
-    await p.click(`.tile[data-urg="${k}"]`);
-    await p.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
-    await semRolagemLateral(p, "urgência " + k);
+    const q = await browser.newPage({ viewport: { width: 360, height: 780 } });
+    await q.route(/fonts\.(googleapis|gstatic)\.com|script\.google\.com/, (r) => r.abort());
+    await q.goto(PAGE, { waitUntil: "load" });
+    await q.locator(`.tile[data-urg="${k}"]`).click();
+    await q.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
+    await semRolagemLateral(q, "urgência " + k);
+    await q.close();
   }
   await p.click("#tab-rel");
   await p.click("#relDemoBtn");
