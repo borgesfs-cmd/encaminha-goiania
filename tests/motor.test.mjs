@@ -199,6 +199,17 @@ test("renda não informada: o CadÚnico vira \"verificar\" no CRAS em vez de fic
   assert.ok(r.faltaSemNi.includes("cad"));
 });
 
+test("fome: refeição hoje no município, cesta no CRAS e Banco de Alimentos em Goiânia", async () => {
+  const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
+    return { rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])) }; }, d);
+  const gyn = await ver({ on: ["fome"] });
+  assert.deepEqual(gyn.rot.slice(0, 3), ["comida", "cras", "bancoal"]);
+  assert.deepEqual(gyn.lugares.comida, ["restbem", "restbem-campinas"]);
+  assert.deepEqual((await ver({ on: ["fome"], mun: "Aparecida de Goiânia" })).lugares.comida, ["restbem-ap", "rest-pop-ap"]);
+  assert.ok(!(await ver({ on: ["fome"], mun: "Trindade" })).rot.includes("bancoal"));
+  assert.equal((await ver({ on: ["fome"], moradia: "rua" })).lugares.comida[0], "pop");
+});
+
 test("saúde mental: crise, transtorno grave e psicoterapia levam a lugares diferentes", async () => {
   const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
     return { hits: a.hits.map((h) => h.pol.id), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])), urg: a.urg.join(" ") }; }, d);

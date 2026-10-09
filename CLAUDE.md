@@ -75,6 +75,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Educação: Enem e isenção da taxa, Prouni, Fies e Fies Social, Sisu e cotas, ProBem (OVG), assistência estudantil, EJA e Encceja.
 - Estadual: Mães de Goiás, Goiás + Inclusivo, Dignidade, Goiás Por Elas, Aluguel Social (Agehab), Passe Livre Estudantil, Aprendiz do Futuro, CIPTEA, Passe Livre PcD, Passaporte da Pessoa Idosa, Crédito Social, 2ª via de registro civil, alto custo (Cemac Juarez Barbosa).
 - Dependências: álcool e outras drogas (CAPS AD, Credeq, Unidade de Acolhimento, regras da internação involuntária pela Lei 13.840/2019), apostas e bets (autoexclusão centralizada no gov.br, cuidado no SUS e Meu SUS Digital, dívidas, bloqueio de beneficiários pela Portaria SPA/MF 2.217/2025 em discussão no STF), jogos eletrônicos (UBS, CAPSij, ECA Digital).
+- Segurança alimentar (`r-fome`, roteiro por município via `places("comida")`): Restaurante do Bem (Centro, Campinas, Aparecida, Trindade), restaurantes populares de Aparecida e Senador Canedo, cesta pelo CRAS, Banco de Alimentos da OVG (famílias e entidades), Mesa Brasil Sesc e Cozinha Solidária (só entidades), ONG Tio Cleobaldo.
 - Rede: mulher, criança, idoso/PcD, população de rua, saúde mental, gestante, fome, HIV (teste, PEP, PrEP, SAE), Ministério Público (MPGO, MPF, MPT).
 - Goiânia: 26 CRAS/centros de convivência, 5 CREAS, Centro POP, 6 Conselhos Tutelares, rede da mulher, Defensoria, CTA/SAE, UPAs com PEP.
 - Aparecida: parcial. Demais municípios da RMG: só nacional e estadual.
@@ -94,7 +95,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
   - Registros: fila no aparelho (enc-fila) quando falta internet. Relatórios: só com a chave de gestor (Script Properties CHAVE_GESTOR); a coluna U da aba Registros guarda o registro completo.
   - Dentro do Claude (artefato) a URL é ignorada: o artefato não acessa outros endereços e segue com o banco do artefato e a sincronização sob pedido (caminho B).
   - A URL real está no `index.html`: todo teste e script que abre o app bloqueia `script.google.com` (junto com as fontes), para nunca ler nem gravar na planilha de verdade. Página nova em teste: bloquear também.
-  - O site aplica os textos da planilha por cima dos do código. Mudou texto de política ou tema no código: atualize também a linha na planilha (abas Políticas e Temas), senão a planilha desfaz a mudança no site. Serviço novo no código: inclua na aba Serviços.
+  - O site aplica os textos da planilha por cima dos do código. Mudou texto de política ou tema no código: atualize também a linha na planilha (abas Políticas e Temas), senão a planilha desfaz a mudança no site. Serviço novo no código: inclua na aba Serviços. Mudou um serviço que está no bloco `dados-planilha` do index.html: tire-o do bloco (ou rode a sincronização), senão o bloco desfaz a mudança.
   - Ao mudar `Codigo.gs`, a pessoa precisa publicar nova versão da implantação. Testes: `tests/conexao.test.mjs` (API simulada) e `tests/apps-script.test.mjs` (serviços Google simulados).
 
 ## Levantamentos
@@ -107,7 +108,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Quadro "Falta uma resposta": `CAMPOS[c].nec` diz em que assuntos vale cobrar renda ou idade.
 - Promotorias do MPGO por comarca (site do MPGO não respondia na pesquisa).
 - CRAS de Aparecida e dos demais municípios da RMG.
-- Telefone direto do Centro POP de Goiânia; telefone do MPT em Goiás.
+- Telefone do Centro POP de Goiânia diverge entre fontes (endereço novo desde o fim de 2025); telefone do MPT em Goiás.
 - Conferir a lista de medicamentos da Farmácia Popular no gov.br (os nomes vieram de conhecimento prévio, não da página oficial).
 - Conferir na página oficial os critérios de renda que vieram só do protótipo: Tarifa Social (houve mudança em 2025), Pé-de-Meia, Passe Livre PcD, Crédito Social.
 - Aluguel Social: critério corrigido para meio salário mínimo por pessoa (Edital Geral 001/2023 e perguntas frequentes da Agehab). Cada município pode ter edital próprio.
