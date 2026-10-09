@@ -861,6 +861,8 @@ const NECESSIDADES=[
 const URGENCIAS=[
  {k:"suic",t:"Risco de suicídio",nec:"mental"},
  {k:"crisePsiq",t:"Crise psiquiátrica ou surto",nec:"mental"},
+ {k:"dorPeito",t:"Dor no peito",nec:"saude"},
+ {k:"pcr",t:"Desmaiou e não respira (parada cardíaca)",nec:"saude"},
  {k:"violMulher",t:"Violência contra mulher acontecendo",nec:"protecao"},
  {k:"violCrianca",t:"Criança em perigo",nec:"protecao"},
  {k:"violIdoso",t:"Idoso ou PcD em perigo",nec:"protecao"},
@@ -927,8 +929,10 @@ const TEMAS=[
   palavras:["avc","derrame","boca torta","fala enrolada","nao consegue falar","braco fraco","perdeu a forca","paralisia"],
   passos:["Acontecendo agora: ligar 192 (SAMU). O tratamento do AVC depende do tempo, cada minuto conta.","Sinais de alerta: boca torta ao sorrir, braço fraco ao levantar os dois, fala enrolada ou confusa.","Anotar a hora em que os sintomas começaram e os remédios que a pessoa usa. Não dar comida, bebida nem remédio; se vomitar, deitar a pessoa de lado.","AVC que já passou: pedir na UBS o encaminhamento para reabilitação (fisioterapia, fonoaudiologia) e acompanhar pressão, diabetes e remédios na UBS.","Novo sinal de AVC a qualquer momento: 192 de novo."],
   servicos:["samu","hugo"]},
+ {k:"dorpeito",t:"Dor no peito",on:["dorPeito"],palavras:["dor no peito","dor toracica","aperto no peito","pressao no peito","infarto","enfarte","ataque cardiaco"]},
+ {k:"pcr",t:"Parada cardiorrespiratória",on:["pcr"],palavras:["parada cardiaca","parada cardiorrespiratoria","parou de respirar","coracao parou","desmaiou e nao respira","caiu e nao respira"]},
  {k:"emergencia",t:"Emergência médica",urg:"Se há risco de vida agora: ligue <b>192</b> (SAMU).",
-  palavras:["infarto","dor no peito","falta de ar","desmai","convuls","sangramento","acidente","inconsciente","overdose","engasg","queimadura grave"],
+  palavras:["falta de ar","desmai","convuls","sangramento","acidente","inconsciente","overdose","engasg","queimadura grave"],
   passos:["Risco de vida: ligar 192 (SAMU). O médico regulador orienta pelo telefone e envia a ambulância.","Sem risco de vida, mas precisa de atendimento hoje: UPA ou CAIS 24h.","Intoxicação ou picada de animal: CIATox 0800 646 4350, 24h."],
   servicos:["samu","ciatox"]},
  {k:"reabilitacao",t:"Reabilitação: fisioterapia, fono, órteses e próteses",
@@ -1558,6 +1562,15 @@ const P=[
    "Família de baixa renda: auxílio funeral (benefício eventual) no CRAS.",
    "Sofrimento intenso, culpa ou ideias de morte: UBS ou CAPS; para conversar a qualquer hora, CVV 188."],
   docs:["Documentos da internação e declaração de óbito, se houver"],where:"",extra:["188","135"]},
+ {id:"r-cardio",nome:"Dor no peito e parada cardiorrespiratória",esf:"rede",val:"Urgência: SAMU 192",
+  test:p=>p.has("pcr")?["enc","Parada cardiorrespiratória: cada minuto sem compressões reduz a chance de sobreviver. 192 e compressões até o socorro chegar."]
+   :p.has("dorPeito")?["enc","Dor no peito pode ser infarto: avaliação de urgência agora, sem esperar a dor passar."]:null,
+  flow:["Reconhecer a parada: a pessoa não responde quando chamada e tocada nos ombros e não respira, ou só dá suspiros fortes e irregulares. Não perca tempo procurando pulso.",
+   "Agir: 192 no viva-voz, pedir um desfibrilador (DEA) e começar as compressões no centro do peito, forte (5 a 6 cm) e rápido (100 a 120 por minuto). Trocar quem comprime a cada 2 minutos, se houver mais gente. Shoppings, aeroportos, estádios e grandes empresas costumam ter DEA.",
+   "Reconhecer o infarto: dor, aperto ou queimação no peito por mais de alguns minutos, que pode ir para o braço, as costas, o pescoço ou o queixo, com falta de ar, suor frio, enjoo ou tontura. Em mulheres, idosos e diabéticos pode vir sem dor forte.",
+   "Dor no peito: 192 já. Manter a pessoa sentada e em repouso, sem esforço e sem dirigir. Remédio só com orientação do médico do SAMU.",
+   "Depois do atendimento: acompanhamento na UBS (pressão, colesterol, diabetes, cigarro) e remédios de uso contínuo de graça na Farmácia Popular ou na UBS. Quem ficou sem poder trabalhar: auxílio por incapacidade no INSS."],
+  docs:["Documento e cartão do SUS, se tiver (a falta não impede o atendimento)","Lista ou caixas dos remédios em uso"],where:"",extra:["samu"]},
  {id:"r-fome",nome:"Segurança alimentar",esf:"rede",val:"Refeição, cesta e alimentos",
   test:p=>p.has("fome")?["enc","Falta de alimento em casa: refeição hoje, cesta básica pelo CRAS e alimentos toda semana."]:null,
   flow:["Fome hoje (dia útil): Restaurante do Bem, almoço a R$ 2 das 10h30 às 14h, sem encaminhamento, até acabarem os tickets. Chegar cedo. Não abre em fim de semana nem em feriado.",
@@ -1658,6 +1671,7 @@ const ROTA={
  "r-rua":[["pop","Alimentação, higiene, documentos e vaga em acolhimento"]],
  "r-mental":[["ubs","Acolhimento e avaliação. Pergunte se há psicólogo na equipe (eMulti) ou para onde a UBS encaminha"],["clinica","Inscrição para psicoterapia gratuita. Ligue antes: as vagas abrem por semestre e há lista de espera"]],
  "r-caps":[["capsReg","Acolhimento no CAPS, sem encaminhamento. Levar receitas e relatórios"]],
+ "r-cardio":p=>[["urgencia",p.has("pcr")?"192 agora e compressões no peito até o socorro chegar":"192 agora: avaliação de urgência, sem esperar a dor passar"]],
  "r-gest":p=>[["ubs","Pré-natal: primeira consulta até a 12ª semana; perguntar em qual maternidade será o parto"],["nascer","Cadastro na Rede Nascer pelo 155, para acompanhamento até a criança completar 2 anos"],["cras","Atualizar o CadÚnico para o adicional de gestante do Bolsa Família"]].concat(["informal","desempregado"].includes(p.trab)?[["inss","Salário-maternidade, se contribuiu para o INSS: pedir pelo Meu INSS ou 135, sem intermediário"]]:[]),
  "r-gestalto":[["ubs","Pedido de vaga no pré-natal de alto risco pela regulação, sem parar o pré-natal na UBS"]],
  "r-pospart":[["ubs","Avaliação na UBS e encaminhamento ao psicólogo (Lei 14.721/2023)"],["clinica","Psicoterapia gratuita, se a UBS não tiver psicólogo"]],
@@ -1689,7 +1703,7 @@ const ROTA={
 const CURTO={cad:"CadÚnico",bpc:"BPC",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
  hivcare:"Cuidado em HIV",crise:"Crise suicida",discrim:"Discriminação",gas:"Gás do Povo",mcmv:"Minha Casa, Minha Vida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
- "r-rua":"População de rua","r-mental":"Psicoterapia","r-gest":"Gestante","r-gestalto":"Pré-natal de alto risco","r-pospart":"Pós-parto","r-entrega":"Entrega legal","r-luto":"Luto perinatal","r-creche":"Creche e pré-escola","r-fund":"Ensino fundamental","r-medio":"Ensino médio","bolsaestudo":"Bolsa Estudo","r-especial":"Educação especial","r-foraescola":"Volta à escola","r-caps":"CAPS","r-psiq":"Crise psiquiátrica","r-fome":"Segurança alimentar"};
+ "r-rua":"População de rua","r-mental":"Psicoterapia","r-cardio":"Dor no peito ou parada","r-gest":"Gestante","r-gestalto":"Pré-natal de alto risco","r-pospart":"Pós-parto","r-entrega":"Entrega legal","r-luto":"Luto perinatal","r-creche":"Creche e pré-escola","r-fund":"Ensino fundamental","r-medio":"Ensino médio","bolsaestudo":"Bolsa Estudo","r-especial":"Educação especial","r-foraescola":"Volta à escola","r-caps":"CAPS","r-psiq":"Crise psiquiátrica","r-fome":"Segurança alimentar"};
 /* Textos das políticas vindos da planilha (o critério de direito continua no código). */
 (PLANILHA.politicas||[]).forEach(r=>{const p=P.find(x=>x.id===r.id);if(!p)return;
  if(r.nome)p.nome=r.nome;if(r.val)p.val=r.val;
@@ -1731,12 +1745,14 @@ function avaliar(p){
   else if(r[0]==="falta")r[2].forEach(c=>(faltaPor[c]=faltaPor[c]||[]).push(pol));
   else hits.push({pol,st:r[0],why:r[1]});}
  const order={enc:0,prov:1,ver:2};
- const top=["crise","r-psiq","pep","r-mulher","r-crianca","discrim","hivcare","ceaf","r-caps","r-mental","ad","apostas","games","mp","cad"];
+ const top=["r-cardio","crise","r-psiq","pep","r-mulher","r-crianca","discrim","hivcare","ceaf","r-caps","r-mental","ad","apostas","games","mp","cad"];
  const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
  hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
  const urg=[];
  if(p.has("tentativa"))urg.push("Tentativa de suicídio ou autolesão: avaliação médica <b>agora</b> (SAMU <b>192</b>, UPA ou CAIS 24h), mesmo que a pessoa pareça bem. Tomou remédio ou veneno: leve a embalagem; orientação 24h no CIATox <b>0800 646 4350</b>.");
  if(p.has("suic")||p.has("tentativa"))urg.push("Não deixe a pessoa sozinha. Pergunte se há plano e acesso a meios; com plano e meio disponível, ligue <b>192</b>. Para conversar a qualquer hora: <b>188</b> (CVV), gratuito e sigiloso. Ofereça ligar junto. <a href=\"#card-crise\" data-abre=\"crise\">Ver o manejo da crise</a>");
+ if(p.has("pcr"))urg.push("Pessoa que não responde e não respira, ou só dá suspiros fortes e irregulares: é parada cardiorrespiratória. <b>1.</b> Ligue <b>192</b> no viva-voz (ou peça a alguém) e peça um desfibrilador (DEA), se houver por perto. <b>2.</b> Comece as compressões: no centro do peito, com as duas mãos e os braços esticados, forte (5 a 6 cm) e rápido (100 a 120 por minuto), deixando o peito voltar, sem parar. <b>3.</b> Chegou o DEA: ligue e siga a voz do aparelho. <b>4.</b> Continue até o SAMU chegar ou a pessoa reagir. Quem não tem treino não precisa fazer boca a boca. Em bebê ou criança, o atendente do 192 orienta.");
+ if(p.has("dorPeito"))urg.push("Dor no peito agora (aperto, peso ou queimação que dura mais de alguns minutos, que pode ir para o braço, as costas, o pescoço ou o queixo), com falta de ar, suor frio, enjoo ou desmaio: ligue <b>192</b> (SAMU) já. Não espere passar e não deixe a pessoa ir sozinha nem dirigindo; mantenha-a sentada e em repouso. Remédio só se o médico do SAMU orientar. Em mulheres, idosos e diabéticos o infarto pode vir sem dor forte: cansaço, falta de ar e enjoo também contam.");
  if(p.has("gestAlto"))urg.push("Na gravidez, sangramento, perda de líquido, dor forte, pressão alta com dor de cabeça ou visão turva, ou bebê sem mexer: maternidade ou <b>192</b> (SAMU) agora.");
  if(p.has("crisePsiq"))urg.push("Crise psiquiátrica agora (surto, agitação, confusão): com risco para a pessoa ou para outros, ligue <b>192</b> (SAMU). Em Goiânia, o Pronto-Socorro Psiquiátrico Wassily Chuc atende 24h; na região, UPA ou CAIS 24h. Fale com calma, afaste objetos perigosos e não deixe a pessoa sozinha. Confusão que começou de repente pode ser problema clínico: pronto atendimento.");
  if(p.has("violMulher"))urg.push("Violência acontecendo agora: <b>190</b> (PM) ou <b>153</b> (GCM Goiânia). Orientação sigilosa: <b>180</b>.");
@@ -2200,7 +2216,7 @@ function agregar(regs,per,mun){
   mediaPol:rs.length?rs.reduce((a,r)=>a+(r.pol||[]).length,0)/rs.length:0,
   ate218:rs.filter(r=>["sem","ate109","ate218"].includes(r.renda)).length};
 }
-const ROTULO_SIT=Object.fromEntries([...PERGUNTAS.flatMap(q=>q.opcoes||[]),...PERFIL_ROWS.filter(r=>r.f==="on").flatMap(r=>r.op),["rua","Situação de rua"],["fome","Falta comida em casa"],["semDoc","Sem certidão ou documento"],["negado","Direito negado"]].map(([k,t])=>[k,t]));
+const ROTULO_SIT=Object.fromEntries([...PERGUNTAS.flatMap(q=>q.opcoes||[]),...PERFIL_ROWS.filter(r=>r.f==="on").flatMap(r=>r.op),["rua","Situação de rua"],["dorPeito","Dor no peito"],["pcr","Parada cardiorrespiratória"],["fome","Falta comida em casa"],["semDoc","Sem certidão ou documento"],["negado","Direito negado"]].map(([k,t])=>[k,t]));
 const nomeSit=k=>ROTULO_SIT[k]||k;
 const nomeNec=k=>(NECESSIDADES.find(n=>n.k===k)||{}).t||k;
 const nomeParada=k=>(STOPS[k]||{}).nome||k;
@@ -2234,7 +2250,7 @@ function alertas(a){
 const GRUPOS_SIT=[
  ["Violências e violações de direitos",["violMulher","mpu","violCrianca","violIdoso","discrim","pep","trabalho","negado"]],
  ["Saúde mental e dependências",["mental","mentalGrave","crisePsiq","suic","tentativa","drogas","apostas","games"]],
- ["Saúde física",["altocusto","continuo","hiv","teste","prep","gest","gestAlto","entregaAdocao","lutoPerinatal"]],
+ ["Saúde física",["altocusto","continuo","hiv","teste","prep","gest","gestAlto","dorPeito","pcr","entregaAdocao","lutoPerinatal"]],
  ["Renda, moradia e documentos",["fome","aluguel","rua","semDoc","cadOld"]],
  ["Educação e trabalho",["creche","preescola","fundamental","vagaMedio","estMedio","especial","foraEscola","estud","superior","superiorApoio","eja","empreender"]],
  ["Quem mora na casa",["c06","pcd","pcd17","tea"]]

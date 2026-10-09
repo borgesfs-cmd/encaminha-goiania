@@ -256,6 +256,23 @@ test("gestante: pré-natal, maternidade, Rede Nascer, alto risco, entrega legal,
   assert.deepEqual(await temas("o bebê nasceu morto"), ["lutoperinatal"]);
 });
 
+test("urgência: dor no peito e parada cardiorrespiratória com 192 e o que fazer até o socorro", async () => {
+  const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d)); return { top: a.hits[0] && a.hits[0].pol.id, rot: a.roteiro.map((s) => s.k), urg: a.urg.join(" ") }; }, d);
+  const pcr = await ver({ on: ["pcr"] });
+  assert.equal(pcr.top, "r-cardio");
+  assert.match(pcr.urg, /192/);
+  assert.match(pcr.urg, /100 a 120 por minuto/);
+  assert.match(pcr.urg, /DEA/);
+  const dor = await ver({ on: ["dorPeito", "mental"] });
+  assert.equal(dor.top, "r-cardio", "dor no peito vem antes de tudo");
+  assert.match(dor.urg, /não deixe a pessoa ir sozinha nem dirigindo/);
+  assert.equal(dor.rot[0], "urgencia");
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.deepEqual(await temas("meu pai está com dor no peito"), ["dorpeito"]);
+  assert.deepEqual(await temas("ele caiu e não respira"), ["pcr"]);
+  assert.deepEqual(await temas("asma, não respira bem à noite"), []);
+});
+
 test("saúde mental: crise, transtorno grave e psicoterapia levam a lugares diferentes", async () => {
   const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
     return { hits: a.hits.map((h) => h.pol.id), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])), urg: a.urg.join(" ") }; }, d);
