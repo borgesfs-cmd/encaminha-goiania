@@ -90,3 +90,26 @@ Depois deste levantamento o app tem 45 políticas, 125 serviços e contatos, 23 
 | Clínicas-escola Unialfa, Universo, Estácio | Psicoterapia gratuita por estagiários | [Portal 6, 2024](https://portal6.com.br/2024/09/24/saiba-onde-garantir-acolhimento-psicologico-gratuito-em-goiania-e-anapolis/); [Curta Mais](https://curtamais.com.br/goiania/7-clinicas-que-oferecem-atendimento-psicologico-gratuito-em-goiania/) | Baixa: guias locais, confirmar vagas |
 
 Não incluídos por dados conflitantes: Centro de Psicologia Aplicada da UNIP (endereço e telefone divergentes), CAPS AD III Ipê (sem endereço), CAPS III Bem-Me-Quer de Aparecida (sem contato atual).
+
+## 8. INSS e Benefício de Prestação Continuada (09/10/2026)
+
+A busca foi feita só por resumos de pesquisa: as páginas do gov.br não abriram neste ambiente. Os valores de 2026 vêm da Portaria Interministerial MPS/MF nº 13/2026 e mudam todo janeiro.
+
+| Item | Regra no app | Fonte | Confiança |
+|---|---|---|---|
+| Benefício de Prestação Continuada | 65+ ou deficiência de longo prazo; renda até 1/4 do salário mínimo (R$ 405,25); CadÚnico em até 2 anos; não acumula com aposentadoria ou pensão; auxílio-inclusão | [MDS](https://www.gov.br/mds/pt-br/acoes-e-programas/suas/beneficios-assistenciais/beneficio-assistencial-ao-idoso-e-a-pessoa-com-deficiencia-bpc), [Portaria Conjunta MDS/INSS 34/2025](https://www.gov.br/inss/pt-br/centrais-de-conteudo/legislacao/portarias-conjuntas/2025/ptcj34mds-inss.pdf) | Alta |
+| Biometria e CIN | Sem biometria: CIN até janeiro de 2027 | [Previdência, abr/2026](https://www.gov.br/previdencia/pt-br/noticias/2026/abril/governo-amplia-prazo-para-uso-obrigatorio-da-biometria-da-cin-em-beneficios-do-inss-e-sociais) | Média |
+| Aposentadoria | 62 (mulher) e 65 (homem) com 15 anos; rural 55/60; pessoa com deficiência (LC 142/2013) | [INSS](https://www.gov.br/inss/pt-br/direitos-e-deveres/aposentadorias/aposentadoria-programada) | Alta |
+| Onde conferir | Meu INSS: Extrato de Contribuição (CNIS), Simular aposentadoria, Consultar Pedidos | [gov.br](https://www.gov.br/pt-br/servicos/simular-aposentadoria) | Alta |
+| Auxílio por incapacidade temporária | 12 contribuições (exceto acidente e doenças graves); Atestmed até 90 dias | [Previdência, abr/2026](https://www.gov.br/previdencia/pt-br/noticias/2026/abril/atestados-medicos-de-ate-90-dias-nao-tem-mais-pericia-presencial) | Alta (prorrogação de set/2026: média) |
+| Auxílio-acidente | Empregado, doméstico, avulso e segurado especial; pedido pelo 135 | [INSS](https://www.gov.br/inss/pt-br/noticias/auxilio-acidente-confira-quem-tem-direito-a-esse-beneficio-pago-pelo-inss) | Alta |
+| Pensão por morte | Pedido em 90 dias (180 para filhos até 16); 50% + 10% por dependente | [INSS](https://www.gov.br/inss/pt-br/noticias/pensao-por-morte-confira-os-prazos-para-pedir-e-a-duracao-do-beneficio) | Alta (tabela de duração: média) |
+| Auxílio-reclusão | Regime fechado, 24 contribuições, salário até R$ 1.980,38 | [INSS](https://www.gov.br/inss/pt-br/direitos-e-deveres/auxilio-reclusao/valor-limite-para-direito-ao-auxilio-reclusao) | Alta |
+| Salário-maternidade | Sem carência de 10 contribuições desde as ADIs 2110 e 2111 (2024); 120 dias; Lei 15.222/2025 | [INSS](https://www.gov.br/inss/pt-br/noticias/trabalhadora-desempregada-pode-ter-direito-ao-salario-maternidade), [Lei 15.222/2025](https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15222.htm) | Alta |
+| Salário-família | R$ 67,54 por filho até 14 anos; limite R$ 1.980,38 | [INSS](https://www.gov.br/inss/pt-br/saiba-mais/salario-familia) | Alta |
+| Facultativo de baixa renda e MEI | 5% do salário mínimo (R$ 81,05); CadÚnico; validação no Meu INSS | Imprensa e sites jurídicos, conta conferida com o salário mínimo | Média |
+| Recurso | 30 dias, recurso ordinário pelo Meu INSS; Juizado Especial Federal | [INSS](https://www.gov.br/inss/pt-br/direitos-e-deveres/recurso/recurso-administrativo-de-beneficio-previdenciario) | Alta |
+| Golpes | INSS não cobra, não pede dados por SMS, não vai à casa | [INSS](https://www.gov.br/inss/pt-br/assuntos/cuidado-falsarios-estao-se-passando-por-servidores-do-inss) | Alta |
+| Bombeiros 193 | Incêndio, acidente com vítima, salvamento, gás | [CBMGO](https://www.bombeiros.go.gov.br) | Alta |
+
+Não encontrados: endereço e telefone da Defensoria Pública da União em Goiânia; se o Bolsa Família entra na renda do Benefício de Prestação Continuada (fontes divergem); texto oficial da prorrogação do Atestmed.

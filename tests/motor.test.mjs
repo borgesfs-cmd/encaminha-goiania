@@ -31,6 +31,7 @@ async function avaliar(dados) {
       dem: p.dem,
       hits: Object.fromEntries(r.hits.map((x) => [x.pol.id, x.st])),
       ordem: r.hits.map((x) => x.pol.id),
+      motivos: Object.fromEntries(r.hits.map((x) => [x.pol.id, x.why])),
       nao: Object.fromEntries(r.nao.map((x) => [x.pol.id, x.why])),
       falta: Object.fromEntries(Object.entries(r.falta).map(([k, v]) => [k, v.map((pol) => pol.id)])),
       urg: r.urg.length,
@@ -103,6 +104,43 @@ test("BPC: 1/4 SM provável, até 1/2 verificar, acima não indicado", async () 
   assert.equal((await avaliar({ idade: 66, pessoas: 2, renda: 1500 })).hits.bpc, "ver");
   assert.ok((await avaliar({ idade: 66, pessoas: 2, renda: 2000 })).nao.bpc);
   assert.equal((await avaliar({ idade: 40, pessoas: 2, renda: 800 })).hits.bpc, undefined);
+});
+
+test("Benefício de Prestação Continuada: nome por extenso, CadÚnico e Defensoria da União no roteiro", async () => {
+  const r = await page.evaluate(() => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil({ idade: 66, pessoas: 2, renda: 800 }));
+    const h = a.hits.find((x) => x.pol.id === "bpc"); return { nome: h.pol.nome, flow: h.pol.flow.join(" "), rot: a.roteiro.map((s) => s.k), chip: JSON.stringify(M._dados.PERFIL_ROWS) }; });
+  assert.equal(r.nome, "Benefício de Prestação Continuada");
+  assert.match(r.flow, /BPC ou LOAS/, "explica a sigla conhecida");
+  assert.match(r.flow, /CadÚnico/);
+  assert.ok(r.rot.includes("inss"));
+  assert.doesNotMatch(r.chip, /"BPC"/);
+});
+
+test("INSS: cada caso marcado indica o benefício, com Meu INSS para conferir e recorrer", async () => {
+  const ev = (d) => avaliar(d);
+  const apos = await ev({ genero: "mulher", idade: 65, on: ["aposentar"] });
+  assert.equal(apos.hits.apos, "ver");
+  assert.equal(apos.hits.meuinss, "ver");
+  assert.match(apos.motivos.apos, /Já tem a idade/);
+  assert.match((await ev({ genero: "homem", idade: 50, on: ["aposentar"] })).motivos.apos, /roça/);
+  assert.ok((await ev({ trab: "aposentado", on: ["aposentar"] })).nao.apos);
+  assert.equal((await ev({ trab: "formal", on: ["incapaz"] })).hits.incap, "prov");
+  assert.match((await ev({ trab: "desempregado", on: ["incapaz"] })).motivos.incap, /segurado/);
+  assert.equal((await ev({ on: ["sequela"] })).hits.acid, "ver");
+  assert.match((await ev({ on: ["morte"] })).motivos.pensao, /90 dias/);
+  assert.match((await ev({ on: ["preso"] })).motivos.reclusao, /1\.980,38/);
+  assert.equal((await ev({ trab: "formal", on: ["maternidade"] })).hits.salmat, "prov");
+  assert.equal((await ev({ trab: "informal", on: ["maternidade"] })).hits.salmat, "ver");
+  assert.equal((await ev({ trab: "formal", pessoas: 3, renda: 1800, on: ["c714"] })).hits.salfam, "prov");
+  assert.equal((await ev({ trab: "formal", pessoas: 3, renda: 3000, on: ["c06"] })).hits.salfam, "ver");
+  assert.equal((await ev({ trab: "informal", on: ["c06"] })).hits.salfam, undefined, "MEI e autônomo não têm salário-família");
+  assert.equal((await ev({ trab: "nao", pessoas: 3, renda: 2000, on: ["contribuir", "cad"] })).hits.facult, "prov");
+  assert.match((await ev({ trab: "informal", on: ["contribuir"] })).motivos.facult, /MEI/);
+  assert.equal((await ev({ trab: "formal", on: ["contribuir"] })).hits.facult, undefined);
+  const neg = await ev({ on: ["inssNegado"] });
+  assert.equal(neg.hits.meuinss, "enc");
+  assert.match(neg.motivos.meuinss, /30 dias/);
+  assert.equal((await ev({})).hits.meuinss, undefined);
 });
 
 test("Dignidade não é indicado para quem recebe Bolsa Família", async () => {
@@ -215,7 +253,7 @@ test("educação por etapa: creche, fundamental, médio, educação especial e f
     return { hits: Object.fromEntries(a.hits.map((h) => [h.pol.id, h.why])), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])) }; }, d);
   const creche = await ver({ on: ["creche", "pbf"], genero: "mulher", trab: "informal" });
   assert.match(creche.hits["r-creche"], /Tema 548/);
-  assert.match(creche.hits["r-creche"], /Bolsa Família ou BPC, mãe que trabalha/);
+  assert.match(creche.hits["r-creche"], /Bolsa Família ou Benefício de Prestação Continuada, mãe que trabalha/);
   assert.equal(creche.lugares.matricula[0], "sme-gyn");
   assert.deepEqual((await ver({ on: ["creche"], mun: "Aparecida de Goiânia" })).lugares.matricula, ["matricula-ap"]);
   assert.match((await ver({ on: ["preescola"] })).hits["r-creche"], /obrigatória/);
@@ -271,6 +309,19 @@ test("urgência: dor no peito e parada cardiorrespiratória com 192 e o que faze
   assert.deepEqual(await temas("meu pai está com dor no peito"), ["dorpeito"]);
   assert.deepEqual(await temas("ele caiu e não respira"), ["pcr"]);
   assert.deepEqual(await temas("asma, não respira bem à noite"), []);
+});
+
+test("urgência: Bombeiros 193 para incêndio, acidente e resgate", async () => {
+  const r = await page.evaluate(() => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil({ on: ["resgate", "mental"] }));
+    return { top: a.hits[0].pol.id, rot: a.roteiro.map((s) => s.k), urg: a.urg.join(" "), atalho: M._dados.URGENCIAS.some((u) => u.k === "resgate") }; });
+  assert.ok(r.atalho);
+  assert.equal(r.top, "r-resgate");
+  assert.match(r.urg, /193/);
+  assert.equal(r.rot[0], "bombeiros");
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.ok((await temas("acidente de trânsito na rua")).includes("resgate"));
+  assert.ok((await temas("tem cheiro de gás em casa")).includes("resgate"));
+  assert.deepEqual(await temas("quero o auxílio acidente"), ["inss"]);
 });
 
 test("saúde mental: crise, transtorno grave e psicoterapia levam a lugares diferentes", async () => {
@@ -397,6 +448,8 @@ test("tela: dados da pessoa por toque, 'Responder' volta só ao que falta", asyn
   await seg("on", "c06");
   assert.equal(await page.getAttribute('#qBody .seg[data-f="on"][data-v="c06"]', "aria-pressed"), "true");
   await proximo();                               // dados da pessoa
+  assert.match(await page.textContent("#qBody"), /Algum destes casos do INSS/);
+  await proximo();                               // INSS
   await proximo();                               // notas
   assert.ok(await page.isVisible("#vPlano .route"));
   assert.match(await page.textContent("#results"), /Mães de Goiás/);
@@ -405,7 +458,7 @@ test("tela: dados da pessoa por toque, 'Responder' volta só ao que falta", asyn
   await proximo();
   assert.ok(await page.isVisible("#vPlano"));
   assert.ok(!(await page.isVisible(".falta")));
-  assert.match(await page.textContent("#results"), /BPC/);
+  assert.match(await page.textContent("#results"), /Benefício de Prestação Continuada/);
   assert.match(await page.textContent("#pSum"), /65 ou mais anos/);
 });
 

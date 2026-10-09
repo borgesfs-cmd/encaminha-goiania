@@ -138,7 +138,9 @@ test("B2. Cobertura: toda política aparece em algum perfil (aleatório ou dirig
       { idade: 70, pessoas: 2, renda: 1000 }, { on: ["tea"] }, { on: ["pcd"], pessoas: 1, renda: 300 }, { on: ["estMedio"], pessoas: 4, renda: 800 },
       { on: ["aluguel"], pessoas: 2, renda: 800 }, { on: ["pcd17", "c06"], pessoas: 4, renda: 200 },
       { on: ["fome"] }, // vem do assunto "Comida", não de uma opção
-      { on: ["pcr"] }, { on: ["dorPeito"] }, // vêm só dos atalhos de urgência
+      { on: ["pcr"] }, { on: ["dorPeito"] }, { on: ["resgate"] }, // vêm só dos atalhos de urgência
+      { on: ["aposentar", "incapaz", "sequela", "morte", "preso", "maternidade", "contribuir"], trab: "nao", pessoas: 2, renda: 1000 },
+      { trab: "formal", pessoas: 3, renda: 1800, on: ["c714"] },
     ];
     extra.forEach((d) => M.avaliar(M.perfil(d)).hits.forEach((h) => (vistos[h.pol.id] = (vistos[h.pol.id] || 0) + 1)));
     return P.map((p) => p.id).filter((id) => !vistos[id]);
