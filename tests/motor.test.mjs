@@ -210,6 +210,31 @@ test("fome: refeição hoje no município, cesta no CRAS e Banco de Alimentos em
   assert.equal((await ver({ on: ["fome"], moradia: "rua" })).lugares.comida[0], "pop");
 });
 
+test("educação por etapa: creche, fundamental, médio, educação especial e fora da escola", async () => {
+  const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
+    return { hits: Object.fromEntries(a.hits.map((h) => [h.pol.id, h.why])), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])) }; }, d);
+  const creche = await ver({ on: ["creche", "pbf"], genero: "mulher", trab: "informal" });
+  assert.match(creche.hits["r-creche"], /Tema 548/);
+  assert.match(creche.hits["r-creche"], /Bolsa Família ou BPC, mãe que trabalha/);
+  assert.equal(creche.lugares.matricula[0], "sme-gyn");
+  assert.deepEqual((await ver({ on: ["creche"], mun: "Aparecida de Goiânia" })).lugares.matricula, ["matricula-ap"]);
+  assert.match((await ver({ on: ["preescola"] })).hits["r-creche"], /obrigatória/);
+  const fund = await ver({ on: ["fundamental"] });
+  assert.deepEqual(fund.lugares.matriculaEst, ["seduc", "cre-seduc-gyn"]);
+  const medio = await ver({ on: ["vagaMedio"], mun: "Trindade" });
+  assert.ok("r-medio" in medio.hits && "bolsaestudo" in medio.hits);
+  assert.deepEqual(medio.lugares.matriculaEst, ["seduc", "cre-seduc-trindade"]);
+  const esp = await ver({ on: ["especial", "tea"] });
+  assert.match(esp.hits["r-especial"], /autismo/);
+  assert.equal(esp.lugares.aee[0], "cmai-thome");
+  assert.ok(esp.rot.includes("mp"));
+  assert.deepEqual((await ver({ on: ["foraEscola"] })).rot, ["ct", "matricula"]);
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.deepEqual(await temas("precisa de vaga no CMEI"), ["creche"]);
+  assert.deepEqual(await temas("a escola recusou a matrícula do meu filho autista"), ["educespecial"]);
+  assert.deepEqual(await temas("o menino parou de estudar"), ["foraescola"]);
+});
+
 test("saúde mental: crise, transtorno grave e psicoterapia levam a lugares diferentes", async () => {
   const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
     return { hits: a.hits.map((h) => h.pol.id), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])), urg: a.urg.join(" ") }; }, d);
