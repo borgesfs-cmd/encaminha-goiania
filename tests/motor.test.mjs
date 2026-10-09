@@ -304,7 +304,9 @@ test("urgência: dor no peito e parada cardiorrespiratória com 192 e o que faze
   const dor = await ver({ on: ["dorPeito", "mental"] });
   assert.equal(dor.top, "r-cardio", "dor no peito vem antes de tudo");
   assert.match(dor.urg, /não deixe a pessoa ir sozinha nem dirigindo/);
-  assert.equal(dor.rot[0], "urgencia");
+  assert.equal(dor.rot[0], "socorro");
+  assert.match(dor.urg, /193/, "dor no peito: Bombeiros também");
+  assert.match(pcr.urg, /192<\/b> \(SAMU\) ou <b>193<\/b> \(Bombeiros\)/);
   const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
   assert.deepEqual(await temas("meu pai está com dor no peito"), ["dorpeito"]);
   assert.deepEqual(await temas("ele caiu e não respira"), ["pcr"]);
