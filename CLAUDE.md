@@ -76,6 +76,8 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - Educação: Enem e isenção da taxa, Prouni, Fies e Fies Social, Sisu e cotas, ProBem (OVG), assistência estudantil, EJA e Encceja.
 - Estadual: Mães de Goiás, Goiás + Inclusivo, Dignidade, Goiás Por Elas, Aluguel Social (Agehab), Passe Livre Estudantil, Aprendiz do Futuro, CIPTEA, Passe Livre PcD, Passaporte da Pessoa Idosa, Crédito Social, 2ª via de registro civil, alto custo (Cemac Juarez Barbosa).
 - Dependências: álcool e outras drogas (CAPS AD, Credeq, Unidade de Acolhimento, regras da internação involuntária pela Lei 13.840/2019), apostas e bets (autoexclusão centralizada no gov.br, cuidado no SUS e Meu SUS Digital, dívidas, bloqueio de beneficiários pela Portaria SPA/MF 2.217/2025 em discussão no STF), jogos eletrônicos (UBS, CAPSij, ECA Digital).
+- Gestante (`r-gest` e pergunta "Sobre a gestação"): pré-natal, Rede Nascer 155, vinculação à maternidade, maternidades com urgência 24h por município (`places("maternidade")`), acompanhante, salário-maternidade, Meninas de Luz; adolescente (sigilo; menor de 14 = estupro de vulnerável). Situações: `gestAlto` (alto risco, faixa de alerta), `posParto` (Lei 14.721/2023), `entregaAdocao` (Entrega Legal, Juizado da Infância), `lutoPerinatal` (Lei municipal 11.303/2024).
+- Apoio psicossocial e dependências: grupos AA, NA, Al-Anon e Amor-Exigente; CRESM (antigo Credeq) com contato conferido; orientação para checar ONG e comunidade terapêutica.
 - Segurança alimentar (`r-fome`, roteiro por município via `places("comida")`): Restaurante do Bem (Centro, Campinas, Aparecida, Trindade), restaurantes populares de Aparecida e Senador Canedo, cesta pelo CRAS, Banco de Alimentos da OVG (famílias e entidades), Mesa Brasil Sesc e Cozinha Solidária (só entidades), ONG Tio Cleobaldo.
 - Rede: mulher, criança, idoso/PcD, população de rua, saúde mental, gestante, fome, HIV (teste, PEP, PrEP, SAE), Ministério Público (MPGO, MPF, MPT).
 - Goiânia: 26 CRAS/centros de convivência, 5 CREAS, Centro POP, 6 Conselhos Tutelares, rede da mulher, Defensoria, CTA/SAE, UPAs com PEP.
@@ -103,7 +105,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 - `docs/levantamento-2026-10-08.md`: políticas, rede, ONGs, instituições de ensino e demandas psicossociais, com fonte e grau de confiança de cada item.
 
 ## Pendências conhecidas
-- Lista de UBS (importar do CNES/DataSUS). CAPS de Goiânia entraram em 09/10/2026 (vários "A conferir": telefones divergem entre páginas da Prefeitura); faltam CAPS AD III Ipê e os CAPS de Aparecida e da RMG. Credeq sem endereço e telefone conferidos. Pronto-Socorro Psiquiátrico Wassily Chuc vai mudar de endereço (anúncio de 2026).
+- Lista de UBS (importar do CNES/DataSUS). CAPS de Goiânia entraram em 09/10/2026 (vários "A conferir": telefones divergem entre páginas da Prefeitura); faltam CAPS AD III Ipê e os CAPS de Aparecida e da RMG. Pronto-Socorro Psiquiátrico Wassily Chuc vai mudar de endereço (anúncio de 2026).
 - Não encontrados no levantamento: clínicas-escola de UNIP, Universo, Estácio e Unialfa; Bento Cottolengo; núcleo de enfrentamento ao tráfico de pessoas de Goiás; endereço da Defensoria Pública da União em Goiânia.
 - Acompanhar no STF (ADI 7721) o bloqueio de bets para beneficiários do Bolsa Família e do BPC.
 - Quadro "Falta uma resposta": `CAMPOS[c].nec` diz em que assuntos vale cobrar renda ou idade.

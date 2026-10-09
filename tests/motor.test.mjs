@@ -235,6 +235,27 @@ test("educação por etapa: creche, fundamental, médio, educação especial e f
   assert.deepEqual(await temas("o menino parou de estudar"), ["foraescola"]);
 });
 
+test("gestante: pré-natal, maternidade, Rede Nascer, alto risco, entrega legal, luto e pós-parto", async () => {
+  const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
+    return { hits: Object.fromEntries(a.hits.map((h) => [h.pol.id, h.why])), rot: a.roteiro.map((s) => s.k), urg: a.urg.join(" "), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])) }; }, d);
+  const g = await ver({ on: ["gest"], trab: "desempregado" });
+  assert.deepEqual(g.rot.filter((k) => ["ubs", "nascer", "cras", "inss"].includes(k)), ["ubs", "cras", "nascer", "inss"].filter((k) => g.rot.includes(k)));
+  assert.ok(g.rot.includes("nascer") && g.rot.includes("inss"));
+  assert.deepEqual(g.lugares.nascer, ["rede-nascer"]);
+  assert.match((await ver({ on: ["gest"], idade: 0 })).hits["r-gest"], /estupro de vulnerável/);
+  assert.match((await ver({ on: ["gest"], idade: 16 })).hits["r-gest"], /sigilo/);
+  const alto = await ver({ on: ["gest", "gestAlto"] });
+  assert.ok("r-gestalto" in alto.hits);
+  assert.match(alto.urg, /192/);
+  assert.deepEqual((await ver({ on: ["entregaAdocao"] })).lugares.jij, ["jij-gyn", "dpe"]);
+  assert.ok((await ver({ on: ["lutoPerinatal"] })).rot.includes("inss"));
+  assert.ok((await ver({ on: ["posParto"] })).rot.includes("clinica"));
+  const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
+  assert.deepEqual(await temas("ela quer entregar o bebê para adoção"), ["entrega"]);
+  assert.ok((await temas("teve depressão pós-parto")).includes("pospart"));
+  assert.deepEqual(await temas("o bebê nasceu morto"), ["lutoperinatal"]);
+});
+
 test("saúde mental: crise, transtorno grave e psicoterapia levam a lugares diferentes", async () => {
   const ver = (d) => page.evaluate((d) => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil(d));
     return { hits: a.hits.map((h) => h.pol.id), rot: a.roteiro.map((s) => s.k), lugares: Object.fromEntries(a.roteiro.map((s) => [s.k, s.lugares.map((l) => l.id || l.nome)])), urg: a.urg.join(" ") }; }, d);
