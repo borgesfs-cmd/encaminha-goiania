@@ -138,7 +138,7 @@ test("B2. Cobertura: toda política aparece em algum perfil (aleatório ou dirig
       { idade: 70, pessoas: 2, renda: 1000 }, { on: ["tea"] }, { on: ["pcd"], pessoas: 1, renda: 300 }, { on: ["estMedio"], pessoas: 4, renda: 800 },
       { on: ["aluguel"], pessoas: 2, renda: 800 }, { on: ["pcd17", "c06"], pessoas: 4, renda: 200 },
       { on: ["fome"] }, // vem do assunto "Comida", não de uma opção
-      { on: ["pcr"] }, { on: ["dorPeito"] }, { on: ["resgate"] }, // vêm só dos atalhos de urgência
+      { on: ["pcr"] }, { on: ["dorPeito"] }, { on: ["resgate"] }, { on: ["socorros"] }, // vêm só dos atalhos de urgência
       { on: ["aposentar", "incapaz", "sequela", "morte", "preso", "maternidade", "contribuir"], trab: "nao", pessoas: 2, renda: 1000 },
       { trab: "formal", pessoas: 3, renda: 1800, on: ["c714"] },
     ];
@@ -256,6 +256,12 @@ test("E1. Celular de 360px: nenhuma tela rola para o lado", async () => {
     await p.click(`.case[data-case="${k}"]`);
     await p.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
     await semRolagemLateral(p, "plano " + k);
+  }
+  for (const k of await p.evaluate(() => window.EncaminhaMotor._dados.URGENCIAS.map((u) => u.k))) {
+    await p.goto(PAGE, { waitUntil: "domcontentloaded" });
+    await p.click(`.tile[data-urg="${k}"]`);
+    await p.evaluate(() => document.querySelectorAll("details").forEach((d) => (d.open = true)));
+    await semRolagemLateral(p, "urgência " + k);
   }
   await p.click("#tab-rel");
   await p.click("#relDemoBtn");

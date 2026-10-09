@@ -64,9 +64,17 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
   - `mentalGrave` (transtorno grave ou persistente) → `r-caps`: CAPS da região sem encaminhamento (`places("caps")`: por região de Goiânia, CAPSi abaixo de 18 anos, CAPS AD com drogas).
   - `mental` (sofrimento sem crise, quer psicoterapia) → `r-mental`: UBS e clínicas-escola (`places("clinica")`). Explica que CRAS e CREAS não fazem psicoterapia. Some quando há `mentalGrave` ou `crisePsiq`.
 - Bombeiros (`resgate`): atalho de urgência "Incêndio, acidente ou resgate (Bombeiros)" e tema do pedido livre; faixa com 193, card `r-resgate` (quando ligar, o que dizer, o que fazer enquanto espera) logo depois de `r-cardio`; serviço `193`.
-- Dor no peito (`dorPeito`) e parada cardiorrespiratória (`pcr`): atalhos de urgência e temas do pedido livre; faixa com 192 (SAMU) ou 193 (Bombeiros), sinais de infarto (também os atípicos), RCP só com as mãos (100 a 120 por minuto, 5 a 6 cm) e DEA; card `r-cardio` em primeiro lugar, roteiro no lugar `socorro` (SAMU e Bombeiros).
+- **Urgências revisadas em 09/10/2026** (`docs/revisao-urgencias-2026-10-09.md`, com fonte e confiança de cada item). Fluxo com os Bombeiros:
+  - parada: 192 ou 193, o que atender primeiro;
+  - casos clínicos (dor no peito, AVC, convulsão): 192 primeiro e 193 se não atender, porque a SES-GO diz que o 193 e o 190 repassam o socorro médico ao 192;
+  - trauma, incêndio, salvamento: 193.
+  Não usar o 199 em Goiânia (não confirmado): a Defesa Civil municipal atende pelo 153. Não escrever que SAMU e Bombeiros "acionam um ao outro".
+- Primeiros socorros (`socorros`, card `r-socorros`): atalho de urgência e tema do pedido livre, com engasgo (AHA 2025), convulsão, queimadura, intoxicação (CIATox), hipoglicemia, alergia grave, afogamento e sangramento.
+- Dor no peito (`dorPeito`) e parada cardiorrespiratória (`pcr`): atalhos de urgência e temas do pedido livre; faixa com 192 (SAMU) ou 193 (Bombeiros) na parada, e 192 primeiro na dor no peito, sinais de infarto (também os atípicos), RCP só com as mãos (100 a 120 por minuto, 5 a 6 cm) e DEA; card `r-cardio` em primeiro lugar, roteiro no lugar `socorro` (SAMU e Bombeiros).
 - Crise suicida (chips "Pensamento de suicídio" e "Tentativa de suicídio ou autolesão recente"): faixa de segurança com 192, 188 e CIATox (0800 646 4350); card "Manejo da crise suicida" aberto, com como perguntar, sinais de risco alto e plano de segurança; roteiro com CVV agora, pronto atendimento agora (só na tentativa) e CAPS ou UBS hoje ou amanhã. Tentativa e autolesão: notificação compulsória em até 24h pelo serviço de saúde (Portaria de Consolidação nº 4/2017; Lei 13.819/2019).
-- `places(kind, perfil)` escolhe serviços pelo município e pela região (Conselho Tutelar e CREAS de Goiânia).
+- PEP: em Goiânia, só as 7 UPAs e CAIS da lista da SMS (dez/2025); no interior, o HDT. Contracepção de emergência: até 5 dias (120h); PEP: até 72h.
+- Notificação: tentativa de suicídio em 24h; autolesão sem intenção de morrer, semanal. Internação involuntária: "a pedido de terceiro" (Lei 10.216), regras próprias para drogas (Lei 11.343, art. 23-A).
+- `places(kind, perfil)` escolhe serviços pelo município e pela região (Conselho Tutelar com o plantão I ou II e CREAS de Goiânia).
 
 ## Estrutura dos registros
 - **Política**: `id, nome, esf (nac|est|mun|rede), val, test(), flow[], docs[], html (extra opcional), where, extra[] (ids de serviços)`, mais `ROTA[id]` e `CURTO[id]` (nome curto)
@@ -106,6 +114,7 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
 
 ## Levantamentos
 - `docs/levantamento-2026-10-08.md`: políticas, rede, ONGs, instituições de ensino e demandas psicossociais, com fonte e grau de confiança de cada item.
+- `docs/revisao-urgencias-2026-10-09.md`: revisão das urgências e emergências, com o que mudou, as fontes e a lista do que ainda falta conferir.
 
 ## Pendências conhecidas
 - Lista de UBS (importar do CNES/DataSUS). CAPS de Goiânia entraram em 09/10/2026 (vários "A conferir": telefones divergem entre páginas da Prefeitura); faltam CAPS AD III Ipê e os CAPS de Aparecida e da RMG. Pronto-Socorro Psiquiátrico Wassily Chuc vai mudar de endereço (anúncio de 2026).

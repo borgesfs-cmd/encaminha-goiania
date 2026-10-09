@@ -313,6 +313,41 @@ test("urgência: dor no peito e parada cardiorrespiratória com 192 e o que faze
   assert.deepEqual(await temas("asma, não respira bem à noite"), []);
 });
 
+test("revisão de urgências (09/10/2026): fluxos conferidos com fonte", async () => {
+  const r = await page.evaluate(() => {
+    const M = window.EncaminhaMotor, D = M._dados, av = (d) => M.avaliar(M.perfil(d));
+    const pol = (id) => D.P.find((p) => p.id === id), tema = (k) => D.TEMAS.find((t) => t.k === k);
+    const rot = (d, k) => (av(d).roteiro.find((s) => s.k === k) || { lugares: [] });
+    const dor = av({ on: ["dorPeito"] }).urg.join(" ");
+    return {
+      dor, socorros: av({ on: ["socorros"] }), atalho: D.URGENCIAS.some((u) => u.k === "socorros"),
+      pepGyn: JSON.stringify(av({ mun: "Goiânia", on: ["pep"] }).roteiro), pepTri: JSON.stringify(av({ mun: "Trindade", on: ["pep"] }).roteiro),
+      ct: JSON.stringify(av({ mun: "Goiânia", reg: "noroeste", on: ["violCrianca"] }).roteiro),
+      vs: tema("violsexual").urg + tema("violsexual").passos.join(" "),
+      crise: pol("crise").flow.join(" "), psiq: pol("r-psiq").flow.join(" "), ad: pol("ad").flow.join(" "),
+      desastre: tema("desastre").urg + tema("desastre").passos.join(" "),
+      samu: D.S.find((s) => s.id === "samu").obs, hugo: D.S.find((s) => s.id === "hugo").tel.join(" "),
+    };
+  });
+  assert.match(r.dor, /192<\/b> \(SAMU\) já; se não conseguir falar com o 192, ligue <b>193/, "dor no peito: 192 primeiro, 193 se não atender");
+  assert.ok(r.atalho);
+  assert.equal(r.socorros.hits[0].pol.id, "r-socorros");
+  assert.match(r.socorros.hits[0].pol.flow.join(" "), /5 tapas fortes nas costas.*5 compressões/);
+  assert.match(r.pepGyn, /pep-campinas/);
+  assert.doesNotMatch(r.pepGyn, /"hdt"/, "em Goiânia a PEP é na rede municipal");
+  assert.match(r.pepTri, /hdt/, "no interior o HDT é referência");
+  assert.match(r.ct, /ct-plantao2/, "Noroeste: Plantão II à noite e no fim de semana");
+  assert.match(r.vs, /até 5 dias/);
+  assert.match(r.vs, /72 horas/);
+  assert.match(r.crise, /autolesão sem intenção de morrer também é notificada, no prazo semanal/);
+  assert.match(r.psiq, /a pedido de outra pessoa/);
+  assert.match(r.psiq, /distância segura/);
+  assert.match(r.ad, /máximo 90 dias/);
+  assert.doesNotMatch(r.desastre, /\b199\b/, "199 não confirmado em Goiânia");
+  assert.match(r.samu, /Centro-Sul/);
+  assert.match(r.hugo, /3201-4455/);
+});
+
 test("urgência: Bombeiros 193 para incêndio, acidente e resgate", async () => {
   const r = await page.evaluate(() => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil({ on: ["resgate", "mental"] }));
     return { top: a.hits[0].pol.id, rot: a.roteiro.map((s) => s.k), urg: a.urg.join(" "), atalho: M._dados.URGENCIAS.some((u) => u.k === "resgate") }; });
