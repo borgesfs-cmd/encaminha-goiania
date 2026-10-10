@@ -4,7 +4,7 @@ App de orientação e encaminhamento para políticas públicas (nacionais, do Es
 
 Público principal: o **profissional** que faz o encaminhamento, quase sempre pelo celular, com internet. As orientações precisam ser claras e didáticas.
 
-O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependências). O desenho da arquitetura está em `docs/mapa-encaminha.html`. Testes em `tests/` (`npm install` e `npm test`; usam Playwright e o Chromium).
+O app é um único arquivo: `index.html` (HTML + CSS + JS puro, sem dependências). Logo, ícones e imagem de prévia do link ficam em `site/` (logo: caminho amarelo-ipê até um marcador, sobre o verde do cerrado; o mesmo SVG está no topo do app). `scripts/montar-site.mjs` copia essa pasta e acrescenta as etiquetas de prévia (`og:image` com endereço completo, `URL_SITE`) e o manifesto para "Adicionar à tela inicial". Teste: `tests/site.test.mjs`. O desenho da arquitetura está em `docs/mapa-encaminha.html`. Testes em `tests/` (`npm install` e `npm test`; usam Playwright e o Chromium).
 
 ## Regras que não mudam
 

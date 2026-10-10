@@ -65,6 +65,8 @@ a{color:var(--green)}
 header.top{border-bottom:1px solid var(--line);background:var(--surface)}
 header.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between;padding-block:18px 0}
 .brand h1{font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.01em}
+.brand h1{display:flex;align-items:center;gap:.4em}
+.brand h1 .logo{width:1.25em;height:1.25em;flex:none;border-radius:.28em;box-shadow:0 0 0 1px var(--line)}
 .brand h1 i{font-style:normal;background:linear-gradient(transparent 62%,var(--ipe) 62%)}
 .brand p{margin:4px 0 14px;color:var(--muted);max-width:60ch}
 @media (max-width:640px){.brand p{display:none}.brand h1{margin-bottom:8px}header.top .wrap{padding-block:12px 0}}
@@ -393,7 +395,7 @@ footer .wrap{padding-block:18px}
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <h1>Encaminha <i>Goiânia</i></h1>
+      <h1><svg class="logo" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><rect width="512" height="512" rx="112" fill="#16261F"/><path d="M138 396 C 204 396, 196 322, 262 322 S 322 300, 336 280" fill="none" stroke="#E9B10C" stroke-width="32" stroke-linecap="round"/><circle cx="138" cy="396" r="36" fill="#F5F6F1"/><circle cx="138" cy="396" r="15" fill="#16261F"/><path d="M336 104c49.7 0 90 40.3 90 90 0 68-90 168-90 168s-90-100-90-168c0-49.7 40.3-90 90-90z" fill="#E9B10C"/><circle cx="336" cy="194" r="35" fill="#16261F"/></svg><span>Encaminha <i>Goiânia</i></span></h1>
       <p>Diga o que a pessoa precisa e veja onde ir, o que levar e a que ela tem direito. Goiânia e região metropolitana.</p>
     </div>
     <nav class="tabs" role="tablist" aria-label="Seções">
