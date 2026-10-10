@@ -63,7 +63,10 @@ O estado do atendimento fica em `E` (só na memória da página; nada é guardad
   - `crisePsiq` (crise agora: surto, vozes, agitação, confusão) → `r-psiq`: faixa de segurança com 192 e o Pronto-Socorro Psiquiátrico Wassily Chuc (Goiânia) ou UPA/CAIS 24h (região); lembra que confusão súbita pode ser causa clínica; depois CAPS. Também é atalho de urgência.
   - `mentalGrave` (transtorno grave ou persistente) → `r-caps`: CAPS da região sem encaminhamento (`places("caps")`: por região de Goiânia, CAPSi abaixo de 18 anos, CAPS AD com drogas).
   - `mental` (sofrimento sem crise, quer psicoterapia) → `r-mental`: UBS e clínicas-escola (`places("clinica")`). Explica que CRAS e CREAS não fazem psicoterapia. Some quando há `mentalGrave` ou `crisePsiq`.
-- Bombeiros (`resgate`): atalho de urgência "Incêndio, acidente ou resgate (Bombeiros)" e tema do pedido livre; faixa com 193, card `r-resgate` (quando ligar, o que dizer, o que fazer enquanto espera) logo depois de `r-cardio`; serviço `193`.
+- Bombeiros em dois serviços, sem misturar:
+  - **Resgate de vítimas** (`resgate`, card `r-resgate`, contato `193-resgate`): acidente, queda, afogamento, choque elétrico, pessoa presa nas ferragens. Liga para 193 (resgate) ou 192, o que atender primeiro. É o contato que aparece nos planos de saúde: parada, dor no peito, primeiros socorros e emergência médica.
+  - **Incêndio e salvamento** (`incendio`, card `r-incendio`, contato `193`): incêndio, gás, desabamento, pessoa presa em elevador ou altura, Defesa Civil.
+  Cada um tem atalho de urgência e tema do pedido livre. Nunca use o contato `193` (incêndio) em plano de saúde.
 - **Urgências revisadas em 09/10/2026** (`docs/revisao-urgencias-2026-10-09.md`, com fonte e confiança de cada item). Fluxo com os Bombeiros:
   - parada: 192 ou 193, o que atender primeiro;
   - casos clínicos (dor no peito, AVC, convulsão): 192 primeiro e 193 se não atender, porque a SES-GO diz que o 193 e o 190 repassam o socorro médico ao 192;

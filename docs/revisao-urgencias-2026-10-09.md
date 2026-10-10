@@ -41,6 +41,17 @@ Regra usada: só entra no app o que tem fonte oficial ou diretriz reconhecida.
 | Risco estrutural, enchente (Goiânia) | 193 se há risco agora; Defesa Civil de Goiânia pelo 153 (emergência) ou (62) 3416-2696 (vistoria) | Prefeitura de Goiânia (jan/2025) |
 | Intoxicação sem sinais graves | CIATox Goiás 0800 646 4350 (24h) | SES-GO |
 
+## Ajuste de 10/10/2026: Bombeiros em dois serviços
+
+Os planos de saúde mostravam o cartão dos Bombeiros com a descrição de incêndio. Agora são dois contatos:
+
+| Contato | Quando | Onde aparece |
+|---|---|---|
+| Bombeiros 193: resgate e socorro pré-hospitalar | Vítima de acidente, queda, afogamento, choque elétrico, parada cardíaca | Parada, dor no peito, primeiros socorros, emergência médica, acidente com vítima |
+| Bombeiros 193: incêndio, salvamento e Defesa Civil | Incêndio, gás, desabamento, pessoa presa em elevador ou altura | Incêndio e desastre |
+
+Base: Manual de Resgate Pré-Hospitalar do CBMGO; Governo de Goiás (atendimento emergencial de resgate do CBM em Goiânia e Aparecida); Lei estadual 18.305/2013.
+
 ## O que foi corrigido
 
 | Item | Antes | Depois | Fonte | Confiança |

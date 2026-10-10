@@ -138,7 +138,7 @@ test("B2. Cobertura: toda política aparece em algum perfil (aleatório ou dirig
       { idade: 70, pessoas: 2, renda: 1000 }, { on: ["tea"] }, { on: ["pcd"], pessoas: 1, renda: 300 }, { on: ["estMedio"], pessoas: 4, renda: 800 },
       { on: ["aluguel"], pessoas: 2, renda: 800 }, { on: ["pcd17", "c06"], pessoas: 4, renda: 200 },
       { on: ["fome"] }, // vem do assunto "Comida", não de uma opção
-      { on: ["pcr"] }, { on: ["dorPeito"] }, { on: ["resgate"] }, { on: ["socorros"] }, // vêm só dos atalhos de urgência
+      { on: ["pcr"] }, { on: ["dorPeito"] }, { on: ["resgate"] }, { on: ["incendio"] }, { on: ["socorros"] }, // vêm só dos atalhos de urgência
       { on: ["aposentar", "incapaz", "sequela", "morte", "preso", "maternidade", "contribuir"], trab: "nao", pessoas: 2, renda: 1000 },
       { trab: "formal", pessoas: 3, renda: 1800, on: ["c714"] },
     ];

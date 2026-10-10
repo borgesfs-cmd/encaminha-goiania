@@ -348,16 +348,35 @@ test("revisão de urgências (09/10/2026): fluxos conferidos com fonte", async (
   assert.match(r.hugo, /3201-4455/);
 });
 
-test("urgência: Bombeiros 193 para incêndio, acidente e resgate", async () => {
-  const r = await page.evaluate(() => { const M = window.EncaminhaMotor, a = M.avaliar(M.perfil({ on: ["resgate", "mental"] }));
-    return { top: a.hits[0].pol.id, rot: a.roteiro.map((s) => s.k), urg: a.urg.join(" "), atalho: M._dados.URGENCIAS.some((u) => u.k === "resgate") }; });
-  assert.ok(r.atalho);
-  assert.equal(r.top, "r-resgate");
-  assert.match(r.urg, /193/);
-  assert.equal(r.rot[0], "bombeiros");
+test("urgência: Bombeiros separados em resgate de vítimas e incêndio ou salvamento", async () => {
+  const r = await page.evaluate(() => {
+    const M = window.EncaminhaMotor, D = M._dados, av = (d) => M.avaliar(M.perfil(d)), lug = (a) => JSON.stringify(a.roteiro);
+    const res = av({ on: ["resgate", "mental"] }), inc = av({ on: ["incendio"] }), pcr = av({ on: ["pcr"] }), soc = av({ on: ["socorros"] });
+    return { atalhos: D.URGENCIAS.map((u) => u.k), topRes: res.hits[0].pol.id, topInc: inc.hits[0].pol.id,
+      urgRes: res.urg.join(" "), urgInc: inc.urg.join(" "), rotRes: lug(res), rotInc: lug(inc), rotPcr: lug(pcr),
+      extraPcr: pcr.hits[0].pol.extra, extraSoc: soc.hits[0].pol.extra,
+      resgate: D.S.find((s) => s.id === "193-resgate").obs, fogo: D.S.find((s) => s.id === "193").obs };
+  });
+  assert.ok(r.atalhos.includes("resgate") && r.atalhos.includes("incendio"));
+  assert.equal(r.topRes, "r-resgate");
+  assert.equal(r.topInc, "r-incendio");
+  assert.match(r.urgRes, /193<\/b> \(Bombeiros, resgate\) ou <b>192/);
+  assert.doesNotMatch(r.urgRes, /Incêndio/);
+  assert.match(r.urgInc, /193/);
+  assert.match(r.rotRes, /193-resgate/);
+  assert.doesNotMatch(r.rotRes, /"id":"193"/, "acidente com vítima mostra o resgate, não o cartão de incêndio");
+  assert.match(r.rotInc, /"id":"193"/);
+  assert.match(r.rotPcr, /193-resgate/);
+  assert.doesNotMatch(r.rotPcr, /"id":"193"/, "parada mostra o resgate, não o cartão de incêndio");
+  assert.ok(r.extraPcr.includes("193-resgate") && !r.extraPcr.includes("193"));
+  assert.ok(r.extraSoc.includes("193-resgate") && !r.extraSoc.includes("193"));
+  assert.match(r.resgate, /pré-hospitalar/);
+  assert.doesNotMatch(r.resgate, /^Incêndio/);
+  assert.match(r.fogo, /Incêndio/);
   const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
   assert.ok((await temas("acidente de trânsito na rua")).includes("resgate"));
-  assert.ok((await temas("tem cheiro de gás em casa")).includes("resgate"));
+  assert.ok((await temas("tem cheiro de gás em casa")).includes("incendio"));
+  assert.ok(!(await temas("tem cheiro de gás em casa")).includes("resgate"));
   assert.deepEqual(await temas("quero o auxílio acidente"), ["inss"]);
 });
 
@@ -413,7 +432,7 @@ test("pedido livre: reconhece AVC e reabilitação sem confundir palavras pareci
   const temas = (t) => page.evaluate((t) => window.EncaminhaMotor.temasDe(t).map((x) => x.k), t);
   assert.deepEqual(await temas("Meu pai está tendo um AVC"), ["avc"]);
   assert.deepEqual(await temas("preciso de fisioterapia depois da cirurgia"), ["reabilitacao"]);
-  assert.deepEqual(await temas("sofreu um acidente de moto"), ["emergencia"]);
+  assert.deepEqual(await temas("sofreu um acidente de moto"), ["emergencia", "resgate"]);
   assert.deepEqual(await temas("estou absolutamente cansada"), []);
   const sug = await page.evaluate(() => window.EncaminhaMotor.necSugeridas("ela apanha do marido e falta comida", new Set()));
   assert.deepEqual(sug.sort(), ["comida", "protecao"]);

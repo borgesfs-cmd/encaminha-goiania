@@ -729,7 +729,8 @@ const S=[
  {id:"inep",tipo:"Educação",mun:"Nacional",nome:"Inep: Enem e Encceja",site:"https://www.gov.br/inep",obs:"Isenção da taxa do Enem (em abril), inscrições e Encceja, na Página do Participante, com a conta gov.br."},
  {id:"ovg",tipo:"Educação",mun:"Estado",nome:"ProBem, OVG (bolsas universitárias do Estado)",tel:["Região metropolitana (62) 3270-8500","Interior 0800 062 9413","WhatsApp (62) 99641-6090"],site:"https://www.ovg.org.br",obs:"Inscrições por edital, uma vez por semestre, só pelo site da OVG. Seleção pelo CadÚnico. Fonte: Governo de Goiás e imprensa, 2026."},
  // Saúde
- {id:"193",tipo:"Nacional",mun:"Estado",nome:"Corpo de Bombeiros Militar de Goiás, 193",tel:["193"],site:"https://www.bombeiros.go.gov.br",obs:"Incêndio, busca, resgate e salvamento (acidente com vítima, pessoa presa em ferragens, em altura ou na água), atendimento pré-hospitalar em Goiânia e Aparecida e coordenação da Defesa Civil estadual. Em casos clínicos, o pedido de socorro médico é repassado ao 192. Fonte: Lei estadual 18.305/2013, Manual de Resgate Pré-Hospitalar do CBMGO e SES-GO, consultados em 09/10/2026."},
+ {id:"193-resgate",tipo:"Saúde",mun:"Estado",nome:"Bombeiros 193: resgate e socorro pré-hospitalar",tel:["193"],hor:"24h",site:"https://www.bombeiros.go.gov.br",obs:"Viaturas de resgate do Corpo de Bombeiros para atendimento pré-hospitalar de vítimas: acidente de trânsito, queda, afogamento, choque elétrico e parada cardíaca. Em Goiânia e Aparecida, o resgate é feito pelo Batalhão de Salvamento em Emergência. Pedidos de socorro clínico que chegam ao 193 são repassados ao médico regulador do 192. Fonte: Manual de Resgate Pré-Hospitalar do CBMGO, Governo de Goiás (atendimento emergencial de resgate em Goiânia e Aparecida) e SES-GO, consultados em 09/10/2026."},
+ {id:"193",tipo:"Nacional",mun:"Estado",nome:"Bombeiros 193: incêndio, salvamento e Defesa Civil",tel:["193"],hor:"24h",site:"https://www.bombeiros.go.gov.br",obs:"Incêndio, desabamento, busca e salvamento (pessoa presa em elevador, altura, poço ou na água) e coordenação da Defesa Civil estadual. Para socorrer vítimas, os Bombeiros também têm viaturas de resgate (veja Bombeiros 193: resgate). Fonte: Lei estadual 18.305/2013 e Manual de Resgate Pré-Hospitalar do CBMGO, consultados em 09/10/2026."},
  {id:"defesacivil-gyn",tipo:"Nacional",mun:"Goiânia",nome:"Defesa Civil de Goiânia (Guarda Civil Metropolitana)",tel:["Emergência 153","Vistoria (62) 3416-2696"],email:"cgpdc@goiania.go.gov.br",hor:"Vistoria: seg a sex, 8h às 17h",obs:"Risco de desabamento, enchente, deslizamento e imóvel abalado. Alertas por SMS: mande o CEP para 40199. Fonte: Prefeitura de Goiânia (jan/2025), consultado em 09/10/2026."},
  {id:"samu",tipo:"Saúde",mun:"Região metropolitana",nome:"SAMU 192",tel:["192"],hor:"24h, gratuito",obs:"Emergência médica com risco de vida. Um médico regulador avalia o caso pelo telefone e decide o envio da ambulância. Goiânia e Trindade são reguladas pela central da Região Central (em Goiânia); Aparecida e Senador Canedo, pela central da Região Centro-Sul (em Aparecida). O número é o mesmo em todos. Fonte: SES-GO, consultado em 09/10/2026."},
  {id:"hugo",tipo:"Saúde",mun:"Goiânia",nome:"HUGO, Hospital Estadual de Urgências de Goiás Dr. Valdemiro Cruz",end:"Av. 31 de Março, esq. com a 5ª Radial, Setor Pedro Ludovico, Goiânia, CEP 74820-300",tel:["Recepção 24h (62) 3201-4455"],obs:"Urgência e trauma de alta complexidade. O relatório de 2025 do hospital fala em atendimento regulado e referenciado: em urgência, chame o 192 ou o 193, que levam ao hospital certo. Fonte: SES-GO e relatório anual HUGO 2025, consultados em 09/10/2026."},
@@ -874,7 +875,8 @@ const URGENCIAS=[
  {k:"crisePsiq",t:"Crise psiquiátrica ou surto",nec:"mental"},
  {k:"dorPeito",t:"Dor no peito",nec:"saude"},
  {k:"pcr",t:"Desmaiou e não respira (parada cardíaca)",nec:"saude"},
- {k:"resgate",t:"Incêndio, acidente ou resgate (Bombeiros)",nec:"saude"},
+ {k:"resgate",t:"Acidente, queda ou afogamento com vítima (resgate)",nec:"saude"},
+ {k:"incendio",t:"Incêndio, gás, desabamento ou pessoa presa (Bombeiros)",nec:"moradia"},
  {k:"socorros",t:"Engasgo, convulsão, queimadura, intoxicação ou alergia grave",nec:"saude"},
  {k:"violMulher",t:"Violência contra mulher acontecendo",nec:"protecao"},
  {k:"violCrianca",t:"Criança em perigo",nec:"protecao"},
@@ -947,11 +949,11 @@ const TEMAS=[
   servicos:["samu"]},
  {k:"dorpeito",t:"Dor no peito",on:["dorPeito"],palavras:["dor no peito","dor toracica","aperto no peito","pressao no peito","infarto","enfarte","ataque cardiaco"]},
  {k:"pcr",t:"Parada cardiorrespiratória",on:["pcr"],palavras:["parada cardiaca","parada cardiorrespiratoria","parou de respirar","coracao parou","desmaiou e nao respira","caiu e nao respira"]},
- {k:"emergencia",t:"Emergência médica",urg:"Se há risco de vida agora: ligue <b>192</b> (SAMU). Acidente, incêndio, afogamento ou pessoa presa: <b>193</b> (Bombeiros).",
+ {k:"emergencia",t:"Emergência médica",urg:"Se há risco de vida agora: ligue <b>192</b> (SAMU). Acidente ou afogamento com vítima: <b>193</b> (resgate dos Bombeiros) ou <b>192</b>.",
   palavras:["falta de ar","desmai","sangramento","acidente","inconsciente","overdose"],
   exceto:["auxilio acidente"],
-  passos:["Risco de vida: ligar 192 (SAMU). O médico regulador orienta pelo telefone e decide o envio da ambulância.","Acidente, queda com vítima, incêndio, afogamento ou pessoa presa: 193 (Bombeiros). Se você ligou para o número trocado, o pedido de socorro médico é repassado ao 192 (SES-GO).","Sem risco de vida, mas precisa de atendimento hoje: UPA ou CAIS 24h.","Intoxicação ou picada de animal: CIATox Goiás 0800 646 4350, 24h. Não provoque vômito; guarde a embalagem."],
-  servicos:["samu","193","ciatox"]},
+  passos:["Risco de vida: ligar 192 (SAMU). O médico regulador orienta pelo telefone e decide o envio da ambulância.","Acidente, queda ou afogamento com vítima: 193 (resgate dos Bombeiros) ou 192 (SAMU), o que atender primeiro. Pedidos de socorro clínico que chegam ao 193 são repassados ao 192 (SES-GO).","Incêndio, desabamento ou pessoa presa: 193 (Bombeiros).","Sem risco de vida, mas precisa de atendimento hoje: UPA ou CAIS 24h.","Intoxicação ou picada de animal: CIATox Goiás 0800 646 4350, 24h. Não provoque vômito; guarde a embalagem."],
+  servicos:["samu","193-resgate","ciatox"]},
  {k:"primeirossocorros",t:"Engasgo, convulsão, queimadura, intoxicação ou alergia grave",on:["socorros"],palavras:["engasg","convuls","ataque epilet","crise epilet","queimadura","queimou","se queimou","intoxica","envenen","tomou veneno","bebeu produto","picada de cobra","picada de escorpiao","escorpiao","hipoglicemia","glicose baixa","alergia grave","anafila","garganta fechando"]},
  {k:"reabilitacao",t:"Reabilitação: fisioterapia, fono, órteses e próteses",
   palavras:["reabilita","fisioterap","fisio","pos cirurg","pos-cirurg","sequela","protese","ortese","cadeira de rodas","andador","fonoaudio","terapia ocupacional","amputa","lesao medular"],
@@ -981,7 +983,8 @@ const TEMAS=[
   palavras:["divida","nome sujo","negativad","serasa","juros","emprestimo","consignado","golpe","fraude","cobranca","cartao de credito","superendivid"],
   passos:["Procon Goiás: reclamação e renegociação de dívidas (Núcleo de Apoio aos Superendividados).","Negociação online: consumidor.gov.br.","Golpe ou fraude: registrar boletim de ocorrência e avisar o banco na hora.","Desconto indevido na aposentadoria: Meu INSS e Defensoria."],
   servicos:["procon","dpe"]},
- {k:"resgate",t:"Acidente ou resgate: Bombeiros",on:["resgate"],palavras:["acidente de transito","atropel","afogad","afogando","choque eletrico","vazamento de gas","cheiro de gas","presa nas ferragens","preso nas ferragens","bombeiro"]},
+ {k:"resgate",t:"Acidente com vítima: resgate",on:["resgate"],palavras:["acidente de transito","acidente de moto","acidente de carro","atropel","afogad","afogando","choque eletrico","presa nas ferragens","preso nas ferragens","caiu do telhado","caiu da laje"]},
+ {k:"incendio",t:"Incêndio, gás ou pessoa presa: Bombeiros",on:["incendio"],palavras:["pegando fogo","pegou fogo","vazamento de gas","cheiro de gas","preso no elevador","presa no elevador","bombeiro"]},
  {k:"desastre",t:"Enchente, incêndio ou desabamento",urg:"Risco agora: <b>193</b> (Bombeiros). Em Goiânia, a Defesa Civil também atende emergências pelo <b>153</b>.",
   palavras:["enchente","alagamento","incendio","desabamento","desabrigad","deslizamento","perdeu a casa"],
   passos:["Risco agora: Bombeiros 193. Em Goiânia, a Defesa Civil municipal atende emergências pelo 153 (Guarda Civil).","Rachadura, imóvel abalado ou área de risco em Goiânia: vistoria da Defesa Civil, (62) 3416-2696, seg a sex, 8h às 17h. Nos outros municípios, Defesa Civil da prefeitura.","Alertas da Defesa Civil no celular: mande o CEP por SMS para 40199.","Perdeu bens ou a casa: CRAS, para benefício eventual e acolhimento provisório.","Documentos perdidos: 2ª via gratuita de certidão (assunto Documentos)."],
@@ -1664,18 +1667,27 @@ const P=[
    "Família de baixa renda: auxílio funeral (benefício eventual) no CRAS.",
    "Sofrimento intenso, culpa ou ideias de morte: UBS ou CAPS; para conversar a qualquer hora, CVV 188."],
   docs:["Documentos da internação e declaração de óbito, se houver"],where:"",extra:["188","135"]},
- {id:"r-resgate",nome:"Incêndio, acidente e resgate: Bombeiros",esf:"rede",val:"Urgência: Bombeiros 193",
-  test:p=>p.has("resgate")?["enc","Situação de risco à vida ou de resgate: 193 agora. Os Bombeiros atendem incêndio, acidente com vítima, salvamento e resgate."]:null,
-  flow:["Quando ligar 193: incêndio, acidente de trânsito ou queda com vítima, pessoa presa em ferragens, elevador, poço ou altura, afogamento, desabamento, enchente, choque elétrico.",
-   "Ao ligar: dizer o endereço com um ponto de referência, o que aconteceu, quantas pessoas estão feridas e se ainda há risco (fogo, fios, gás). Não desligar até o atendente mandar. Se você ligou para o número trocado, o pedido de socorro médico é repassado ao 192 (SES-GO).",
-   "Proteja-se primeiro. Fumaça: sair abaixado, fechar as portas ao passar, não usar elevador e não voltar para dentro; antes de abrir uma porta, toque nela com as costas da mão e, se estiver quente, não abra. Choque elétrico: desligar a energia antes de tocar na pessoa; se não der, não toque. Fio de alta tensão caído: fique longe e espere os Bombeiros.",
-   "Cheiro de gás: não acenda luz nem fósforo, não ligue nem desligue interruptores e não use o celular dentro do local. Abra portas e janelas, feche o registro se for rápido e seguro, saia e ligue para o 193 do lado de fora.",
-   "Acidente com vítima: não tire o capacete nem mova a pessoa, a não ser que haja fogo ou outro risco maior, ou que ela não respire e precise de massagem no peito. Não improvise colar no pescoço; peça à pessoa acordada que fique parada.",
+ {id:"r-resgate",nome:"Acidente com vítima: resgate e socorro",esf:"rede",val:"Urgência: Bombeiros 193 (resgate) ou SAMU 192",
+  test:p=>p.has("resgate")?["enc","Acidente, queda ou afogamento com vítima: socorro agora pelo 193 (resgate dos Bombeiros) ou pelo 192 (SAMU)."]:null,
+  flow:["Quando chamar: acidente de trânsito, atropelamento, queda, afogamento, choque elétrico ou pessoa presa nas ferragens, com vítima. Ligue 193 (Bombeiros, resgate) ou 192 (SAMU), o que atender primeiro. Em Goiânia e Aparecida, as viaturas de resgate dos Bombeiros fazem o atendimento pré-hospitalar.",
+   "Ao ligar: dizer o endereço com um ponto de referência, o que aconteceu, quantas pessoas estão feridas e se ainda há risco (trânsito, fios, água). Não desligar até o atendente mandar.",
+   "Proteja-se primeiro: sinalize o local do acidente e não entre na água nem perto de fios se não for seguro. Afogamento: jogue algo que boie. Choque elétrico: desligue a energia antes de tocar na pessoa; se não der, não toque.",
+   "Não tire o capacete nem mova a vítima, a não ser que haja fogo ou outro risco maior, ou que ela não respire e precise de massagem no peito. Não improvise colar no pescoço; peça à pessoa acordada que fique parada.",
    "Sangramento forte: aperte firme e direto sobre o ferimento com um pano limpo, sem soltar para olhar. Se não parar e for braço ou perna, o atendente pode orientar um torniquete.",
-   "Choque elétrico, mesmo que a pessoa pareça bem, e mal súbito sem acidente (dor no peito, AVC, convulsão, desmaio): 192 (SAMU).",
+   "A vítima não responde e não respira normalmente: comece a massagem no peito (veja o card de parada cardiorrespiratória). Afogamento: se souber, faça também as respirações.",
+   "Choque elétrico, mesmo que a pessoa pareça bem, precisa de avaliação médica. Mal súbito sem acidente (dor no peito, AVC, convulsão, desmaio): 192 (SAMU)."],
+  html:`<p class="src">Fontes: Manual de Resgate Pré-Hospitalar do CBMGO; Governo de Goiás (atendimento emergencial de resgate do CBM em Goiânia e Aparecida); regulação do SAMU 192 (SES-GO); ILCOR, ERC 2025 e AHA/Cruz Vermelha Americana 2024 (primeiros socorros). Conferido em 09/10/2026.</p>`,
+  docs:["Nenhum documento é exigido para chamar socorro"],where:"",extra:["193-resgate","samu"]},
+ {id:"r-incendio",nome:"Incêndio, gás, desabamento e salvamento: Bombeiros",esf:"rede",val:"Urgência: Bombeiros 193",
+  test:p=>p.has("incendio")?["enc","Risco agora: 193. Os Bombeiros atendem incêndio, desabamento e salvamento de pessoas presas ou em risco."]:null,
+  flow:["Quando ligar 193: incêndio ou fumaça, desabamento, enchente, pessoa presa em elevador, poço ou altura, fio de alta tensão caído. Se houver ferido, avise na ligação: os Bombeiros também mandam o resgate.",
+   "Ao ligar: dizer o endereço com um ponto de referência, o que está acontecendo e se há pessoas no local. Não desligar até o atendente mandar.",
+   "Fumaça: sair abaixado, fechar as portas ao passar, não usar elevador e não voltar para dentro. Antes de abrir uma porta, toque nela com as costas da mão; se estiver quente, não abra.",
+   "Cheiro de gás: não acenda luz nem fósforo, não ligue nem desligue interruptores e não use o celular dentro do local. Abra portas e janelas, feche o registro se for rápido e seguro, saia e ligue para o 193 do lado de fora.",
+   "Fio de alta tensão caído ou choque elétrico: fique longe e não toque na pessoa sem desligar a energia.",
    "Depois: casa atingida por incêndio, enchente ou desabamento. Em Goiânia, a Defesa Civil municipal atende emergências pelo 153 (Guarda Civil) e faz vistoria pelo (62) 3416-2696; nos outros municípios, a Defesa Civil da prefeitura. O CRAS orienta sobre benefício eventual e acolhimento provisório."],
-  html:`<p class="src">Fontes: Lei estadual 18.305/2013 e Manual de Resgate Pré-Hospitalar do CBMGO; regulação do SAMU 192 (SES-GO); ILCOR e AHA/Cruz Vermelha Americana 2024 (primeiros socorros); orientações de Corpos de Bombeiros estaduais para vazamento de gás. Conferido em 09/10/2026.</p>`,
-  docs:["Nenhum documento é exigido para chamar socorro"],where:"",extra:["193","samu","defesacivil-gyn"]},
+  html:`<p class="src">Fontes: Lei estadual 18.305/2013 (competências do CBMGO); NFPA (fumaça e incêndio); orientações de Corpos de Bombeiros estaduais para vazamento de gás; Prefeitura de Goiânia (Defesa Civil). Conferido em 09/10/2026.</p>`,
+  docs:["Nenhum documento é exigido para chamar socorro"],where:"",extra:["193","defesacivil-gyn","193-resgate"]},
  {id:"r-socorros",nome:"Primeiros socorros: o que fazer até o socorro chegar",esf:"rede",val:"Urgência: SAMU 192, Bombeiros 193, CIATox",
   test:p=>p.has("socorros")?["enc","Urgência: chame o socorro e siga as orientações abaixo enquanto ele não chega. O atendente do 192 ou do 193 também orienta pelo telefone."]:null,
   flow:["Engasgo (adulto e criança acima de 1 ano): se consegue tossir, deixe tossir. Se não consegue tossir, falar ou respirar: 5 tapas fortes nas costas, entre as escápulas, com a pessoa inclinada para a frente; depois 5 compressões no alto da barriga (manobra de Heimlich). Alterne até sair. Gestante no fim da gravidez ou pessoa muito grande: compressões no peito em vez da barriga. Se desmaiar: 192 e massagem no peito.",
@@ -1685,10 +1697,10 @@ const P=[
    "Intoxicação ou envenenamento (remédio, produto de limpeza, veneno, planta, animal peçonhento): não provoque vômito e não dê nada para beber. Guarde a embalagem e ligue para o CIATox Goiás, 0800 646 4350, 24h. Desmaio, convulsão ou falta de ar: 192.",
    "Hipoglicemia (pessoa com diabetes, suando, trêmula ou confusa): se está acordada e consegue engolir, dê açúcar ou bebida com açúcar (não diet). Se não melhorar em 15 minutos, repita e ligue 192. Se não acorda: nada pela boca, deite de lado e ligue 192.",
    "Alergia grave (inchaço na boca ou na garganta, falta de ar ou manchas pelo corpo depois de comida, picada ou remédio): 192. Se a pessoa tem caneta de adrenalina receitada, ajude a aplicar na parte de fora da coxa; sem melhora em 5 minutos, aplique a segunda, se houver.",
-   "Afogamento: tire a pessoa da água sem se arriscar (jogue algo que boie). Ligue 193. Se ela não respira, comece a reanimação; se souber, faça as respirações junto com as compressões.",
+   "Afogamento: tire a pessoa da água sem se arriscar (jogue algo que boie). Ligue 193 (resgate) ou 192. Se ela não respira, comece a reanimação; se souber, faça as respirações junto com as compressões.",
    "Sangramento forte: aperte firme e direto sobre o ferimento com um pano limpo, sem soltar para olhar. Se não parar e for braço ou perna, o atendente pode orientar um torniquete."],
   html:`<p class="src">Fontes: European Resuscitation Council (2025, primeiros socorros e reanimação), American Heart Association (2025, engasgo; 2024, primeiros socorros com a Cruz Vermelha Americana), CDC (primeiros socorros na convulsão), Cruz Vermelha Americana (resfriamento de queimaduras) e CIATox Goiás (SES-GO). Conferido em 09/10/2026.</p>`,
-  docs:["Embalagem do produto ou remédio, se houve ingestão","Lista dos remédios em uso, se der tempo"],where:"",extra:["samu","193","ciatox"]},
+  docs:["Embalagem do produto ou remédio, se houve ingestão","Lista dos remédios em uso, se der tempo"],where:"",extra:["samu","193-resgate","ciatox"]},
  {id:"r-cardio",nome:"Dor no peito e parada cardiorrespiratória",esf:"rede",val:"Urgência: SAMU 192 ou Bombeiros 193",
   test:p=>p.has("pcr")?["enc","Parada cardiorrespiratória: cada minuto sem compressões reduz a chance de sobreviver. Ligue 192 ou 193 e faça compressões até o socorro chegar."]
    :p.has("dorPeito")?["enc","Dor no peito pode ser infarto: avaliação de urgência agora, sem esperar a dor passar."]:null,
@@ -1700,7 +1712,7 @@ const P=[
    "Quem fez a reanimação pode ficar abalado nos dias seguintes: vale conversar na UBS ou no CAPS.",
    "Depois do atendimento: acompanhamento na UBS (pressão, colesterol, diabetes, cigarro) e remédios de uso contínuo de graça na Farmácia Popular ou na UBS. Quem ficou sem poder trabalhar: auxílio por incapacidade no INSS."],
   html:`<p class="src">Baseado nas diretrizes do European Resuscitation Council (2025), da American Heart Association (2025, reanimação; 2024, primeiros socorros, com a Cruz Vermelha Americana) e na regulação do SAMU 192 da SES-GO. Conferido em 09/10/2026.</p>`,
-  docs:["Documento e cartão do SUS, se tiver (a falta não impede o atendimento)","Lista ou caixas dos remédios em uso"],where:"",extra:["samu","193"]},
+  docs:["Documento e cartão do SUS, se tiver (a falta não impede o atendimento)","Lista ou caixas dos remédios em uso"],where:"",extra:["samu","193-resgate"]},
  {id:"r-fome",nome:"Segurança alimentar",esf:"rede",val:"Refeição, cesta e alimentos",
   test:p=>p.has("fome")?["enc","Falta de alimento em casa: refeição hoje, cesta básica pelo CRAS e alimentos toda semana."]:null,
   flow:["Fome hoje (dia útil): Restaurante do Bem, almoço a R$ 2 das 10h30 às 14h, sem encaminhamento, até acabarem os tickets. Chegar cedo. Não abre em fim de semana nem em feriado.",
@@ -1726,8 +1738,8 @@ const QUANDO=[
  {t:"Se for negado ou não resolver",d:"Guarde a negativa por escrito, o protocolo ou um print."}
 ];
 const STOPS={
- bombeiros:{nome:"Bombeiros 193",q:0,lugar:()=>pickIds(["193"]),docs:[]},
- socorro:{nome:"Socorro: SAMU 192 ou Bombeiros 193",q:0,lugar:()=>pickIds(["samu","193"]),docs:["Lista ou caixas dos remédios em uso, se der tempo"]},
+ bombeiros:{nome:"Bombeiros 193: incêndio e salvamento",q:0,lugar:()=>pickIds(["193","defesacivil-gyn"]),docs:[]},
+ socorro:{nome:"Socorro: SAMU 192 ou Bombeiros 193 (resgate)",q:0,lugar:()=>pickIds(["samu","193-resgate"]),docs:["Lista ou caixas dos remédios em uso, se der tempo"]},
  urgencia:{nome:"Pronto atendimento: SAMU 192, UPA ou CAIS 24h",q:0,lugar:()=>[{nome:"UPA ou CAIS 24h mais próximo",obs:"Atende tentativa e risco imediato sem encaminhamento. Endereços de UPAs e CAIS 24h na aba Serviços e contatos.",fake:true}].concat(pickIds(["samu","ciatox"])),docs:["Embalagem do remédio ou produto, se houve ingestão","Cartão do SUS e documento, se tiver (a falta não impede o atendimento)"]},
  cvv:{nome:"CVV, telefone 188",q:0,lugar:()=>pickIds(["188"]),docs:[]},
  capsad:{nome:"CAPS AD (álcool e drogas) ou UBS",q:2,lugar:p=>(p.mun==="Goiânia"?pickIds(p.idade!==null&&p.idade<18?["caps-girassol","capsi"]:["caps-ad-noroeste","raps-gyn"]):[{nome:"CAPS AD de referência",obs:"Atende sem encaminhamento. Endereço ainda não mapeado neste município: pergunte na UBS ou na Secretaria de Saúde.",fake:true}]).concat(pickIds(["credeq"])),docs:["Cartão do SUS e documento, se tiver"]},
@@ -1814,7 +1826,8 @@ const ROTA={
  "r-rua":[["pop","Alimentação, higiene, documentos e vaga em acolhimento"]],
  "r-mental":[["ubs","Acolhimento e avaliação. Pergunte se há psicólogo na equipe (eMulti) ou para onde a UBS encaminha"],["clinica","Inscrição para psicoterapia gratuita. Ligue antes: as vagas abrem por semestre e há lista de espera"]],
  "r-caps":[["capsReg","Acolhimento no CAPS, sem encaminhamento. Levar receitas e relatórios"]],
- "r-resgate":[["bombeiros","193 agora: dizer o endereço, o que aconteceu e se ainda há risco"]],
+ "r-resgate":[["socorro","193 (resgate) ou 192 (SAMU) agora: dizer o endereço, o que aconteceu e quantas vítimas"]],
+ "r-incendio":[["bombeiros","193 agora: dizer o endereço, o que está acontecendo e se há pessoas no local"]],
  "r-socorros":[["socorro","Chamar o socorro e seguir as orientações do card de primeiros socorros"]],
  "r-cardio":p=>[["socorro",p.has("pcr")?"192 (SAMU) ou 193 (Bombeiros) agora e compressões no peito até o socorro chegar":"192 (SAMU) agora; se não atender, 193 (Bombeiros). Não espere a dor passar"]],
  "r-gest":p=>[["ubs","Pré-natal: primeira consulta até a 12ª semana; perguntar em qual maternidade será o parto"],["nascer","Cadastro na Rede Nascer pelo 155, para acompanhamento até a criança completar 2 anos"],["cras","Atualizar o CadÚnico para o adicional de gestante do Bolsa Família"]],
@@ -1848,7 +1861,7 @@ const ROTA={
 const CURTO={cad:"CadÚnico",bpc:"Benefício de Prestação Continuada",meuinss:"Meu INSS",apos:"Aposentadoria",incap:"Auxílio por incapacidade",acid:"Auxílio-acidente",pensao:"Pensão por morte",reclusao:"Auxílio-reclusão",salmat:"Salário-maternidade",salfam:"Salário-família",facult:"Contribuir para o INSS",tse:"Tarifa Social",cpi:"Carteira da Pessoa Idosa",plfed:"Passe Livre interestadual",aluguel:"Aluguel Social",
  ciptea:"CIPTEA",plpcd:"Passe Livre PcD",passaporte:"Passaporte da Pessoa Idosa",registro:"2ª via de certidão",ceaf:"Alto custo",pep:"PEP",
  hivcare:"Cuidado em HIV",crise:"Crise suicida",discrim:"Discriminação",gas:"Gás do Povo",mcmv:"Minha Casa, Minha Vida",ad:"Álcool e drogas",apostas:"Apostas",games:"Jogos eletrônicos",enem:"Enem",prouni:"Prouni",fies:"Fies",cotas:"Sisu e cotas",probem:"ProBem",pnaes:"Assistência estudantil",eja:"EJA e Encceja",prep:"PrEP",mp:"Ministério Público","r-mulher":"Proteção à mulher","r-crianca":"Proteção à criança","r-idoso":"Proteção ao idoso e PcD",
- "r-rua":"População de rua","r-mental":"Psicoterapia","r-cardio":"Dor no peito ou parada","r-resgate":"Bombeiros","r-socorros":"Primeiros socorros","r-gest":"Gestante","r-gestalto":"Pré-natal de alto risco","r-pospart":"Pós-parto","r-entrega":"Entrega legal","r-luto":"Luto perinatal","r-creche":"Creche e pré-escola","r-fund":"Ensino fundamental","r-medio":"Ensino médio","bolsaestudo":"Bolsa Estudo","r-especial":"Educação especial","r-foraescola":"Volta à escola","r-caps":"CAPS","r-psiq":"Crise psiquiátrica","r-fome":"Segurança alimentar"};
+ "r-rua":"População de rua","r-mental":"Psicoterapia","r-cardio":"Dor no peito ou parada","r-resgate":"Resgate de vítimas","r-incendio":"Incêndio e salvamento","r-socorros":"Primeiros socorros","r-gest":"Gestante","r-gestalto":"Pré-natal de alto risco","r-pospart":"Pós-parto","r-entrega":"Entrega legal","r-luto":"Luto perinatal","r-creche":"Creche e pré-escola","r-fund":"Ensino fundamental","r-medio":"Ensino médio","bolsaestudo":"Bolsa Estudo","r-especial":"Educação especial","r-foraescola":"Volta à escola","r-caps":"CAPS","r-psiq":"Crise psiquiátrica","r-fome":"Segurança alimentar"};
 /* Textos das políticas vindos da planilha (o critério de direito continua no código). */
 (PLANILHA.politicas||[]).forEach(r=>{const p=P.find(x=>x.id===r.id);if(!p)return;
  if(r.nome)p.nome=r.nome;if(r.val)p.val=r.val;
@@ -1890,15 +1903,16 @@ function avaliar(p){
   else if(r[0]==="falta")r[2].forEach(c=>(faltaPor[c]=faltaPor[c]||[]).push(pol));
   else hits.push({pol,st:r[0],why:r[1]});}
  const order={enc:0,prov:1,ver:2};
- const top=["r-cardio","r-resgate","r-socorros","crise","r-psiq","pep","r-mulher","r-crianca","discrim","hivcare","ceaf","r-caps","r-mental","ad","apostas","games","mp","cad"];
+ const top=["r-cardio","r-resgate","r-incendio","r-socorros","crise","r-psiq","pep","r-mulher","r-crianca","discrim","hivcare","ceaf","r-caps","r-mental","ad","apostas","games","mp","cad"];
  const rank=x=>{const i=top.indexOf(x.pol.id);return i<0?99:i};
  hits.sort((a,b)=>rank(a)-rank(b)||order[a.st]-order[b.st]);
  const urg=[];
  if(p.has("tentativa"))urg.push("Tentativa de suicídio ou autolesão: avaliação médica <b>agora</b> (SAMU <b>192</b>, UPA ou CAIS 24h), mesmo que a pessoa pareça bem. Tomou remédio ou veneno: leve a embalagem; orientação 24h no CIATox <b>0800 646 4350</b>.");
  if(p.has("suic")||p.has("tentativa"))urg.push("Não deixe a pessoa sozinha. Pergunte se há plano e acesso a meios; com plano e meio disponível, ligue <b>192</b>. Para conversar a qualquer hora: <b>188</b> (CVV), gratuito e sigiloso. Ofereça ligar junto. <a href=\"#card-crise\" data-abre=\"crise\">Ver o manejo da crise</a>");
  if(p.has("pcr"))urg.push("Pessoa que não responde: ligue <b>192</b> (SAMU) ou <b>193</b> (Bombeiros) no viva-voz, o que atender primeiro, ou peça a alguém. Se ela não respira, ou só dá suspiros ou respira de um jeito estranho, é parada cardiorrespiratória; na dúvida, trate como parada e não procure pulso. <b>1.</b> Peça um desfibrilador (DEA), se houver por perto. <b>2.</b> Comece as compressões: pessoa de costas no chão ou em superfície firme, no centro do peito, com as duas mãos e os braços esticados, forte (5 a 6 cm) e rápido (100 a 120 por minuto), deixando o peito voltar, sem parar. <b>3.</b> Chegou o DEA: ligue e siga a voz do aparelho; qualquer pessoa pode usar. <b>4.</b> Continue até a equipe assumir ou a pessoa voltar a respirar normalmente. Adulto: quem não tem treino faz só compressões. Bebê, criança ou afogamento: se souber, faça 30 compressões e 2 respirações, afundando cerca de 1/3 do peito na criança; se não souber, só compressões. O atendente orienta pelo telefone.");
- if(p.has("resgate"))urg.push("Incêndio, acidente com vítima, pessoa presa ou em risco (altura, água, desabamento) ou choque elétrico: ligue <b>193</b> (Bombeiros). Proteja-se primeiro: fique longe do fogo, da fumaça e de fios. Não mexa na vítima de acidente, a não ser que haja fogo ou que ela não respire e precise de massagem no peito. Sangramento forte: aperte firme com um pano limpo. Mal súbito, sem acidente: <b>192</b> (SAMU).");
- if(p.has("socorros"))urg.push("Risco de vida (não respira, não acorda, sangra muito, falta de ar forte): ligue <b>192</b> (SAMU). Acidente, afogamento, incêndio ou pessoa presa: <b>193</b> (Bombeiros). Intoxicação sem sinais graves: CIATox <b>0800 646 4350</b>, 24h. Veja abaixo o que fazer em cada caso até o socorro chegar.");
+ if(p.has("resgate"))urg.push("Acidente, queda ou afogamento com vítima: ligue <b>193</b> (Bombeiros, resgate) ou <b>192</b> (SAMU), o que atender primeiro. Proteja-se e sinalize o local. Não mexa na vítima, a não ser que haja fogo ou que ela não respire e precise de massagem no peito. Sangramento forte: aperte firme com um pano limpo.");
+ if(p.has("incendio"))urg.push("Incêndio, cheiro forte de gás, desabamento ou pessoa presa (elevador, altura, poço): ligue <b>193</b> (Bombeiros). Saia e afaste as pessoas sem se arriscar; com cheiro de gás, ligue do lado de fora. Se houver ferido, avise na ligação.");
+ if(p.has("socorros"))urg.push("Risco de vida (não respira, não acorda, sangra muito, falta de ar forte): ligue <b>192</b> (SAMU). Acidente ou afogamento com vítima: <b>193</b> (resgate dos Bombeiros) ou <b>192</b>. Intoxicação sem sinais graves: CIATox <b>0800 646 4350</b>, 24h. Veja abaixo o que fazer em cada caso até o socorro chegar.");
  if(p.has("dorPeito"))urg.push("Dor no peito agora (aperto, peso ou queimação que dura mais de alguns minutos, que pode ir para o braço, as costas, o pescoço ou o queixo), com falta de ar, suor frio, enjoo ou desmaio: ligue <b>192</b> (SAMU) já; se não conseguir falar com o 192, ligue <b>193</b> (Bombeiros). Não espere passar e não deixe a pessoa ir sozinha nem dirigindo; mantenha-a sentada e em repouso. Não dê remédio por conta própria: se a pessoa estiver acordada, o médico do 192 pode orientar mastigar um comprimido de AAS (aspirina), quando não há alergia. Em mulheres, idosos e diabéticos o infarto pode vir sem dor forte: cansaço, falta de ar e enjoo também contam. Se a pessoa parar de responder e de respirar normalmente, comece a massagem no peito.");
  if(p.has("gestAlto"))urg.push("Na gravidez, sangramento, perda de líquido, dor forte na barriga ou contrações antes de 37 semanas, pressão alta com dor de cabeça ou visão turva, inchaço de repente no rosto e nas mãos, febre, falta de ar, desmaio ou convulsão, ou bebê mexendo menos que o normal: maternidade ou <b>192</b> (SAMU) agora.");
  if(p.has("crisePsiq"))urg.push("Crise psiquiátrica agora (surto, agitação, confusão): com risco para a pessoa ou para outros, ligue <b>192</b> (SAMU); com arma ou ameaça, <b>190</b>. Em Goiânia, o Pronto-Socorro Psiquiátrico Wassily Chuc atende 24h; na região, UPA ou CAIS 24h. Fale com calma, afaste objetos perigosos e fique por perto, mas a uma distância segura e com a saída livre. Confusão que começou de repente pode ser problema clínico: pronto atendimento.");
@@ -2364,7 +2378,7 @@ function agregar(regs,per,mun){
   mediaPol:rs.length?rs.reduce((a,r)=>a+(r.pol||[]).length,0)/rs.length:0,
   ate218:rs.filter(r=>["sem","ate109","ate218"].includes(r.renda)).length};
 }
-const ROTULO_SIT=Object.fromEntries([...PERGUNTAS.flatMap(q=>q.opcoes||[]),...PERFIL_ROWS.filter(r=>r.f==="on").flatMap(r=>r.op),["rua","Situação de rua"],["dorPeito","Dor no peito"],["pcr","Parada cardiorrespiratória"],["resgate","Incêndio, acidente ou resgate"],["socorros","Engasgo, convulsão, queimadura, intoxicação ou alergia grave"],["fome","Falta comida em casa"],["semDoc","Sem certidão ou documento"],["negado","Direito negado"]].map(([k,t])=>[k,t]));
+const ROTULO_SIT=Object.fromEntries([...PERGUNTAS.flatMap(q=>q.opcoes||[]),...PERFIL_ROWS.filter(r=>r.f==="on").flatMap(r=>r.op),["rua","Situação de rua"],["dorPeito","Dor no peito"],["pcr","Parada cardiorrespiratória"],["resgate","Acidente com vítima (resgate)"],["incendio","Incêndio, gás, desabamento ou pessoa presa"],["socorros","Engasgo, convulsão, queimadura, intoxicação ou alergia grave"],["fome","Falta comida em casa"],["semDoc","Sem certidão ou documento"],["negado","Direito negado"]].map(([k,t])=>[k,t]));
 const nomeSit=k=>ROTULO_SIT[k]||k;
 const nomeNec=k=>(NECESSIDADES.find(n=>n.k===k)||{}).t||k;
 const nomeParada=k=>(STOPS[k]||{}).nome||k;
@@ -2398,7 +2412,7 @@ function alertas(a){
 const GRUPOS_SIT=[
  ["Violências e violações de direitos",["violMulher","mpu","violCrianca","violIdoso","discrim","pep","trabalho","negado"]],
  ["Saúde mental e dependências",["mental","mentalGrave","crisePsiq","suic","tentativa","drogas","apostas","games"]],
- ["Saúde física",["altocusto","continuo","hiv","teste","prep","gest","gestAlto","dorPeito","pcr","resgate","socorros","entregaAdocao","lutoPerinatal"]],
+ ["Saúde física",["altocusto","continuo","hiv","teste","prep","gest","gestAlto","dorPeito","pcr","resgate","incendio","socorros","entregaAdocao","lutoPerinatal"]],
  ["Renda, moradia e documentos",["fome","aluguel","rua","semDoc","cadOld"]],
  ["Educação e trabalho",["creche","preescola","fundamental","vagaMedio","estMedio","especial","foraEscola","estud","superior","superiorApoio","eja","empreender"]],
  ["Quem mora na casa",["c06","pcd","pcd17","tea"]]
